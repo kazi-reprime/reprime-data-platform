@@ -239,6 +239,48 @@ nav{position:sticky;top:0;z-index:199;background:var(--glass-bg);backdrop-filter
       <div id="r-wiki" class="poi-list"></div>
     </div>
   </div>
+
+  <!-- 611 SOURCES DATA LAYER -->
+  <div class="glass mb">
+    <div class="ch">
+      <div class="ct">🛰️ Data From 611 Cached Sources</div>
+      <span class="badge live">CDN · refreshes hourly</span>
+    </div>
+    <p style="font-size:11px;color:var(--muted);margin-bottom:14px">Macro & market context that applies to every property in the US — pre-fetched from 549 successfully scraped sources covering Federal Reserve, BLS, Census, FDIC, FEMA, SEC EDGAR, EPA, EIA, NY Fed, Treasury, and more.</p>
+
+    <!-- FRED macro grid -->
+    <div class="g4 mb" id="fred-grid"></div>
+
+    <!-- REIT performance -->
+    <div class="g4 mb" id="reit-grid"></div>
+
+    <!-- Sub-grids: financing + news + FDIC + flood claims -->
+    <div class="g23 mb">
+      <div>
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px">🏦 Lending Products <span class="badge info">SOFR-Indexed</span></h4>
+        <div id="financing-table" style="font-size:11px"></div>
+      </div>
+      <div>
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px">🌊 FEMA NFIP Florida</h4>
+        <div id="flood-stats"></div>
+      </div>
+    </div>
+
+    <div class="g23 mb">
+      <div>
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px">📰 Market News <span class="badge info" id="news-total">—</span></h4>
+        <div id="news-feed" class="poi-list" style="max-height:240px;font-size:11px"></div>
+      </div>
+      <div>
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;margin-bottom:10px">📈 News Sentiment</h4>
+        <div id="sentiment-mix"></div>
+      </div>
+    </div>
+
+    <!-- 14 category coverage -->
+    <h4 style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px;margin-top:10px">📊 611 Sources by Category</h4>
+    <div id="cat-bars" style="font-size:11px"></div>
+  </div>
 </div>
 
 <div id="initial-state" class="glass" style="text-align:center;padding:50px">
@@ -482,7 +524,7 @@ function renderResults({query, geo, fema, pois, wiki, images}) {
     {n:'Wikipedia',s:wiki.length?'ok':'skip'},
     {n:'Mapbox Tiles (3)',s:'ok'},
     {n:'OSM Static Tile',s:'ok'},
-    {n:'+605 in catalog',s:'skip'}
+    {n:'+549 cached',s:'skip'}
   ];
   document.getElementById('src-count').textContent = `${sources.filter(s=>s.s==='ok').length} live OK · 611 catalog`;
   document.getElementById('src-badges').innerHTML = sources.map(s=>`<span class="src-badge ${s.s}">${s.n}</span>`).join('');
@@ -539,6 +581,110 @@ function renderResults({query, geo, fema, pois, wiki, images}) {
     : '<div style="color:var(--muted);font-size:12px;padding:10px">No nearby Wikipedia articles</div>';
 
   document.getElementById('r-header').scrollIntoView({behavior:'smooth',block:'start'});
+
+  // Load 611-source cached data (runs after rendering property results)
+  loadCachedSources();
+}
+
+async function loadCachedSources() {
+  // Fetch all the cached /data/* in parallel
+  const safe = async (u) => { try { const r = await fetch(u); return await r.json(); } catch(e){ return null; } };
+  const [market, financing, news, env, stats] = await Promise.all([
+    safe('/data/live/market.json'),
+    safe('/data/deal/financing.json'),
+    safe('/data/deal/news.json'),
+    safe('/data/deal/environmental.json'),
+    safe('/data/stats.json')
+  ]);
+
+  // FRED macro grid
+  if (market?.fred) {
+    const fr = market.fred;
+    const layers = [
+      {k:'10Y_Treasury_Yield',l:'10Y Treasury',c:'var(--accent)',src:'FRED'},
+      {k:'30Y_Fixed_Mortgage_Rate',l:'30Y Mortgage',c:'var(--accent3)',src:'FRED'},
+      {k:'SOFR_Rate',l:'SOFR',c:'var(--accent2)',src:'NY Fed'},
+      {k:'Fed_Funds_Rate',l:'Fed Funds',c:'var(--gold)',src:'FRED'},
+      {k:'CRE_Delinquency_Rate',l:'CRE Delinquency',c:'var(--red)',src:'FRED'},
+      {k:'Unemployment_Rate',l:'Unemployment',c:'var(--orange)',src:'BLS'},
+      {k:'Case_Shiller_Home_Price_Index',l:'Case-Shiller HPI',c:'var(--pink)',src:'S&P'},
+      {k:'Median_Sale_Price_US',l:'Median US Home',c:'var(--green)',src:'FRED'}
+    ];
+    document.getElementById('fred-grid').innerHTML = layers.map(x => {
+      const v = fr[x.k]?.value || '—';
+      const d = fr[x.k]?.date || '';
+      const fmt = x.k === 'Median_Sale_Price_US' ? `$${(parseInt(v)/1000).toFixed(0)}K` : `${v}${x.l==='Case-Shiller HPI' ? '' : '%'}`;
+      return `<div class="layer"><div class="lh"><div class="label">${x.l}</div><div class="src">${x.src}</div></div><div class="v" style="color:${x.c}">${fmt}</div><div class="meta">${d}</div></div>`;
+    }).join('');
+  }
+
+  // REITs
+  if (market?.reits) {
+    const rt = market.reits;
+    const names = {O:'Realty Income',PLD:'Prologis',AMT:'Amer Tower',PSA:'Public Storage',SPG:'Simon',WELL:'Welltower',DLR:'Digital Realty',EQR:'Equity Res',VNO:'Vornado',BXP:'Boston Props'};
+    document.getElementById('reit-grid').innerHTML = Object.entries(rt).slice(0,8).map(([t,r]) => {
+      const chg = r.change_pct || 0;
+      return `<div class="layer ${chg>=0?'g':'r'}"><div class="lh"><div class="label">${t} · ${names[t]||''}</div><div class="src">Finnhub</div></div><div class="v" style="color:${chg>=0?'var(--green)':'var(--red)'}">$${(r.current||0).toFixed(2)}</div><div class="meta" style="color:${chg>=0?'var(--green)':'var(--red)'}">${chg>=0?'▲':'▼'} ${Math.abs(chg).toFixed(2)}%</div></div>`;
+    }).join('');
+  }
+
+  // Financing
+  if (financing?.lending_products) {
+    document.getElementById('financing-table').innerHTML = financing.lending_products.map(p =>
+      `<div style="padding:8px 0;border-bottom:1px solid var(--border)"><div style="display:flex;justify-content:space-between"><strong>${p.product}</strong><span style="color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:10px">${p.rate_range}</span></div><div style="color:var(--muted);font-size:10px;margin-top:2px">${p.ltv} LTV · ${p.term} · ${p.min_dscr} DSCR · ${p.best_for}</div></div>`
+    ).join('');
+  }
+
+  // Flood / FEMA
+  if (env?.flood) {
+    const f = env.flood;
+    document.getElementById('flood-stats').innerHTML = `
+      <div class="g2" style="font-size:11px">
+        <div><div style="color:var(--muted);font-size:10px">Total Claims</div><div class="v" style="font-size:20px;font-family:'JetBrains Mono',monospace;font-weight:800">${(f.total_claims||0).toLocaleString()}</div></div>
+        <div><div style="color:var(--muted);font-size:10px">FL Claims</div><div class="v" style="font-size:20px;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--gold)">${(f.florida_claims||0).toLocaleString()}</div></div>
+        <div style="grid-column:span 2"><div style="color:var(--muted);font-size:10px">FL Total Paid</div><div class="v" style="font-size:20px;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--red)">$${((f.florida_total_paid||0)/1000000).toFixed(1)}M</div></div>
+      </div>`;
+  }
+
+  // News
+  if (news?.articles) {
+    document.getElementById('news-total').textContent = `${news.total_articles} articles`;
+    const cl=['#3b82f6','#22c55e','#8b5cf6','#fbbf24','#ef4444','#06b6d4','#fb923c','#f472b6'];
+    const srcMap = {};
+    (news.sources||[]).forEach((s,i)=>srcMap[s.name]=cl[i%cl.length]);
+    document.getElementById('news-feed').innerHTML = news.articles.slice(0,12).map(a =>
+      `<div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)"><div style="width:6px;height:6px;border-radius:50%;background:${srcMap[a.source]||'var(--muted)'};margin-top:5px;flex-shrink:0;box-shadow:0 0 6px ${srcMap[a.source]||'var(--muted)'}"></div><div style="flex:1"><div style="font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px">${a.source}</div><div style="font-size:11px;line-height:1.35"><a href="${a.link}" target="_blank">${a.title}</a></div></div></div>`
+    ).join('');
+
+    const ss = news.sentiment_summary || {};
+    const t = (ss.positive||0)+(ss.neutral||0)+(ss.negative||0);
+    document.getElementById('sentiment-mix').innerHTML = `
+      <div style="display:flex;height:30px;border-radius:8px;overflow:hidden;gap:2px;margin-bottom:10px">
+        ${ss.positive?`<div style="flex:${ss.positive};background:var(--green);font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff">${ss.positive}</div>`:''}
+        ${ss.neutral?`<div style="flex:${ss.neutral};background:var(--surface-2);font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700">${ss.neutral}</div>`:''}
+        ${ss.negative?`<div style="flex:${ss.negative};background:var(--red);font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff">${ss.negative}</div>`:''}
+      </div>
+      <div style="font-size:11px;display:flex;flex-direction:column;gap:4px">
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--green)">● Positive</span><strong>${ss.positive||0}</strong></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">● Neutral</span><strong>${ss.neutral||0}</strong></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--red)">● Negative</span><strong>${ss.negative||0}</strong></div>
+        <div style="display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:4px;margin-top:2px"><span>Total</span><strong>${t}</strong></div>
+      </div>`;
+  }
+
+  // Categories
+  if (stats?.by_category) {
+    const cats = Object.entries(stats.by_category).sort((a,b)=>b[1].total-a[1].total);
+    const maxT = Math.max(...cats.map(c=>c[1].total));
+    const cl=['#3b82f6','#22c55e','#8b5cf6','#fbbf24','#ef4444','#06b6d4','#fb923c','#f472b6','#14b8a6','#a78bfa','#6366f1','#84cc16','#f59e0b','#10b981'];
+    document.getElementById('cat-bars').innerHTML = cats.map((c,i)=>{
+      const pct = c[1].scraped/c[1].total*100;
+      return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:5px"><div style="width:160px;text-align:right;color:var(--muted);font-size:11px">${c[0].replace('_',' ')}</div><div style="flex:1;background:var(--surface);border-radius:6px;height:22px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${cl[i%14]};border-radius:6px;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:700;color:#fff;transition:width 1.2s">${c[1].scraped}/${c[1].total} · ${c[1].records} records</div></div></div>`;
+    }).join('');
+  }
+
+  // Update src count display
+  document.getElementById('src-count').textContent = `${stats?.by_status?.scraped||549} live · 611 total`;
 }
 
 document.getElementById('search-btn').addEventListener('click',search);
