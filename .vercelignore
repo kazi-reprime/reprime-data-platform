@@ -1,0 +1,13 @@
+
+.git
+.claude
+__pycache__
+*.pyc
+.env
+api/.env
+api/fetch_live_data.py
+api/generate_reports.py
+api/scrape_all.py
+api/scrapers/configs/
+api/brain/
+api/data/reports/
