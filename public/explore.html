@@ -272,8 +272,7 @@ nav{position:sticky;top:0;z-index:199;background:var(--glass-bg);backdrop-filter
 
 <script>
 // API base — points to live backend if available, else uses static fallback
-const BACKEND = window.location.hostname === 'localhost' ? 'http://localhost:8001' : 'https://reprime-data-platform.vercel.app';
-const A = BACKEND;
+const A = '';
 
 // Theme
 const saved=localStorage.getItem('theme')||'dark';
@@ -312,7 +311,7 @@ async function search(){
   const sint=setInterval(()=>{document.getElementById('loading-status').textContent=statuses[si%statuses.length];si++;},800);
 
   try{
-    const d=await(await fetch(`${A}/api/property/search?q=${encodeURIComponent(q)}`)).json();
+    const d=await(await fetch(`${A}/api/property?q=${encodeURIComponent(q)}`)).json();
     clearInterval(sint);
     if(d.error){alert('Search failed: '+d.error);document.getElementById('loading').classList.remove('show');document.getElementById('search-btn').disabled=false;document.getElementById('initial-state').style.display='block';return;}
     renderResults(d);

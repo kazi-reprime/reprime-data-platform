@@ -1,6 +1,12 @@
 {
   "version": 2,
   "outputDirectory": "public",
+  "functions": {
+    "api/property.py": {
+      "runtime": "@vercel/python@4.3.0",
+      "maxDuration": 30
+    }
+  },
   "rewrites": [
     { "source": "/site", "destination": "/site.html" },
     { "source": "/explore", "destination": "/explore.html" },
@@ -9,7 +15,10 @@
     { "source": "/api/live/:metric", "destination": "/data/live/:metric.json" },
     { "source": "/api/market/:metric", "destination": "/data/market/:metric.json" },
     { "source": "/api/deal/:metric", "destination": "/data/deal/:metric.json" },
-    { "source": "/api/:metric", "destination": "/data/:metric.json" }
+    { "source": "/api/stats", "destination": "/data/stats.json" },
+    { "source": "/api/categories", "destination": "/data/categories.json" },
+    { "source": "/api/sources", "destination": "/data/sources.json" },
+    { "source": "/api/health", "destination": "/data/health.json" }
   ],
   "headers": [
     { "source": "/data/(.*)", "headers": [
