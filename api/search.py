@@ -40,8 +40,8 @@ from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler
 
 VERSION = "4.0-consolidated"
-PER_SOURCE_TIMEOUT = 6
-TOTAL_BUDGET = 18
+PER_SOURCE_TIMEOUT = 7
+TOTAL_BUDGET = 25  # < vercel maxDuration (30); non-blocking shutdown prevents hangs
 CACHE_TTL = 300  # 5 min
 _CACHE: dict[str, tuple[float, dict]] = {}
 
