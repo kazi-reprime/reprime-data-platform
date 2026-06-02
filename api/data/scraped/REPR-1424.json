@@ -1,10 +1,1 @@
-{
-  "source_id": "REPR-1424",
-  "scraped_at": "2026-06-01T23:31:29.264236+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "raw": "{\"errors\":[{\"message\":\"This operation has been blocked as a potential Cross-Site Request Forgery (CSRF). Please either specify a 'content-type' header (with a mime-type that is not one of application/x-www-form-urlencoded, multipart/form-data, text/plain) or provide one of the following headers: x-apollo-operation-name, apollo-require-preflight\",\"extensions\":{\"code\":\"CSRF_ERROR\"}}]}"
-    }
-  ]
-}
+{"source_id": "REPR-1424", "scraped_at": "2026-06-01T23:31:29.264236+00:00", "record_count": 1, "records": [{"raw": "{\"errors\":[{\"message\":\"This operation has been blocked as a potential Cross-Site Request Forgery (CSRF). Please either specify a 'content-type' header (with a mime-type that is not one of application/x-www-form-urlencoded, multipart/form-data, text/plain) or provide one of the following headers: x-apollo-operation-name, apollo-require-preflight\",\"extensions\":{\"code\":\"CSRF_ERROR\"}}]}"}], "_demo": true}

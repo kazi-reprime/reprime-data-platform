@@ -1,13 +1,1 @@
-{
-  "source_id": "REPR-1068",
-  "scraped_at": "2026-06-01T23:31:38.023381+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "portal_url": "https://www.census.gov/foreign-trade/",
-      "status_code": 200,
-      "content_type": "text/html; charset=utf-8",
-      "size_bytes": 544820
-    }
-  ]
-}
+{"source_id": "REPR-1068", "scraped_at": "2026-06-01T23:31:38.023381+00:00", "record_count": 1, "records": [{"portal_url": "https://www.census.gov/foreign-trade/", "status_code": 200, "content_type": "text/html; charset=utf-8", "size_bytes": 544820}], "_demo": true}

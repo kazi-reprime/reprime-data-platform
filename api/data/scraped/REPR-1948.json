@@ -1,13 +1,1 @@
-{
-  "source_id": "REPR-1948",
-  "scraped_at": "2026-06-01T23:30:29.259548+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "portal_url": "https://data.cityofchicago.org",
-      "status_code": 200,
-      "content_type": "text/html; charset=utf-8",
-      "size_bytes": 605650
-    }
-  ]
-}
+{"source_id": "REPR-1948", "scraped_at": "2026-06-01T23:30:29.259548+00:00", "record_count": 1, "records": [{"portal_url": "https://data.cityofchicago.org", "status_code": 200, "content_type": "text/html; charset=utf-8", "size_bytes": 605650}], "_demo": true}

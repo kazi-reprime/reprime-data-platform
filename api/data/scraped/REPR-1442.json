@@ -1,13 +1,1 @@
-{
-  "source_id": "REPR-1442",
-  "scraped_at": "2026-06-01T23:30:32.406367+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "portal_url": "https://www.irs.gov/credits-deductions/businesses/certify-and-maintain-a-qualified-opportunity-fund",
-      "status_code": 200,
-      "content_type": "text/html; charset=UTF-8",
-      "size_bytes": 98380
-    }
-  ]
-}
+{"source_id": "REPR-1442", "scraped_at": "2026-06-01T23:30:32.406367+00:00", "record_count": 1, "records": [{"portal_url": "https://www.irs.gov/credits-deductions/businesses/certify-and-maintain-a-qualified-opportunity-fund", "status_code": 200, "content_type": "text/html; charset=UTF-8", "size_bytes": 98380}], "_demo": true}

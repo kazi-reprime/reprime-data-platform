@@ -1,13 +1,1 @@
-{
-  "source_id": "REPR-1098",
-  "scraped_at": "2026-06-01T23:31:36.614638+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "portal_url": "https://map.datacente.rs",
-      "status_code": 200,
-      "content_type": "text/html",
-      "size_bytes": 36503
-    }
-  ]
-}
+{"source_id": "REPR-1098", "scraped_at": "2026-06-01T23:31:36.614638+00:00", "record_count": 1, "records": [{"portal_url": "https://map.datacente.rs", "status_code": 200, "content_type": "text/html", "size_bytes": 36503}], "_demo": true}

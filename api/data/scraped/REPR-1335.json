@@ -1,10 +1,1 @@
-{
-  "source_id": "REPR-1335",
-  "scraped_at": "2026-06-01T23:31:22.065338+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "raw": "<html><body><p>CAISO Acceptable Use Policy Violation. Please retry your request after 5 seconds.</p></body></html>"
-    }
-  ]
-}
+{"source_id": "REPR-1335", "scraped_at": "2026-06-01T23:31:22.065338+00:00", "record_count": 1, "records": [{"raw": "<html><body><p>CAISO Acceptable Use Policy Violation. Please retry your request after 5 seconds.</p></body></html>"}], "_demo": true}

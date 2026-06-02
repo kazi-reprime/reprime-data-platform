@@ -1,17 +1,1 @@
-{
-  "source_id": "REPR-0825",
-  "scraped_at": "2026-06-01T23:30:22.144789+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "request": {
-        "date": "2026-06-01T23:30:20.351Z",
-        "referenceDocument": "NEHRP-2020",
-        "status": "error",
-        "url": "http://earthquake.usgs.gov/ws/designmaps/asce7-22.json?",
-        "parameters": {}
-      },
-      "response": "Missing required parameters: latitude, longitude, riskCategory, siteClass, title"
-    }
-  ]
-}
+{"source_id": "REPR-0825", "scraped_at": "2026-06-01T23:30:22.144789+00:00", "record_count": 1, "records": [{"request": {"date": "2026-06-01T23:30:20.351Z", "referenceDocument": "NEHRP-2020", "status": "error", "url": "http://earthquake.usgs.gov/ws/designmaps/asce7-22.json?", "parameters": {}}, "response": "Missing required parameters: latitude, longitude, riskCategory, siteClass, title"}], "_demo": true}

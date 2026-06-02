@@ -1,13 +1,1 @@
-{
-  "source_id": "REPR-1473",
-  "scraped_at": "2026-06-01T23:30:27.512477+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "portal_url": "https://dhcd.baltimorecity.gov/tif",
-      "status_code": 404,
-      "content_type": "text/html; charset=UTF-8",
-      "size_bytes": 145938
-    }
-  ]
-}
+{"source_id": "REPR-1473", "scraped_at": "2026-06-01T23:30:27.512477+00:00", "record_count": 1, "records": [{"portal_url": "https://dhcd.baltimorecity.gov/tif", "status_code": 404, "content_type": "text/html; charset=UTF-8", "size_bytes": 145938}], "_demo": true}

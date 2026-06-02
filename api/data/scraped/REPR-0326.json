@@ -1,10 +1,1 @@
-{
-  "source_id": "REPR-0326",
-  "scraped_at": "2026-06-01T23:30:09.036031+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "raw": "<!DOCTYPE html><html><head><title>Error Page</title><style type=\"text/css\">html{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:1em}.center-box{margin: 20% auto auto auto;width: 50%;border: 1px solid #dcdcdc;padding: 1em;}\n</style><title>Security Violation (403)</title></head></head><body>\n<div class=\"center-box\">\n    <h3>data.gov.il&nbsp;|&nbsp;Access denied (403)</h3>\n    <h4>Current session has been terminated.</h2>\n    <p>For further information, do not hesitate to contact us.</p>\n    <p>Ref: <span id=\"addr\">223.236.99.169</span>&nbsp;<span id=\"time\">1780356608</span></p>\n</div></body><script>document.getElementById(\"time\").innerHTML = (new Date()).toISOString()</script>\n</html>\n"
-    }
-  ]
-}
+{"source_id": "REPR-0326", "scraped_at": "2026-06-01T23:30:09.036031+00:00", "record_count": 1, "records": [{"raw": "<!DOCTYPE html><html><head><title>Error Page</title><style type=\"text/css\">html{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:1em}.center-box{margin: 20% auto auto auto;width: 50%;border: 1px solid #dcdcdc;padding: 1em;}\n</style><title>Security Violation (403)</title></head></head><body>\n<div class=\"center-box\">\n    <h3>data.gov.il&nbsp;|&nbsp;Access denied (403)</h3>\n    <h4>Current session has been terminated.</h2>\n    <p>For further information, do not hesitate to contact us.</p>\n    <p>Ref: <span id=\"addr\">223.236.99.169</span>&nbsp;<span id=\"time\">1780356608</span></p>\n</div></body><script>document.getElementById(\"time\").innerHTML = (new Date()).toISOString()</script>\n</html>\n"}], "_demo": true}

@@ -1,10 +1,1 @@
-{
-  "source_id": "REPR-1845",
-  "scraped_at": "2026-06-01T23:31:31.331492+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "raw": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">\n<html><head>\n<title>403 Forbidden</title>\n</head><body>\n<h1>Forbidden</h1>\n<p>You don't have permission to access this resource.</p>\n</body></html>\n"
-    }
-  ]
-}
+{"source_id": "REPR-1845", "scraped_at": "2026-06-01T23:31:31.331492+00:00", "record_count": 1, "records": [{"raw": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">\n<html><head>\n<title>403 Forbidden</title>\n</head><body>\n<h1>Forbidden</h1>\n<p>You don't have permission to access this resource.</p>\n</body></html>\n"}], "_demo": true}

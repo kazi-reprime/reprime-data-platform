@@ -1,10 +1,1 @@
-{
-  "source_id": "REPR-0811",
-  "scraped_at": "2026-06-01T23:30:02.729137+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "raw": "<HTML><HEAD>\n<TITLE>Access Denied</TITLE>\n</HEAD><BODY>\n<H1>Access Denied</H1>\n \nYou don't have permission to access \"http&#58;&#47;&#47;data&#46;cms&#46;gov&#47;provider&#45;characteristics&#47;hospitals&#45;and&#45;other&#45;facilities&#47;provider&#45;of&#45;services&#45;file&#45;hospital&#45;non&#45;hospital&#45;facilities\" on this server.<P>\nReference&#32;&#35;18&#46;43cd717&#46;1780356602&#46;179e5ae4\n<P>https&#58;&#47;&#47;errors&#46;edgesuite&#46;net&#47;18&#46;43cd717&#46;1780356602&#46;179e5ae4</P>\n</BODY>\n</HTML>\n"
-    }
-  ]
-}
+{"source_id": "REPR-0811", "scraped_at": "2026-06-01T23:30:02.729137+00:00", "record_count": 1, "records": [{"raw": "<HTML><HEAD>\n<TITLE>Access Denied</TITLE>\n</HEAD><BODY>\n<H1>Access Denied</H1>\n \nYou don't have permission to access \"http&#58;&#47;&#47;data&#46;cms&#46;gov&#47;provider&#45;characteristics&#47;hospitals&#45;and&#45;other&#45;facilities&#47;provider&#45;of&#45;services&#45;file&#45;hospital&#45;non&#45;hospital&#45;facilities\" on this server.<P>\nReference&#32;&#35;18&#46;43cd717&#46;1780356602&#46;179e5ae4\n<P>https&#58;&#47;&#47;errors&#46;edgesuite&#46;net&#47;18&#46;43cd717&#46;1780356602&#46;179e5ae4</P>\n</BODY>\n</HTML>\n"}], "_demo": true}

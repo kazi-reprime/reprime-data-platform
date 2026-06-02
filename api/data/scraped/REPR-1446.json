@@ -1,13 +1,1 @@
-{
-  "source_id": "REPR-1446",
-  "scraped_at": "2026-06-01T23:30:36.640999+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "portal_url": "https://www.rd.usda.gov/rural-data-gateway",
-      "status_code": 403,
-      "content_type": "text/html",
-      "size_bytes": 399
-    }
-  ]
-}
+{"source_id": "REPR-1446", "scraped_at": "2026-06-01T23:30:36.640999+00:00", "record_count": 1, "records": [{"portal_url": "https://www.rd.usda.gov/rural-data-gateway", "status_code": 403, "content_type": "text/html", "size_bytes": 399}], "_demo": true}

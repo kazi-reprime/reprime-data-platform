@@ -1,13 +1,1 @@
-{
-  "source_id": "REPR-0085",
-  "scraped_at": "2026-06-01T23:31:30.397505+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "error": {
-        "code": "API_KEY_INVALID",
-        "message": "An invalid api_key was supplied. Get one at https://developer.nrel.gov/signup/"
-      }
-    }
-  ]
-}
+{"source_id": "REPR-0085", "scraped_at": "2026-06-01T23:31:30.397505+00:00", "record_count": 1, "records": [{"error": {"code": "API_KEY_INVALID", "message": "An invalid api_key was supplied. Get one at https://developer.nrel.gov/signup/"}}], "_demo": true}

@@ -1,13 +1,1 @@
-{
-  "source_id": "REPR-1463",
-  "scraped_at": "2026-06-01T23:30:34.277184+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "portal_url": "https://www.nyc.gov/site/finance/business/benefits-payment-in-lieu-of-taxes-agreements-pilot.page",
-      "status_code": 403,
-      "content_type": "text/html",
-      "size_bytes": 486
-    }
-  ]
-}
+{"source_id": "REPR-1463", "scraped_at": "2026-06-01T23:30:34.277184+00:00", "record_count": 1, "records": [{"portal_url": "https://www.nyc.gov/site/finance/business/benefits-payment-in-lieu-of-taxes-agreements-pilot.page", "status_code": 403, "content_type": "text/html", "size_bytes": 486}], "_demo": true}

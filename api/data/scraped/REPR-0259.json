@@ -1,10 +1,1 @@
-{
-  "source_id": "REPR-0259",
-  "scraped_at": "2026-06-01T23:31:26.122221+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "raw": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">\n<HTML>\n<HEAD>\n<TITLE>LBMP Results Index</TITLE>\n</HEAD>\n<frameset rows=\"60,*\" frameborder=\"0\">\n        <frame src=\"header.htm\" name=\"header\" id=\"header\" frameborder=\"0\" scrolling=\"No\" noresize marginwidth=\n\"0\" marginheight=\"0\">\n        <FRAMESET COLS=\"30%,70%\">\n    <FRAME SRC=\"menu.htm\" NAME=\"MENU\">\n    <FRAME SRC=\"blank.htm\" NAME=\"BODY\">\n        </FRAMESET>\n</FRAMESET>\n</HTML>\n\n"
-    }
-  ]
-}
+{"source_id": "REPR-0259", "scraped_at": "2026-06-01T23:31:26.122221+00:00", "record_count": 1, "records": [{"raw": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">\n<HTML>\n<HEAD>\n<TITLE>LBMP Results Index</TITLE>\n</HEAD>\n<frameset rows=\"60,*\" frameborder=\"0\">\n        <frame src=\"header.htm\" name=\"header\" id=\"header\" frameborder=\"0\" scrolling=\"No\" noresize marginwidth=\n\"0\" marginheight=\"0\">\n        <FRAMESET COLS=\"30%,70%\">\n    <FRAME SRC=\"menu.htm\" NAME=\"MENU\">\n    <FRAME SRC=\"blank.htm\" NAME=\"BODY\">\n        </FRAMESET>\n</FRAMESET>\n</HTML>\n\n"}], "_demo": true}

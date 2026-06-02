@@ -1,10 +1,1 @@
-{
-  "source_id": "REPR-0832",
-  "scraped_at": "2026-06-01T23:30:20.270977+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "raw": "<?xml version='1.0' encoding=\"UTF-8\" standalone=\"no\" ?>\r\n<ServiceExceptionReport xmlns=\"http://www.opengis.net/ogc\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ogc http://schemas.opengis.net/wms/1.1.1/OGC-exception.xsd\">\n<ServiceException>\r\nTabular Query must be performed with POST</ServiceException>\r\n</ServiceExceptionReport>\r\n"
-    }
-  ]
-}
+{"source_id": "REPR-0832", "scraped_at": "2026-06-01T23:30:20.270977+00:00", "record_count": 1, "records": [{"raw": "<?xml version='1.0' encoding=\"UTF-8\" standalone=\"no\" ?>\r\n<ServiceExceptionReport xmlns=\"http://www.opengis.net/ogc\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ogc http://schemas.opengis.net/wms/1.1.1/OGC-exception.xsd\">\n<ServiceException>\r\nTabular Query must be performed with POST</ServiceException>\r\n</ServiceExceptionReport>\r\n"}], "_demo": true}

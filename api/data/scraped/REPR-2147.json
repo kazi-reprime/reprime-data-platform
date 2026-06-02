@@ -1,13 +1,1 @@
-{
-  "source_id": "REPR-2147",
-  "scraped_at": "2026-06-01T23:30:28.927524+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "portal_url": "https://data.bts.gov/Maritime-and-Waterways/Monthly-TEU-Data/rd72-aq8r",
-      "status_code": 200,
-      "content_type": "text/html; charset=utf-8",
-      "size_bytes": 562019
-    }
-  ]
-}
+{"source_id": "REPR-2147", "scraped_at": "2026-06-01T23:30:28.927524+00:00", "record_count": 1, "records": [{"portal_url": "https://data.bts.gov/Maritime-and-Waterways/Monthly-TEU-Data/rd72-aq8r", "status_code": 200, "content_type": "text/html; charset=utf-8", "size_bytes": 562019}], "_demo": true}

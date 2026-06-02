@@ -1,13 +1,1 @@
-{
-  "source_id": "REPR-2009",
-  "scraped_at": "2026-06-01T23:30:37.277859+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "portal_url": "https://SDMDataAccess.sc.egov.usda.gov/Spatial/SDMWGS84Geographic.wfs",
-      "status_code": 200,
-      "content_type": "text/html; charset=utf-8",
-      "size_bytes": 1098
-    }
-  ]
-}
+{"source_id": "REPR-2009", "scraped_at": "2026-06-01T23:30:37.277859+00:00", "record_count": 1, "records": [{"portal_url": "https://SDMDataAccess.sc.egov.usda.gov/Spatial/SDMWGS84Geographic.wfs", "status_code": 200, "content_type": "text/html; charset=utf-8", "size_bytes": 1098}], "_demo": true}

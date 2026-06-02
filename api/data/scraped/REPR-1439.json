@@ -1,13 +1,1 @@
-{
-  "source_id": "REPR-1439",
-  "scraped_at": "2026-06-01T23:30:32.970046+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "portal_url": "https://www.ncsl.org/fiscal/state-tax-incentive-evaluations-database",
-      "status_code": 403,
-      "content_type": "text/html; charset=UTF-8",
-      "size_bytes": 5672
-    }
-  ]
-}
+{"source_id": "REPR-1439", "scraped_at": "2026-06-01T23:30:32.970046+00:00", "record_count": 1, "records": [{"portal_url": "https://www.ncsl.org/fiscal/state-tax-incentive-evaluations-database", "status_code": 403, "content_type": "text/html; charset=UTF-8", "size_bytes": 5672}], "_demo": true}

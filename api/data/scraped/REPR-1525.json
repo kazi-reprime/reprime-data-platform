@@ -1,14 +1,1 @@
-{
-  "source_id": "REPR-1525",
-  "scraped_at": "2026-06-01T23:30:02.062910+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "key": "USD",
-      "currentExchangeRate": 2.813,
-      "currentChange": 0.0711490572749911,
-      "unit": 1,
-      "lastUpdate": "2026-06-01T12:21:03.5732502Z"
-    }
-  ]
-}
+{"source_id": "REPR-1525", "scraped_at": "2026-06-01T23:30:02.062910+00:00", "record_count": 1, "records": [{"key": "USD", "currentExchangeRate": 2.813, "currentChange": 0.0711490572749911, "unit": 1, "lastUpdate": "2026-06-01T12:21:03.5732502Z"}], "_demo": true}

@@ -1,10 +1,1 @@
-{
-  "source_id": "REPR-2357",
-  "scraped_at": "2026-06-01T23:31:27.178186+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "error": "Please use an API key."
-    }
-  ]
-}
+{"source_id": "REPR-2357", "scraped_at": "2026-06-01T23:31:27.178186+00:00", "record_count": 1, "records": [{"error": "Please use an API key."}], "_demo": true}

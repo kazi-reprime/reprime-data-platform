@@ -1,13 +1,1 @@
-{
-  "source_id": "REPR-1480",
-  "scraped_at": "2026-06-01T23:30:32.094790+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "portal_url": "https://www.irs.gov/credits-deductions/energy-efficient-commercial-buildings-deduction",
-      "status_code": 200,
-      "content_type": "text/html; charset=UTF-8",
-      "size_bytes": 104523
-    }
-  ]
-}
+{"source_id": "REPR-1480", "scraped_at": "2026-06-01T23:30:32.094790+00:00", "record_count": 1, "records": [{"portal_url": "https://www.irs.gov/credits-deductions/energy-efficient-commercial-buildings-deduction", "status_code": 200, "content_type": "text/html; charset=UTF-8", "size_bytes": 104523}], "_demo": true}

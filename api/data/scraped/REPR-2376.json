@@ -1,13 +1,1 @@
-{
-  "source_id": "REPR-2376",
-  "scraped_at": "2026-06-01T23:31:25.324860+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "error": {
-        "code": "API_KEY_MISSING",
-        "message": "No api_key was supplied.  Please register for one at https://www.eia.gov/opendata/register.php"
-      }
-    }
-  ]
-}
+{"source_id": "REPR-2376", "scraped_at": "2026-06-01T23:31:25.324860+00:00", "record_count": 1, "records": [{"error": {"code": "API_KEY_MISSING", "message": "No api_key was supplied.  Please register for one at https://www.eia.gov/opendata/register.php"}}], "_demo": true}

@@ -1,13 +1,1 @@
-{
-  "source_id": "REPR-2187",
-  "scraped_at": "2026-06-01T23:30:27.534623+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "portal_url": "https://search.cannabis.ca.gov/",
-      "status_code": 200,
-      "content_type": "text/html",
-      "size_bytes": 2747
-    }
-  ]
-}
+{"source_id": "REPR-2187", "scraped_at": "2026-06-01T23:30:27.534623+00:00", "record_count": 1, "records": [{"portal_url": "https://search.cannabis.ca.gov/", "status_code": 200, "content_type": "text/html", "size_bytes": 2747}], "_demo": true}

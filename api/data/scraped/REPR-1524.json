@@ -1,13 +1,1 @@
-{
-  "source_id": "REPR-1524",
-  "scraped_at": "2026-06-01T23:30:28.498799+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "portal_url": "https://catalog.data.gov/dataset/fy-2024-federal-real-property-profile-frpp-public-dataset",
-      "status_code": 200,
-      "content_type": "text/html; charset=utf-8",
-      "size_bytes": 113419
-    }
-  ]
-}
+{"source_id": "REPR-1524", "scraped_at": "2026-06-01T23:30:28.498799+00:00", "record_count": 1, "records": [{"portal_url": "https://catalog.data.gov/dataset/fy-2024-federal-real-property-profile-frpp-public-dataset", "status_code": 200, "content_type": "text/html; charset=utf-8", "size_bytes": 113419}], "_demo": true}

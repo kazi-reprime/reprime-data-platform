@@ -1,13 +1,1 @@
-{
-  "source_id": "REPR-1062",
-  "scraped_at": "2026-06-01T23:30:26.552401+00:00",
-  "record_count": 1,
-  "records": [
-    {
-      "portal_url": "https://www.bts.gov/ports",
-      "status_code": 403,
-      "content_type": "text/html",
-      "size_bytes": 370
-    }
-  ]
-}
+{"source_id": "REPR-1062", "scraped_at": "2026-06-01T23:30:26.552401+00:00", "record_count": 1, "records": [{"portal_url": "https://www.bts.gov/ports", "status_code": 403, "content_type": "text/html", "size_bytes": 370}], "_demo": true}
