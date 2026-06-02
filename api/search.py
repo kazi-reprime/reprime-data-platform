@@ -40,8 +40,11 @@ from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler
 
 VERSION = "4.0-consolidated"
-PER_SOURCE_TIMEOUT = 7
-TOTAL_BUDGET = 25  # < vercel maxDuration (30); non-blocking shutdown prevents hangs
+PER_SOURCE_TIMEOUT = 6
+# Working sources finish in <4s; FEMA-NFHL/EPA are IP-blocked from Vercel and
+# hang, so a tight overall cap cuts the dead weight fast. Non-blocking shutdown
+# means the function returns at the cap regardless of stuck sockets.
+TOTAL_BUDGET = 13
 CACHE_TTL = 300  # 5 min
 _CACHE: dict[str, tuple[float, dict]] = {}
 
