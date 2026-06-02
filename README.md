@@ -1,284 +1,158 @@
 # RePrime Data Platform
 
-> Real estate intelligence platform aggregating **611 data sources** with **13 live API integrations** to deliver institutional-grade deal analysis for commercial real estate investors.
+**Institutional CRE intelligence powered by 611 data sources, 14 live API layers, and a Python serverless search engine.**
 
-[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688.svg)](https://fastapi.tiangolo.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkazi-reprime%2Freprime-data-platform)
+Live: [reprime-data-platform.vercel.app](https://reprime-data-platform.vercel.app)
+Repo: [github.com/kazi-reprime/reprime-data-platform](https://github.com/kazi-reprime/reprime-data-platform)
 
 ---
 
-## 🚀 One-Click Vercel Deploy
+## What This Is
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkazi-reprime%2Freprime-data-platform&env=FRED_API_KEY,CENSUS_API_KEY,BLS_API_KEY,BEA_API_KEY,EIA_API_KEY,FINNHUB_API_KEY,ALPHA_VANTAGE_API_KEY,COINGECKO_API_KEY,TWELVE_DATA_API_KEY,WALK_SCORE_API_KEY,OPENWEATHER_API_KEY,DATA_GOV_API_KEY&project-name=reprime-data-platform&repository-name=reprime-data-platform)
+A full-stack commercial real estate data platform that aggregates government APIs, market feeds, environmental databases, demographic datasets, FX rates, crypto prices, and news sentiment into a single property intelligence interface. Enter any US address — the system geocodes it, fans out queries to 14+ APIs in parallel, and returns a comprehensive intelligence report in under 10 seconds.
 
-Click the button above to deploy directly to Vercel. You'll be prompted to add the 12 API keys during setup.
+Built for RePrime Group, a commercial real estate investment firm specializing in institutional-scale acquisitions across every US asset class and market condition.
 
+## Live Products
 
+| Page | URL | Purpose |
+|------|-----|---------|
+| Company Site | [/site](https://reprime-data-platform.vercel.app/site) | Investor-facing landing with live market ticker, team, references |
+| Dashboard | [/](https://reprime-data-platform.vercel.app/) | Executive command center: portfolio, pipeline, rates, source health |
+| Terminal | [/terminal](https://reprime-data-platform.vercel.app/terminal) | Bloomberg-grade deal intelligence: property analysis, capital stack |
+| Explore | [/explore](https://reprime-data-platform.vercel.app/explore) | Property search engine: address lookup across 611 sources |
 
-## 🎯 What This Platform Does
+## Search API
 
-The RePrime Data Platform is a comprehensive real estate intelligence system that:
+**Endpoint:** `GET /api/search?address=<any US address>`
 
-1. **Scrapes 611 data sources** — Government APIs (FRED, Census, BLS, FDIC, FEMA, EPA, SEC EDGAR), dataset portals (NYC, Chicago, Dallas Open Data), RSS feeds (Bloomberg, Federal Reserve, CFPB)
-2. **Integrates 13 live APIs** — Real-time data from FRED, BLS, Census, BEA, Finnhub, CoinGecko, Walk Score, OpenWeather, EIA, Alpha Vantage, Twelve Data, NY Fed, Treasury
-3. **Powers 3 web experiences** — Investor-facing site, deal intelligence terminal, internal data dashboard
-4. **Delivers institutional-grade analysis** — Cap rates, NOI, financing options, comparables, news sentiment, environmental risk
-
-## 🌐 Live Pages
-
-| Page | URL | Description |
-|------|-----|-------------|
-| **RePrime Site** | `/site` | Data-focused company website with intelligence pipeline visualization, 611 sources breakdown, live market data, featured deal showcase |
-| **Deal Terminal** | `/terminal` | Full property intelligence — real OM photos, tenant roster, capital stack, SOFR-indexed financing, comps, news sentiment, flood risk |
-| **Data Dashboard** | `/` | Internal stats dashboard with scrape coverage, category breakdown, source search |
-
-## 📊 Data Coverage
-
-- **611** sources across **14** market categories
-- **549** successfully scraped (91% coverage)
-- **8,223** records collected
-- **30+** real property images extracted from offering memorandum
-- **9** paid APIs intentionally excluded (free-source first approach)
-
-### Category Breakdown
-- `capital_markets` — 88 sources (REITs, debt markets, securities)
-- `zoning_parcel` — 69 sources (NYC PLUTO, building permits, zoning)
-- `hazard_environmental` — 47 sources (FEMA flood, EPA brownfields)
-- `news_sentiment` — 39 sources (Bloomberg, Federal Reserve, CFPB)
-- `macro_indicator` — 37 sources (FRED economic series)
-- `infrastructure` — 30 sources (DOT, FCC broadband, HRSA)
-- `demographic` — 25 sources (Census ACS, HUD)
-- `israeli` — 23 sources (Bank of Israel, CBS, data.gov.il)
-- `economic` — 19 sources (BLS, BEA, World Bank)
-- `housing_re` — 12 sources (FRED housing series)
-- `insurance_climate` — 7 sources (NFIP, climate data)
-- `construction_pipeline` — 6 sources (Census construction spending)
-- `energy` — 33 sources (EIA, ERCOT)
-- `other` — 176 sources (specialized REITs, alternative data)
-
-## 🏗️ Architecture
-
+**Example:**
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    Frontend Pages                        │
-│   /site (company)  │  /terminal (deal)  │  / (dashboard)│
-└─────────────────┬───────────────────────────────────────┘
-                  │
-┌─────────────────┴───────────────────────────────────────┐
-│              FastAPI Server (uvicorn)                    │
-│   25+ endpoints across /api/live, /api/deal, /api/*     │
-└─────────────────┬───────────────────────────────────────┘
-                  │
-       ┌──────────┼──────────┐
-       │          │          │
-┌──────▼────┐ ┌──▼─────┐ ┌──▼────────┐
-│ Scrapers  │ │ Live    │ │ Static    │
-│ (552 JSON)│ │ APIs    │ │ Images    │
-│           │ │ (13)    │ │ (30 OM)   │
-└───────────┘ └─────────┘ └───────────┘
+https://reprime-data-platform.vercel.app/api/search?address=350+5th+Ave+New+York+NY
 ```
 
-## 🚀 Quick Start
+**Returns:** JSON with geocode (FIPS, tract, block), FEMA flood zone, EPA cleanup sites, FRED rates, crypto prices, FX rates (ILS/EUR/GBP), GDELT news sentiment, Federal Register filings, FDIC data, weather alerts, Redfin listings, OSM POIs, CDC social vulnerability, FCC broadband, multi-currency valuation ($10M in USD/ILS/BTC/ETH/EUR/GBP), and 6 financing options.
 
-### Prerequisites
-- Python 3.12+
-- pip
+**Sources queried in parallel (per search):**
 
-### Installation
+| Source | Data | Auth |
+|--------|------|------|
+| Census Geocoder | Address to lat/lon + FIPS state/county/tract/block | Free, no key |
+| FEMA NFHL | Exact flood zone by coordinates (Zone A/AE/V/X) | Free, no key |
+| FEMA OpenFEMA | Disaster declarations by state | Free, no key |
+| EPA Cleanups | Superfund/brownfield sites within 2km radius | Free, no key |
+| FRED | Treasury 10Y, Mortgage 30Y, Fed Funds, Unemployment | Free, no key |
+| CoinGecko | Bitcoin + Ethereum in USD and ILS | Free, no key |
+| Frankfurter/ECB | FX rates: ILS, EUR, GBP, CAD, JPY | Free, no key |
+| Bank of Israel | Official USD/ILS exchange rate | Free, no key |
+| GDELT | Area news sentiment with tone scoring | Free, no key |
+| Federal Register | Latest CRE regulatory filings | Free, no key |
+| FDIC BankFind | Recent bank failures | Free, no key |
+| NWS | Active weather alerts by coordinates | Free, no key |
+| Redfin Stingray | Location autocomplete + nearby listings | Internal API |
+| OSM Overpass | Points of interest within 800m | Free, no key |
+| CDC SVI | Social vulnerability index (block group) | Free, no key |
+| FCC Broadband | ISP availability by coordinates | Free, no key |
 
-```bash
-# Clone the repo
-git clone https://github.com/kazi-reprime/reprime-data-platform.git
-cd reprime-data-platform
+## Data Sources
 
-# Install dependencies
-pip install -r requirements.txt
+611 cataloged endpoints across 14 categories. Full registry in `data_sources_611.csv`.
 
-# Configure API keys (copy from .env.example and fill in)
-cp api/.env.example api/.env
-# Edit api/.env with your API keys
+| Category | Count | Key Sources |
+|----------|-------|-------------|
+| Government & Regulatory | 89 | FRED, BLS, Census, HUD, SEC EDGAR, Federal Register |
+| Property Transactions | 95 | County records, Zillow Research, Redfin |
+| Capital Markets | 25 | FDIC BankFind, FINRA TRACE, Fed H.8, Treasury |
+| Hazard & Environmental | 38 | FEMA NFHL, EPA Envirofacts/Superfund/TRI/RCRA, USGS |
+| Zoning & Parcels | 40+ | City-level ArcGIS/Socrata (LA, Chicago, NYC, Miami, etc.) |
+| Macro Indicators | 20+ | FRED, BLS CPI, CoinGecko, Frankfurter FX, GDELT |
+| Israeli Market | 15+ | Bank of Israel, CBS Lamas, data.gov.il |
+| Demographics | 12 | CDC SVI, Census ACS, IRS migration, BLS LAUS |
+| News & Sentiment | 14 | GDELT, Federal Register, RSS feeds |
+| Energy & Infrastructure | 12 | ERCOT, EIA, FCC broadband, CMS healthcare |
+| Construction Pipeline | 10 | Census permits, city-level permit APIs |
+| Housing & RE | 8 | Freddie Mac PMMS, Zillow Research, HUD FMR |
 
-# Fetch fresh data from all 13 APIs
-python3 -m api.fetch_live_data
-
-# Start the server
-python3 -m uvicorn api.server.app:app --host 0.0.0.0 --port 8001 --reload
-```
-
-### Access the Platform
-- **Company Site**: http://localhost:8001/site
-- **Deal Terminal**: http://localhost:8001/terminal
-- **Dashboard**: http://localhost:8001/
-- **API Docs**: http://localhost:8001/docs
-
-## 🔑 API Keys Required
-
-Free API keys from these providers (register links below):
-
-| API | Free Tier | Register |
-|-----|-----------|----------|
-| FRED | Unlimited | https://fred.stlouisfed.org/docs/api/api_key.html |
-| Census | Unlimited | https://api.census.gov/data/key_signup.html |
-| BLS | 500/day | https://www.bls.gov/developers/ |
-| BEA | Unlimited | https://apps.bea.gov/API/signup/ |
-| EIA | Unlimited | https://www.eia.gov/opendata/ |
-| Finnhub | 60/min | https://finnhub.io/ |
-| Alpha Vantage | 25/day | https://www.alphavantage.co/ |
-| CoinGecko | 30/min | https://www.coingecko.com/en/api |
-| Twelve Data | 800/day | https://twelvedata.com/ |
-| Walk Score | 5000/day | https://www.walkscore.com/professional/ |
-| OpenWeather | 60/min | https://openweathermap.org/api |
-
-## 📡 API Endpoints
-
-### Market Data (Live)
-```
-GET /api/live/ticker       # Real-time market ticker
-GET /api/live/market       # Full live market data (FRED, REITs, crypto)
-GET /api/live/reits        # 10 REIT prices from Finnhub
-GET /api/live/property     # Property context (Walk Score, weather)
-GET /api/live/refresh      # Re-fetch all 13 APIs
-```
-
-### Deal Intelligence
-```
-GET /api/deal/intelligence # Full deal intelligence package
-GET /api/deal/comps        # Comparable properties (NYC PLUTO)
-GET /api/deal/permits      # Building permits (multi-city)
-GET /api/deal/news         # News sentiment from 10 RSS feeds
-GET /api/deal/financing    # 6 lending products with live SOFR rates
-GET /api/deal/environmental # FEMA flood claims and disasters
-```
-
-### Scraped Data
-```
-GET /api/stats             # Aggregate scrape statistics
-GET /api/sources           # List 611 sources (paginated, filterable)
-GET /api/sources/{id}      # Individual source metadata + records
-GET /api/categories        # 14 market categories with counts
-```
-
-### Market Specifics
-```
-GET /api/market/sofr       # NY Fed SOFR rates
-GET /api/market/cpi        # BLS CPI with history
-GET /api/market/treasury   # Treasury avg interest rates
-GET /api/market/fdic       # FDIC bank loan aggregates
-GET /api/market/crypto     # Bitcoin/Ethereum prices
-GET /api/market/fema       # FEMA disaster declarations
-```
-
-## 🏢 Featured Deal: Pensacola, FL Government Office
-
-The platform is showcased with a real deal — **1305 N. 9th Avenue, Pensacola, FL**:
-
-- **Purchase Price**: $6,000,000 ($500K below OM ask)
-- **Cap Rate**: 8.95% (going-in)
-- **NOI**: $537,174 annual
-- **IRR (5yr)**: 21.79%
-- **Cash on Cash**: 28.07% (with seller mezz)
-- **Tenants**: FL Department of Children & Families (DCF), FL Department of Juvenile Justice (DJJ)
-- **Credit**: AAA/Aaa State of Florida
-- **WALT**: 7.4 years
-- **Occupancy**: 100%
-
-Real property images extracted from the offering memorandum are served at `/images/om_p*.jpeg`.
-
-## 📁 Project Structure
+## Architecture
 
 ```
 reprime-data-platform/
 ├── api/
-│   ├── server/
-│   │   ├── app.py              # FastAPI app with 25+ routes
-│   │   ├── live_data.py        # 13-API live data layer
-│   │   ├── market_data.py      # Scraped data extraction
-│   │   └── deal_intel.py       # Deal intelligence (comps, news, financing)
-│   ├── scrapers/
-│   │   ├── connectors/         # BaseConnector + 4 specialized
-│   │   ├── configs/            # Per-source YAML configs
-│   │   └── config_loader.py    # CSV + YAML source loader
-│   ├── frontend/
-│   │   ├── index.html          # Data dashboard
-│   │   ├── site.html           # RePrime Group website
-│   │   ├── terminal.html       # Deal intelligence terminal
-│   │   └── images/             # 30 real property photos from OM
-│   ├── data/
-│   │   ├── sources_611.csv     # Master source list
-│   │   ├── scraped/            # 552 JSON files (8,223 records)
-│   │   ├── live/               # Live API cache
-│   │   └── reports/            # Generated Excel/text reports
-│   ├── fetch_live_data.py      # Live data fetcher (13 APIs)
-│   ├── generate_reports.py     # Excel/PDF report generator
-│   ├── scrape_all.py           # Master batch scraper (602 sources)
-│   └── .env.example            # API key template
-├── requirements.txt
-├── vercel.json                 # Vercel deployment config
-└── README.md
+│   ├── search.py              # Python serverless — 14 parallel API calls
+│   └── requirements.txt       # stdlib only, no external deps
+├── site.html                  # Company landing page
+├── index.html                 # Executive dashboard
+├── terminal.html              # Deal intelligence terminal
+├── explore.html               # Property search + data explorer
+├── dashboard.html             # Portfolio dashboard
+├── data/                      # Pre-cached JSON from aggregator
+│   ├── live/ticker.json       # FRED rates, crypto, FX
+│   ├── live/market.json       # Full market snapshot
+│   ├── deal/intelligence.json # FEMA, EPA, FDIC, earthquakes
+│   └── ...                    # 20+ cached endpoints
+├── images/                    # Property OM images (30 files)
+├── scraper/aggregate.py       # Batch data aggregator (15 endpoints)
+├── data_sources_611.csv       # Master source registry
+├── CLAUDE.md                  # AI coding instructions
+├── vercel.json                # Deployment config
+└── RePrime_Data_Platform_Architecture_v1.docx
 ```
 
-## 🛠️ Tech Stack
+## Design System
 
-- **Backend**: Python 3.12, FastAPI, uvicorn, httpx, asyncio
-- **Data**: pandas, openpyxl, feedparser, tenacity, structlog
-- **Frontend**: Vanilla HTML/CSS/JS (no build step), Inter + JetBrains Mono fonts
-- **APIs**: 13 free-tier integrations (FRED, BLS, Finnhub, CoinGecko, etc.)
+All 4 pages share identical:
 
-## 📈 Deployment
+- **Font:** Poppins (300-800) + JetBrains Mono for data
+- **Colors:** Navy #0E3470, Gold #BC9C45, Blue #1D5FB8, Bright #00A1FF, Teal #009080
+- **Themes:** 4 modes — Dark, Light (white), Midnight (deep navy), Gold (warm amber)
+- **Effects:** Glassmorphism (backdrop-filter blur), animated mesh gradient, scroll reveal, particle canvas
+- **Navigation:** Shared sticky nav with Platform/Dashboard/Terminal/Explore + theme toggle
+- **Theme persistence:** localStorage key `rp-theme` syncs across all pages
 
-### Vercel (recommended)
-```bash
-# Install Vercel CLI
-npm i -g vercel
+## Tech Stack
 
-# Deploy
-vercel
-```
+| Layer | Technology |
+|-------|-----------|
+| Frontend | Static HTML/CSS/JS, Poppins, JetBrains Mono, glassmorphism |
+| Backend | Python serverless (Vercel), stdlib only (urllib, json, ssl, concurrent.futures) |
+| Hosting | Vercel (static + Python serverless), GitHub auto-deploy |
+| Data | Pre-cached JSON on CDN + real-time API fan-out |
+| Geocoding | Census Geocoder (free, no key) + Nominatim fallback |
+| FX/Crypto | Bank of Israel, CoinGecko, Frankfurter (ECB-sourced) |
+| Repo | github.com/kazi-reprime/reprime-data-platform |
 
-The `vercel.json` is preconfigured to serve the FastAPI app as a serverless function.
+## Team
 
-### Local Production
-```bash
-python3 -m uvicorn api.server.app:app --host 0.0.0.0 --port 8001 --workers 4
-```
+| Name | Title |
+|------|-------|
+| Gideon Gratsiani | Founder — 30+ years CRE, 1,000+ auction acquisitions |
+| Shirel Ben Harroush | CEO — Strategic partnerships, capital markets |
+| Chaim Abrahams | COO — Operations, fund management |
+| Steve Philipp | AVP Acquisitions / Head of Technology |
+| Col. Yaron Sitbon | Israel Operations |
+| Adir Yonasi | VP, Investor Relations |
+| Nikoloz Samkharadze | Developer — Large-scale construction |
+| Abhisar Laza | Creative Director |
+| Hunter Schultz | Analyst |
 
-## 📝 Reports
+## RePrime Ecosystem
 
-The platform generates institutional-grade reports:
+| Product | URL |
+|---------|-----|
+| RePrime Group | [reprime.com](https://reprime.com) |
+| Investor Portal | [info.reprimeterminal.com](https://info.reprimeterminal.com) |
+| Broker Portal | [broker.reprimeterminal.com](https://broker.reprimeterminal.com) |
+| RePrime Pro (Israel) | [reprimepro.co.il](https://reprimepro.co.il) |
+| Overnights | [overnights.com](https://www.overnights.com) |
+| CRE-Pro | [cre-pro.com](https://cre-pro.com) |
+| Data Platform | [reprime-data-platform.vercel.app](https://reprime-data-platform.vercel.app) |
 
-```bash
-python3 -m api.generate_reports
-```
+## Contact
 
-Outputs:
-- **Excel report** (3 sheets): Summary, All Sources, Errors
-- **Text report**: Executive summary, category breakdown, top 20 sources
+- **Address:** 123 North Lawler St, Postville, IA 52162
+- **Phone:** 888-770-8770
+- **Email:** info@reprime.com
 
-## 🔐 Security
+## License
 
-- API keys stored in `.env` (never committed)
-- `.gitignore` excludes secrets, raw data dumps
-- CORS configured for `*` (restrict in production)
-- No PII collected or stored
-
-## 📄 License
-
-MIT License — see [LICENSE](LICENSE) for details.
-
-## 👥 Team
-
-Built by RePrime Group — Institutional commercial real estate with 30+ years experience.
-
-- **Founder**: Gideon Gratsiani
-- **CEO**: Shirel Ben Harroush
-- **AVP Acquisitions & Head of Tech**: Steve Philipp
-
-📍 123 North Lawler St, Postville, IA 52162
-📧 info@reprime.com
-📞 888-770-8770
-
----
-
-**Powered by 611 data sources + 13 live APIs**
+MIT

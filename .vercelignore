@@ -2,15 +2,7 @@
 .claude
 __pycache__
 *.pyc
-*.pyo
 .env*
 .gstack
 .vercel
-_extraction/
-slide-*.jpg
-*.pptx
-*.xlsx
-*.pdf
-LICENSE
-DEPLOY_BACKEND.md
 node_modules/
