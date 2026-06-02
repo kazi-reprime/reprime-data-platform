@@ -1,13 +1,6 @@
 {
   "version": 2,
   "outputDirectory": "public",
-  "functions": {
-    "api/property.py": {
-      "maxDuration": 30,
-      "memory": 256,
-      "includeFiles": "api/property.py"
-    }
-  },
   "rewrites": [
     { "source": "/site", "destination": "/site.html" },
     { "source": "/explore", "destination": "/explore.html" },

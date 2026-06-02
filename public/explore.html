@@ -161,7 +161,11 @@ nav{position:sticky;top:0;z-index:199;background:var(--glass-bg);backdrop-filter
   <div class="hero-eyebrow"><span class="dot"></span>LIVE PROPERTY SEARCH · 8 PARALLEL DATA SOURCES</div>
   <h1>Enter any property.<br><span class="grad">Get all the data.</span></h1>
   <p>Type an address, neighborhood, or city anywhere in the world. We instantly geocode it and fan out to FREE government APIs to fetch demographics, flood zones, walkability, environmental hazards, weather, and macro context.</p>
-  <div class="search-wrap">
+  <div style="text-align:center;margin-bottom:14px;font-size:11px;color:var(--muted)">
+  Backend: <code style="color:var(--accent);background:var(--surface);padding:2px 8px;border-radius:4px;font-family:'JetBrains Mono',monospace" id="backend-display"></code>
+  <button onclick="changeBackend()" style="background:transparent;border:1px solid var(--border);color:var(--muted);padding:2px 8px;border-radius:4px;cursor:pointer;font-size:10px;margin-left:6px">change</button>
+</div>
+<div class="search-wrap">
     <div class="search-bar">
       <input id="q" placeholder="350 Fifth Avenue New York · 1600 Pennsylvania Ave · or anywhere..." autocomplete="off">
       <button id="search-btn">🔍 Search All Sources</button>
@@ -272,7 +276,15 @@ nav{position:sticky;top:0;z-index:199;background:var(--glass-bg);backdrop-filter
 
 <script>
 // API base — points to live backend if available, else uses static fallback
-const A = '';
+const BACKEND_URL = localStorage.getItem('backend_url') || 'https://reprime-backend.onrender.com';
+const A = BACKEND_URL;
+
+// Backend display
+document.getElementById('backend-display').textContent = A.replace(/^https?:\/\//,'');
+function changeBackend(){
+  const url=prompt('Enter backend URL (e.g. http://localhost:8001 or https://reprime-backend.onrender.com):',A);
+  if(url){localStorage.setItem('backend_url',url);location.reload();}
+}
 
 // Theme
 const saved=localStorage.getItem('theme')||'dark';
@@ -311,7 +323,7 @@ async function search(){
   const sint=setInterval(()=>{document.getElementById('loading-status').textContent=statuses[si%statuses.length];si++;},800);
 
   try{
-    const d=await(await fetch(`${A}/api/property?q=${encodeURIComponent(q)}`)).json();
+    const d=await(await fetch(`${A}/api/property/search?q=${encodeURIComponent(q)}`)).json();
     clearInterval(sint);
     if(d.error){alert('Search failed: '+d.error);document.getElementById('loading').classList.remove('show');document.getElementById('search-btn').disabled=false;document.getElementById('initial-state').style.display='block';return;}
     renderResults(d);
