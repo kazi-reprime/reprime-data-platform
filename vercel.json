@@ -3,10 +3,6 @@
   "outputDirectory": "public",
   "rewrites": [
     {
-      "source": "/search",
-      "destination": "/search.html"
-    },
-    {
       "source": "/site",
       "destination": "/site.html"
     },
