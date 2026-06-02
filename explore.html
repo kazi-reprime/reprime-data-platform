@@ -847,7 +847,7 @@ function setCache(key, data) {
   try { localStorage.setItem('reprime:'+key, JSON.stringify({data, ts: Date.now()})); } catch(e) {}
 }
 
-// MAIN SEARCH
+// MAIN SEARCH — Progressive Rendering (show data as each source returns)
 async function search() {
   const q = document.getElementById('q').value.trim();
   if (!q) return;
@@ -857,36 +857,22 @@ async function search() {
   document.getElementById('search-btn').disabled=true;
   document.getElementById('loading').classList.add('show');
 
-  // Try server-side search first (real Python backend with 14 parallel API calls)
-  const serverData = await serverSearch(q);
-  if (serverData && serverData.geocode) {
-    renderServerResults(serverData);
-    return;
-  }
-
-  // Fallback: client-side search (CORS APIs only)
-  console.log('Falling back to client-side search');
-
   // Check cache
   const cached = getCache(q.toLowerCase());
-  if (cached) {
-    renderResults({...cached, _cached: true});
-    return;
-  }
+  if (cached) { renderResults({...cached, _cached: true}); return; }
 
   setupProgress();
 
-  // Step 1: geocode (Census first, then Nominatim/Photon fallback chain)
+  // Fire server search in background (non-blocking)
+  const serverPromise = serverSearch(q);
+
+  // Step 1: Geocode
   let geo = await tryCensus(q);
   if (!geo) geo = await geocode(q);
   if (!geo) {
-    const suggestions = [
-      'Try the actual street address: "1305 N 9th Ave Pensacola FL"',
-      'Use a famous landmark: "Empire State Building" or "Willis Tower"',
-      'Drop deal/property words like "Asset", "Apartments", "Office"',
-      'Try just city + state: "Little Rock AR"'
-    ];
-    alert('Could not find this location across 5 geocoders.\n\nSuggestions:\n• ' + suggestions.join('\n• '));
+    const sd = await serverPromise;
+    if (sd && sd.geocode) { renderServerResults(sd); return; }
+    alert('Could not geocode. Try a full street address.');
     document.getElementById('loading').classList.remove('show');
     document.getElementById('search-btn').disabled=false;
     document.getElementById('initial-state').style.display='block';
@@ -896,23 +882,143 @@ async function search() {
   const {lat,lng,address} = geo;
   const censusMeta = geo.census || {};
 
-  // Step 2: parallel fetches
-  const [fema, pois, wiki] = await Promise.all([
-    fetchFema(lat,lng),
-    fetchOsmPois(lat,lng),
-    fetchWiki(lat,lng),
-    fetchGdelt(lat,lng,geo),
-    fetchWeather(lat,lng),
-    fetchFedRegister(),
-    fetchMarketRates()
-  ]);
+  // === SHOW RESULTS IMMEDIATELY after geocode ===
+  document.getElementById('loading').classList.remove('show');
+  document.getElementById('results').classList.add('show');
+  document.getElementById('search-btn').disabled=false;
 
+  // Render header + map right away
+  document.getElementById('r-header').innerHTML =
+    '<div class="result-title">'+q+'</div>' +
+    '<div class="result-loc">' + address + '</div>' +
+    '<div class="result-meta"><span>' + lat.toFixed(5) + ', ' + lng.toFixed(5) + '</span>' +
+    (geo.source ? ' <span class="src-badge ok">'+geo.source+'</span>' : '') +
+    ' <span style="padding:3px 8px;background:rgba(188,156,69,.12);color:var(--gold);border-radius:6px;font-size:9px;animation:pulse 1.5s infinite">Streaming...</span></div>';
+
+  // Map immediately
+  document.getElementById('r-map').innerHTML =
+    '<iframe src="https://www.openstreetmap.org/export/embed.html?bbox='+(lng-0.008)+'%2C'+(lat-0.005)+'%2C'+(lng+0.008)+'%2C'+(lat+0.005)+'&layer=mapnik&marker='+lat+'%2C'+lng+'"></iframe>';
+
+  // Imagery immediately
   const images = buildImagery(lat,lng);
+  document.getElementById('img-count').textContent = images.length+' layers';
+  document.getElementById('r-images').innerHTML = images.map(i =>
+    '<div class="img-tile" style="background-image:url(\'' + i.url + '\')"><div class="src">' + i.source + '</div></div>'
+  ).join('');
 
-  // Cache + render
-  const payload = {query:q, geo, fema, pois, wiki, images, gdeltNews, weatherAlerts, fedRegDocs, marketData, censusMeta};
-  setCache(q.toLowerCase(), payload);
-  renderResults(payload);
+  // Loading placeholders for panels
+  const spin = '<div style="display:flex;align-items:center;gap:8px;padding:12px;color:var(--dim);font-size:11px"><div style="width:12px;height:12px;border:2px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite"></div> Loading...</div>';
+  ['r-stats','r-flood','r-pois','r-wiki'].forEach(id => { const el=document.getElementById(id); if(el) el.innerHTML=spin; });
+  ['fx-panel','env-risk-panel','gdelt-panel','reg-panel'].forEach(id => { const el=document.getElementById(id); if(el) el.innerHTML=spin; });
+  document.getElementById('currency-section').style.display='';
+  document.getElementById('intel-section').style.display='';
+
+  // Address details (have this data already)
+  const ap = [['Type',geo.type],['Road',geo.components?.road],['City',geo.components?.city||geo.components?.town],['County',geo.components?.county],['State',geo.components?.state],['ZIP',geo.components?.postcode],['Coords',lat.toFixed(5)+', '+lng.toFixed(5)]].filter(x=>x[1]);
+  document.getElementById('r-addr').innerHTML = ap.map(p =>
+    '<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px"><span style="color:var(--muted)">'+p[0]+'</span><span style="font-family:JetBrains Mono,monospace;font-weight:600">'+p[1]+'</span></div>'
+  ).join('');
+
+  document.getElementById('r-header').scrollIntoView({behavior:'smooth',block:'start'});
+
+  // === PROGRESSIVE: fire all sources, render each as it arrives ===
+  let srcN = 0;
+  const srcL = [geo.source||'Geocoder'];
+  function addSrc(name) {
+    srcN++; srcL.push(name);
+    document.getElementById('src-count').textContent = srcN+' live · 611 catalog';
+    document.getElementById('src-badges').innerHTML = srcL.map(s => '<span class="src-badge ok">'+s+'</span>').join('');
+  }
+
+  // FEMA
+  fetchFema(lat,lng).then(fema => {
+    addSrc('FEMA NFHL');
+    const clr = fema.high_risk ? 'var(--red)' : 'var(--green)';
+    document.getElementById('r-flood').innerHTML =
+      '<div style="font-size:32px;font-weight:800;font-family:JetBrains Mono,monospace;color:'+clr+'">Zone '+(fema.zone||'?')+'</div>' +
+      '<div style="font-size:11px;color:var(--muted);margin-top:6px">'+(fema.in_floodplain?'⚠️ SFHA':'✓ Outside SFHA')+'</div>' +
+      '<div style="font-size:9px;color:var(--dim);margin-top:8px">FEMA NFHL</div>';
+    document.getElementById('r-stats').innerHTML =
+      '<div class="glass stat"><div class="lb">Flood Zone</div><div class="vl" style="color:'+clr+';font-size:18px">'+(fema.zone||'?')+'</div><div class="sb">'+(fema.in_floodplain?'SFHA':'Outside')+'</div></div>';
+    const ep = document.getElementById('env-risk-panel');
+    if(ep) ep.innerHTML =
+      '<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border)"><span style="color:var(--muted);font-size:12px">Flood Zone</span><span style="color:'+clr+';font-weight:700;font-family:JetBrains Mono,monospace">Zone '+(fema.zone||'?')+'</span></div>';
+  }).catch(()=>{});
+
+  // POIs
+  fetchOsmPois(lat,lng).then(pois => {
+    addSrc('OSM Overpass');
+    document.getElementById('r-poi-count').textContent = pois.length+' within 800m';
+    document.getElementById('r-pois').innerHTML = pois.length
+      ? pois.slice(0,20).map(p => '<div class="poi"><div class="name">'+p.name+'</div><div class="cat">'+p.category+'</div></div>').join('')
+      : '<div style="color:var(--dim);font-size:11px;padding:8px">No POIs</div>';
+    const s = document.getElementById('r-stats');
+    s.innerHTML += '<div class="glass stat"><div class="lb">POIs</div><div class="vl" style="color:var(--accent2)">'+pois.length+'</div><div class="sb">800m</div></div>';
+  }).catch(()=>{});
+
+  // Wikipedia
+  fetchWiki(lat,lng).then(wiki => {
+    addSrc('Wikipedia');
+    document.getElementById('r-wiki-count').textContent = wiki.length+' articles';
+    document.getElementById('r-wiki').innerHTML = wiki.length
+      ? wiki.slice(0,12).map(w => '<a href="'+w.url+'" target="_blank"><div class="poi"><div class="name">'+w.title+'</div><div class="cat">'+(w.distance_m/1000).toFixed(1)+'km</div></div></a>').join('')
+      : '<div style="color:var(--dim);font-size:11px;padding:8px">None</div>';
+  }).catch(()=>{});
+
+  // GDELT News
+  fetchGdelt(lat,lng,geo).then(news => {
+    if(news?.length) addSrc('GDELT');
+    const el = document.getElementById('gdelt-panel');
+    if(el) el.innerHTML = (news||[]).length>0
+      ? news.map(n => { const c=n.tone>1?'green':n.tone<-1?'red':'muted'; const l=n.tone>1?'Positive':n.tone<-1?'Negative':'Neutral'; return '<div style="padding:8px 0;border-bottom:1px solid var(--border)"><div style="font-size:11px;color:var(--text);line-height:1.4">'+n.title+'</div><div style="font-size:9px;color:var(--dim);margin-top:3px">'+n.source+' <span style="color:var(--'+c+');font-weight:600;margin-left:4px">'+l+'</span></div></div>'; }).join('')
+      : '<div style="color:var(--dim);font-size:11px;padding:8px">No area news</div>';
+  }).catch(()=>{});
+
+  // Weather
+  fetchWeather(lat,lng).then(alerts => {
+    if(alerts?.length) addSrc('NWS');
+    const ep = document.getElementById('env-risk-panel');
+    if(ep) ep.innerHTML += '<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border)"><span style="color:var(--muted);font-size:12px">Weather</span><span style="font-size:12px">'+(alerts?.length>0?alerts.map(a=>a.event).join(', '):'Clear')+'</span></div>';
+  }).catch(()=>{});
+
+  // Federal Register
+  fetchFedRegister().then(docs => {
+    if(docs?.length) addSrc('Fed Register');
+    const el = document.getElementById('reg-panel');
+    if(el) el.innerHTML = (docs||[]).length>0
+      ? docs.map(d => '<div style="padding:6px 0;border-bottom:1px solid var(--border)"><div style="font-size:10px;color:var(--text);line-height:1.3">'+(d.title||'').substring(0,80)+'...</div><div style="font-size:9px;color:var(--dim);margin-top:2px">'+(d.date||'')+' · '+(d.type||'')+'</div></div>').join('')
+      : '<div style="color:var(--dim);font-size:11px;padding:8px">No alerts</div>';
+  }).catch(()=>{});
+
+  // Market Rates + FX + Crypto
+  fetchMarketRates().then(mkt => {
+    addSrc('FRED/BOI/CoinGecko');
+    mkt = mkt || {};
+    const ir = mkt.market?.boi?.rate || mkt.market?.fx?.rates?.ILS || 3.65;
+    const bp = parseFloat(String(mkt.ticker?.bitcoin?.value||'67217').replace(/[$,]/g,''))||67217;
+    const ep2 = parseFloat(String(mkt.ticker?.ethereum?.value||'2547').replace(/[$,]/g,''))||2547;
+    const er = mkt.market?.fx?.rates?.EUR || 0.92;
+    const gr = mkt.market?.fx?.rates?.GBP || 0.79;
+    const s = 10000000;
+    const el = document.getElementById('fx-panel');
+    if(el) el.innerHTML = [
+      ['USD','$'+(s/1e6).toFixed(1)+'M','Base'],
+      ['ILS','₪'+((s*ir)/1e6).toFixed(1)+'M','1 USD = ₪'+parseFloat(ir).toFixed(2)],
+      ['Bitcoin','₿'+(s/bp).toFixed(2),'$'+bp.toLocaleString()+'/BTC'],
+      ['Ethereum','Ξ'+(s/ep2).toFixed(1),'$'+ep2.toLocaleString()+'/ETH'],
+      ['EUR','€'+((s*er)/1e6).toFixed(1)+'M','ECB'],
+      ['GBP','£'+((s*gr)/1e6).toFixed(1)+'M','ECB'],
+    ].map(r => '<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border)"><span style="font-size:12px;color:var(--muted)">'+r[0]+'</span><span><strong style="font-family:JetBrains Mono,monospace;font-size:13px">'+r[1]+'</strong><span style="font-size:9px;color:var(--dim);margin-left:6px">'+r[2]+'</span></span></div>').join('');
+  }).catch(()=>{});
+
+  // Remove "Streaming..." after 8s
+  setTimeout(() => {
+    const m = document.querySelector('.result-meta');
+    if(m) { const s = m.querySelector('[style*="animation"]'); if(s) s.textContent = srcN+' sources loaded'; }
+  }, 8000);
+
+  // Load 611-source cached data
+  loadCachedSources();
 }
 
 function renderResults({query, geo, fema, pois, wiki, images, gdeltNews, weatherAlerts, fedRegDocs, marketData, censusMeta, _cached}) {
