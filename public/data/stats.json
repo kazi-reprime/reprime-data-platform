@@ -1,1 +1,8 @@
-{"total_sources":611,"total_scraped_files":552,"total_records":686,"by_status":{"scraped":549,"not_scraped":50,"error":3,"paid_skipped":9},"by_category":{"capital_markets":{"total":88,"scraped":85,"records":105},"construction_pipeline":{"total":6,"scraped":6,"records":5},"demographic":{"total":25,"scraped":25,"records":36},"economic":{"total":19,"scraped":17,"records":17},"energy":{"total":33,"scraped":31,"records":31},"hazard_environmental":{"total":47,"scraped":34,"records":38},"housing_re":{"total":12,"scraped":10,"records":14},"infrastructure":{"total":30,"scraped":30,"records":32},"insurance_climate":{"total":7,"scraped":7,"records":1},"israeli":{"total":23,"scraped":22,"records":27},"macro_indicator":{"total":37,"scraped":37,"records":50},"news_sentiment":{"total":39,"scraped":39,"records":80},"other":{"total":176,"scraped":157,"records":170},"zoning_parcel":{"total":69,"scraped":49,"records":80}}}
+{
+  "sources": 611,
+  "records": 8223,
+  "apis": 29,
+  "categories": 14,
+  "scraped": 549,
+  "last_updated": "2026-06-02T19:53:24.565191Z"
+}
