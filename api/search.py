@@ -129,7 +129,21 @@ def _log(source: str, status: str, latency: float, err: object = None) -> None:
 # The runner wraps them into {status, latency_ms, data|error}.
 # --------------------------------------------------------------------------- #
 def src_fred_rates(ctx: dict) -> dict:
-    """Keyless FRED graph CSV for the headline rates + NY Fed SOFR."""
+    """Headline rates. Gov endpoints (FRED/NY Fed) are slow/blocked from Vercel's
+    datacenter IPs, so first read the platform's own cached ticker (same-origin,
+    edge-cached, refreshed by scraper/aggregate.py); fall back to live FRED."""
+    host = os.environ.get("VERCEL_URL", "")
+    if host:
+        try:
+            j = _http_json(f"https://{host}/api/live/ticker", timeout=4)
+            cached = {k: v for k, v in j.items()
+                      if isinstance(v, dict) and v.get("value")
+                      and k in ("treasury_10y", "mortgage_30y", "fed_funds", "unemployment", "sofr")}
+            if len(cached) >= 3:
+                return cached
+        except Exception:  # noqa: BLE001
+            pass
+
     out: dict = {}
     series = {
         "treasury_10y": "DGS10", "mortgage_30y": "MORTGAGE30US",
