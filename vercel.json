@@ -1,11 +1,9 @@
 {
   "version": 2,
+  "buildCommand": "echo 'static build'",
   "outputDirectory": "public",
   "functions": {
-    "api/property.py": {
-      "runtime": "@vercel/python@4.3.0",
-      "maxDuration": 30
-    }
+    "api/property.py": { "maxDuration": 30 }
   },
   "rewrites": [
     { "source": "/site", "destination": "/site.html" },
@@ -23,8 +21,7 @@
   "headers": [
     { "source": "/data/(.*)", "headers": [
       { "key": "Content-Type", "value": "application/json" },
-      { "key": "Access-Control-Allow-Origin", "value": "*" },
-      { "key": "Cache-Control", "value": "public, max-age=300" }
+      { "key": "Access-Control-Allow-Origin", "value": "*" }
     ]}
   ]
 }
