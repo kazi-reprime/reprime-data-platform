@@ -1,57 +1,57 @@
 {
   "version": 2,
+  "outputDirectory": "public",
+  "functions": {
+    "api/*.py": {
+      "runtime": "@vercel/python",
+      "maxDuration": 30,
+      "includeFiles": "api/**"
+    }
+  },
   "rewrites": [
     {
       "source": "/site",
-      "destination": "/public/site.html"
+      "destination": "/site.html"
     },
     {
       "source": "/explore",
-      "destination": "/public/explore.html"
+      "destination": "/explore.html"
     },
     {
       "source": "/terminal",
-      "destination": "/public/terminal.html"
+      "destination": "/terminal.html"
     },
     {
       "source": "/dashboard",
-      "destination": "/public/dashboard.html"
+      "destination": "/dashboard.html"
     },
     {
       "source": "/api/live/:metric",
-      "destination": "/public/data/live/:metric.json"
+      "destination": "/data/live/:metric.json"
     },
     {
       "source": "/api/market/:metric",
-      "destination": "/public/data/market/:metric.json"
+      "destination": "/data/market/:metric.json"
     },
     {
       "source": "/api/deal/:metric",
-      "destination": "/public/data/deal/:metric.json"
+      "destination": "/data/deal/:metric.json"
     },
     {
       "source": "/api/stats",
-      "destination": "/public/data/stats.json"
+      "destination": "/data/stats.json"
     },
     {
       "source": "/api/categories",
-      "destination": "/public/data/categories.json"
+      "destination": "/data/categories.json"
     },
     {
       "source": "/api/sources",
-      "destination": "/public/data/sources.json"
+      "destination": "/data/sources.json"
     },
     {
       "source": "/api/health",
-      "destination": "/public/data/health.json"
-    },
-    {
-      "source": "/",
-      "destination": "/public/index.html"
-    },
-    {
-      "source": "/images/:path*",
-      "destination": "/public/images/:path*"
+      "destination": "/data/health.json"
     }
   ]
 }
