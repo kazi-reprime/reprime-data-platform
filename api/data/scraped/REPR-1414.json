@@ -1,0 +1,80 @@
+{
+  "source_id": "REPR-1414",
+  "scraped_at": "2026-06-01T23:31:22.503253+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "@context": "https://project-open-data.cio.gov/v1.1/schema/catalog.jsonld",
+      "@id": "http://api.census.gov/data/2020/dec/dhc.json",
+      "@type": "dcat:Catalog",
+      "conformsTo": "https://project-open-data.cio.gov/v1.1/schema",
+      "describedBy": "https://project-open-data.cio.gov/v1.1/schema/catalog.json",
+      "dataset": [
+        {
+          "c_vintage": 2020,
+          "c_dataset": [
+            "dec",
+            "dhc"
+          ],
+          "c_geographyLink": "http://api.census.gov/data/2020/dec/dhc/geography.json",
+          "c_variablesLink": "http://api.census.gov/data/2020/dec/dhc/variables.json",
+          "c_tagsLink": "http://api.census.gov/data/2020/dec/dhc/tags.json",
+          "c_examplesLink": "http://api.census.gov/data/2020/dec/dhc/examples.json",
+          "c_groupsLink": "http://api.census.gov/data/2020/dec/dhc/groups.json",
+          "c_sorts_url": "http://api.census.gov/data/2020/dec/dhc/sorts.json",
+          "c_documentationLink": "https://www.census.gov/developer/",
+          "c_isAggregate": true,
+          "c_isCube": true,
+          "c_isAvailable": true,
+          "@type": "dcat:Dataset",
+          "title": "Decennial Census: Demographic and Housing Characteristics",
+          "accessLevel": "public",
+          "bureauCode": [
+            "006:07"
+          ],
+          "description": "This product will include topics such as age, sex, race, Hispanic or Latino origin, household type, family type, relationship to householder, group quarters population, housing occupancy and housing tenure. Some tables will be iterated by race and ethnicity.",
+          "distribution": [
+            {
+              "@type": "dcat:Distribution",
+              "accessURL": "http://api.census.gov/data/2020/dec/dhc",
+              "description": "API endpoint",
+              "format": "API",
+              "mediaType": "application/json",
+              "title": "API endpoint"
+            }
+          ],
+          "contactPoint": {
+            "fn": "Census Bureau Call Center",
+            "hasEmail": "mailto:pio@census.gov"
+          },
+          "identifier": "https://api.census.gov/data/id/DECENNIALDHC2020",
+          "keyword": [
+            "census"
+          ],
+          "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "modified": "2022-09-16 00:00:00.0",
+          "programCode": [
+            "006:004"
+          ],
+          "references": [
+            "https://www.census.gov/developers/"
+          ],
+          "spatial": "United States",
+          "temporal": "2020/2020",
+          "publisher": {
+            "@type": "org:Organization",
+            "name": "U.S. Census Bureau",
+            "subOrganizationOf": {
+              "@type": "org:Organization",
+              "name": "U.S. Department Of Commerce",
+              "subOrganizationOf": {
+                "@type": "org:Organization",
+                "name": "U.S. Government"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

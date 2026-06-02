@@ -1,0 +1,11 @@
+{
+  "source_id": "REPR-0267",
+  "scraped_at": "2026-06-01T23:30:07.887921+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "status": 422,
+      "message": "unknown parameter: symbols"
+    }
+  ]
+}

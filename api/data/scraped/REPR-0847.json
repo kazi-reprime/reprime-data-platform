@@ -1,0 +1,13 @@
+{
+  "source_id": "REPR-0847",
+  "scraped_at": "2026-06-01T23:31:30.541498+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "error": {
+        "code": "API_KEY_MISSING",
+        "message": "No api_key was supplied. Get one at https://api.openei.org:443"
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "source_id": "REPR-1365",
+  "scraped_at": "2026-06-01T23:31:36.325161+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "statusCode": 400,
+      "status": false,
+      "data": {},
+      "message": [
+        "API key is empty",
+        "Please provide a valid address"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "source_id": "REPR-1578",
+  "scraped_at": "2026-06-01T23:30:36.437559+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "portal_url": "https://unctadstat.unctad.org/datacentre/dataviewer/US.FDIFlowsStock",
+      "status_code": 200,
+      "content_type": "text/html",
+      "size_bytes": 43517
+    }
+  ]
+}

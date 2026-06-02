@@ -1,0 +1,13 @@
+{
+  "source_id": "REPR-1600",
+  "scraped_at": "2026-06-01T23:30:39.711722+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "portal_url": "https://www.fincen.gov/news/news-releases/fincen-renews-residential-real-estate-geographic-targeting-orders",
+      "status_code": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "size_bytes": 31841
+    }
+  ]
+}

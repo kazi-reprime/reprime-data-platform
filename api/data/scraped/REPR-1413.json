@@ -1,0 +1,79 @@
+{
+  "source_id": "REPR-1413",
+  "scraped_at": "2026-06-01T23:31:21.738715+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "@context": "https://project-open-data.cio.gov/v1.1/schema/catalog.jsonld",
+      "@id": "http://api.census.gov/data/2023/pep/charv.json",
+      "@type": "dcat:Catalog",
+      "conformsTo": "https://project-open-data.cio.gov/v1.1/schema",
+      "describedBy": "https://project-open-data.cio.gov/v1.1/schema/catalog.json",
+      "dataset": [
+        {
+          "c_vintage": 2023,
+          "c_dataset": [
+            "pep",
+            "charv"
+          ],
+          "c_geographyLink": "http://api.census.gov/data/2023/pep/charv/geography.json",
+          "c_variablesLink": "http://api.census.gov/data/2023/pep/charv/variables.json",
+          "c_tagsLink": "http://api.census.gov/data/2023/pep/charv/tags.json",
+          "c_examplesLink": "http://api.census.gov/data/2023/pep/charv/examples.json",
+          "c_groupsLink": "http://api.census.gov/data/2023/pep/charv/groups.json",
+          "c_sorts_url": "http://api.census.gov/data/2023/pep/charv/sorts.json",
+          "c_documentationLink": "https://www.census.gov/developer/",
+          "c_isAggregate": true,
+          "c_isAvailable": true,
+          "@type": "dcat:Dataset",
+          "title": "Population Estimates by Age, Sex, Race, and Hispanic Origin",
+          "accessLevel": "public",
+          "bureauCode": [
+            "006:07"
+          ],
+          "description": "Annual Resident Population Estimates by Age, Sex, Race, and Hispanic Origin for the Nation, State, Metropolitan and Micropolitan Statistical Areas, Puerto Rico Commonwealth, Counties, Puerto Rico Municipios. Source: U.S. Census Bureau, Population Division. The estimates are developed from a base that incorporates decennial census data, estimates data, and Demographic Analysis estimates data (where applicable). // 'In combination' means in combination with one or more other races. The sum of the five race-in-combination groups adds to more than the total population because individuals may report more than one race. Hispanic origin is considered an ethnicity, not a race. Hispanics may be of any race. Responses of 'Some Other Race' from the decennial census are modified to be consistent with the race categories which appear in estimates input data. This contributes to differences between the population for specific race categories shown in this file versus those published from the decennial census. Current data on births, deaths, and migration are used to calculate population change since the previous decennial census. An annual time series of estimates is produced, beginning at the date of the previous census and extending to the vintage year. The vintage year refers to the final year of the time series. The reference date for all estimates is July 1, unless otherwise specified. With each new vintage of estimates, the entire estimates series is revised. Additional information, including historical and intercensal estimates, evaluation estimates, Demographic Analysis estimates, research papers, and methodology is available on the Population Estimates Program website: https://www.census.gov/programs-surveys/popest.html.",
+          "distribution": [
+            {
+              "@type": "dcat:Distribution",
+              "accessURL": "http://api.census.gov/data/2023/pep/charv",
+              "description": "API endpoint",
+              "format": "API",
+              "mediaType": "application/json",
+              "title": "API endpoint"
+            }
+          ],
+          "contactPoint": {
+            "fn": "Coordination, Dissemination, and Outreach Branch",
+            "hasEmail": "mailto:POP.PEP.API.list@census.gov"
+          },
+          "identifier": "https://api.census.gov/data/id/PEPCHARV2023",
+          "keyword": [
+            "census"
+          ],
+          "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "modified": "2025-03-04 17:06:52.0",
+          "programCode": [
+            "006:008"
+          ],
+          "references": [
+            "https://www.census.gov/developers/"
+          ],
+          "spatial": "US",
+          "temporal": "2023/2023",
+          "publisher": {
+            "@type": "org:Organization",
+            "name": "U.S. Census Bureau",
+            "subOrganizationOf": {
+              "@type": "org:Organization",
+              "name": "U.S. Department Of Commerce",
+              "subOrganizationOf": {
+                "@type": "org:Organization",
+                "name": "U.S. Government"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

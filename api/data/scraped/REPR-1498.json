@@ -1,0 +1,13 @@
+{
+  "source_id": "REPR-1498",
+  "scraped_at": "2026-06-01T23:30:28.695773+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "portal_url": "https://catalog.data.gov/dataset/hud-insured-multifamily-properties",
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "size_bytes": 118249
+    }
+  ]
+}

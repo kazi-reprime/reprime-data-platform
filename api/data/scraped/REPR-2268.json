@@ -1,0 +1,13 @@
+{
+  "source_id": "REPR-2268",
+  "scraped_at": "2026-06-01T23:30:26.257555+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "portal_url": "https://maps.bostonplans.org/zoningviewer/",
+      "status_code": 403,
+      "content_type": "text/html; charset=UTF-8",
+      "size_bytes": 5522
+    }
+  ]
+}

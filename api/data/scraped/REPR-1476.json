@@ -1,0 +1,78 @@
+{
+  "source_id": "REPR-1476",
+  "scraped_at": "2026-06-01T23:31:22.589648+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "@context": "https://project-open-data.cio.gov/v1.1/schema/catalog.jsonld",
+      "@id": "http://api.census.gov/data/timeseries/govsstatefin.json",
+      "@type": "dcat:Catalog",
+      "conformsTo": "https://project-open-data.cio.gov/v1.1/schema",
+      "describedBy": "https://project-open-data.cio.gov/v1.1/schema/catalog.json",
+      "dataset": [
+        {
+          "c_dataset": [
+            "timeseries",
+            "govsstatefin"
+          ],
+          "c_geographyLink": "http://api.census.gov/data/timeseries/govsstatefin/geography.json",
+          "c_variablesLink": "http://api.census.gov/data/timeseries/govsstatefin/variables.json",
+          "c_tagsLink": "http://api.census.gov/data/timeseries/govsstatefin/tags.json",
+          "c_examplesLink": "http://api.census.gov/data/timeseries/govsstatefin/examples.json",
+          "c_groupsLink": "http://api.census.gov/data/timeseries/govsstatefin/groups.json",
+          "c_sorts_url": "http://api.census.gov/data/timeseries/govsstatefin/sorts.json",
+          "c_documentationLink": "https://www.census.gov/developer/",
+          "c_isTimeseries": true,
+          "c_isAvailable": true,
+          "@type": "dcat:Dataset",
+          "title": "Public Sector: State Government Finance",
+          "accessLevel": "public",
+          "bureauCode": [
+            "006:07"
+          ],
+          "description": "This dataset presents statistics from the Census of Governments, State Government Finances conducted every five years (years ending in '2' and '7') and from the Annual Survey of State Government Finances in intermediate years.  These programs identify the scope and nature of the nation's state government sector providing authoritative benchmark figures of public finance, including revenue, expenditures, and debt. Data are shown for the fiscal year for the given reference period.",
+          "distribution": [
+            {
+              "@type": "dcat:Distribution",
+              "accessURL": "http://api.census.gov/data/timeseries/govsstatefin",
+              "description": "API endpoint",
+              "format": "API",
+              "mediaType": "application/json",
+              "title": "API endpoint"
+            }
+          ],
+          "contactPoint": {
+            "fn": "Census of Governments",
+            "hasEmail": "mailto:ewd.outreach@census.gov"
+          },
+          "identifier": "https://api.census.gov/data/id/GOVSSTATEFINTIMESERIES",
+          "keyword": [
+            "census"
+          ],
+          "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "modified": "2026-01-27 18:29:12.0",
+          "programCode": [
+            "006:004"
+          ],
+          "references": [
+            "https://www.census.gov/developers/"
+          ],
+          "spatial": "United States",
+          "temporal": "1967/2024",
+          "publisher": {
+            "@type": "org:Organization",
+            "name": "U.S. Census Bureau",
+            "subOrganizationOf": {
+              "@type": "org:Organization",
+              "name": "U.S. Department Of Commerce",
+              "subOrganizationOf": {
+                "@type": "org:Organization",
+                "name": "U.S. Government"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

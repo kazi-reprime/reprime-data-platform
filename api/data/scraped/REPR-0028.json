@@ -1,0 +1,10 @@
+{
+  "source_id": "REPR-0028",
+  "scraped_at": "2026-06-01T23:31:29.554034+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "raw": "<html>\r\n<head><title>403 Forbidden</title></head>\r\n<body>\r\n<center><h1>403 Forbidden</h1></center>\r\n</body>\r\n</html>\r\n"
+    }
+  ]
+}

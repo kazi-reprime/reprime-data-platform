@@ -1,0 +1,5507 @@
+{
+  "source_id": "REPR-0184",
+  "scraped_at": "2026-06-01T23:30:09.161405+00:00",
+  "record_count": 500,
+  "records": [
+    {
+      "data": {
+        "LNRE": 152040,
+        "REPDTE": "20241231",
+        "LNRENRES": 57022,
+        "CERT": 10004,
+        "LNRECONS": 3463,
+        "ID": "10004_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 264042,
+        "REPDTE": "20241231",
+        "LNRENRES": 78183,
+        "CERT": 10011,
+        "LNRECONS": 20838,
+        "ID": "10011_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 91010,
+        "REPDTE": "20241231",
+        "LNRENRES": 32559,
+        "CERT": 10012,
+        "LNRECONS": 5360,
+        "ID": "10012_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 160894,
+        "REPDTE": "20241231",
+        "LNRENRES": 73434,
+        "CERT": 10015,
+        "LNRECONS": 9579,
+        "ID": "10015_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1283075,
+        "REPDTE": "20241231",
+        "LNRENRES": 656408,
+        "CERT": 10044,
+        "LNRECONS": 259609,
+        "ID": "10044_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 169963,
+        "REPDTE": "20241231",
+        "LNRENRES": 76699,
+        "CERT": 10055,
+        "LNRECONS": 18887,
+        "ID": "10055_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 9606,
+        "REPDTE": "20241231",
+        "LNRENRES": 405,
+        "CERT": 10057,
+        "LNRECONS": 364,
+        "ID": "10057_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1066008,
+        "REPDTE": "20241231",
+        "LNRENRES": 405025,
+        "CERT": 1005,
+        "LNRECONS": 62687,
+        "ID": "1005_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 53467,
+        "REPDTE": "20241231",
+        "LNRENRES": 29711,
+        "CERT": 10072,
+        "LNRECONS": 4990,
+        "ID": "10072_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 28928,
+        "REPDTE": "20241231",
+        "LNRENRES": 3724,
+        "CERT": 10074,
+        "LNRECONS": 7452,
+        "ID": "10074_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 9576,
+        "REPDTE": "20241231",
+        "LNRENRES": 995,
+        "CERT": 10075,
+        "LNRECONS": 251,
+        "ID": "10075_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 4168,
+        "REPDTE": "20241231",
+        "LNRENRES": 1878,
+        "CERT": 10077,
+        "LNRECONS": 0,
+        "ID": "10077_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 81901,
+        "REPDTE": "20241231",
+        "LNRENRES": 62853,
+        "CERT": 1008,
+        "LNRECONS": 1465,
+        "ID": "1008_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 241607,
+        "REPDTE": "20241231",
+        "LNRENRES": 35208,
+        "CERT": 10101,
+        "LNRECONS": 20954,
+        "ID": "10101_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 212950,
+        "REPDTE": "20241231",
+        "LNRENRES": 56223,
+        "CERT": 10111,
+        "LNRECONS": 28298,
+        "ID": "10111_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 145054,
+        "REPDTE": "20241231",
+        "LNRENRES": 33999,
+        "CERT": 10118,
+        "LNRECONS": 6164,
+        "ID": "10118_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 868,
+        "REPDTE": "20241231",
+        "LNRENRES": 48,
+        "CERT": 10120,
+        "LNRECONS": 0,
+        "ID": "10120_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 63226,
+        "REPDTE": "20241231",
+        "LNRENRES": 9314,
+        "CERT": 10121,
+        "LNRECONS": 3120,
+        "ID": "10121_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 68070,
+        "REPDTE": "20241231",
+        "LNRENRES": 13187,
+        "CERT": 10122,
+        "LNRECONS": 1776,
+        "ID": "10122_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 5646,
+        "REPDTE": "20241231",
+        "LNRENRES": 912,
+        "CERT": 10123,
+        "LNRECONS": 1568,
+        "ID": "10123_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 42123,
+        "REPDTE": "20241231",
+        "LNRENRES": 7634,
+        "CERT": 10125,
+        "LNRECONS": 1410,
+        "ID": "10125_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 160624,
+        "REPDTE": "20241231",
+        "LNRENRES": 17087,
+        "CERT": 10127,
+        "LNRECONS": 1195,
+        "ID": "10127_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 76525,
+        "REPDTE": "20241231",
+        "LNRENRES": 15177,
+        "CERT": 10132,
+        "LNRECONS": 4027,
+        "ID": "10132_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 106979,
+        "REPDTE": "20241231",
+        "LNRENRES": 40121,
+        "CERT": 10137,
+        "LNRECONS": 5591,
+        "ID": "10137_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 5606,
+        "REPDTE": "20241231",
+        "LNRENRES": 5236,
+        "CERT": 10145,
+        "LNRECONS": 0,
+        "ID": "10145_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1238257,
+        "REPDTE": "20241231",
+        "LNRENRES": 713068,
+        "CERT": 1014,
+        "LNRECONS": 92397,
+        "ID": "1014_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 179959,
+        "REPDTE": "20241231",
+        "LNRENRES": 103407,
+        "CERT": 10157,
+        "LNRECONS": 10155,
+        "ID": "10157_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 237844,
+        "REPDTE": "20241231",
+        "LNRENRES": 66944,
+        "CERT": 10159,
+        "LNRECONS": 30821,
+        "ID": "10159_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 94,
+        "REPDTE": "20241231",
+        "LNRENRES": 44,
+        "CERT": 10160,
+        "LNRECONS": 0,
+        "ID": "10160_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 42844,
+        "REPDTE": "20241231",
+        "LNRENRES": 2229,
+        "CERT": 10162,
+        "LNRECONS": 2404,
+        "ID": "10162_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 151654,
+        "REPDTE": "20241231",
+        "LNRENRES": 31525,
+        "CERT": 10163,
+        "LNRECONS": 17501,
+        "ID": "10163_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 158743,
+        "REPDTE": "20241231",
+        "LNRENRES": 34412,
+        "CERT": 10165,
+        "LNRECONS": 6721,
+        "ID": "10165_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 64408,
+        "REPDTE": "20241231",
+        "LNRENRES": 14000,
+        "CERT": 10167,
+        "LNRECONS": 7909,
+        "ID": "10167_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 192556,
+        "REPDTE": "20241231",
+        "LNRENRES": 52774,
+        "CERT": 10168,
+        "LNRECONS": 5910,
+        "ID": "10168_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 173482,
+        "REPDTE": "20241231",
+        "LNRENRES": 101312,
+        "CERT": 10169,
+        "LNRECONS": 32413,
+        "ID": "10169_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 50658,
+        "REPDTE": "20241231",
+        "LNRENRES": 12929,
+        "CERT": 10174,
+        "LNRECONS": 5254,
+        "ID": "10174_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 53302,
+        "REPDTE": "20241231",
+        "LNRENRES": 18174,
+        "CERT": 10175,
+        "LNRECONS": 9658,
+        "ID": "10175_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 34557,
+        "REPDTE": "20241231",
+        "LNRENRES": 9281,
+        "CERT": 10178,
+        "LNRECONS": 0,
+        "ID": "10178_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 36979,
+        "REPDTE": "20241231",
+        "LNRENRES": 12076,
+        "CERT": 10185,
+        "LNRECONS": 625,
+        "ID": "10185_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 9149,
+        "REPDTE": "20241231",
+        "LNRENRES": 2388,
+        "CERT": 10187,
+        "LNRECONS": 88,
+        "ID": "10187_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 113184,
+        "REPDTE": "20241231",
+        "LNRENRES": 105221,
+        "CERT": 10191,
+        "LNRECONS": 788,
+        "ID": "10191_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 90690,
+        "REPDTE": "20241231",
+        "LNRENRES": 25558,
+        "CERT": 10194,
+        "LNRECONS": 10410,
+        "ID": "10194_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 58169,
+        "REPDTE": "20241231",
+        "LNRENRES": 24401,
+        "CERT": 10197,
+        "LNRECONS": 1056,
+        "ID": "10197_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 3529,
+        "REPDTE": "20241231",
+        "LNRENRES": 698,
+        "CERT": 10200,
+        "LNRECONS": 0,
+        "ID": "10200_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 52302,
+        "REPDTE": "20241231",
+        "LNRENRES": 10000,
+        "CERT": 10202,
+        "LNRECONS": 3663,
+        "ID": "10202_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 181443,
+        "REPDTE": "20241231",
+        "LNRENRES": 80156,
+        "CERT": 10212,
+        "LNRECONS": 1209,
+        "ID": "10212_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 292213,
+        "REPDTE": "20241231",
+        "LNRENRES": 109357,
+        "CERT": 10214,
+        "LNRECONS": 4267,
+        "ID": "10214_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 111811,
+        "REPDTE": "20241231",
+        "LNRENRES": 39850,
+        "CERT": 10218,
+        "LNRECONS": 861,
+        "ID": "10218_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 135210,
+        "REPDTE": "20241231",
+        "LNRENRES": 13093,
+        "CERT": 1022,
+        "LNRECONS": 6726,
+        "ID": "1022_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 61530,
+        "REPDTE": "20241231",
+        "LNRENRES": 18619,
+        "CERT": 10236,
+        "LNRECONS": 176,
+        "ID": "10236_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 18492,
+        "REPDTE": "20241231",
+        "LNRENRES": 2298,
+        "CERT": 10243,
+        "LNRECONS": 138,
+        "ID": "10243_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 3077575,
+        "REPDTE": "20241231",
+        "LNRENRES": 1204510,
+        "CERT": 10248,
+        "LNRECONS": 515065,
+        "ID": "10248_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 63904,
+        "REPDTE": "20241231",
+        "LNRENRES": 13599,
+        "CERT": 10250,
+        "LNRECONS": 6012,
+        "ID": "10250_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 17621,
+        "REPDTE": "20241231",
+        "LNRENRES": 11904,
+        "CERT": 10253,
+        "LNRECONS": 0,
+        "ID": "10253_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 357357,
+        "REPDTE": "20241231",
+        "LNRENRES": 147453,
+        "CERT": 10255,
+        "LNRECONS": 12940,
+        "ID": "10255_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 164558,
+        "REPDTE": "20241231",
+        "LNRENRES": 42542,
+        "CERT": 10266,
+        "LNRECONS": 20433,
+        "ID": "10266_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 227641,
+        "REPDTE": "20241231",
+        "LNRENRES": 73274,
+        "CERT": 1027,
+        "LNRECONS": 34828,
+        "ID": "1027_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 65165,
+        "REPDTE": "20241231",
+        "LNRENRES": 8262,
+        "CERT": 10280,
+        "LNRECONS": 1037,
+        "ID": "10280_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 91001,
+        "REPDTE": "20241231",
+        "LNRENRES": 23383,
+        "CERT": 1028,
+        "LNRECONS": 16456,
+        "ID": "1028_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1125043,
+        "REPDTE": "20241231",
+        "LNRENRES": 636583,
+        "CERT": 10307,
+        "LNRECONS": 203737,
+        "ID": "10307_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 701196,
+        "REPDTE": "20241231",
+        "LNRENRES": 143191,
+        "CERT": 10308,
+        "LNRECONS": 101396,
+        "ID": "10308_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 40636,
+        "REPDTE": "20241231",
+        "LNRENRES": 6856,
+        "CERT": 10315,
+        "LNRECONS": 4894,
+        "ID": "10315_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 94306,
+        "REPDTE": "20241231",
+        "LNRENRES": 26371,
+        "CERT": 10317,
+        "LNRECONS": 13882,
+        "ID": "10317_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 145112,
+        "REPDTE": "20241231",
+        "LNRENRES": 46901,
+        "CERT": 10319,
+        "LNRECONS": 9865,
+        "ID": "10319_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 47844,
+        "REPDTE": "20241231",
+        "LNRENRES": 35722,
+        "CERT": 10327,
+        "LNRECONS": 1855,
+        "ID": "10327_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 24740,
+        "REPDTE": "20241231",
+        "LNRENRES": 12464,
+        "CERT": 10330,
+        "LNRECONS": 1960,
+        "ID": "10330_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 613001,
+        "REPDTE": "20241231",
+        "LNRENRES": 314640,
+        "CERT": 10344,
+        "LNRECONS": 138919,
+        "ID": "10344_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 69783,
+        "REPDTE": "20241231",
+        "LNRENRES": 16406,
+        "CERT": 10345,
+        "LNRECONS": 21832,
+        "ID": "10345_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 9452,
+        "REPDTE": "20241231",
+        "LNRENRES": 1812,
+        "CERT": 10352,
+        "LNRECONS": 200,
+        "ID": "10352_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1376292,
+        "REPDTE": "20241231",
+        "LNRENRES": 526409,
+        "CERT": 10363,
+        "LNRECONS": 243500,
+        "ID": "10363_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 27264,
+        "REPDTE": "20241231",
+        "LNRENRES": 10806,
+        "CERT": 10374,
+        "LNRECONS": 640,
+        "ID": "10374_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 419578,
+        "REPDTE": "20241231",
+        "LNRENRES": 92747,
+        "CERT": 10378,
+        "LNRECONS": 60851,
+        "ID": "10378_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 226443,
+        "REPDTE": "20241231",
+        "LNRENRES": 102378,
+        "CERT": 10380,
+        "LNRECONS": 25194,
+        "ID": "10380_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 96367,
+        "REPDTE": "20241231",
+        "LNRENRES": 37227,
+        "CERT": 10382,
+        "LNRECONS": 13473,
+        "ID": "10382_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 249446,
+        "REPDTE": "20241231",
+        "LNRENRES": 106425,
+        "CERT": 10383,
+        "LNRECONS": 8124,
+        "ID": "10383_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 165131,
+        "REPDTE": "20241231",
+        "LNRENRES": 62775,
+        "CERT": 10384,
+        "LNRECONS": 5052,
+        "ID": "10384_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 41859,
+        "REPDTE": "20241231",
+        "LNRENRES": 3616,
+        "CERT": 10407,
+        "LNRECONS": 1561,
+        "ID": "10407_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 3278436,
+        "REPDTE": "20241231",
+        "LNRENRES": 2008520,
+        "CERT": 1040,
+        "LNRECONS": 299842,
+        "ID": "1040_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 135136,
+        "REPDTE": "20241231",
+        "LNRENRES": 56433,
+        "CERT": 10434,
+        "LNRECONS": 0,
+        "ID": "10434_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 28449,
+        "REPDTE": "20241231",
+        "LNRENRES": 5662,
+        "CERT": 10437,
+        "LNRECONS": 1102,
+        "ID": "10437_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 91201,
+        "REPDTE": "20241231",
+        "LNRENRES": 677,
+        "CERT": 10438,
+        "LNRECONS": 957,
+        "ID": "10438_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 52718,
+        "REPDTE": "20241231",
+        "LNRENRES": 7669,
+        "CERT": 10446,
+        "LNRECONS": 5160,
+        "ID": "10446_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 65669,
+        "REPDTE": "20241231",
+        "LNRENRES": 15251,
+        "CERT": 10458,
+        "LNRECONS": 1722,
+        "ID": "10458_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 106409,
+        "REPDTE": "20241231",
+        "LNRENRES": 39039,
+        "CERT": 10460,
+        "LNRECONS": 17740,
+        "ID": "10460_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 25216,
+        "REPDTE": "20241231",
+        "LNRENRES": 6519,
+        "CERT": 10463,
+        "LNRECONS": 864,
+        "ID": "10463_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 41755,
+        "REPDTE": "20241231",
+        "LNRENRES": 12695,
+        "CERT": 10464,
+        "LNRECONS": 502,
+        "ID": "10464_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 84861,
+        "REPDTE": "20241231",
+        "LNRENRES": 5138,
+        "CERT": 10467,
+        "LNRECONS": 2998,
+        "ID": "10467_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 25272,
+        "REPDTE": "20241231",
+        "LNRENRES": 4218,
+        "CERT": 10469,
+        "LNRECONS": 460,
+        "ID": "10469_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 6727,
+        "REPDTE": "20241231",
+        "LNRENRES": 2742,
+        "CERT": 10471,
+        "LNRECONS": 0,
+        "ID": "10471_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 109331,
+        "REPDTE": "20241231",
+        "LNRENRES": 29767,
+        "CERT": 10473,
+        "LNRECONS": 5800,
+        "ID": "10473_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 140489,
+        "REPDTE": "20241231",
+        "LNRENRES": 28219,
+        "CERT": 10474,
+        "LNRECONS": 3214,
+        "ID": "10474_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 287738,
+        "REPDTE": "20241231",
+        "LNRENRES": 109348,
+        "CERT": 1047,
+        "LNRECONS": 5193,
+        "ID": "1047_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 11347,
+        "REPDTE": "20241231",
+        "LNRENRES": 1178,
+        "CERT": 10489,
+        "LNRECONS": 0,
+        "ID": "10489_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 63400,
+        "REPDTE": "20241231",
+        "LNRENRES": 19719,
+        "CERT": 10492,
+        "LNRECONS": 3070,
+        "ID": "10492_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 105074,
+        "REPDTE": "20241231",
+        "LNRENRES": 15494,
+        "CERT": 10494,
+        "LNRECONS": 2306,
+        "ID": "10494_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 115838,
+        "REPDTE": "20241231",
+        "LNRENRES": 17246,
+        "CERT": 10497,
+        "LNRECONS": 22175,
+        "ID": "10497_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 68385,
+        "REPDTE": "20241231",
+        "LNRENRES": 13324,
+        "CERT": 1049,
+        "LNRECONS": 3212,
+        "ID": "1049_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 62199,
+        "REPDTE": "20241231",
+        "LNRENRES": 10494,
+        "CERT": 10500,
+        "LNRECONS": 2991,
+        "ID": "10500_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 71525,
+        "REPDTE": "20241231",
+        "LNRENRES": 4076,
+        "CERT": 10502,
+        "LNRECONS": 1485,
+        "ID": "10502_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 15523,
+        "REPDTE": "20241231",
+        "LNRENRES": 1401,
+        "CERT": 10503,
+        "LNRECONS": 0,
+        "ID": "10503_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 57686,
+        "REPDTE": "20241231",
+        "LNRENRES": 11502,
+        "CERT": 10505,
+        "LNRECONS": 2245,
+        "ID": "10505_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 122758,
+        "REPDTE": "20241231",
+        "LNRENRES": 15034,
+        "CERT": 10520,
+        "LNRECONS": 3026,
+        "ID": "10520_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 54724,
+        "REPDTE": "20241231",
+        "LNRENRES": 19985,
+        "CERT": 10523,
+        "LNRECONS": 6959,
+        "ID": "10523_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 86353,
+        "REPDTE": "20241231",
+        "LNRENRES": 17721,
+        "CERT": 10528,
+        "LNRECONS": 6066,
+        "ID": "10528_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 173501,
+        "REPDTE": "20241231",
+        "LNRENRES": 52101,
+        "CERT": 10531,
+        "LNRECONS": 14190,
+        "ID": "10531_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 115950,
+        "REPDTE": "20241231",
+        "LNRENRES": 50911,
+        "CERT": 10532,
+        "LNRECONS": 33487,
+        "ID": "10532_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 201094,
+        "REPDTE": "20241231",
+        "LNRENRES": 38386,
+        "CERT": 10533,
+        "LNRECONS": 9368,
+        "ID": "10533_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 108089,
+        "REPDTE": "20241231",
+        "LNRENRES": 47141,
+        "CERT": 10561,
+        "LNRECONS": 5293,
+        "ID": "10561_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 23840,
+        "REPDTE": "20241231",
+        "LNRENRES": 2753,
+        "CERT": 10567,
+        "LNRECONS": 2807,
+        "ID": "10567_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 17773,
+        "REPDTE": "20241231",
+        "LNRENRES": 3689,
+        "CERT": 10571,
+        "LNRECONS": 1255,
+        "ID": "10571_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 73557,
+        "REPDTE": "20241231",
+        "LNRENRES": 11995,
+        "CERT": 10576,
+        "LNRECONS": 2760,
+        "ID": "10576_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1645898,
+        "REPDTE": "20241231",
+        "LNRENRES": 831977,
+        "CERT": 1058,
+        "LNRECONS": 222883,
+        "ID": "1058_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 138222,
+        "REPDTE": "20241231",
+        "LNRENRES": 50421,
+        "CERT": 10594,
+        "LNRECONS": 11364,
+        "ID": "10594_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 131548,
+        "REPDTE": "20241231",
+        "LNRENRES": 31607,
+        "CERT": 10595,
+        "LNRECONS": 7250,
+        "ID": "10595_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 9888,
+        "REPDTE": "20241231",
+        "LNRENRES": 1644,
+        "CERT": 10597,
+        "LNRECONS": 1181,
+        "ID": "10597_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 103379,
+        "REPDTE": "20241231",
+        "LNRENRES": 12521,
+        "CERT": 105,
+        "LNRECONS": 2484,
+        "ID": "105_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 352544,
+        "REPDTE": "20241231",
+        "LNRENRES": 93088,
+        "CERT": 10608,
+        "LNRECONS": 54376,
+        "ID": "10608_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 699546,
+        "REPDTE": "20241231",
+        "LNRENRES": 280426,
+        "CERT": 1060,
+        "LNRECONS": 47179,
+        "ID": "1060_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 764492,
+        "REPDTE": "20241231",
+        "LNRENRES": 111760,
+        "CERT": 10618,
+        "LNRECONS": 31247,
+        "ID": "10618_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1249810,
+        "REPDTE": "20241231",
+        "LNRENRES": 527463,
+        "CERT": 10619,
+        "LNRECONS": 112480,
+        "ID": "10619_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 64773,
+        "REPDTE": "20241231",
+        "LNRENRES": 6891,
+        "CERT": 10623,
+        "LNRECONS": 2300,
+        "ID": "10623_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 6130,
+        "REPDTE": "20241231",
+        "LNRENRES": 270,
+        "CERT": 10626,
+        "LNRECONS": 0,
+        "ID": "10626_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 41375,
+        "REPDTE": "20241231",
+        "LNRENRES": 5044,
+        "CERT": 10628,
+        "LNRECONS": 1983,
+        "ID": "10628_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 4643803,
+        "REPDTE": "20241231",
+        "LNRENRES": 1890769,
+        "CERT": 10634,
+        "LNRECONS": 773566,
+        "ID": "10634_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 7292,
+        "REPDTE": "20241231",
+        "LNRENRES": 616,
+        "CERT": 10635,
+        "LNRECONS": 0,
+        "ID": "10635_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 44366,
+        "REPDTE": "20241231",
+        "LNRENRES": 8021,
+        "CERT": 10637,
+        "LNRECONS": 1589,
+        "ID": "10637_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 92884,
+        "REPDTE": "20241231",
+        "LNRENRES": 23945,
+        "CERT": 10639,
+        "LNRECONS": 10047,
+        "ID": "10639_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 315753,
+        "REPDTE": "20241231",
+        "LNRENRES": 168821,
+        "CERT": 10641,
+        "LNRECONS": 19537,
+        "ID": "10641_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 527358,
+        "REPDTE": "20241231",
+        "LNRENRES": 190488,
+        "CERT": 10643,
+        "LNRECONS": 109526,
+        "ID": "10643_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 27010,
+        "REPDTE": "20241231",
+        "LNRENRES": 11005,
+        "CERT": 10647,
+        "LNRECONS": 200,
+        "ID": "10647_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 213295,
+        "REPDTE": "20241231",
+        "LNRENRES": 31237,
+        "CERT": 10663,
+        "LNRECONS": 1947,
+        "ID": "10663_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 974573,
+        "REPDTE": "20241231",
+        "LNRENRES": 436973,
+        "CERT": 10667,
+        "LNRECONS": 95534,
+        "ID": "10667_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 34598,
+        "REPDTE": "20241231",
+        "LNRENRES": 17760,
+        "CERT": 10672,
+        "LNRECONS": 4275,
+        "ID": "10672_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 121948,
+        "REPDTE": "20241231",
+        "LNRENRES": 34525,
+        "CERT": 10674,
+        "LNRECONS": 7186,
+        "ID": "10674_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 474014,
+        "REPDTE": "20241231",
+        "LNRENRES": 233435,
+        "CERT": 10677,
+        "LNRECONS": 14517,
+        "ID": "10677_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 340353,
+        "REPDTE": "20241231",
+        "LNRENRES": 128675,
+        "CERT": 10685,
+        "LNRECONS": 17958,
+        "ID": "10685_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 522728,
+        "REPDTE": "20241231",
+        "LNRENRES": 487966,
+        "CERT": 1068,
+        "LNRECONS": 34652,
+        "ID": "1068_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 5404,
+        "REPDTE": "20241231",
+        "LNRENRES": 3007,
+        "CERT": 10704,
+        "LNRECONS": 588,
+        "ID": "10704_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 139788,
+        "REPDTE": "20241231",
+        "LNRENRES": 48717,
+        "CERT": 10709,
+        "LNRECONS": 3036,
+        "ID": "10709_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 106422,
+        "REPDTE": "20241231",
+        "LNRENRES": 5865,
+        "CERT": 10719,
+        "LNRECONS": 9507,
+        "ID": "10719_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 461899,
+        "REPDTE": "20241231",
+        "LNRENRES": 187632,
+        "CERT": 1073,
+        "LNRECONS": 59318,
+        "ID": "1073_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 33100,
+        "REPDTE": "20241231",
+        "LNRENRES": 8322,
+        "CERT": 10741,
+        "LNRECONS": 2916,
+        "ID": "10741_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 85140,
+        "REPDTE": "20241231",
+        "LNRENRES": 37563,
+        "CERT": 10788,
+        "LNRECONS": 5175,
+        "ID": "10788_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 140963,
+        "REPDTE": "20241231",
+        "LNRENRES": 20768,
+        "CERT": 10791,
+        "LNRECONS": 1360,
+        "ID": "10791_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 79663,
+        "REPDTE": "20241231",
+        "LNRENRES": 14735,
+        "CERT": 10799,
+        "LNRECONS": 1991,
+        "ID": "10799_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 7320,
+        "REPDTE": "20241231",
+        "LNRENRES": 7005,
+        "CERT": 107,
+        "LNRECONS": 0,
+        "ID": "107_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 10708,
+        "REPDTE": "20241231",
+        "LNRENRES": 2666,
+        "CERT": 10803,
+        "LNRECONS": 561,
+        "ID": "10803_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 34479,
+        "REPDTE": "20241231",
+        "LNRENRES": 13433,
+        "CERT": 10804,
+        "LNRECONS": 166,
+        "ID": "10804_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 4603,
+        "REPDTE": "20241231",
+        "LNRENRES": 1233,
+        "CERT": 10809,
+        "LNRECONS": 0,
+        "ID": "10809_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 7434,
+        "REPDTE": "20241231",
+        "LNRENRES": 5651,
+        "CERT": 10816,
+        "LNRECONS": 0,
+        "ID": "10816_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 19990,
+        "REPDTE": "20241231",
+        "LNRENRES": 1575,
+        "CERT": 10820,
+        "LNRECONS": 0,
+        "ID": "10820_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 26967,
+        "REPDTE": "20241231",
+        "LNRENRES": 8064,
+        "CERT": 10821,
+        "LNRECONS": 0,
+        "ID": "10821_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 203566,
+        "REPDTE": "20241231",
+        "LNRENRES": 29100,
+        "CERT": 10829,
+        "LNRECONS": 5502,
+        "ID": "10829_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 92513,
+        "REPDTE": "20241231",
+        "LNRENRES": 15594,
+        "CERT": 10831,
+        "LNRECONS": 82,
+        "ID": "10831_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 7035,
+        "REPDTE": "20241231",
+        "LNRENRES": 1627,
+        "CERT": 10840,
+        "LNRECONS": 0,
+        "ID": "10840_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 12187,
+        "REPDTE": "20241231",
+        "LNRENRES": 10972,
+        "CERT": 10843,
+        "LNRECONS": 0,
+        "ID": "10843_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 149063,
+        "REPDTE": "20241231",
+        "LNRENRES": 49866,
+        "CERT": 10844,
+        "LNRECONS": 17286,
+        "ID": "10844_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 111242,
+        "REPDTE": "20241231",
+        "LNRENRES": 28205,
+        "CERT": 10845,
+        "LNRECONS": 4182,
+        "ID": "10845_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 83033,
+        "REPDTE": "20241231",
+        "LNRENRES": 15644,
+        "CERT": 10849,
+        "LNRECONS": 2451,
+        "ID": "10849_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 130754,
+        "REPDTE": "20241231",
+        "LNRENRES": 26087,
+        "CERT": 10853,
+        "LNRECONS": 9956,
+        "ID": "10853_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 58586,
+        "REPDTE": "20241231",
+        "LNRENRES": 31680,
+        "CERT": 10855,
+        "LNRECONS": 441,
+        "ID": "10855_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 21159,
+        "REPDTE": "20241231",
+        "LNRENRES": 3282,
+        "CERT": 10858,
+        "LNRECONS": 0,
+        "ID": "10858_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 86702,
+        "REPDTE": "20241231",
+        "LNRENRES": 30465,
+        "CERT": 10860,
+        "LNRECONS": 9402,
+        "ID": "10860_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 295060,
+        "REPDTE": "20241231",
+        "LNRENRES": 12758,
+        "CERT": 1086,
+        "LNRECONS": 14994,
+        "ID": "1086_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 53262,
+        "REPDTE": "20241231",
+        "LNRENRES": 12719,
+        "CERT": 10871,
+        "LNRECONS": 2189,
+        "ID": "10871_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 9599,
+        "REPDTE": "20241231",
+        "LNRENRES": 362,
+        "CERT": 10872,
+        "LNRECONS": 0,
+        "ID": "10872_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 91158,
+        "REPDTE": "20241231",
+        "LNRENRES": 39910,
+        "CERT": 10878,
+        "LNRECONS": 9303,
+        "ID": "10878_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 24987,
+        "REPDTE": "20241231",
+        "LNRENRES": 3551,
+        "CERT": 10883,
+        "LNRECONS": 0,
+        "ID": "10883_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 251339,
+        "REPDTE": "20241231",
+        "LNRENRES": 95521,
+        "CERT": 10886,
+        "LNRECONS": 4826,
+        "ID": "10886_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 304277,
+        "REPDTE": "20241231",
+        "LNRENRES": 182881,
+        "CERT": 10903,
+        "LNRECONS": 36311,
+        "ID": "10903_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 37685,
+        "REPDTE": "20241231",
+        "LNRENRES": 4948,
+        "CERT": 10906,
+        "LNRECONS": 337,
+        "ID": "10906_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 133908,
+        "REPDTE": "20241231",
+        "LNRENRES": 17497,
+        "CERT": 10907,
+        "LNRECONS": 121,
+        "ID": "10907_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 235612,
+        "REPDTE": "20241231",
+        "LNRENRES": 121872,
+        "CERT": 1090,
+        "LNRECONS": 25712,
+        "ID": "1090_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 132966,
+        "REPDTE": "20241231",
+        "LNRENRES": 13039,
+        "CERT": 10918,
+        "LNRECONS": 11482,
+        "ID": "10918_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 19890,
+        "REPDTE": "20241231",
+        "LNRENRES": 3425,
+        "CERT": 10919,
+        "LNRECONS": 0,
+        "ID": "10919_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 10814,
+        "REPDTE": "20241231",
+        "LNRENRES": 1841,
+        "CERT": 10920,
+        "LNRECONS": 0,
+        "ID": "10920_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 83999,
+        "REPDTE": "20241231",
+        "LNRENRES": 35321,
+        "CERT": 10928,
+        "LNRECONS": 10412,
+        "ID": "10928_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 79019,
+        "REPDTE": "20241231",
+        "LNRENRES": 21108,
+        "CERT": 1092,
+        "LNRECONS": 7799,
+        "ID": "1092_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 282920,
+        "REPDTE": "20241231",
+        "LNRENRES": 41445,
+        "CERT": 10956,
+        "LNRECONS": 87945,
+        "ID": "10956_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 500344,
+        "REPDTE": "20241231",
+        "LNRENRES": 178032,
+        "CERT": 10958,
+        "LNRECONS": 24047,
+        "ID": "10958_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 185459,
+        "REPDTE": "20241231",
+        "LNRENRES": 96117,
+        "CERT": 1095,
+        "LNRECONS": 7720,
+        "ID": "1095_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 47302,
+        "REPDTE": "20241231",
+        "LNRENRES": 3833,
+        "CERT": 10960,
+        "LNRECONS": 1158,
+        "ID": "10960_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 119410,
+        "REPDTE": "20241231",
+        "LNRENRES": 72687,
+        "CERT": 10962,
+        "LNRECONS": 16660,
+        "ID": "10962_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 41329,
+        "REPDTE": "20241231",
+        "LNRENRES": 18958,
+        "CERT": 10965,
+        "LNRECONS": 2756,
+        "ID": "10965_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 118199,
+        "REPDTE": "20241231",
+        "LNRENRES": 36004,
+        "CERT": 10967,
+        "LNRECONS": 1946,
+        "ID": "10967_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 40920,
+        "REPDTE": "20241231",
+        "LNRENRES": 7879,
+        "CERT": 10969,
+        "LNRECONS": 4584,
+        "ID": "10969_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 103719,
+        "REPDTE": "20241231",
+        "LNRENRES": 55607,
+        "CERT": 10971,
+        "LNRECONS": 4471,
+        "ID": "10971_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 427329,
+        "REPDTE": "20241231",
+        "LNRENRES": 243171,
+        "CERT": 10973,
+        "LNRECONS": 7911,
+        "ID": "10973_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 93332,
+        "REPDTE": "20241231",
+        "LNRENRES": 40929,
+        "CERT": 10976,
+        "LNRECONS": 1956,
+        "ID": "10976_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 104323,
+        "REPDTE": "20241231",
+        "LNRENRES": 19330,
+        "CERT": 10980,
+        "LNRECONS": 2906,
+        "ID": "10980_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 11968,
+        "REPDTE": "20241231",
+        "LNRENRES": 967,
+        "CERT": 10982,
+        "LNRECONS": 223,
+        "ID": "10982_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 26169,
+        "REPDTE": "20241231",
+        "LNRENRES": 17987,
+        "CERT": 10984,
+        "LNRECONS": 0,
+        "ID": "10984_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1248352,
+        "REPDTE": "20241231",
+        "LNRENRES": 550447,
+        "CERT": 10988,
+        "LNRECONS": 463209,
+        "ID": "10988_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 97126,
+        "REPDTE": "20241231",
+        "LNRENRES": 27486,
+        "CERT": 10989,
+        "LNRECONS": 9970,
+        "ID": "10989_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 22339,
+        "REPDTE": "20241231",
+        "LNRENRES": 2895,
+        "CERT": 1098,
+        "LNRECONS": 286,
+        "ID": "1098_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 58382,
+        "REPDTE": "20241231",
+        "LNRENRES": 8385,
+        "CERT": 10991,
+        "LNRECONS": 6738,
+        "ID": "10991_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 47933,
+        "REPDTE": "20241231",
+        "LNRENRES": 4808,
+        "CERT": 10993,
+        "LNRECONS": 2847,
+        "ID": "10993_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 215431,
+        "REPDTE": "20241231",
+        "LNRENRES": 40375,
+        "CERT": 10998,
+        "LNRECONS": 20816,
+        "ID": "10998_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 161873,
+        "REPDTE": "20241231",
+        "LNRENRES": 23787,
+        "CERT": 109,
+        "LNRECONS": 12825,
+        "ID": "109_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 109444,
+        "REPDTE": "20241231",
+        "LNRENRES": 12293,
+        "CERT": 11002,
+        "LNRECONS": 8697,
+        "ID": "11002_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 83781,
+        "REPDTE": "20241231",
+        "LNRENRES": 19190,
+        "CERT": 11003,
+        "LNRECONS": 6639,
+        "ID": "11003_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 203016,
+        "REPDTE": "20241231",
+        "LNRENRES": 40375,
+        "CERT": 1100,
+        "LNRECONS": 23426,
+        "ID": "1100_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 8268,
+        "REPDTE": "20241231",
+        "LNRENRES": 3096,
+        "CERT": 11013,
+        "LNRECONS": 0,
+        "ID": "11013_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 3724566,
+        "REPDTE": "20241231",
+        "LNRENRES": 1254618,
+        "CERT": 11035,
+        "LNRECONS": 11098,
+        "ID": "11035_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 13966454,
+        "REPDTE": "20241231",
+        "LNRENRES": 7186897,
+        "CERT": 1105,
+        "LNRECONS": 1244577,
+        "ID": "1105_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 64348000,
+        "REPDTE": "20241231",
+        "LNRENRES": 28566000,
+        "CERT": 11063,
+        "LNRECONS": 5921000,
+        "ID": "11063_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 22258338,
+        "REPDTE": "20241231",
+        "LNRENRES": 7842692,
+        "CERT": 110,
+        "LNRECONS": 9522678,
+        "ID": "110_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1131240,
+        "REPDTE": "20241231",
+        "LNRENRES": 542415,
+        "CERT": 11112,
+        "LNRECONS": 94090,
+        "ID": "11112_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 262830,
+        "REPDTE": "20241231",
+        "LNRENRES": 15096,
+        "CERT": 11113,
+        "LNRECONS": 2273,
+        "ID": "11113_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 6097805,
+        "REPDTE": "20241231",
+        "LNRENRES": 2733878,
+        "CERT": 11124,
+        "LNRECONS": 406392,
+        "ID": "11124_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 33904,
+        "REPDTE": "20241231",
+        "LNRENRES": 3004,
+        "CERT": 11133,
+        "LNRECONS": 969,
+        "ID": "11133_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 300629,
+        "REPDTE": "20241231",
+        "LNRENRES": 175731,
+        "CERT": 11159,
+        "LNRECONS": 45037,
+        "ID": "11159_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 27621,
+        "REPDTE": "20241231",
+        "LNRENRES": 14519,
+        "CERT": 11175,
+        "LNRECONS": 3983,
+        "ID": "11175_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 217512,
+        "REPDTE": "20241231",
+        "LNRENRES": 36975,
+        "CERT": 11178,
+        "LNRECONS": 34578,
+        "ID": "11178_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 775587,
+        "REPDTE": "20241231",
+        "LNRENRES": 307848,
+        "CERT": 1117,
+        "LNRECONS": 92798,
+        "ID": "1117_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 38424,
+        "REPDTE": "20241231",
+        "LNRENRES": 5813,
+        "CERT": 11181,
+        "LNRECONS": 2549,
+        "ID": "11181_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 49239,
+        "REPDTE": "20241231",
+        "LNRENRES": 4085,
+        "CERT": 1118,
+        "LNRECONS": 2112,
+        "ID": "1118_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 93940,
+        "REPDTE": "20241231",
+        "LNRENRES": 22101,
+        "CERT": 11225,
+        "LNRECONS": 6491,
+        "ID": "11225_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 298220,
+        "REPDTE": "20241231",
+        "LNRENRES": 69196,
+        "CERT": 11228,
+        "LNRECONS": 34784,
+        "ID": "11228_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 154569,
+        "REPDTE": "20241231",
+        "LNRENRES": 30271,
+        "CERT": 1122,
+        "LNRECONS": 11577,
+        "ID": "1122_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 120270,
+        "REPDTE": "20241231",
+        "LNRENRES": 52068,
+        "CERT": 11232,
+        "LNRECONS": 19742,
+        "ID": "11232_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 57198,
+        "REPDTE": "20241231",
+        "LNRENRES": 18582,
+        "CERT": 11235,
+        "LNRECONS": 3370,
+        "ID": "11235_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1002879,
+        "REPDTE": "20241231",
+        "LNRENRES": 442574,
+        "CERT": 11236,
+        "LNRECONS": 94779,
+        "ID": "11236_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 10952962,
+        "REPDTE": "20241231",
+        "LNRENRES": 5426780,
+        "CERT": 11241,
+        "LNRECONS": 2736215,
+        "ID": "11241_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 42695,
+        "REPDTE": "20241231",
+        "LNRENRES": 10982,
+        "CERT": 11242,
+        "LNRECONS": 5275,
+        "ID": "11242_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 150751,
+        "REPDTE": "20241231",
+        "LNRENRES": 18087,
+        "CERT": 11243,
+        "LNRECONS": 13235,
+        "ID": "11243_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 83007,
+        "REPDTE": "20241231",
+        "LNRENRES": 11195,
+        "CERT": 11252,
+        "LNRECONS": 6569,
+        "ID": "11252_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 147267,
+        "REPDTE": "20241231",
+        "LNRENRES": 49068,
+        "CERT": 11259,
+        "LNRECONS": 30070,
+        "ID": "11259_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 90891,
+        "REPDTE": "20241231",
+        "LNRENRES": 18672,
+        "CERT": 1125,
+        "LNRECONS": 0,
+        "ID": "1125_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 36525,
+        "REPDTE": "20241231",
+        "LNRENRES": 6756,
+        "CERT": 11261,
+        "LNRECONS": 105,
+        "ID": "11261_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 202826,
+        "REPDTE": "20241231",
+        "LNRENRES": 43805,
+        "CERT": 11295,
+        "LNRECONS": 32711,
+        "ID": "11295_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 212832,
+        "REPDTE": "20241231",
+        "LNRENRES": 76132,
+        "CERT": 11299,
+        "LNRECONS": 34998,
+        "ID": "11299_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 9604,
+        "REPDTE": "20241231",
+        "LNRENRES": 2513,
+        "CERT": 11300,
+        "LNRECONS": 0,
+        "ID": "11300_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 5205,
+        "REPDTE": "20241231",
+        "LNRENRES": 420,
+        "CERT": 11302,
+        "LNRECONS": 0,
+        "ID": "11302_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 287713,
+        "REPDTE": "20241231",
+        "LNRENRES": 85980,
+        "CERT": 11306,
+        "LNRECONS": 3245,
+        "ID": "11306_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 194710,
+        "REPDTE": "20241231",
+        "LNRENRES": 42646,
+        "CERT": 11307,
+        "LNRECONS": 13570,
+        "ID": "11307_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 147612,
+        "REPDTE": "20241231",
+        "LNRENRES": 93207,
+        "CERT": 11310,
+        "LNRECONS": 8096,
+        "ID": "11310_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 48495,
+        "REPDTE": "20241231",
+        "LNRENRES": 20859,
+        "CERT": 11317,
+        "LNRECONS": 2783,
+        "ID": "11317_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 45930,
+        "REPDTE": "20241231",
+        "LNRENRES": 7819,
+        "CERT": 11319,
+        "LNRECONS": 1570,
+        "ID": "11319_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 27112,
+        "REPDTE": "20241231",
+        "LNRENRES": 3385,
+        "CERT": 11324,
+        "LNRECONS": 227,
+        "ID": "11324_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 22207,
+        "REPDTE": "20241231",
+        "LNRENRES": 2255,
+        "CERT": 11343,
+        "LNRECONS": 0,
+        "ID": "11343_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 319655,
+        "REPDTE": "20241231",
+        "LNRENRES": 228710,
+        "CERT": 11347,
+        "LNRECONS": 14542,
+        "ID": "11347_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 38311,
+        "REPDTE": "20241231",
+        "LNRENRES": 3414,
+        "CERT": 11352,
+        "LNRECONS": 1323,
+        "ID": "11352_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 69201,
+        "REPDTE": "20241231",
+        "LNRENRES": 6657,
+        "CERT": 11355,
+        "LNRECONS": 5592,
+        "ID": "11355_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 255205,
+        "REPDTE": "20241231",
+        "LNRENRES": 102632,
+        "CERT": 11358,
+        "LNRECONS": 30520,
+        "ID": "11358_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1328231,
+        "REPDTE": "20241231",
+        "LNRENRES": 720154,
+        "CERT": 11406,
+        "LNRECONS": 31513,
+        "ID": "11406_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 259310,
+        "REPDTE": "20241231",
+        "LNRENRES": 152193,
+        "CERT": 11407,
+        "LNRECONS": 2258,
+        "ID": "11407_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 55341,
+        "REPDTE": "20241231",
+        "LNRENRES": 11035,
+        "CERT": 11409,
+        "LNRECONS": 5133,
+        "ID": "11409_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 44689,
+        "REPDTE": "20241231",
+        "LNRENRES": 6035,
+        "CERT": 11411,
+        "LNRECONS": 213,
+        "ID": "11411_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 114503,
+        "REPDTE": "20241231",
+        "LNRENRES": 20376,
+        "CERT": 11415,
+        "LNRECONS": 1847,
+        "ID": "11415_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 17633,
+        "REPDTE": "20241231",
+        "LNRENRES": 3810,
+        "CERT": 11417,
+        "LNRECONS": 363,
+        "ID": "11417_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 147578,
+        "REPDTE": "20241231",
+        "LNRENRES": 80158,
+        "CERT": 1141,
+        "LNRECONS": 16946,
+        "ID": "1141_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 119226,
+        "REPDTE": "20241231",
+        "LNRENRES": 29560,
+        "CERT": 11431,
+        "LNRECONS": 3931,
+        "ID": "11431_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 76523,
+        "REPDTE": "20241231",
+        "LNRENRES": 36746,
+        "CERT": 11445,
+        "LNRECONS": 621,
+        "ID": "11445_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 119359,
+        "REPDTE": "20241231",
+        "LNRENRES": 76390,
+        "CERT": 11446,
+        "LNRECONS": 10612,
+        "ID": "11446_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 300754,
+        "REPDTE": "20241231",
+        "LNRENRES": 89534,
+        "CERT": 11448,
+        "LNRECONS": 46996,
+        "ID": "11448_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 575925,
+        "REPDTE": "20241231",
+        "LNRENRES": 168212,
+        "CERT": 11459,
+        "LNRECONS": 128851,
+        "ID": "11459_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 45678,
+        "REPDTE": "20241231",
+        "LNRENRES": 11701,
+        "CERT": 11462,
+        "LNRECONS": 1734,
+        "ID": "11462_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 94922,
+        "REPDTE": "20241231",
+        "LNRENRES": 12091,
+        "CERT": 11463,
+        "LNRECONS": 3894,
+        "ID": "11463_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 24997,
+        "REPDTE": "20241231",
+        "LNRENRES": 1909,
+        "CERT": 11465,
+        "LNRECONS": 832,
+        "ID": "11465_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 89648,
+        "REPDTE": "20241231",
+        "LNRENRES": 7630,
+        "CERT": 11466,
+        "LNRECONS": 3769,
+        "ID": "11466_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 33427,
+        "REPDTE": "20241231",
+        "LNRENRES": 10575,
+        "CERT": 11475,
+        "LNRECONS": 1594,
+        "ID": "11475_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 78580,
+        "REPDTE": "20241231",
+        "LNRENRES": 4788,
+        "CERT": 11477,
+        "LNRECONS": 1028,
+        "ID": "11477_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 136027,
+        "REPDTE": "20241231",
+        "LNRENRES": 16994,
+        "CERT": 1147,
+        "LNRECONS": 4593,
+        "ID": "1147_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 166509,
+        "REPDTE": "20241231",
+        "LNRENRES": 26343,
+        "CERT": 11482,
+        "LNRECONS": 1007,
+        "ID": "11482_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 220942,
+        "REPDTE": "20241231",
+        "LNRENRES": 106861,
+        "CERT": 11491,
+        "LNRECONS": 36970,
+        "ID": "11491_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 675991,
+        "REPDTE": "20241231",
+        "LNRENRES": 464305,
+        "CERT": 11492,
+        "LNRECONS": 58462,
+        "ID": "11492_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 302334,
+        "REPDTE": "20241231",
+        "LNRENRES": 95056,
+        "CERT": 11501,
+        "LNRECONS": 2967,
+        "ID": "11501_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 2374734,
+        "REPDTE": "20241231",
+        "LNRENRES": 1405955,
+        "CERT": 11507,
+        "LNRECONS": 437441,
+        "ID": "11507_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 31597,
+        "REPDTE": "20241231",
+        "LNRENRES": 15467,
+        "CERT": 1150,
+        "LNRECONS": 1899,
+        "ID": "1150_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 149171,
+        "REPDTE": "20241231",
+        "LNRENRES": 66744,
+        "CERT": 11519,
+        "LNRECONS": 25156,
+        "ID": "11519_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 272399,
+        "REPDTE": "20241231",
+        "LNRENRES": 60717,
+        "CERT": 11521,
+        "LNRECONS": 10960,
+        "ID": "11521_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 615562,
+        "REPDTE": "20241231",
+        "LNRENRES": 337226,
+        "CERT": 11522,
+        "LNRECONS": 78946,
+        "ID": "11522_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 135635,
+        "REPDTE": "20241231",
+        "LNRENRES": 46041,
+        "CERT": 11526,
+        "LNRECONS": 3573,
+        "ID": "11526_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 26152,
+        "REPDTE": "20241231",
+        "LNRENRES": 2252,
+        "CERT": 11527,
+        "LNRECONS": 708,
+        "ID": "11527_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 203809,
+        "REPDTE": "20241231",
+        "LNRENRES": 74495,
+        "CERT": 11539,
+        "LNRECONS": 11310,
+        "ID": "11539_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 106094,
+        "REPDTE": "20241231",
+        "LNRENRES": 34659,
+        "CERT": 11557,
+        "LNRECONS": 33466,
+        "ID": "11557_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 139903,
+        "REPDTE": "20241231",
+        "LNRENRES": 19953,
+        "CERT": 11559,
+        "LNRECONS": 5236,
+        "ID": "11559_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 683257,
+        "REPDTE": "20241231",
+        "LNRENRES": 316926,
+        "CERT": 11569,
+        "LNRECONS": 133573,
+        "ID": "11569_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 153817,
+        "REPDTE": "20241231",
+        "LNRENRES": 96157,
+        "CERT": 11570,
+        "LNRECONS": 5222,
+        "ID": "11570_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 4940509,
+        "REPDTE": "20241231",
+        "LNRENRES": 2725622,
+        "CERT": 11578,
+        "LNRECONS": 465538,
+        "ID": "11578_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 66941,
+        "REPDTE": "20241231",
+        "LNRENRES": 38223,
+        "CERT": 11580,
+        "LNRECONS": 2973,
+        "ID": "11580_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 57446,
+        "REPDTE": "20241231",
+        "LNRENRES": 17593,
+        "CERT": 11582,
+        "LNRECONS": 2001,
+        "ID": "11582_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 291545,
+        "REPDTE": "20241231",
+        "LNRENRES": 93228,
+        "CERT": 11595,
+        "LNRECONS": 11430,
+        "ID": "11595_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 117818,
+        "REPDTE": "20241231",
+        "LNRENRES": 15998,
+        "CERT": 11601,
+        "LNRECONS": 9814,
+        "ID": "11601_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 300919,
+        "REPDTE": "20241231",
+        "LNRENRES": 148771,
+        "CERT": 11608,
+        "LNRECONS": 27045,
+        "ID": "11608_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 393774,
+        "REPDTE": "20241231",
+        "LNRENRES": 126834,
+        "CERT": 11623,
+        "LNRECONS": 47902,
+        "ID": "11623_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 76200,
+        "REPDTE": "20241231",
+        "LNRENRES": 5452,
+        "CERT": 1163,
+        "LNRECONS": 5260,
+        "ID": "1163_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 264823,
+        "REPDTE": "20241231",
+        "LNRENRES": 108297,
+        "CERT": 1164,
+        "LNRECONS": 31184,
+        "ID": "1164_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 12580,
+        "REPDTE": "20241231",
+        "LNRENRES": 1383,
+        "CERT": 1165,
+        "LNRECONS": 556,
+        "ID": "1165_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1293876,
+        "REPDTE": "20241231",
+        "LNRENRES": 623730,
+        "CERT": 11666,
+        "LNRECONS": 141096,
+        "ID": "11666_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 71403,
+        "REPDTE": "20241231",
+        "LNRENRES": 1232,
+        "CERT": 11667,
+        "LNRECONS": 0,
+        "ID": "11667_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 193383,
+        "REPDTE": "20241231",
+        "LNRENRES": 43977,
+        "CERT": 11669,
+        "LNRECONS": 4324,
+        "ID": "11669_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 747242,
+        "REPDTE": "20241231",
+        "LNRENRES": 278464,
+        "CERT": 11670,
+        "LNRECONS": 64279,
+        "ID": "11670_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 51098,
+        "REPDTE": "20241231",
+        "LNRENRES": 17441,
+        "CERT": 11671,
+        "LNRECONS": 1448,
+        "ID": "11671_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 125300,
+        "REPDTE": "20241231",
+        "LNRENRES": 24534,
+        "CERT": 11674,
+        "LNRECONS": 4937,
+        "ID": "11674_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 60924,
+        "REPDTE": "20241231",
+        "LNRENRES": 43558,
+        "CERT": 1167,
+        "LNRECONS": 4837,
+        "ID": "1167_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 38922,
+        "REPDTE": "20241231",
+        "LNRENRES": 4705,
+        "CERT": 11680,
+        "LNRECONS": 530,
+        "ID": "11680_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 17408,
+        "REPDTE": "20241231",
+        "LNRENRES": 4566,
+        "CERT": 11681,
+        "LNRECONS": 252,
+        "ID": "11681_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 39765,
+        "REPDTE": "20241231",
+        "LNRENRES": 12771,
+        "CERT": 11682,
+        "LNRECONS": 0,
+        "ID": "11682_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 59388,
+        "REPDTE": "20241231",
+        "LNRENRES": 10718,
+        "CERT": 11686,
+        "LNRECONS": 0,
+        "ID": "11686_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 133183,
+        "REPDTE": "20241231",
+        "LNRENRES": 44546,
+        "CERT": 11699,
+        "LNRECONS": 8045,
+        "ID": "11699_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 97348,
+        "REPDTE": "20241231",
+        "LNRENRES": 33882,
+        "CERT": 1169,
+        "LNRECONS": 10322,
+        "ID": "1169_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 172926,
+        "REPDTE": "20241231",
+        "LNRENRES": 28630,
+        "CERT": 11702,
+        "LNRECONS": 7842,
+        "ID": "11702_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 27403,
+        "REPDTE": "20241231",
+        "LNRENRES": 2258,
+        "CERT": 11706,
+        "LNRECONS": 0,
+        "ID": "11706_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 135293,
+        "REPDTE": "20241231",
+        "LNRENRES": 60053,
+        "CERT": 11708,
+        "LNRECONS": 6255,
+        "ID": "11708_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 59419,
+        "REPDTE": "20241231",
+        "LNRENRES": 24514,
+        "CERT": 11711,
+        "LNRECONS": 7051,
+        "ID": "11711_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 44296,
+        "REPDTE": "20241231",
+        "LNRENRES": 10335,
+        "CERT": 11715,
+        "LNRECONS": 0,
+        "ID": "11715_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1923,
+        "REPDTE": "20241231",
+        "LNRENRES": 0,
+        "CERT": 11716,
+        "LNRECONS": 0,
+        "ID": "11716_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 62101,
+        "REPDTE": "20241231",
+        "LNRENRES": 4811,
+        "CERT": 11719,
+        "LNRECONS": 1382,
+        "ID": "11719_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 282370,
+        "REPDTE": "20241231",
+        "LNRENRES": 82371,
+        "CERT": 11722,
+        "LNRECONS": 5988,
+        "ID": "11722_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 615131,
+        "REPDTE": "20241231",
+        "LNRENRES": 304683,
+        "CERT": 11729,
+        "LNRECONS": 32786,
+        "ID": "11729_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 16815,
+        "REPDTE": "20241231",
+        "LNRENRES": 1088,
+        "CERT": 11731,
+        "LNRECONS": 0,
+        "ID": "11731_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 124343,
+        "REPDTE": "20241231",
+        "LNRENRES": 49934,
+        "CERT": 11732,
+        "LNRECONS": 11699,
+        "ID": "11732_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 123175,
+        "REPDTE": "20241231",
+        "LNRENRES": 21212,
+        "CERT": 11734,
+        "LNRECONS": 10384,
+        "ID": "11734_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 306574,
+        "REPDTE": "20241231",
+        "LNRENRES": 79002,
+        "CERT": 11739,
+        "LNRECONS": 27857,
+        "ID": "11739_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 183470,
+        "REPDTE": "20241231",
+        "LNRENRES": 81754,
+        "CERT": 11741,
+        "LNRECONS": 489,
+        "ID": "11741_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 67715,
+        "REPDTE": "20241231",
+        "LNRENRES": 10938,
+        "CERT": 11746,
+        "LNRECONS": 0,
+        "ID": "11746_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 78502,
+        "REPDTE": "20241231",
+        "LNRENRES": 32553,
+        "CERT": 11747,
+        "LNRECONS": 4216,
+        "ID": "11747_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 30593,
+        "REPDTE": "20241231",
+        "LNRENRES": 3701,
+        "CERT": 11750,
+        "LNRECONS": 1535,
+        "ID": "11750_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 28845,
+        "REPDTE": "20241231",
+        "LNRENRES": 2183,
+        "CERT": 11759,
+        "LNRECONS": 2548,
+        "ID": "11759_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 636602,
+        "REPDTE": "20241231",
+        "LNRENRES": 283351,
+        "CERT": 11763,
+        "LNRECONS": 123247,
+        "ID": "11763_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 14189,
+        "REPDTE": "20241231",
+        "LNRENRES": 466,
+        "CERT": 11764,
+        "LNRECONS": 0,
+        "ID": "11764_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 188338,
+        "REPDTE": "20241231",
+        "LNRENRES": 38174,
+        "CERT": 11767,
+        "LNRECONS": 9145,
+        "ID": "11767_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 792488,
+        "REPDTE": "20241231",
+        "LNRENRES": 285868,
+        "CERT": 11771,
+        "LNRECONS": 49897,
+        "ID": "11771_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 95614,
+        "REPDTE": "20241231",
+        "LNRENRES": 12622,
+        "CERT": 11777,
+        "LNRECONS": 4610,
+        "ID": "11777_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 109894,
+        "REPDTE": "20241231",
+        "LNRENRES": 11796,
+        "CERT": 11778,
+        "LNRECONS": 396,
+        "ID": "11778_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 99166,
+        "REPDTE": "20241231",
+        "LNRENRES": 43012,
+        "CERT": 11782,
+        "LNRECONS": 8306,
+        "ID": "11782_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 156589,
+        "REPDTE": "20241231",
+        "LNRENRES": 59736,
+        "CERT": 11785,
+        "LNRECONS": 12907,
+        "ID": "11785_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 131771,
+        "REPDTE": "20241231",
+        "LNRENRES": 28573,
+        "CERT": 11788,
+        "LNRECONS": 44101,
+        "ID": "11788_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 65122,
+        "REPDTE": "20241231",
+        "LNRENRES": 4116,
+        "CERT": 11792,
+        "LNRECONS": 710,
+        "ID": "11792_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 784179,
+        "REPDTE": "20241231",
+        "LNRENRES": 467430,
+        "CERT": 11807,
+        "LNRECONS": 41426,
+        "ID": "11807_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 124350,
+        "REPDTE": "20241231",
+        "LNRENRES": 66359,
+        "CERT": 11810,
+        "LNRECONS": 5184,
+        "ID": "11810_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 25052338,
+        "REPDTE": "20241231",
+        "LNRENRES": 9183519,
+        "CERT": 11813,
+        "LNRECONS": 3912142,
+        "ID": "11813_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 11911,
+        "REPDTE": "20241231",
+        "LNRENRES": 4420,
+        "CERT": 11817,
+        "LNRECONS": 1101,
+        "ID": "11817_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 202869,
+        "REPDTE": "20241231",
+        "LNRENRES": 67605,
+        "CERT": 11821,
+        "LNRECONS": 29302,
+        "ID": "11821_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 135288,
+        "REPDTE": "20241231",
+        "LNRENRES": 29811,
+        "CERT": 11823,
+        "LNRECONS": 25611,
+        "ID": "11823_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 303955,
+        "REPDTE": "20241231",
+        "LNRENRES": 56874,
+        "CERT": 1184,
+        "LNRECONS": 17512,
+        "ID": "1184_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 443665,
+        "REPDTE": "20241231",
+        "LNRENRES": 123079,
+        "CERT": 11860,
+        "LNRECONS": 40723,
+        "ID": "11860_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 60954,
+        "REPDTE": "20241231",
+        "LNRENRES": 14320,
+        "CERT": 11862,
+        "LNRECONS": 3024,
+        "ID": "11862_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1388414,
+        "REPDTE": "20241231",
+        "LNRENRES": 585489,
+        "CERT": 11868,
+        "LNRECONS": 94148,
+        "ID": "11868_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 3069,
+        "REPDTE": "20241231",
+        "LNRENRES": 1188,
+        "CERT": 11891,
+        "LNRECONS": 0,
+        "ID": "11891_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 6959,
+        "REPDTE": "20241231",
+        "LNRENRES": 405,
+        "CERT": 11902,
+        "LNRECONS": 426,
+        "ID": "11902_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 147853,
+        "REPDTE": "20241231",
+        "LNRENRES": 84369,
+        "CERT": 11903,
+        "LNRECONS": 11007,
+        "ID": "11903_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 48046,
+        "REPDTE": "20241231",
+        "LNRENRES": 5171,
+        "CERT": 11904,
+        "LNRECONS": 5337,
+        "ID": "11904_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 68715,
+        "REPDTE": "20241231",
+        "LNRENRES": 10973,
+        "CERT": 11905,
+        "LNRECONS": 3536,
+        "ID": "11905_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 103177,
+        "REPDTE": "20241231",
+        "LNRENRES": 9041,
+        "CERT": 11907,
+        "LNRECONS": 8498,
+        "ID": "11907_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 28111,
+        "REPDTE": "20241231",
+        "LNRENRES": 8378,
+        "CERT": 11916,
+        "LNRECONS": 0,
+        "ID": "11916_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 151318,
+        "REPDTE": "20241231",
+        "LNRENRES": 80628,
+        "CERT": 11922,
+        "LNRECONS": 41404,
+        "ID": "11922_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 60103,
+        "REPDTE": "20241231",
+        "LNRENRES": 8387,
+        "CERT": 11932,
+        "LNRECONS": 538,
+        "ID": "11932_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 328641,
+        "REPDTE": "20241231",
+        "LNRENRES": 249579,
+        "CERT": 11934,
+        "LNRECONS": 29265,
+        "ID": "11934_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 487156,
+        "REPDTE": "20241231",
+        "LNRENRES": 235513,
+        "CERT": 11935,
+        "LNRECONS": 119038,
+        "ID": "11935_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 335019,
+        "REPDTE": "20241231",
+        "LNRENRES": 65071,
+        "CERT": 11952,
+        "LNRECONS": 22088,
+        "ID": "11952_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 247587,
+        "REPDTE": "20241231",
+        "LNRENRES": 103222,
+        "CERT": 11953,
+        "LNRECONS": 25267,
+        "ID": "11953_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 2776221,
+        "REPDTE": "20241231",
+        "LNRENRES": 1331006,
+        "CERT": 11971,
+        "LNRECONS": 154187,
+        "ID": "11971_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 141308,
+        "REPDTE": "20241231",
+        "LNRENRES": 32327,
+        "CERT": 1198,
+        "LNRECONS": 16711,
+        "ID": "1198_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 16705363,
+        "REPDTE": "20241231",
+        "LNRENRES": 9589264,
+        "CERT": 12010,
+        "LNRECONS": 887740,
+        "ID": "12010_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 260979,
+        "REPDTE": "20241231",
+        "LNRENRES": 41643,
+        "CERT": 12013,
+        "LNRECONS": 7380,
+        "ID": "12013_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 98662,
+        "REPDTE": "20241231",
+        "LNRENRES": 35710,
+        "CERT": 12079,
+        "LNRECONS": 16660,
+        "ID": "12079_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 4427,
+        "REPDTE": "20241231",
+        "LNRENRES": 74,
+        "CERT": 12086,
+        "LNRECONS": 0,
+        "ID": "12086_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 97950,
+        "REPDTE": "20241231",
+        "LNRENRES": 27837,
+        "CERT": 12087,
+        "LNRECONS": 4552,
+        "ID": "12087_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1812462,
+        "REPDTE": "20241231",
+        "LNRENRES": 865446,
+        "CERT": 1208,
+        "LNRECONS": 218195,
+        "ID": "1208_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 11395,
+        "REPDTE": "20241231",
+        "LNRENRES": 1863,
+        "CERT": 12098,
+        "LNRECONS": 1189,
+        "ID": "12098_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 798311,
+        "REPDTE": "20241231",
+        "LNRENRES": 367723,
+        "CERT": 1209,
+        "LNRECONS": 115123,
+        "ID": "1209_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 28119,
+        "REPDTE": "20241231",
+        "LNRENRES": 7929,
+        "CERT": 12107,
+        "LNRECONS": 1279,
+        "ID": "12107_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1321836,
+        "REPDTE": "20241231",
+        "LNRENRES": 643029,
+        "CERT": 1210,
+        "LNRECONS": 321029,
+        "ID": "1210_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 243144,
+        "REPDTE": "20241231",
+        "LNRENRES": 23066,
+        "CERT": 12113,
+        "LNRECONS": 14932,
+        "ID": "12113_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 13276,
+        "REPDTE": "20241231",
+        "LNRENRES": 2402,
+        "CERT": 12121,
+        "LNRECONS": 0,
+        "ID": "12121_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 132044,
+        "REPDTE": "20241231",
+        "LNRENRES": 20916,
+        "CERT": 12126,
+        "LNRECONS": 5100,
+        "ID": "12126_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 43318,
+        "REPDTE": "20241231",
+        "LNRENRES": 1218,
+        "CERT": 12128,
+        "LNRECONS": 179,
+        "ID": "12128_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 64928,
+        "REPDTE": "20241231",
+        "LNRENRES": 4402,
+        "CERT": 12135,
+        "LNRECONS": 3260,
+        "ID": "12135_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 56942,
+        "REPDTE": "20241231",
+        "LNRENRES": 46,
+        "CERT": 12136,
+        "LNRECONS": 0,
+        "ID": "12136_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 7791,
+        "REPDTE": "20241231",
+        "LNRENRES": 2658,
+        "CERT": 12139,
+        "LNRECONS": 0,
+        "ID": "12139_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1242320,
+        "REPDTE": "20241231",
+        "LNRENRES": 77649,
+        "CERT": 1213,
+        "LNRECONS": 63354,
+        "ID": "1213_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 204235,
+        "REPDTE": "20241231",
+        "LNRENRES": 39228,
+        "CERT": 12149,
+        "LNRECONS": 55331,
+        "ID": "12149_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 62974,
+        "REPDTE": "20241231",
+        "LNRENRES": 12802,
+        "CERT": 12162,
+        "LNRECONS": 10377,
+        "ID": "12162_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 191703,
+        "REPDTE": "20241231",
+        "LNRENRES": 34226,
+        "CERT": 12163,
+        "LNRECONS": 20750,
+        "ID": "12163_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 389029,
+        "REPDTE": "20241231",
+        "LNRENRES": 78883,
+        "CERT": 12166,
+        "LNRECONS": 101469,
+        "ID": "12166_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 70289,
+        "REPDTE": "20241231",
+        "LNRENRES": 27356,
+        "CERT": 1218,
+        "LNRECONS": 8852,
+        "ID": "1218_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 253953,
+        "REPDTE": "20241231",
+        "LNRENRES": 127924,
+        "CERT": 1219,
+        "LNRECONS": 41016,
+        "ID": "1219_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 101210,
+        "REPDTE": "20241231",
+        "LNRENRES": 29463,
+        "CERT": 12201,
+        "LNRECONS": 5872,
+        "ID": "12201_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 390212,
+        "REPDTE": "20241231",
+        "LNRENRES": 168720,
+        "CERT": 12203,
+        "LNRECONS": 85878,
+        "ID": "12203_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 662816,
+        "REPDTE": "20241231",
+        "LNRENRES": 395275,
+        "CERT": 12204,
+        "LNRECONS": 98330,
+        "ID": "12204_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 37341,
+        "REPDTE": "20241231",
+        "LNRENRES": 11747,
+        "CERT": 12207,
+        "LNRECONS": 39,
+        "ID": "12207_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 292433,
+        "REPDTE": "20241231",
+        "LNRENRES": 81053,
+        "CERT": 12208,
+        "LNRECONS": 34491,
+        "ID": "12208_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 160493,
+        "REPDTE": "20241231",
+        "LNRENRES": 13556,
+        "CERT": 12214,
+        "LNRECONS": 6384,
+        "ID": "12214_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 412485,
+        "REPDTE": "20241231",
+        "LNRENRES": 60918,
+        "CERT": 12219,
+        "LNRECONS": 32666,
+        "ID": "12219_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 63284,
+        "REPDTE": "20241231",
+        "LNRENRES": 12162,
+        "CERT": 12220,
+        "LNRECONS": 3786,
+        "ID": "12220_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 288763,
+        "REPDTE": "20241231",
+        "LNRENRES": 93292,
+        "CERT": 12223,
+        "LNRECONS": 37632,
+        "ID": "12223_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 10217,
+        "REPDTE": "20241231",
+        "LNRENRES": 3429,
+        "CERT": 12225,
+        "LNRECONS": 0,
+        "ID": "12225_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 50001,
+        "REPDTE": "20241231",
+        "LNRENRES": 7032,
+        "CERT": 12226,
+        "LNRECONS": 3197,
+        "ID": "12226_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 2874195,
+        "REPDTE": "20241231",
+        "LNRENRES": 1462049,
+        "CERT": 12229,
+        "LNRECONS": 138999,
+        "ID": "12229_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 149286,
+        "REPDTE": "20241231",
+        "LNRENRES": 42768,
+        "CERT": 12230,
+        "LNRECONS": 7735,
+        "ID": "12230_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 63454,
+        "REPDTE": "20241231",
+        "LNRENRES": 10546,
+        "CERT": 12232,
+        "LNRECONS": 1169,
+        "ID": "12232_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 230179,
+        "REPDTE": "20241231",
+        "LNRENRES": 60909,
+        "CERT": 12241,
+        "LNRECONS": 16390,
+        "ID": "12241_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 57086,
+        "REPDTE": "20241231",
+        "LNRENRES": 11656,
+        "CERT": 12244,
+        "LNRECONS": 1790,
+        "ID": "12244_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 10870,
+        "REPDTE": "20241231",
+        "LNRENRES": 8282,
+        "CERT": 12246,
+        "LNRECONS": 0,
+        "ID": "12246_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 149296,
+        "REPDTE": "20241231",
+        "LNRENRES": 33739,
+        "CERT": 12248,
+        "LNRECONS": 32248,
+        "ID": "12248_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 139116,
+        "REPDTE": "20241231",
+        "LNRENRES": 120047,
+        "CERT": 12258,
+        "LNRECONS": 5702,
+        "ID": "12258_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 56190,
+        "REPDTE": "20241231",
+        "LNRENRES": 31329,
+        "CERT": 12259,
+        "LNRECONS": 4697,
+        "ID": "12259_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 5879441,
+        "REPDTE": "20241231",
+        "LNRENRES": 4465865,
+        "CERT": 1225,
+        "LNRECONS": 392982,
+        "ID": "1225_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 220533,
+        "REPDTE": "20241231",
+        "LNRENRES": 130645,
+        "CERT": 12266,
+        "LNRECONS": 12858,
+        "ID": "12266_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 11346,
+        "REPDTE": "20241231",
+        "LNRENRES": 5072,
+        "CERT": 12283,
+        "LNRECONS": 647,
+        "ID": "12283_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 0,
+        "REPDTE": "20241231",
+        "LNRENRES": 0,
+        "CERT": 12284,
+        "LNRECONS": 0,
+        "ID": "12284_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 351792,
+        "REPDTE": "20241231",
+        "LNRENRES": 179438,
+        "CERT": 12285,
+        "LNRECONS": 16304,
+        "ID": "12285_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 2564,
+        "REPDTE": "20241231",
+        "LNRENRES": 1497,
+        "CERT": 12293,
+        "LNRECONS": 361,
+        "ID": "12293_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 68271,
+        "REPDTE": "20241231",
+        "LNRENRES": 3627,
+        "CERT": 12298,
+        "LNRECONS": 37861,
+        "ID": "12298_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 760495,
+        "REPDTE": "20241231",
+        "LNRENRES": 183843,
+        "CERT": 12299,
+        "LNRECONS": 153598,
+        "ID": "12299_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 179584,
+        "REPDTE": "20241231",
+        "LNRENRES": 74977,
+        "CERT": 12303,
+        "LNRECONS": 37515,
+        "ID": "12303_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 2326,
+        "REPDTE": "20241231",
+        "LNRENRES": 1108,
+        "CERT": 12305,
+        "LNRECONS": 112,
+        "ID": "12305_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 56141,
+        "REPDTE": "20241231",
+        "LNRENRES": 22201,
+        "CERT": 12309,
+        "LNRECONS": 6800,
+        "ID": "12309_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 32465,
+        "REPDTE": "20241231",
+        "LNRENRES": 6874,
+        "CERT": 12315,
+        "LNRECONS": 4256,
+        "ID": "12315_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 189879,
+        "REPDTE": "20241231",
+        "LNRENRES": 55036,
+        "CERT": 12322,
+        "LNRECONS": 18866,
+        "ID": "12322_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 52697,
+        "REPDTE": "20241231",
+        "LNRENRES": 9120,
+        "CERT": 12325,
+        "LNRECONS": 2846,
+        "ID": "12325_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 202510,
+        "REPDTE": "20241231",
+        "LNRENRES": 131350,
+        "CERT": 12327,
+        "LNRECONS": 17090,
+        "ID": "12327_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 334139,
+        "REPDTE": "20241231",
+        "LNRENRES": 188729,
+        "CERT": 12331,
+        "LNRECONS": 29518,
+        "ID": "12331_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 130953,
+        "REPDTE": "20241231",
+        "LNRENRES": 22236,
+        "CERT": 12349,
+        "LNRECONS": 13922,
+        "ID": "12349_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 50598,
+        "REPDTE": "20241231",
+        "LNRENRES": 4891,
+        "CERT": 12354,
+        "LNRECONS": 539,
+        "ID": "12354_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 171779,
+        "REPDTE": "20241231",
+        "LNRENRES": 22695,
+        "CERT": 12365,
+        "LNRECONS": 3622,
+        "ID": "12365_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 40525000,
+        "REPDTE": "20241231",
+        "LNRENRES": 9234000,
+        "CERT": 12368,
+        "LNRECONS": 2907000,
+        "ID": "12368_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 46730,
+        "REPDTE": "20241231",
+        "LNRENRES": 14171,
+        "CERT": 12372,
+        "LNRECONS": 6671,
+        "ID": "12372_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 93174,
+        "REPDTE": "20241231",
+        "LNRENRES": 36727,
+        "CERT": 1237,
+        "LNRECONS": 12943,
+        "ID": "1237_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1734661,
+        "REPDTE": "20241231",
+        "LNRENRES": 862053,
+        "CERT": 12383,
+        "LNRECONS": 152357,
+        "ID": "12383_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 66646,
+        "REPDTE": "20241231",
+        "LNRENRES": 21660,
+        "CERT": 12384,
+        "LNRECONS": 1162,
+        "ID": "12384_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 104473,
+        "REPDTE": "20241231",
+        "LNRENRES": 23390,
+        "CERT": 12386,
+        "LNRECONS": 771,
+        "ID": "12386_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 22657,
+        "REPDTE": "20241231",
+        "LNRENRES": 283,
+        "CERT": 12388,
+        "LNRECONS": 355,
+        "ID": "12388_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 36185,
+        "REPDTE": "20241231",
+        "LNRENRES": 9509,
+        "CERT": 12395,
+        "LNRECONS": 2502,
+        "ID": "12395_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 26860,
+        "REPDTE": "20241231",
+        "LNRENRES": 2878,
+        "CERT": 12402,
+        "LNRECONS": 2034,
+        "ID": "12402_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 70610,
+        "REPDTE": "20241231",
+        "LNRENRES": 36624,
+        "CERT": 12410,
+        "LNRECONS": 3613,
+        "ID": "12410_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 31195,
+        "REPDTE": "20241231",
+        "LNRENRES": 8032,
+        "CERT": 12417,
+        "LNRECONS": 1603,
+        "ID": "12417_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 11613,
+        "REPDTE": "20241231",
+        "LNRENRES": 2064,
+        "CERT": 12422,
+        "LNRECONS": 193,
+        "ID": "12422_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 9251,
+        "REPDTE": "20241231",
+        "LNRENRES": 677,
+        "CERT": 12425,
+        "LNRECONS": 534,
+        "ID": "12425_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 9928,
+        "REPDTE": "20241231",
+        "LNRENRES": 564,
+        "CERT": 12432,
+        "LNRECONS": 713,
+        "ID": "12432_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 11064769,
+        "REPDTE": "20241231",
+        "LNRENRES": 5066099,
+        "CERT": 12437,
+        "LNRECONS": 1321809,
+        "ID": "12437_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 13299502,
+        "REPDTE": "20241231",
+        "LNRENRES": 5914932,
+        "CERT": 12441,
+        "LNRECONS": 1255376,
+        "ID": "12441_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 36509,
+        "REPDTE": "20241231",
+        "LNRENRES": 3678,
+        "CERT": 12444,
+        "LNRECONS": 2180,
+        "ID": "12444_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 34374,
+        "REPDTE": "20241231",
+        "LNRENRES": 7750,
+        "CERT": 12457,
+        "LNRECONS": 1041,
+        "ID": "12457_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 756109,
+        "REPDTE": "20241231",
+        "LNRENRES": 469070,
+        "CERT": 12484,
+        "LNRECONS": 85967,
+        "ID": "12484_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 139489,
+        "REPDTE": "20241231",
+        "LNRENRES": 16022,
+        "CERT": 12485,
+        "LNRECONS": 16406,
+        "ID": "12485_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 239633,
+        "REPDTE": "20241231",
+        "LNRENRES": 138763,
+        "CERT": 12493,
+        "LNRECONS": 55070,
+        "ID": "12493_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 159392,
+        "REPDTE": "20241231",
+        "LNRENRES": 46938,
+        "CERT": 12501,
+        "LNRECONS": 25097,
+        "ID": "12501_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 115344,
+        "REPDTE": "20241231",
+        "LNRENRES": 34798,
+        "CERT": 12506,
+        "LNRECONS": 22917,
+        "ID": "12506_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 139596,
+        "REPDTE": "20241231",
+        "LNRENRES": 33100,
+        "CERT": 12511,
+        "LNRECONS": 5678,
+        "ID": "12511_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 55157,
+        "REPDTE": "20241231",
+        "LNRENRES": 20097,
+        "CERT": 12512,
+        "LNRECONS": 8320,
+        "ID": "12512_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 133473,
+        "REPDTE": "20241231",
+        "LNRENRES": 36798,
+        "CERT": 12513,
+        "LNRECONS": 12900,
+        "ID": "12513_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 446633,
+        "REPDTE": "20241231",
+        "LNRENRES": 146147,
+        "CERT": 12514,
+        "LNRECONS": 30326,
+        "ID": "12514_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1813500,
+        "REPDTE": "20241231",
+        "LNRENRES": 1146601,
+        "CERT": 12517,
+        "LNRECONS": 248808,
+        "ID": "12517_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 103471,
+        "REPDTE": "20241231",
+        "LNRENRES": 6562,
+        "CERT": 12531,
+        "LNRECONS": 10186,
+        "ID": "12531_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 43060,
+        "REPDTE": "20241231",
+        "LNRENRES": 8210,
+        "CERT": 12549,
+        "LNRECONS": 449,
+        "ID": "12549_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1071,
+        "REPDTE": "20241231",
+        "LNRENRES": 800,
+        "CERT": 12585,
+        "LNRECONS": 0,
+        "ID": "12585_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 128471,
+        "REPDTE": "20241231",
+        "LNRENRES": 35314,
+        "CERT": 12591,
+        "LNRECONS": 3110,
+        "ID": "12591_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 164316,
+        "REPDTE": "20241231",
+        "LNRENRES": 60862,
+        "CERT": 12592,
+        "LNRECONS": 22631,
+        "ID": "12592_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 405608,
+        "REPDTE": "20241231",
+        "LNRENRES": 279862,
+        "CERT": 12594,
+        "LNRECONS": 37726,
+        "ID": "12594_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 64540,
+        "REPDTE": "20241231",
+        "LNRENRES": 9366,
+        "CERT": 12602,
+        "LNRECONS": 1262,
+        "ID": "12602_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 166451,
+        "REPDTE": "20241231",
+        "LNRENRES": 60277,
+        "CERT": 12608,
+        "LNRECONS": 21668,
+        "ID": "12608_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 164875,
+        "REPDTE": "20241231",
+        "LNRENRES": 16176,
+        "CERT": 12609,
+        "LNRECONS": 12876,
+        "ID": "12609_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 729484,
+        "REPDTE": "20241231",
+        "LNRENRES": 256619,
+        "CERT": 12611,
+        "LNRECONS": 134389,
+        "ID": "12611_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 5209525,
+        "REPDTE": "20241231",
+        "LNRENRES": 2477431,
+        "CERT": 12614,
+        "LNRECONS": 782096,
+        "ID": "12614_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 318850,
+        "REPDTE": "20241231",
+        "LNRENRES": 80725,
+        "CERT": 12616,
+        "LNRECONS": 48218,
+        "ID": "12616_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 636905,
+        "REPDTE": "20241231",
+        "LNRENRES": 377288,
+        "CERT": 12627,
+        "LNRECONS": 104360,
+        "ID": "12627_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 8814395,
+        "REPDTE": "20241231",
+        "LNRENRES": 3651690,
+        "CERT": 12633,
+        "LNRECONS": 866210,
+        "ID": "12633_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 524024,
+        "REPDTE": "20241231",
+        "LNRENRES": 241246,
+        "CERT": 1265,
+        "LNRECONS": 52985,
+        "ID": "1265_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 74099,
+        "REPDTE": "20241231",
+        "LNRENRES": 29102,
+        "CERT": 12661,
+        "LNRECONS": 8323,
+        "ID": "12661_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 72800,
+        "REPDTE": "20241231",
+        "LNRENRES": 1984,
+        "CERT": 12694,
+        "LNRECONS": 1676,
+        "ID": "12694_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 161193,
+        "REPDTE": "20241231",
+        "LNRENRES": 80774,
+        "CERT": 12706,
+        "LNRECONS": 4601,
+        "ID": "12706_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 60356,
+        "REPDTE": "20241231",
+        "LNRENRES": 8770,
+        "CERT": 12717,
+        "LNRECONS": 3089,
+        "ID": "12717_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 56422,
+        "REPDTE": "20241231",
+        "LNRENRES": 11492,
+        "CERT": 12722,
+        "LNRECONS": 10551,
+        "ID": "12722_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 4989,
+        "REPDTE": "20241231",
+        "LNRENRES": 407,
+        "CERT": 12745,
+        "LNRECONS": 0,
+        "ID": "12745_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 45433,
+        "REPDTE": "20241231",
+        "LNRENRES": 10578,
+        "CERT": 12757,
+        "LNRECONS": 5702,
+        "ID": "12757_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 20626,
+        "REPDTE": "20241231",
+        "LNRENRES": 4266,
+        "CERT": 12758,
+        "LNRECONS": 100,
+        "ID": "12758_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 320818,
+        "REPDTE": "20241231",
+        "LNRENRES": 138612,
+        "CERT": 12761,
+        "LNRECONS": 65488,
+        "ID": "12761_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 966283,
+        "REPDTE": "20241231",
+        "LNRENRES": 465626,
+        "CERT": 12769,
+        "LNRECONS": 176373,
+        "ID": "12769_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 243931,
+        "REPDTE": "20241231",
+        "LNRENRES": 155729,
+        "CERT": 12788,
+        "LNRECONS": 11374,
+        "ID": "12788_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 401738,
+        "REPDTE": "20241231",
+        "LNRENRES": 83244,
+        "CERT": 12814,
+        "LNRECONS": 22079,
+        "ID": "12814_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 451146,
+        "REPDTE": "20241231",
+        "LNRENRES": 199446,
+        "CERT": 12815,
+        "LNRECONS": 29557,
+        "ID": "12815_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 4978091,
+        "REPDTE": "20241231",
+        "LNRENRES": 2157231,
+        "CERT": 1281,
+        "LNRECONS": 602467,
+        "ID": "1281_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 603695,
+        "REPDTE": "20241231",
+        "LNRENRES": 390840,
+        "CERT": 12828,
+        "LNRECONS": 40540,
+        "ID": "12828_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 76729,
+        "REPDTE": "20241231",
+        "LNRENRES": 31881,
+        "CERT": 12836,
+        "LNRECONS": 2161,
+        "ID": "12836_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1412066,
+        "REPDTE": "20241231",
+        "LNRENRES": 552902,
+        "CERT": 12839,
+        "LNRECONS": 220216,
+        "ID": "12839_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 5018315,
+        "REPDTE": "20241231",
+        "LNRENRES": 2453697,
+        "CERT": 12854,
+        "LNRECONS": 880287,
+        "ID": "12854_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1068191,
+        "REPDTE": "20241231",
+        "LNRENRES": 347002,
+        "CERT": 12855,
+        "LNRECONS": 75629,
+        "ID": "12855_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 135725,
+        "REPDTE": "20241231",
+        "LNRENRES": 70960,
+        "CERT": 12857,
+        "LNRECONS": 9572,
+        "ID": "12857_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 390160,
+        "REPDTE": "20241231",
+        "LNRENRES": 113259,
+        "CERT": 12858,
+        "LNRECONS": 107308,
+        "ID": "12858_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 15791,
+        "REPDTE": "20241231",
+        "LNRENRES": 3511,
+        "CERT": 12865,
+        "LNRECONS": 20,
+        "ID": "12865_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 521375,
+        "REPDTE": "20241231",
+        "LNRENRES": 127887,
+        "CERT": 12869,
+        "LNRECONS": 69349,
+        "ID": "12869_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 640478,
+        "REPDTE": "20241231",
+        "LNRENRES": 288772,
+        "CERT": 12874,
+        "LNRECONS": 9798,
+        "ID": "12874_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 173414,
+        "REPDTE": "20241231",
+        "LNRENRES": 56771,
+        "CERT": 12885,
+        "LNRECONS": 4737,
+        "ID": "12885_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 21093,
+        "REPDTE": "20241231",
+        "LNRENRES": 823,
+        "CERT": 12893,
+        "LNRECONS": 205,
+        "ID": "12893_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 35388,
+        "REPDTE": "20241231",
+        "LNRENRES": 4622,
+        "CERT": 12899,
+        "LNRECONS": 38,
+        "ID": "12899_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1776878,
+        "REPDTE": "20241231",
+        "LNRENRES": 948334,
+        "CERT": 1291,
+        "LNRECONS": 254773,
+        "ID": "1291_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 8292968,
+        "REPDTE": "20241231",
+        "LNRENRES": 3547739,
+        "CERT": 12923,
+        "LNRECONS": 735497,
+        "ID": "12923_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 1535385,
+        "REPDTE": "20241231",
+        "LNRENRES": 916931,
+        "CERT": 12944,
+        "LNRECONS": 101455,
+        "ID": "12944_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 431502,
+        "REPDTE": "20241231",
+        "LNRENRES": 140120,
+        "CERT": 1294,
+        "LNRECONS": 59063,
+        "ID": "1294_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 73813,
+        "REPDTE": "20241231",
+        "LNRENRES": 6797,
+        "CERT": 12956,
+        "LNRECONS": 1047,
+        "ID": "12956_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 189799,
+        "REPDTE": "20241231",
+        "LNRENRES": 101060,
+        "CERT": 12959,
+        "LNRECONS": 2924,
+        "ID": "12959_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 660246,
+        "REPDTE": "20241231",
+        "LNRENRES": 213591,
+        "CERT": 12969,
+        "LNRECONS": 39164,
+        "ID": "12969_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 123707,
+        "REPDTE": "20241231",
+        "LNRENRES": 34587,
+        "CERT": 1296,
+        "LNRECONS": 2306,
+        "ID": "1296_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 709756,
+        "REPDTE": "20241231",
+        "LNRENRES": 336488,
+        "CERT": 12978,
+        "LNRECONS": 24325,
+        "ID": "12978_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 52333,
+        "REPDTE": "20241231",
+        "LNRENRES": 2058,
+        "CERT": 12980,
+        "LNRECONS": 3151,
+        "ID": "12980_20241231"
+      },
+      "score": 0
+    },
+    {
+      "data": {
+        "LNRE": 2693919,
+        "REPDTE": "20241231",
+        "LNRENRES": 1283124,
+        "CERT": 12982,
+        "LNRECONS": 305992,
+        "ID": "12982_20241231"
+      },
+      "score": 0
+    }
+  ]
+}

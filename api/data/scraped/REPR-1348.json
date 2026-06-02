@@ -1,0 +1,13 @@
+{
+  "source_id": "REPR-1348",
+  "scraped_at": "2026-06-01T23:30:28.098286+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "portal_url": "https://www.datacentermap.com/usa/",
+      "status_code": 429,
+      "content_type": "text/html; charset=utf-8",
+      "size_bytes": 33788
+    }
+  ]
+}

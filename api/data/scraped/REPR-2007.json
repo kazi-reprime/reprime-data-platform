@@ -1,0 +1,78 @@
+{
+  "source_id": "REPR-2007",
+  "scraped_at": "2026-06-01T23:31:22.686998+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "@context": "https://project-open-data.cio.gov/v1.1/schema/catalog.jsonld",
+      "@id": "http://api.census.gov/data/2022/cbp.json",
+      "@type": "dcat:Catalog",
+      "conformsTo": "https://project-open-data.cio.gov/v1.1/schema",
+      "describedBy": "https://project-open-data.cio.gov/v1.1/schema/catalog.json",
+      "dataset": [
+        {
+          "c_vintage": 2022,
+          "c_dataset": [
+            "cbp"
+          ],
+          "c_geographyLink": "http://api.census.gov/data/2022/cbp/geography.json",
+          "c_variablesLink": "http://api.census.gov/data/2022/cbp/variables.json",
+          "c_tagsLink": "http://api.census.gov/data/2022/cbp/tags.json",
+          "c_examplesLink": "http://api.census.gov/data/2022/cbp/examples.json",
+          "c_groupsLink": "http://api.census.gov/data/2022/cbp/groups.json",
+          "c_sorts_url": "http://api.census.gov/data/2022/cbp/sorts.json",
+          "c_documentationLink": "https://www.census.gov/developer/",
+          "c_isAggregate": true,
+          "c_isAvailable": true,
+          "@type": "dcat:Dataset",
+          "title": "2022 County Business Patterns",
+          "accessLevel": "public",
+          "bureauCode": [
+            "006:07"
+          ],
+          "description": "County Business Patterns (CBP) is an annual series that provides sub-national economic data by industry for establishments with paid employees. This series includes the number of establishments, employment during the week of March 12, first quarter payroll, and annual payroll. Data for establishments are presented by geographic area, 2- through 6-digit NAICS industry, Legal Form of Organization (U.S. and state only), and employment size of the establishment.",
+          "distribution": [
+            {
+              "@type": "dcat:Distribution",
+              "accessURL": "http://api.census.gov/data/2022/cbp",
+              "description": "API endpoint",
+              "format": "API",
+              "mediaType": "application/json",
+              "title": "API endpoint"
+            }
+          ],
+          "contactPoint": {
+            "fn": "CBP Staff",
+            "hasEmail": "mailto:econ.dissemination@census.gov"
+          },
+          "identifier": "https://api.census.gov/data/id/CBP2022",
+          "keyword": [
+            "census"
+          ],
+          "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "modified": "2024-02-28 15:13:01.0",
+          "programCode": [
+            "006:007"
+          ],
+          "references": [
+            "https://www.census.gov/developers/"
+          ],
+          "spatial": "United States",
+          "temporal": "2022/2022",
+          "publisher": {
+            "@type": "org:Organization",
+            "name": "U.S. Census Bureau",
+            "subOrganizationOf": {
+              "@type": "org:Organization",
+              "name": "U.S. Department Of Commerce",
+              "subOrganizationOf": {
+                "@type": "org:Organization",
+                "name": "U.S. Government"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

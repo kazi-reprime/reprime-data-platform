@@ -1,0 +1,13 @@
+{
+  "source_id": "REPR-1440",
+  "scraped_at": "2026-06-01T23:30:38.850240+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "portal_url": "https://www.pewtrusts.org/en/research-and-analysis/collections/state-incentive-evaluation",
+      "status_code": 404,
+      "content_type": "text/html; charset=utf-8",
+      "size_bytes": 162217
+    }
+  ]
+}

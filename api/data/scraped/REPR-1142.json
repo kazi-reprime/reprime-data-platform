@@ -1,0 +1,10 @@
+{
+  "source_id": "REPR-1142",
+  "scraped_at": "2026-06-01T23:31:23.011833+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "raw": "<HTML><HEAD>\n<TITLE>Access Denied</TITLE>\n</HEAD><BODY>\n<H1>Access Denied</H1>\n \nYou don't have permission to access \"http&#58;&#47;&#47;openpaymentsdata&#46;cms&#46;gov&#47;api&#47;1&#47;metastore&#47;schemas&#47;dataset&#47;items\" on this server.<P>\nReference&#32;&#35;18&#46;88361ab8&#46;1780356682&#46;d04838b\n<P>https&#58;&#47;&#47;errors&#46;edgesuite&#46;net&#47;18&#46;88361ab8&#46;1780356682&#46;d04838b</P>\n</BODY>\n</HTML>\n"
+    }
+  ]
+}

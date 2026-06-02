@@ -1,0 +1,13 @@
+{
+  "source_id": "REPR-2011",
+  "scraped_at": "2026-06-01T23:31:26.698037+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "error": {
+        "code": "API_KEY_MISSING",
+        "message": "An API key was not provided. Please get one at https://api.data.gov/signup/"
+      }
+    }
+  ]
+}

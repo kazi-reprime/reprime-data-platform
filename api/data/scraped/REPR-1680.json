@@ -1,0 +1,13 @@
+{
+  "source_id": "REPR-1680",
+  "scraped_at": "2026-06-01T23:31:29.286383+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "error": {
+        "code": "invalid_access_key",
+        "message": "You have not supplied a valid API Access Key. [Technical Support: support@apilayer.com]"
+      }
+    }
+  ]
+}

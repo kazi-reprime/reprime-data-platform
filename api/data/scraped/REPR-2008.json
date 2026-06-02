@@ -1,0 +1,10 @@
+{
+  "source_id": "REPR-2008",
+  "scraped_at": "2026-06-01T23:31:25.864591+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "raw": "<WebServiceError><Message>Request not authenticated.</Message></WebServiceError>"
+    }
+  ]
+}

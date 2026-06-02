@@ -1,0 +1,53 @@
+{
+  "source_id": "REPR-0008",
+  "scraped_at": "2026-06-01T23:31:31.772594+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "BEAAPI": {
+        "Request": {
+          "RequestParam": [
+            {
+              "ParameterName": "USERID",
+              "ParameterValue": "YOUR_KEY"
+            },
+            {
+              "ParameterName": "METHOD",
+              "ParameterValue": "GETDATA"
+            },
+            {
+              "ParameterName": "DATASETNAME",
+              "ParameterValue": "REGIONAL"
+            },
+            {
+              "ParameterName": "TABLENAME",
+              "ParameterValue": "CAEMP25N"
+            },
+            {
+              "ParameterName": "LINECODE",
+              "ParameterValue": "10"
+            },
+            {
+              "ParameterName": "GEOFIPS",
+              "ParameterValue": "17031"
+            },
+            {
+              "ParameterName": "YEAR",
+              "ParameterValue": "2023"
+            },
+            {
+              "ParameterName": "RESULTFORMAT",
+              "ParameterValue": "JSON"
+            }
+          ]
+        },
+        "Results": {
+          "Error": {
+            "APIErrorCode": "1",
+            "APIErrorDescription": "Invalid Request - Invalid API UserId."
+          }
+        }
+      }
+    }
+  ]
+}

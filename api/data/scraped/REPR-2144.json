@@ -1,0 +1,13 @@
+{
+  "source_id": "REPR-2144",
+  "scraped_at": "2026-06-01T23:30:28.765096+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "portal_url": "http://catalog.data.gov/dataset/port-of-los-angeles-historical-teu-statistics",
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "size_bytes": 113799
+    }
+  ]
+}

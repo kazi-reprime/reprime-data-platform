@@ -1,0 +1,15 @@
+{
+  "source_id": "REPR-0618",
+  "scraped_at": "2026-06-01T23:31:26.152705+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "data": [],
+      "result_count": 0,
+      "status_code": 405,
+      "message": "Method Not Available",
+      "status": "successful",
+      "request_date": "2026-06-01T23:31:26.000Z"
+    }
+  ]
+}

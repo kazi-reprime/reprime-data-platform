@@ -1,0 +1,10 @@
+{
+  "source_id": "REPR-0799",
+  "scraped_at": "2026-06-01T23:31:21.343786+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "raw": "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta http-equiv=\"refresh\" content=\"0; url=https://apps.bea.gov/api/signup/\" />\r\n    <title>Redirecting...</title>\r\n</head>\r\n<body>\r\n    <p>If you are not redirected automatically, <a href=\"https://apps.bea.gov/api/signup/\">click here</a>.</p>\r\n</body>\r\n</html>\r\n"
+    }
+  ]
+}

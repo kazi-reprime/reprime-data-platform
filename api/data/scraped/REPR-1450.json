@@ -1,0 +1,13 @@
+{
+  "source_id": "REPR-1450",
+  "scraped_at": "2026-06-01T23:30:34.448556+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "portal_url": "https://www.commerce.nc.gov/reports-policymakers/incentive-programs-reports",
+      "status_code": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "size_bytes": 74573
+    }
+  ]
+}

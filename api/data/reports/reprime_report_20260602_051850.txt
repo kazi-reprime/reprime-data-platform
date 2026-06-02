@@ -1,0 +1,79 @@
+======================================================================
+REPRIME DATA PLATFORM — SCRAPE REPORT
+======================================================================
+Generated: 2026-06-02 05:18:50
+
+EXECUTIVE SUMMARY
+----------------------------------------
+Total Sources:        611
+Scraped (success):    549
+Errors:               3
+Paid (skipped):       9
+Total Records:        8,223
+Success Rate:         91.2%
+
+CATEGORY BREAKDOWN
+----------------------------------------
+Category                   Total  Scraped  Records   Rate
+-------------------------------------------------------
+other                        176      157      880    89%
+capital_markets               88       85      171    97%
+zoning_parcel                 69       49     3735    71%
+hazard_environmental          47       34      174    72%
+news_sentiment                39       39      766   100%
+macro_indicator               37       37     1045   100%
+energy                        33       31       31    94%
+infrastructure                30       30      127   100%
+demographic                   25       25     1121   100%
+israeli                       23       22      131    96%
+economic                      19       17       17    89%
+housing_re                    12       10       19    83%
+insurance_climate              7        7        1   100%
+construction_pipeline          6        6        5   100%
+
+TOP 20 SOURCES BY RECORD COUNT
+----------------------------------------
+ 1. REPR-0184 — FDIC BankFind Suite API (500 records)
+ 2. REPR-0260 — NYC MapPLUTO / PLUTO (500 records)
+ 3. REPR-0601 — LA Crime Incidents (500 records)
+ 4. REPR-0827 — CDC PLACES (Socrata) (500 records)
+ 5. REPR-0851 — Chicago Zoning Socrata 7cve-jgbp (500 records)
+ 6. REPR-1206 — NYC DOB NOW Build Approved Permits (500 records)
+ 7. REPR-1207 — NYC DOB Permit Issuance (legacy) (500 records)
+ 8. REPR-1208 — Chicago Building Permits (500 records)
+ 9. REPR-1213 — Dallas Building Permits (500 records)
+10. REPR-1381 — Chicago Socrata Zoning (500 records)
+11. REPR-1696 — LBMA gold PM JSON (500 records)
+12. REPR-2364 — NWS Alerts (500 records)
+13. REPR-0677 — Federal Register Agencies API (470 records)
+14. REPR-0284 — TIGERweb REST Map Service (100 records)
+15. REPR-0300 — TIGERweb Roads REST Feature Service (100 records)
+16. REPR-0763 — Israel Hayom Business RSS (100 records)
+17. REPR-0824 — EPA Cleanups in My Community (CIMC) Brow (100 records)
+18. REPR-0848 — NYC Zoning FeatureServer (100 records)
+19. REPR-1209 — LA County EPIC-LA Case History (ArcGIS) (100 records)
+20. REPR-1973 — Treasury Avg Interest Rates (100 records)
+
+ERRORS
+----------------------------------------
+  REPR-0001 — FRED API v2 — Series Observations: Bad Request.  The value for variable api_key is not a 32 character alpha-numeric
+  REPR-0279 — FRED API v2 — Series Search: Bad Request.  The value for variable api_key is not a 32 character alpha-numeric
+  REPR-2089 — FRED H.8 Release Series: Bad Request.  The value for variable api_key is not a 32 character alpha-numeric
+
+METHODOLOGY
+----------------------------------------
+1. Sources loaded from master CSV (611 entries)
+2. 9 paid APIs excluded (total ~$376/mo)
+3. 602 free sources attempted via async scraping
+4. Connectors: REST API, RSS/Atom, Socrata SODA, ArcGIS, Bulk Download
+5. Concurrency: 20 simultaneous connections via asyncio.Semaphore
+6. Rate limiting: Per-source configurable, default 60 req/min
+
+TECH STACK
+----------------------------------------
+Python 3.12+ | httpx | asyncio | FastAPI | feedparser
+Data stored as JSON files in api/data/scraped/
+
+======================================================================
+Built by RePrime Data Platform v1.0
+======================================================================

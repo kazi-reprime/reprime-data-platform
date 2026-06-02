@@ -1,0 +1,13 @@
+{
+  "source_id": "REPR-1584",
+  "scraped_at": "2026-06-01T23:30:37.761454+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "portal_url": "https://afida.landmark.usda.gov",
+      "status_code": 403,
+      "content_type": "text/html",
+      "size_bytes": 1579
+    }
+  ]
+}

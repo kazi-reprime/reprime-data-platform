@@ -1,0 +1,607 @@
+{
+  "source_id": "REPR-0848",
+  "scraped_at": "2026-06-01T23:30:12.735962+00:00",
+  "record_count": 100,
+  "records": [
+    {
+      "OBJECTID": 1,
+      "ZONEDIST": "R7A",
+      "Shape__Area": 1990865.7795957923,
+      "Shape__Length": 17623.56641358528
+    },
+    {
+      "OBJECTID": 2,
+      "ZONEDIST": "R4-1",
+      "Shape__Area": 372245.3856201172,
+      "Shape__Length": 2575.5786297822874
+    },
+    {
+      "OBJECTID": 3,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 16069.895141601562,
+      "Shape__Length": 569.6511226739826
+    },
+    {
+      "OBJECTID": 4,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 20178.00343322754,
+      "Shape__Length": 719.4583672091684
+    },
+    {
+      "OBJECTID": 5,
+      "ZONEDIST": "C4-4D",
+      "Shape__Area": 75618.34130859375,
+      "Shape__Length": 1147.5848195300082
+    },
+    {
+      "OBJECTID": 6,
+      "ZONEDIST": "R6A",
+      "Shape__Area": 2070922.6938018799,
+      "Shape__Length": 12647.088489655705
+    },
+    {
+      "OBJECTID": 7,
+      "ZONEDIST": "R8X",
+      "Shape__Area": 2092003.9993429184,
+      "Shape__Length": 10674.404946401446
+    },
+    {
+      "OBJECTID": 8,
+      "ZONEDIST": "R5B",
+      "Shape__Area": 229784.41598510742,
+      "Shape__Length": 2750.339938756212
+    },
+    {
+      "OBJECTID": 9,
+      "ZONEDIST": "R4-1",
+      "Shape__Area": 5486100.654632568,
+      "Shape__Length": 16082.088400838942
+    },
+    {
+      "OBJECTID": 10,
+      "ZONEDIST": "R6A",
+      "Shape__Area": 305025.2577819824,
+      "Shape__Length": 2734.8396415867583
+    },
+    {
+      "OBJECTID": 11,
+      "ZONEDIST": "R5B",
+      "Shape__Area": 60228.0895690918,
+      "Shape__Length": 1030.8978783400867
+    },
+    {
+      "OBJECTID": 12,
+      "ZONEDIST": "R6B",
+      "Shape__Area": 2661164.5853271484,
+      "Shape__Length": 9611.071363436944
+    },
+    {
+      "OBJECTID": 13,
+      "ZONEDIST": "R6A",
+      "Shape__Area": 624611.2562408447,
+      "Shape__Length": 3423.2626491068613
+    },
+    {
+      "OBJECTID": 14,
+      "ZONEDIST": "R4",
+      "Shape__Area": 1408825.692409411,
+      "Shape__Length": 9332.069551605575
+    },
+    {
+      "OBJECTID": 15,
+      "ZONEDIST": "R5",
+      "Shape__Area": 4884501.724700928,
+      "Shape__Length": 11396.19946070834
+    },
+    {
+      "OBJECTID": 16,
+      "ZONEDIST": "M1-1",
+      "Shape__Area": 842278.8300170898,
+      "Shape__Length": 6043.032188889819
+    },
+    {
+      "OBJECTID": 17,
+      "ZONEDIST": "R7A",
+      "Shape__Area": 58790.095947265625,
+      "Shape__Length": 1243.6537276588665
+    },
+    {
+      "OBJECTID": 18,
+      "ZONEDIST": "R6A",
+      "Shape__Area": 105298.60925292969,
+      "Shape__Length": 1552.6418385021313
+    },
+    {
+      "OBJECTID": 19,
+      "ZONEDIST": "C8-1",
+      "Shape__Area": 565677.7388000488,
+      "Shape__Length": 4281.543624947698
+    },
+    {
+      "OBJECTID": 20,
+      "ZONEDIST": "M1-4",
+      "Shape__Area": 52424.85380554199,
+      "Shape__Length": 923.1578370724937
+    },
+    {
+      "OBJECTID": 21,
+      "ZONEDIST": "R3-1",
+      "Shape__Area": 7103749.730066776,
+      "Shape__Length": 12293.570173132113
+    },
+    {
+      "OBJECTID": 22,
+      "ZONEDIST": "R6A",
+      "Shape__Area": 283788.2593383789,
+      "Shape__Length": 2389.120554489131
+    },
+    {
+      "OBJECTID": 23,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 13236.985443115234,
+      "Shape__Length": 465.31629514895883
+    },
+    {
+      "OBJECTID": 24,
+      "ZONEDIST": "R6B",
+      "Shape__Area": 472602.41065979004,
+      "Shape__Length": 4151.782890837667
+    },
+    {
+      "OBJECTID": 25,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 183871.87397766113,
+      "Shape__Length": 1717.5278246283956
+    },
+    {
+      "OBJECTID": 26,
+      "ZONEDIST": "M3-1",
+      "Shape__Area": 381885.32389831543,
+      "Shape__Length": 2533.705259846722
+    },
+    {
+      "OBJECTID": 27,
+      "ZONEDIST": "R4A",
+      "Shape__Area": 97849.4066772461,
+      "Shape__Length": 1744.9951521979278
+    },
+    {
+      "OBJECTID": 28,
+      "ZONEDIST": "R6B",
+      "Shape__Area": 1410206.7266235352,
+      "Shape__Length": 6325.222440504254
+    },
+    {
+      "OBJECTID": 29,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 26082.700897216797,
+      "Shape__Length": 1377.501460759835
+    },
+    {
+      "OBJECTID": 30,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 7032.490570068359,
+      "Shape__Length": 1143.6067834079706
+    },
+    {
+      "OBJECTID": 31,
+      "ZONEDIST": "C4-3",
+      "Shape__Area": 58398.57957458496,
+      "Shape__Length": 1111.337123725319
+    },
+    {
+      "OBJECTID": 32,
+      "ZONEDIST": "R6A",
+      "Shape__Area": 34630.01564025879,
+      "Shape__Length": 786.3163482415981
+    },
+    {
+      "OBJECTID": 33,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 142663.1615447998,
+      "Shape__Length": 1805.5499116867563
+    },
+    {
+      "OBJECTID": 34,
+      "ZONEDIST": "R4A",
+      "Shape__Area": 216722.35525512695,
+      "Shape__Length": 1886.215667009375
+    },
+    {
+      "OBJECTID": 35,
+      "ZONEDIST": "R5B",
+      "Shape__Area": 139853.64233398438,
+      "Shape__Length": 2078.3462225014764
+    },
+    {
+      "OBJECTID": 36,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 59773.47691345215,
+      "Shape__Length": 1130.7939377013784
+    },
+    {
+      "OBJECTID": 37,
+      "ZONEDIST": "C8-1",
+      "Shape__Area": 298884.3591156006,
+      "Shape__Length": 3751.430348009522
+    },
+    {
+      "OBJECTID": 38,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 64014.058502197266,
+      "Shape__Length": 1239.1321014133089
+    },
+    {
+      "OBJECTID": 39,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 292927.35092163086,
+      "Shape__Length": 2200.176428953451
+    },
+    {
+      "OBJECTID": 40,
+      "ZONEDIST": "R7A",
+      "Shape__Area": 499298.50997924805,
+      "Shape__Length": 5588.368335672963
+    },
+    {
+      "OBJECTID": 41,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 127552.8823852539,
+      "Shape__Length": 1773.2945924909002
+    },
+    {
+      "OBJECTID": 42,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 73483638.0630188,
+      "Shape__Length": 45627.28938298502
+    },
+    {
+      "OBJECTID": 43,
+      "ZONEDIST": "R5B",
+      "Shape__Area": 94883.80284118652,
+      "Shape__Length": 1652.3693032889203
+    },
+    {
+      "OBJECTID": 44,
+      "ZONEDIST": "M2-1",
+      "Shape__Area": 106171.63229370117,
+      "Shape__Length": 1613.3491748340007
+    },
+    {
+      "OBJECTID": 45,
+      "ZONEDIST": "M1-1",
+      "Shape__Area": 266883.2237854004,
+      "Shape__Length": 2701.312675776306
+    },
+    {
+      "OBJECTID": 46,
+      "ZONEDIST": "M1-1",
+      "Shape__Area": 6351891.249008179,
+      "Shape__Length": 11364.591609826064
+    },
+    {
+      "OBJECTID": 47,
+      "ZONEDIST": "R4-1",
+      "Shape__Area": 508949.1321258545,
+      "Shape__Length": 3947.2289867317295
+    },
+    {
+      "OBJECTID": 48,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 41016.701080322266,
+      "Shape__Length": 811.2488443118928
+    },
+    {
+      "OBJECTID": 49,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 15643.722061157227,
+      "Shape__Length": 558.2198646255731
+    },
+    {
+      "OBJECTID": 50,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 40000.01014709473,
+      "Shape__Length": 800.0004112727988
+    },
+    {
+      "OBJECTID": 51,
+      "ZONEDIST": "R5B",
+      "Shape__Area": 150850.820602417,
+      "Shape__Length": 1643.1905152312495
+    },
+    {
+      "OBJECTID": 52,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 21032.861038208008,
+      "Shape__Length": 622.2050887636566
+    },
+    {
+      "OBJECTID": 53,
+      "ZONEDIST": "C6-1",
+      "Shape__Area": 88284.34977722168,
+      "Shape__Length": 1527.060805197794
+    },
+    {
+      "OBJECTID": 54,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 5082358.230895996,
+      "Shape__Length": 10936.032202183495
+    },
+    {
+      "OBJECTID": 55,
+      "ZONEDIST": "R5B",
+      "Shape__Area": 352366.83163689077,
+      "Shape__Length": 2567.657454766294
+    },
+    {
+      "OBJECTID": 56,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 128158.20588684082,
+      "Shape__Length": 1688.3443126675531
+    },
+    {
+      "OBJECTID": 57,
+      "ZONEDIST": "R1-2",
+      "Shape__Area": 1796470.4806976318,
+      "Shape__Length": 5840.965136341788
+    },
+    {
+      "OBJECTID": 58,
+      "ZONEDIST": "R6B",
+      "Shape__Area": 117718.09756469727,
+      "Shape__Length": 1425.794719576483
+    },
+    {
+      "OBJECTID": 59,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 22982.47787475586,
+      "Shape__Length": 585.5037827330075
+    },
+    {
+      "OBJECTID": 60,
+      "ZONEDIST": "R8",
+      "Shape__Area": 566842.3258955479,
+      "Shape__Length": 5147.238490163467
+    },
+    {
+      "OBJECTID": 61,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 220445.82856750488,
+      "Shape__Length": 2310.511601224663
+    },
+    {
+      "OBJECTID": 62,
+      "ZONEDIST": "R5B",
+      "Shape__Area": 437507.54624938965,
+      "Shape__Length": 2766.5116245164863
+    },
+    {
+      "OBJECTID": 63,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 86018.28826904297,
+      "Shape__Length": 1477.409291576231
+    },
+    {
+      "OBJECTID": 64,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 62694.65101623535,
+      "Shape__Length": 1005.1906299612343
+    },
+    {
+      "OBJECTID": 65,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 72915.90002441406,
+      "Shape__Length": 1116.1234491171006
+    },
+    {
+      "OBJECTID": 66,
+      "ZONEDIST": "R5",
+      "Shape__Area": 2033795.4154706001,
+      "Shape__Length": 7354.753490063906
+    },
+    {
+      "OBJECTID": 67,
+      "ZONEDIST": "R6B",
+      "Shape__Area": 681289.0441741943,
+      "Shape__Length": 5295.5641980495
+    },
+    {
+      "OBJECTID": 68,
+      "ZONEDIST": "C6-4",
+      "Shape__Area": 593362.5150909424,
+      "Shape__Length": 3690.793742508796
+    },
+    {
+      "OBJECTID": 69,
+      "ZONEDIST": "R4-1",
+      "Shape__Area": 707041.2637329102,
+      "Shape__Length": 3836.261236531702
+    },
+    {
+      "OBJECTID": 70,
+      "ZONEDIST": "C4-4L",
+      "Shape__Area": 30922.295150756836,
+      "Shape__Length": 733.2487620124475
+    },
+    {
+      "OBJECTID": 71,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 178879.55123901367,
+      "Shape__Length": 2416.37954427282
+    },
+    {
+      "OBJECTID": 72,
+      "ZONEDIST": "C8-1",
+      "Shape__Area": 81513.26156616211,
+      "Shape__Length": 1176.216818298137
+    },
+    {
+      "OBJECTID": 73,
+      "ZONEDIST": "R5B",
+      "Shape__Area": 77928.31498718262,
+      "Shape__Length": 1441.117238522335
+    },
+    {
+      "OBJECTID": 74,
+      "ZONEDIST": "R4B",
+      "Shape__Area": 121805.47348022461,
+      "Shape__Length": 1470.5232306686871
+    },
+    {
+      "OBJECTID": 75,
+      "ZONEDIST": "R4-1",
+      "Shape__Area": 238619.9783935547,
+      "Shape__Length": 2018.9295311122794
+    },
+    {
+      "OBJECTID": 76,
+      "ZONEDIST": "R4A",
+      "Shape__Area": 266505.4193725586,
+      "Shape__Length": 3251.872400793102
+    },
+    {
+      "OBJECTID": 77,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 926771.3692301314,
+      "Shape__Length": 7153.855809109872
+    },
+    {
+      "OBJECTID": 78,
+      "ZONEDIST": "R5B",
+      "Shape__Area": 849683.2367248535,
+      "Shape__Length": 5240.88279603569
+    },
+    {
+      "OBJECTID": 79,
+      "ZONEDIST": "R6B",
+      "Shape__Area": 815084.7586517334,
+      "Shape__Length": 3662.0419646990467
+    },
+    {
+      "OBJECTID": 80,
+      "ZONEDIST": "R6A",
+      "Shape__Area": 36342.645416259766,
+      "Shape__Length": 813.3572667530232
+    },
+    {
+      "OBJECTID": 81,
+      "ZONEDIST": "R6B",
+      "Shape__Area": 973484.0881347656,
+      "Shape__Length": 5108.578290208475
+    },
+    {
+      "OBJECTID": 82,
+      "ZONEDIST": "R5B",
+      "Shape__Area": 38262.38966369629,
+      "Shape__Length": 863.6132941337796
+    },
+    {
+      "OBJECTID": 83,
+      "ZONEDIST": "R4A",
+      "Shape__Area": 421497.1099395752,
+      "Shape__Length": 2809.6022004572897
+    },
+    {
+      "OBJECTID": 84,
+      "ZONEDIST": "C6-2A",
+      "Shape__Area": 736007.5516967773,
+      "Shape__Length": 4845.431321239723
+    },
+    {
+      "OBJECTID": 85,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 438201.97256469727,
+      "Shape__Length": 2669.7787350781077
+    },
+    {
+      "OBJECTID": 86,
+      "ZONEDIST": "R3-2",
+      "Shape__Area": 837150.6837310791,
+      "Shape__Length": 4012.048764655896
+    },
+    {
+      "OBJECTID": 87,
+      "ZONEDIST": "R7X",
+      "Shape__Area": 278634.62425231934,
+      "Shape__Length": 2460.914443063177
+    },
+    {
+      "OBJECTID": 88,
+      "ZONEDIST": "M1-2",
+      "Shape__Area": 820450.8344421387,
+      "Shape__Length": 3933.339147311418
+    },
+    {
+      "OBJECTID": 89,
+      "ZONEDIST": "C4-4L",
+      "Shape__Area": 504569.9675886184,
+      "Shape__Length": 3952.287717142581
+    },
+    {
+      "OBJECTID": 90,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 15023.386703491211,
+      "Shape__Length": 586.1912294714093
+    },
+    {
+      "OBJECTID": 91,
+      "ZONEDIST": "R5",
+      "Shape__Area": 1242242.2551269531,
+      "Shape__Length": 6069.6344698367675
+    },
+    {
+      "OBJECTID": 92,
+      "ZONEDIST": "C4-4A",
+      "Shape__Area": 181240.68075561523,
+      "Shape__Length": 2809.8500686502343
+    },
+    {
+      "OBJECTID": 93,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 19039.54264831543,
+      "Shape__Length": 591.2648618168124
+    },
+    {
+      "OBJECTID": 94,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 1559544.0588531494,
+      "Shape__Length": 5404.861070140255
+    },
+    {
+      "OBJECTID": 95,
+      "ZONEDIST": "PARK",
+      "Shape__Area": 23037.06800842285,
+      "Shape__Length": 761.3229320544958
+    },
+    {
+      "OBJECTID": 96,
+      "ZONEDIST": "C8-2",
+      "Shape__Area": 449194.06033325195,
+      "Shape__Length": 6094.939337412044
+    },
+    {
+      "OBJECTID": 97,
+      "ZONEDIST": "C8-4",
+      "Shape__Area": 199695.71017456055,
+      "Shape__Length": 1859.5711575676696
+    },
+    {
+      "OBJECTID": 98,
+      "ZONEDIST": "R4-1",
+      "Shape__Area": 745465.7599943876,
+      "Shape__Length": 3729.7314439948696
+    },
+    {
+      "OBJECTID": 99,
+      "ZONEDIST": "R7D",
+      "Shape__Area": 152516.21980285645,
+      "Shape__Length": 1934.215981841314
+    },
+    {
+      "OBJECTID": 100,
+      "ZONEDIST": "M1-1",
+      "Shape__Area": 355045.8776245117,
+      "Shape__Length": 3328.1825053911507
+    }
+  ]
+}

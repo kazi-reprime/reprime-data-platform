@@ -1,0 +1,13 @@
+{
+  "source_id": "REPR-2106",
+  "scraped_at": "2026-06-01T23:30:29.329694+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "portal_url": "https://catalog.data.gov/dataset/covid-19-passenger-throughput",
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "size_bytes": 99860
+    }
+  ]
+}

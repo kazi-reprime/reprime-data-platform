@@ -1,0 +1,12 @@
+{
+  "source_id": "REPR-1106",
+  "scraped_at": "2026-06-01T23:31:25.809519+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "status": "fail",
+      "status_code": 401,
+      "message": "Unauthorized"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+id: REPR-0014
+name: data.gov.il CKAN Package Search
+provider: Israeli Government Open Data Portal
+category: israeli
+connector_type: rest_api
+auth_type: none
+endpoint: https://data.gov.il/api/3/action/package_search
+params:
+  q: "real estate OR building permits OR housing"
+  rows: "100"
+schedule: daily
+priority: critical
+rate_limit_per_minute: 30
+notes: "Israeli building permits, population, real estate transactions"

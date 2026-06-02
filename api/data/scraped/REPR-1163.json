@@ -1,0 +1,44 @@
+{
+  "source_id": "REPR-1163",
+  "scraped_at": "2026-06-01T23:31:31.834155+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "submissions": [
+        {
+          "submission_type": "ORIG",
+          "submission_number": "1",
+          "submission_status": "AP",
+          "submission_status_date": "20080514",
+          "application_docs": [
+            {
+              "id": "43116",
+              "url": "http://www.accessdata.fda.gov/drugsatfda_docs/nda/2008/077176Orig1s000BioeqR.pdf",
+              "date": "20120413",
+              "type": "Review"
+            }
+          ]
+        }
+      ],
+      "application_number": "ANDA077176",
+      "sponsor_name": "NESHER PHARMS",
+      "products": [
+        {
+          "product_number": "001",
+          "reference_drug": "No",
+          "brand_name": "METOPROLOL SUCCINATE",
+          "active_ingredients": [
+            {
+              "name": "METOPROLOL SUCCINATE",
+              "strength": "EQ 50MG TARTRATE"
+            }
+          ],
+          "reference_standard": "No",
+          "dosage_form": "TABLET, EXTENDED RELEASE",
+          "route": "ORAL",
+          "marketing_status": "Discontinued"
+        }
+      ]
+    }
+  ]
+}
