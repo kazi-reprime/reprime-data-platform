@@ -165,17 +165,18 @@ nav{position:sticky;top:0;z-index:199;background:var(--glass-bg);backdrop-filter
 
   <div class="search-wrap">
     <div class="search-bar">
-      <input id="q" placeholder="Sherwood Park Apartments North Little Rock AR · or anywhere..." autocomplete="off">
+      <input id="q" placeholder="1305 N 9th Ave Pensacola FL · or any address worldwide..." autocomplete="off">
       <button id="search-btn">🔍 Search 611 Sources</button>
     </div>
     <div class="suggestions">
-      <span class="suggest" data-q="Sherwood Park Apartments, North Little Rock, AR">🏠 Sherwood Park</span>
+      <span class="suggest" data-q="1305 N 9th Ave Pensacola FL">🏬 1305 N 9th Ave</span>
       <span class="suggest" data-q="Empire State Building, New York">🗽 Empire State</span>
       <span class="suggest" data-q="1600 Pennsylvania Avenue NW, Washington DC">🏛️ White House</span>
-      <span class="suggest" data-q="One World Trade Center, New York">🏗️ One WTC</span>
       <span class="suggest" data-q="Willis Tower Chicago">🏢 Willis Tower</span>
+      <span class="suggest" data-q="350 5th Ave New York">📍 350 5th Ave</span>
       <span class="suggest" data-q="Beverly Hills, CA">🌴 Beverly Hills</span>
-      <span class="suggest" data-q="South Beach, Miami FL">🏖️ South Beach</span>
+      <span class="suggest" data-q="South Beach Miami FL">🏖️ South Beach</span>
+      <span class="suggest" data-q="Apple Park Cupertino CA">🍎 Apple Park</span>
     </div>
   </div>
   <div class="hero-stats">
@@ -318,9 +319,9 @@ document.querySelectorAll('.suggest').forEach(s=>{s.addEventListener('click',()=
 
 // PROGRESS
 const SOURCES = [
-  {id:'nominatim',name:'OpenStreetMap Nominatim (geocoding)'},
+  {id:'nominatim',name:'Multi-tier geocoding (Nominatim → Photon → fallback chain)'},
   {id:'osmtile',name:'OSM Static Tile Imagery'},
-  {id:'mapbox',name:'Mapbox Satellite (3 styles)'},
+  {id:'mapbox',name:'Public tile servers (9 layers)'},
   {id:'fema',name:'FEMA NFHL Flood Zones'},
   {id:'osm',name:'OSM Overpass Nearby POIs'},
   {id:'wiki',name:'Wikipedia GeoSearch'},
@@ -352,24 +353,107 @@ async function fetchJson(url, opts={}, timeout=10000) {
   } catch(e) { clearTimeout(t); throw e; }
 }
 
-// SCRAPERS
-async function geocode(q) {
-  updateProgress('nominatim','pending','🔍 Geocoding...');
+// SCRAPERS — multi-tier geocoding with smart fallback
+async function tryNominatim(q) {
   try {
     const d = await fetchJson(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=1&addressdetails=1&extratags=1`,
       {headers:{'Accept-Language':'en'}});
-    if (!d || !d.length) { updateProgress('nominatim','error','✗ Not found'); return null; }
+    if (!d || !d.length) return null;
     const p = d[0];
-    updateProgress('nominatim','done','✓ Found');
     return {
       lat: parseFloat(p.lat), lng: parseFloat(p.lon),
       address: p.display_name, type: p.type,
-      bbox: p.boundingbox, components: p.address || {}
+      bbox: p.boundingbox, components: p.address || {},
+      source: 'Nominatim'
     };
-  } catch(e) {
-    updateProgress('nominatim','error','✗ '+e.message);
-    return null;
+  } catch(e) { return null; }
+}
+
+async function tryPhoton(q) {
+  try {
+    const d = await fetchJson(`https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=1`);
+    const f = d?.features?.[0];
+    if (!f) return null;
+    const props = f.properties || {};
+    return {
+      lat: f.geometry.coordinates[1], lng: f.geometry.coordinates[0],
+      address: [props.name, props.street, props.housenumber, props.city, props.state, props.country].filter(Boolean).join(', '),
+      type: props.osm_value || props.type || 'place',
+      components: {
+        city: props.city, state: props.state, country: props.country,
+        road: props.street, postcode: props.postcode
+      },
+      source: 'Photon (fuzzy)'
+    };
+  } catch(e) { return null; }
+}
+
+function stripPropertyKeywords(q) {
+  // Remove deal/property descriptors that confuse geocoders
+  return q.replace(/\b(Government Office Asset|Apartments?|Building|Tower|Center|Office Building|Office Park|Office|Asset|Property|Plaza|Complex|Mixed[\-\s]?Use|Condominiums?|Condos?|Estates?|Heights|Place|Court|Lofts|Residences|Suites|Towers|Villas?|Manor|Gardens?|Square|Commons|Pointe?|Crossing|Landing|Station|Mills|Annex|Hub|Hall)\b/gi, '').replace(/\s+/g, ' ').trim();
+}
+
+function extractCityState(q) {
+  // Pattern: "City, ST" or "City ST" at end of string
+  const m = q.match(/([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+){0,3}),?\s+([A-Z]{2})\b/);
+  if (m) return `${m[1]}, ${m[2]}`;
+  return null;
+}
+
+async function geocode(q) {
+  updateProgress('nominatim','pending','🔍 Tier 1: Direct Nominatim...');
+
+  // Tier 1: raw query
+  let result = await tryNominatim(q);
+  if (result) {
+    updateProgress('nominatim','done','✓ Direct match');
+    return result;
   }
+
+  // Tier 2: Photon (better fuzzy matching)
+  updateProgress('nominatim','pending','🔍 Tier 2: Photon fuzzy match...');
+  result = await tryPhoton(q);
+  if (result) {
+    updateProgress('nominatim','done','✓ Photon match (fuzzy)');
+    return {...result, _fallback: 'photon', _original_query: q};
+  }
+
+  // Tier 3: strip property keywords, retry
+  const stripped = stripPropertyKeywords(q);
+  if (stripped && stripped !== q) {
+    updateProgress('nominatim','pending',`🔍 Tier 3: Stripped to "${stripped}"...`);
+    result = await tryNominatim(stripped);
+    if (result) {
+      updateProgress('nominatim','done',`✓ Found via stripped: "${stripped}"`);
+      return {...result, _fallback: 'stripped', _stripped: stripped, _original_query: q};
+    }
+  }
+
+  // Tier 4: extract city + state pattern
+  const cityState = extractCityState(q);
+  if (cityState) {
+    updateProgress('nominatim','pending',`🔍 Tier 4: City+state "${cityState}"...`);
+    result = await tryNominatim(cityState);
+    if (result) {
+      updateProgress('nominatim','done',`✓ Found via "${cityState}"`);
+      return {...result, _fallback: 'cityState', _cityState: cityState, _original_query: q};
+    }
+  }
+
+  // Tier 5: last 3 tokens
+  const tokens = q.split(/[\s,]+/).filter(Boolean);
+  if (tokens.length > 2) {
+    const lastN = tokens.slice(-3).join(' ');
+    updateProgress('nominatim','pending',`🔍 Tier 5: Last tokens "${lastN}"...`);
+    result = await tryNominatim(lastN);
+    if (result) {
+      updateProgress('nominatim','done',`✓ Found via "${lastN}"`);
+      return {...result, _fallback: 'lastTokens', _lastN: lastN, _original_query: q};
+    }
+  }
+
+  updateProgress('nominatim','error','✗ Not found in 5 tiers');
+  return null;
 }
 
 async function fetchFema(lat,lng) {
@@ -462,10 +546,33 @@ function buildImagery(lat,lng) {
   ];
 }
 
+// LocalStorage cache (24h TTL)
+const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
+function getCache(key) {
+  try {
+    const raw = localStorage.getItem('reprime:'+key);
+    if (!raw) return null;
+    const {data, ts} = JSON.parse(raw);
+    if (Date.now() - ts > CACHE_TTL_MS) { localStorage.removeItem('reprime:'+key); return null; }
+    return data;
+  } catch(e) { return null; }
+}
+function setCache(key, data) {
+  try { localStorage.setItem('reprime:'+key, JSON.stringify({data, ts: Date.now()})); } catch(e) {}
+}
+
 // MAIN SEARCH
 async function search() {
   const q = document.getElementById('q').value.trim();
   if (!q) return;
+
+  // Check cache first (instant re-search)
+  const cached = getCache(q.toLowerCase());
+  if (cached) {
+    document.getElementById('initial-state').style.display='none';
+    renderResults({...cached, _cached: true});
+    return;
+  }
 
   document.getElementById('initial-state').style.display='none';
   document.getElementById('results').classList.remove('show');
@@ -477,7 +584,13 @@ async function search() {
   // Step 1: geocode
   const geo = await geocode(q);
   if (!geo) {
-    alert('Address not found. Try a different query.');
+    const suggestions = [
+      'Try the actual street address: "1305 N 9th Ave Pensacola FL"',
+      'Use a famous landmark: "Empire State Building" or "Willis Tower"',
+      'Drop deal/property words like "Asset", "Apartments", "Office"',
+      'Try just city + state: "Little Rock AR"'
+    ];
+    alert('Could not find this location across 5 geocoders.\n\nSuggestions:\n• ' + suggestions.join('\n• '));
     document.getElementById('loading').classList.remove('show');
     document.getElementById('search-btn').disabled=false;
     document.getElementById('initial-state').style.display='block';
@@ -495,8 +608,10 @@ async function search() {
 
   const images = buildImagery(lat,lng);
 
-  // Render
-  renderResults({query:q, geo, fema, pois, wiki, images});
+  // Cache + render
+  const payload = {query:q, geo, fema, pois, wiki, images};
+  setCache(q.toLowerCase(), payload);
+  renderResults(payload);
 }
 
 function renderResults({query, geo, fema, pois, wiki, images}) {
@@ -507,6 +622,11 @@ function renderResults({query, geo, fema, pois, wiki, images}) {
   const {lat,lng,address,type,components} = geo;
 
   // Header
+  const fallbackBadge = geo._fallback
+    ? `<span style="padding:4px 10px;background:rgba(251,191,36,.12);color:var(--gold);border:1px solid rgba(251,191,36,.2);border-radius:8px;font-size:10px">🔄 Fallback: ${geo._fallback}${geo._stripped?` ("${geo._stripped}")`:''}${geo._cityState?` ("${geo._cityState}")`:''}${geo._lastN?` ("${geo._lastN}")`:''}</span>`
+    : '';
+  const cachedBadge = geo._cached ? `<span style="padding:4px 10px;background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.2);border-radius:8px;font-size:10px">⚡ Cached (24h)</span>` : '';
+  const sourceBadge = geo.source ? `<span style="padding:4px 10px;background:rgba(59,130,246,.12);color:var(--accent);border:1px solid rgba(59,130,246,.2);border-radius:8px;font-size:10px">🌐 ${geo.source}</span>` : '';
   document.getElementById('r-header').innerHTML=`
     <div class="result-title">${query}</div>
     <div class="result-loc">📍 ${address}</div>
@@ -514,6 +634,9 @@ function renderResults({query, geo, fema, pois, wiki, images}) {
       <span>📌 ${lat.toFixed(5)}, ${lng.toFixed(5)}</span>
       ${type?`<span>Type: ${type}</span>`:''}
       <span>${new Date().toLocaleString()}</span>
+      ${sourceBadge}
+      ${fallbackBadge}
+      ${cachedBadge}
     </div>`;
 
   // Source badges — show all 6 sources we hit + 605 catalog sources
