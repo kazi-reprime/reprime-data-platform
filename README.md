@@ -5,8 +5,17 @@
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688.svg)](https://fastapi.tiangolo.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkazi-reprime%2Freprime-data-platform)
 
 ---
+
+## 🚀 One-Click Vercel Deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkazi-reprime%2Freprime-data-platform&env=FRED_API_KEY,CENSUS_API_KEY,BLS_API_KEY,BEA_API_KEY,EIA_API_KEY,FINNHUB_API_KEY,ALPHA_VANTAGE_API_KEY,COINGECKO_API_KEY,TWELVE_DATA_API_KEY,WALK_SCORE_API_KEY,OPENWEATHER_API_KEY,DATA_GOV_API_KEY&project-name=reprime-data-platform&repository-name=reprime-data-platform)
+
+Click the button above to deploy directly to Vercel. You'll be prompted to add the 12 API keys during setup.
+
+
 
 ## 🎯 What This Platform Does
 
