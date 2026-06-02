@@ -1,16 +1,26 @@
 {
   "version": 2,
-  "cleanUrls": true,
-  "trailingSlash": false,
+  "cleanUrls": false,
   "rewrites": [
     { "source": "/site", "destination": "/site.html" },
-    { "source": "/terminal", "destination": "/terminal.html" }
+    { "source": "/terminal", "destination": "/terminal.html" },
+    { "source": "/api/live/ticker", "destination": "/api/live/ticker.json" },
+    { "source": "/api/live/market", "destination": "/api/live/market.json" },
+    { "source": "/api/live/reits", "destination": "/api/live/reits.json" },
+    { "source": "/api/live/property", "destination": "/api/live/property.json" },
+    { "source": "/api/market/:metric", "destination": "/api/market/:metric.json" },
+    { "source": "/api/deal/:metric", "destination": "/api/deal/:metric.json" },
+    { "source": "/api/stats", "destination": "/api/stats.json" },
+    { "source": "/api/categories", "destination": "/api/categories.json" },
+    { "source": "/api/health", "destination": "/api/health.json" },
+    { "source": "/api/sources", "destination": "/api/sources.json" }
   ],
   "headers": [
     {
       "source": "/api/(.*)",
       "headers": [
         { "key": "Content-Type", "value": "application/json" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
         { "key": "Cache-Control", "value": "public, max-age=300" }
       ]
     }
