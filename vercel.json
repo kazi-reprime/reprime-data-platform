@@ -9,16 +9,32 @@
   },
   "rewrites": [
     {
-      "source": "/api/live/:metric",
-      "destination": "/data/live/:metric.json"
+      "source": "/site",
+      "destination": "/site.html"
     },
     {
-      "source": "/api/market/:metric",
-      "destination": "/data/market/:metric.json"
+      "source": "/explore",
+      "destination": "/explore.html"
     },
     {
-      "source": "/api/deal/:metric",
-      "destination": "/data/deal/:metric.json"
+      "source": "/terminal",
+      "destination": "/terminal.html"
+    },
+    {
+      "source": "/dashboard",
+      "destination": "/dashboard.html"
+    },
+    {
+      "source": "/api/live/:path*",
+      "destination": "/data/live/:path*.json"
+    },
+    {
+      "source": "/api/market/:path*",
+      "destination": "/data/market/:path*.json"
+    },
+    {
+      "source": "/api/deal/:path*",
+      "destination": "/data/deal/:path*.json"
     },
     {
       "source": "/api/stats",
@@ -35,6 +51,10 @@
     {
       "source": "/api/health",
       "destination": "/data/health.json"
+    },
+    {
+      "source": "/images/:path*",
+      "destination": "/public/images/:path*"
     }
   ]
 }
