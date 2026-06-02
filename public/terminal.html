@@ -3,700 +3,443 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RePrime Terminal — Full Deal Intelligence</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>RePrime Terminal — Deal Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0a0e1a;--card:#111827;--card2:#1a2235;--border:#1e293b;--border2:#2d3a4f;--text:#e2e8f0;--muted:#64748b;--dim:#475569;--accent:#3b82f6;--green:#22c55e;--red:#ef4444;--yellow:#eab308;--purple:#a855f7;--cyan:#06b6d4;--orange:#f97316;--pink:#ec4899;--teal:#14b8a6}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+:root{
+  --bg:#05060d;--surface:rgba(255,255,255,0.04);--surface-2:rgba(255,255,255,0.06);
+  --border:rgba(255,255,255,0.08);--border-2:rgba(255,255,255,0.15);
+  --text:#f8fafc;--muted:#94a3b8;--dim:#64748b;
+  --accent:#3b82f6;--accent2:#8b5cf6;--accent3:#06b6d4;
+  --green:#22c55e;--red:#ef4444;--gold:#fbbf24;--orange:#fb923c;--pink:#f472b6;
+  --grad-1:linear-gradient(135deg,#3b82f6 0%,#8b5cf6 50%,#ec4899 100%);
+  --grad-mesh:radial-gradient(at 27% 37%,#3b82f6 0px,transparent 50%),radial-gradient(at 97% 21%,#8b5cf6 0px,transparent 50%),radial-gradient(at 52% 99%,#06b6d4 0px,transparent 50%);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
 
-/* TICKER */
-.ticker{background:#060810;border-bottom:1px solid var(--border);overflow:hidden;height:34px;position:sticky;top:0;z-index:100}
-.ticker-track{display:flex;animation:scroll 45s linear infinite;white-space:nowrap;height:100%;align-items:center}
+.mesh-bg{position:fixed;inset:0;z-index:-1;background:var(--grad-mesh);filter:blur(140px);opacity:.18;animation:drift 20s ease-in-out infinite}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(-2%,2%)}}
+
+.ticker{position:sticky;top:0;z-index:200;background:rgba(5,6,13,.7);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);overflow:hidden;height:38px}
+.ticker::before,.ticker::after{content:'';position:absolute;top:0;width:80px;height:100%;z-index:2;pointer-events:none}
+.ticker::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.ticker::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+.ticker-track{display:flex;animation:scroll 70s linear infinite;white-space:nowrap;height:100%;align-items:center}
 .ticker-track:hover{animation-play-state:paused}
 @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.ti{display:inline-flex;align-items:center;gap:6px;padding:0 20px;font-size:11px;border-right:1px solid var(--border)}
-.ti .l{color:var(--muted);font-weight:500}.ti .v{font-family:'JetBrains Mono',monospace;font-weight:600}
-.ti .c{font-family:'JetBrains Mono',monospace;font-size:10px}
-.ti .c.up{color:var(--green)}.ti .c.down{color:var(--red)}.ti .c.n{color:var(--muted)}
+.ti{display:inline-flex;align-items:center;gap:8px;padding:0 24px;font-size:11px;color:var(--muted);border-right:1px solid var(--border)}
+.ti strong{color:var(--text);font-family:'JetBrains Mono',monospace;font-weight:600}
+.ti .up{color:var(--green)}.ti .dn{color:var(--red)}
+.ti .pulse{width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.3)}}
 
-/* HEADER */
-.hdr{background:linear-gradient(180deg,#0f1629,var(--bg));padding:16px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
-.hdr-l{display:flex;align-items:center;gap:14px}
-.logo{width:34px;height:34px;background:linear-gradient(135deg,var(--accent),var(--purple));border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:#fff}
-.hdr h1{font-size:18px;font-weight:700;letter-spacing:-.5px}
-.hdr h1 span{color:var(--accent)}
-.live{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25);color:var(--green);font-size:10px;padding:2px 10px;border-radius:99px;font-weight:600;display:flex;align-items:center;gap:4px}
-.dot{width:5px;height:5px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.hdr-r{display:flex;align-items:center;gap:14px;font-size:12px;color:var(--muted)}
+nav{position:sticky;top:38px;z-index:199;background:rgba(5,6,13,.6);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);padding:0 36px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;letter-spacing:-1px;font-family:'Space Grotesk',sans-serif}
+.logo-icon{width:30px;height:30px;border-radius:8px;background:var(--grad-1);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:14px;box-shadow:0 0 20px rgba(139,92,246,.4)}
+.logo span{background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+nav .live{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);border-radius:99px;font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.5px}
+nav .live .dot{width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:pulse 2s infinite}
+.btn{padding:9px 18px;border-radius:8px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:.25s;cursor:pointer;border:none;font-family:inherit}
+.btn-glass{background:rgba(255,255,255,.05);backdrop-filter:blur(20px);border:1px solid var(--border-2);color:var(--text)}
+.btn-glass:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3)}
+.btn-p{background:var(--grad-1);color:#fff;box-shadow:0 4px 20px rgba(139,92,246,.3)}
 
-/* NAV */
-.nav{display:flex;gap:1px;padding:0 28px;background:var(--card);border-bottom:1px solid var(--border)}
-.nav a{padding:10px 18px;font-size:12px;color:var(--muted);text-decoration:none;font-weight:500;border-bottom:2px solid transparent;transition:.2s}
-.nav a:hover,.nav a.active{color:var(--text);border-bottom-color:var(--accent)}
-
-.container{max-width:1500px;margin:0 auto;padding:20px}
+.container{max-width:1500px;margin:0 auto;padding:24px 36px}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.g6{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
 .g23{display:grid;grid-template-columns:2fr 1fr;gap:14px}
-.g32{display:grid;grid-template-columns:1fr 2fr;gap:14px}
-.mb{margin-bottom:16px}
+.mb{margin-bottom:18px}
 
-/* CARD */
-.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;transition:border-color .2s}
-.card:hover{border-color:var(--border2)}
+.glass{background:rgba(255,255,255,.04);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--border);border-radius:16px;padding:20px;transition:transform .3s,border-color .3s,box-shadow .3s}
+.glass:hover{border-color:var(--border-2);box-shadow:0 10px 40px rgba(59,130,246,.08)}
+
 .ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.ct{font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px}
-.cs{font-size:10px;color:var(--muted);margin-top:2px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px}
 
-/* STAT */
-.stat{text-align:center;padding:14px}
-.stat .lb{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
-.stat .vl{font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;line-height:1.2}
-.stat .sb{font-size:10px;margin-top:3px;color:var(--dim)}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:.3px}
+.badge.ok{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.2)}
+.badge.warn{background:rgba(251,191,36,.12);color:var(--gold);border:1px solid rgba(251,191,36,.2)}
+.badge.info{background:rgba(59,130,246,.12);color:var(--accent);border:1px solid rgba(59,130,246,.2)}
+.badge.bad{background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.2)}
+
+.stat{text-align:center;padding:16px}
+.stat .lb{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.stat .vl{font-size:30px;font-weight:800;font-family:'JetBrains Mono',monospace;line-height:1}
+.stat .sb{font-size:10px;color:var(--dim);margin-top:4px}
+
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.sh h2{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;display:flex;align-items:center;gap:8px}
+
+/* HERO IMAGES */
+.hero-block{position:relative;border-radius:24px;overflow:hidden;background:var(--grad-1);padding:1px;margin-bottom:16px}
+.hero-inner{background:rgba(5,6,13,.85);backdrop-filter:blur(20px);border-radius:23px;overflow:hidden}
+.hero-images{display:grid;grid-template-columns:2fr 1fr 1fr;gap:4px;height:280px}
+.hero-images .img{background-size:cover;background-position:center;position:relative;transition:transform .6s cubic-bezier(.23,1,.32,1)}
+.hero-images .img:hover{transform:scale(1.04)}
+.hero-images .side{display:flex;flex-direction:column;gap:4px}
+.hero-images .side .img{height:100%}
+.img-label{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,.75);backdrop-filter:blur(10px);color:#fff;padding:4px 10px;border-radius:6px;font-size:10px;font-weight:600}
+.hero-body{padding:24px}
+.hero-title{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:800;letter-spacing:-.5px}
+.hero-loc{font-size:13px;color:var(--muted);margin-top:6px;display:flex;align-items:center;gap:6px}
+.hero-tags{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+.hero-tag{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);color:var(--accent);padding:4px 10px;border-radius:8px;font-size:11px;font-weight:500}
+.hero-tag.green{background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.2);color:var(--green)}
+.hero-tag.purple{background:rgba(139,92,246,.1);border-color:rgba(139,92,246,.2);color:var(--accent2)}
 
 /* TABLE */
 .rt{width:100%;border-collapse:collapse}
-.rt th{text-align:left;padding:7px 10px;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);border-bottom:1px solid var(--border);font-weight:500}
-.rt td{padding:7px 10px;font-size:12px;border-bottom:1px solid rgba(30,41,59,.4)}
-.rt tr:hover{background:rgba(59,130,246,.03)}
+.rt th{text-align:left;padding:8px 10px;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);border-bottom:1px solid var(--border);font-weight:600}
+.rt td{padding:8px 10px;font-size:12px;border-bottom:1px solid rgba(255,255,255,.04)}
+.rt tr:hover td{background:rgba(255,255,255,.02)}
 .mono{font-family:'JetBrains Mono',monospace;font-size:11px}
 
-/* BADGE */
-.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:99px;font-size:10px;font-weight:600}
-.badge.ok{background:rgba(34,197,94,.12);color:var(--green)}
-.badge.warn{background:rgba(234,179,8,.12);color:var(--yellow)}
-.badge.info{background:rgba(59,130,246,.12);color:var(--accent)}
-.badge.bad{background:rgba(239,68,68,.12);color:var(--red)}
-.badge.purple{background:rgba(168,85,247,.12);color:var(--purple)}
+/* CAPITAL STACK BAR */
+.stack-bar{display:flex;height:28px;border-radius:8px;overflow:hidden;gap:2px;margin-bottom:14px}
+.stack-bar .seg{display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;letter-spacing:.5px}
+.seg-senior{background:var(--accent)}
+.seg-mezz{background:var(--orange)}
+.seg-eq{background:var(--green)}
 
-/* SECTION */
-.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
-.sh h2{font-size:15px;font-weight:600;display:flex;align-items:center;gap:6px}
-
-/* PROPERTY HERO */
-.hero{background:linear-gradient(135deg,#1a2235,#111827);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:16px}
-.hero-img{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2px;height:280px}
-.hero-img .main{background:url('https://maps.googleapis.com/maps/api/streetview?size=800x400&location=30.4275,-87.2075&heading=180&pitch=10&key=') no-repeat center/cover; background-color:#1a2235 center/cover;position:relative}
-.hero-img .side{display:flex;flex-direction:column;gap:2px}
-.hero-img .side div{flex:1;background-size:cover;background-position:center}
-.hero-img .side div:nth-child(1){background:linear-gradient(135deg,#1a3a5f,#0f2940);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--muted);text-align:center;padding:8px}
-.hero-img .side div:nth-child(2){background:linear-gradient(135deg,#1f3040,#152530);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--muted);text-align:center;padding:8px}
-.hero-img .side2 div:nth-child(1){background:linear-gradient(135deg,#1a2845,#0f1e35);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--muted);text-align:center;padding:8px}
-.hero-img .side2 div:nth-child(2){background:linear-gradient(135deg,#1a2535,#0f1a28);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--muted);text-align:center;padding:8px}
-.img-count{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.7);color:#fff;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600}
-.hero-body{padding:24px}
-.hero-title{font-size:24px;font-weight:700;letter-spacing:-.5px}
-.hero-loc{font-size:13px;color:var(--muted);margin-top:4px;display:flex;align-items:center;gap:6px}
-.hero-tags{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
-.hero-tag{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);color:var(--accent);padding:3px 10px;border-radius:6px;font-size:11px;font-weight:500}
-.hero-tag.green{background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.2);color:var(--green)}
-.hero-tag.purple{background:rgba(168,85,247,.1);border-color:rgba(168,85,247,.2);color:var(--purple)}
-
-/* NEWS */
-.ni{padding:10px 0;border-bottom:1px solid rgba(30,41,59,.4);display:flex;gap:10px}
-.ni:last-child{border-bottom:none}
-.nd{width:6px;height:6px;border-radius:50%;margin-top:6px;flex-shrink:0}
+/* NEWS FEED */
+.ni{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;gap:10px}
+.nd{width:6px;height:6px;border-radius:50%;margin-top:6px;flex-shrink:0;box-shadow:0 0 6px currentColor}
 .ni .src{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-.ni .hl{font-size:12px;margin-top:2px;line-height:1.35}
-.ni .hl a{color:var(--text);text-decoration:none}.ni .hl a:hover{color:var(--accent)}
+.ni .hl{font-size:12px;margin-top:2px;line-height:1.4}
+.ni .hl a{color:var(--text)}.ni .hl a:hover{color:var(--accent)}
 .ni .tm{font-size:9px;color:var(--dim);margin-top:2px}
-.ni .sent{font-size:9px;margin-left:auto;flex-shrink:0}
 
-/* MINI CHART */
-.mc{display:flex;align-items:flex-end;gap:2px;height:36px;margin-top:6px}
-.mb2{background:var(--accent);border-radius:2px 2px 0 0;min-width:3px;flex:1;opacity:.6;transition:opacity .2s}
-.mb2:hover{opacity:1}
-
-/* SCROLL */
 .scroll-y{max-height:400px;overflow-y:auto}
 .scroll-y::-webkit-scrollbar{width:4px}
-.scroll-y::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+.scroll-y::-webkit-scrollbar-thumb{background:var(--border-2);border-radius:4px}
 
-/* FOOTER */
-.footer{text-align:center;padding:28px;color:var(--dim);font-size:11px;border-top:1px solid var(--border);margin-top:28px}
+.cursor-glow{position:fixed;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.1),transparent 70%);pointer-events:none;z-index:0;transition:transform .15s ease-out;filter:blur(30px);transform:translate(-50%,-50%)}
 
-.loading{padding:30px;text-align:center;color:var(--muted);font-size:12px}
+.loading{padding:20px;text-align:center;color:var(--muted);font-size:11px}
 
-@media(max-width:1200px){.g3{grid-template-columns:1fr 1fr}.g4{grid-template-columns:1fr 1fr}}
-@media(max-width:768px){.g2,.g3,.g4,.g23,.g32{grid-template-columns:1fr}.hero-img{grid-template-columns:1fr;height:200px}.hero-img .side,.hero-img .side2{display:none}}
+footer{padding:32px;text-align:center;color:var(--dim);font-size:11px;border-top:1px solid var(--border);margin-top:24px}
+
+@media(max-width:1100px){.g3,.g4,.g6{grid-template-columns:repeat(2,1fr)}.g23{grid-template-columns:1fr}.hero-images{grid-template-columns:1fr;height:auto}.hero-images .side{flex-direction:row;height:120px}.hero-images .img{height:100%}}
+@media(max-width:768px){.g2,.g3,.g4,.g6{grid-template-columns:1fr}.container{padding:14px}}
 </style>
 </head>
 <body>
 
+<div class="mesh-bg"></div>
+<div class="cursor-glow" id="cursor"></div>
+
 <div class="ticker"><div class="ticker-track" id="ticker"></div></div>
 
-<div class="hdr">
-  <div class="hdr-l">
-    <div class="logo">R</div>
-    <div><h1>Re<span>Prime</span> Terminal</h1><div style="font-size:10px;color:var(--muted)">Real Estate Intelligence Platform</div></div>
+<nav>
+  <div class="logo"><div class="logo-icon">R</div><span>Re</span>Prime Terminal</div>
+  <div style="display:flex;gap:12px;align-items:center">
+    <span class="live"><span class="dot"></span>LIVE DATA</span>
+    <a href="/site" class="btn btn-glass">← Site</a>
+    <a href="/" class="btn btn-glass">Dashboard</a>
   </div>
-  <div class="hdr-r">
-    <div class="live"><span class="dot"></span>LIVE DATA</div>
-    <span id="clock"></span>
-  </div>
-</div>
-
-<div class="nav">
-  <a href="#overview" class="active">Overview</a>
-  <a href="#property">Property</a>
-  <a href="#financing">Financing</a>
-  <a href="#comps">Comparables</a>
-  <a href="#sentiment">Sentiment</a>
-  <a href="#risk">Risk</a>
-  <a href="#sources">Sources</a>
-</div>
+</nav>
 
 <div class="container">
 
 <!-- TOP STATS -->
-<div class="g4 mb" id="top-stats"></div>
+<div class="g4 mb">
+  <div class="glass stat"><div class="lb">Sources Scraped</div><div class="vl" style="color:var(--green)" data-count="549">549</div><div class="sb">of 611 total</div></div>
+  <div class="glass stat"><div class="lb">Total Records</div><div class="vl" style="background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent" data-count="8223">8,223</div><div class="sb">data points</div></div>
+  <div class="glass stat"><div class="lb">Live APIs</div><div class="vl" style="color:var(--accent)" data-count="13">13</div><div class="sb">real-time feeds</div></div>
+  <div class="glass stat"><div class="lb">Coverage</div><div class="vl" style="color:var(--accent2)" data-suffix="%" data-count="91">91%</div><div class="sb">success rate</div></div>
+</div>
 
 <!-- PROPERTY HERO -->
-<div id="property">
-<div class="hero">
-  
-  <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:2px;height:300px;border-radius:12px 12px 0 0;overflow:hidden">
-    <div style="background:url('/images/om_p1_img1.jpeg') center/cover;position:relative">
-      <div style="position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,.7);color:#fff;padding:4px 10px;border-radius:6px;font-size:10px;font-weight:600">Exterior — Front View</div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:2px">
-      <div style="flex:1;background:url('/images/om_p2_img2.jpeg') center/cover;position:relative">
-        <div style="position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.6);color:#fff;padding:2px 6px;border-radius:4px;font-size:9px">Exterior — Dusk</div>
+<div class="hero-block">
+  <div class="hero-inner">
+    <div class="hero-images">
+      <div class="img" style="background-image:url('/images/om_p1_img1.jpeg')"><div class="img-label">Exterior — Front</div></div>
+      <div class="side">
+        <div class="img" style="background-image:url('/images/om_p2_img2.jpeg')"><div class="img-label">Dusk</div></div>
+        <div class="img" style="background-image:url('/images/om_p11_img1.jpeg')"><div class="img-label">Office</div></div>
       </div>
-      <div style="flex:1;background:url('/images/om_p11_img1.jpeg') center/cover;position:relative">
-        <div style="position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.6);color:#fff;padding:2px 6px;border-radius:4px;font-size:9px">Interior — Office</div>
+      <div class="side">
+        <div class="img" style="background-image:url('/images/om_p14_img1.jpeg')"><div class="img-label">Aerial</div></div>
+        <div class="img" style="background-image:url('/images/om_p10_img1.jpeg')"><div class="img-label">📸 11 Photos</div></div>
       </div>
     </div>
-    <div style="display:flex;flex-direction:column;gap:2px">
-      <div style="flex:1;background:url('/images/om_p14_img1.jpeg') center/cover;position:relative">
-        <div style="position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.6);color:#fff;padding:2px 6px;border-radius:4px;font-size:9px">Aerial — Context</div>
-      </div>
-      <div style="flex:1;background:url('/images/om_p10_img1.jpeg') center/cover;position:relative">
-        <div style="position:absolute;bottom:4px;right:4px;background:rgba(0,0,0,.7);color:#fff;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:600">📸 11 Photos</div>
-        <div style="position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.6);color:#fff;padding:2px 6px;border-radius:4px;font-size:9px">Aerial — Parcel</div>
-      </div>
-    </div>
-  </div>
-  <!-- Walk Score + Weather bar -->
-  <div style="display:flex;gap:0;background:#0d1520;border-bottom:1px solid var(--border)">
-    <div style="flex:1;padding:10px 16px;display:flex;align-items:center;gap:10px;border-right:1px solid var(--border)">
-      <div style="font-size:28px;font-weight:800;color:var(--green)" id="ws-score">—</div>
-      <div><div style="font-size:10px;color:var(--muted)">WALK SCORE</div><div style="font-size:10px;color:var(--green)" id="ws-desc">—</div></div>
-    </div>
-    <div style="flex:1;padding:10px 16px;display:flex;align-items:center;gap:10px;border-right:1px solid var(--border)">
-      <div style="font-size:22px;font-weight:700;color:var(--cyan)" id="wx-temp">—</div>
-      <div><div style="font-size:10px;color:var(--muted)">PENSACOLA, FL</div><div style="font-size:10px;color:var(--cyan)" id="wx-desc">—</div></div>
-    </div>
-    <div style="flex:1;padding:10px 16px;display:flex;align-items:center;gap:10px;border-right:1px solid var(--border)">
-      <div style="font-size:18px;font-weight:700;color:var(--accent)">27,675</div>
-      <div><div style="font-size:10px;color:var(--muted)">SQUARE FEET</div><div style="font-size:10px;color:var(--dim)">Class B Office</div></div>
-    </div>
-    <div style="flex:1;padding:10px 16px;display:flex;align-items:center;gap:10px">
-      <div style="font-size:18px;font-weight:700;color:var(--yellow)">130</div>
-      <div><div style="font-size:10px;color:var(--muted)">PARKING</div><div style="font-size:10px;color:var(--dim)">1.68 AC Lot</div></div>
-    </div>
-  </div>
-  <div class="hero-body">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px">
-      <div>
-        <div class="hero-title">Pensacola, FL Government Office Asset</div>
-        <div class="hero-loc">📍 1305 N. 9th Avenue, Pensacola, FL 32501 · Escambia County</div>
-        <div class="hero-tags">
-          <span class="hero-tag">Office</span>
-          <span class="hero-tag green">100% Occupied</span>
-          <span class="hero-tag green">AAA/Aaa Tenant</span>
-          <span class="hero-tag purple">Seller Financing</span>
-          <span class="hero-tag">State of Florida</span>
-          <span class="hero-tag">East Hill Neighborhood</span>
-          <span class="hero-tag">27,675 SF</span>
-          <span class="hero-tag">Class B</span>
+    <div class="hero-body">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap">
+        <div>
+          <div class="hero-title">Pensacola, FL Government Office Asset</div>
+          <div class="hero-loc">📍 1305 N. 9th Avenue, Pensacola, FL 32503 · Escambia County</div>
+          <div class="hero-tags">
+            <span class="hero-tag">Office · Class B</span>
+            <span class="hero-tag green">100% Occupied</span>
+            <span class="hero-tag green">AAA Tenant</span>
+            <span class="hero-tag purple">Seller Financing</span>
+            <span class="hero-tag">State of Florida</span>
+            <span class="hero-tag">27,675 SF</span>
+            <span class="hero-tag">East Hill</span>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Purchase Price</div>
+          <div style="font-size:32px;font-weight:800;background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-family:'JetBrains Mono',monospace">$6,000,000</div>
+          <div style="font-size:11px;color:var(--green)">▼ $500K below OM</div>
         </div>
       </div>
-      <div style="text-align:right">
-        <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Purchase Price</div>
-        <div style="font-size:30px;font-weight:700;color:var(--green);font-family:'JetBrains Mono',monospace">$6,000,000</div>
-        <div style="font-size:11px;color:var(--muted)">$500K below OM ask ($6.5M)</div>
-      </div>
     </div>
   </div>
-</div>
 </div>
 
 <!-- KEY METRICS -->
-<div class="g4 mb">
-  <div class="card stat"><div class="lb">Cap Rate</div><div class="vl" style="color:var(--green)">8.95%</div><div class="sb">Going-in</div></div>
-  <div class="card stat"><div class="lb">NOI</div><div class="vl" style="color:var(--accent)">$537,174</div><div class="sb">Annual</div></div>
-  <div class="card stat"><div class="lb">IRR (5yr)</div><div class="vl" style="color:var(--purple)">21.79%</div><div class="sb">10% exit cap</div></div>
-  <div class="card stat"><div class="lb">Cash on Cash</div><div class="vl" style="color:var(--teal)">28.07%</div><div class="sb">With seller mezz</div></div>
+<div class="g6 mb">
+  <div class="glass stat"><div class="lb">Cap Rate</div><div class="vl" style="color:var(--green)">8.95%</div><div class="sb">going-in</div></div>
+  <div class="glass stat"><div class="lb">NOI</div><div class="vl" style="color:var(--accent)">$537K</div><div class="sb">annual</div></div>
+  <div class="glass stat"><div class="lb">IRR</div><div class="vl" style="color:var(--accent2)">21.79%</div><div class="sb">5yr · 10% exit</div></div>
+  <div class="glass stat"><div class="lb">Cash on Cash</div><div class="vl" style="color:var(--accent3)">28.07%</div><div class="sb">with mezz</div></div>
+  <div class="glass stat"><div class="lb">DSCR</div><div class="vl" style="color:var(--gold)">1.46x</div><div class="sb">combined</div></div>
+  <div class="glass stat"><div class="lb">WALT</div><div class="vl" style="color:var(--pink)">7.4 yr</div><div class="sb">weighted</div></div>
 </div>
 
-<!-- DEAL DETAIL GRID -->
+<!-- DEAL STRUCTURE -->
 <div class="g3 mb">
-  <!-- CAPITAL STACK -->
-  <div class="card">
+  <div class="glass">
     <div class="ch"><div class="ct">💰 Capital Stack</div></div>
-    <div style="margin-bottom:12px">
-      <div style="display:flex;height:24px;border-radius:6px;overflow:hidden;gap:1px">
-        <div style="flex:75;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600">Senior 75%</div>
-        <div style="flex:15;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600">Mezz 15%</div>
-        <div style="flex:10;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600">Eq 10%</div>
-      </div>
+    <div class="stack-bar">
+      <div class="seg seg-senior" style="flex:75">Senior 75%</div>
+      <div class="seg seg-mezz" style="flex:15">Mezz 15%</div>
+      <div class="seg seg-eq" style="flex:10">Eq 10%</div>
     </div>
     <table class="rt">
       <tbody>
-        <tr><td>Senior Debt</td><td class="mono">$4,500,000</td><td class="mono">75%</td></tr>
-        <tr><td>Seller Mezzanine</td><td class="mono">$900,000</td><td class="mono">15%</td></tr>
-        <tr><td>Investor Equity</td><td class="mono">$600,000</td><td class="mono">10%</td></tr>
-        <tr style="border-top:2px solid var(--accent)"><td style="font-weight:600">Total</td><td class="mono" style="font-weight:600">$6,000,000</td><td></td></tr>
+        <tr><td>Senior Debt</td><td class="mono">$4,500,000</td><td class="mono">6.0% / 30yr</td></tr>
+        <tr><td>Seller Mezzanine</td><td class="mono">$900,000</td><td class="mono">5.25% IO</td></tr>
+        <tr><td>Investor Equity</td><td class="mono">$600,000</td><td class="mono">Cash</td></tr>
+        <tr style="border-top:2px solid var(--accent)"><td style="font-weight:700">Total</td><td class="mono" style="font-weight:700">$6,000,000</td><td></td></tr>
       </tbody>
     </table>
   </div>
 
-  <!-- TENANT ROSTER -->
-  <div class="card">
+  <div class="glass">
     <div class="ch"><div class="ct">👥 Tenant Roster</div><span class="badge ok">Investment Grade</span></div>
     <table class="rt">
-      <thead><tr><th>Tenant</th><th>SF</th><th>Rent/SF</th><th>Lease End</th><th>Credit</th></tr></thead>
+      <thead><tr><th>Tenant</th><th>SF</th><th>Rent/SF</th><th>Expiry</th></tr></thead>
       <tbody>
-        <tr><td>FL DCF (Circuit 1)</td><td class="mono">18,289</td><td class="mono">$28.75</td><td class="mono">Sep 2032</td><td><span class="badge ok">AAA</span></td></tr>
-        <tr><td>FL DJJ (Circuit 1)</td><td class="mono">9,386</td><td class="mono">$28.75</td><td class="mono">Feb 2036</td><td><span class="badge ok">AAA</span></td></tr>
+        <tr><td>FL DCF (Circuit 1)</td><td class="mono">18,289</td><td class="mono">$28.75</td><td class="mono">Sep 2032</td></tr>
+        <tr><td>FL DJJ (Circuit 1)</td><td class="mono">9,386</td><td class="mono">$28.75</td><td class="mono">Feb 2036</td></tr>
       </tbody>
     </table>
     <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px">
       <div><span style="color:var(--muted)">WALT</span> <span class="mono">7.4 yrs</span></div>
       <div><span style="color:var(--muted)">Occupancy</span> <span class="mono" style="color:var(--green)">100%</span></div>
-      <div><span style="color:var(--muted)">Lease Type</span> <span class="mono">Full Svc Gross</span></div>
-      <div><span style="color:var(--muted)">$/SF</span> <span class="mono">$216.80</span></div>
-      <div><span style="color:var(--muted)">Rollover &lt;3yr</span> <span class="mono" style="color:var(--green)">None</span></div>
+      <div><span style="color:var(--muted)">Lease Type</span> <span class="mono">FSG</span></div>
       <div><span style="color:var(--muted)">Annual Rent</span> <span class="mono">$795,655</span></div>
     </div>
   </div>
 
-  <!-- RETURN COMPARISON -->
-  <div class="card">
+  <div class="glass">
     <div class="ch"><div class="ct">📊 Return Comparison</div></div>
     <table class="rt">
       <thead><tr><th>Metric</th><th>Traditional</th><th>W/ Mezz</th></tr></thead>
       <tbody>
-        <tr><td>Equity Required</td><td class="mono">$1,500,000</td><td class="mono" style="color:var(--green)">$600,000</td></tr>
-        <tr><td>Annual CF</td><td class="mono">$213,417</td><td class="mono">$168,417</td></tr>
+        <tr><td>Equity Req'd</td><td class="mono">$1.5M</td><td class="mono" style="color:var(--green)">$600K</td></tr>
+        <tr><td>Annual CF</td><td class="mono">$213K</td><td class="mono">$168K</td></tr>
         <tr><td>CoC Return</td><td class="mono">14.23%</td><td class="mono" style="color:var(--green)">28.07%</td></tr>
         <tr><td>IRR (5yr)</td><td class="mono">11.13%</td><td class="mono" style="color:var(--green)">21.79%</td></tr>
         <tr><td>DSCR</td><td class="mono">1.66x</td><td class="mono">1.46x</td></tr>
       </tbody>
     </table>
-    <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border)">
-      <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Cash Flow Waterfall</div>
-      <div style="font-size:11px;display:flex;justify-content:space-between;padding:3px 0"><span>NOI</span><span class="mono" style="color:var(--green)">$537,174</span></div>
-      <div style="font-size:11px;display:flex;justify-content:space-between;padding:3px 0"><span>− Senior DS</span><span class="mono" style="color:var(--red)">($323,757)</span></div>
-      <div style="font-size:11px;display:flex;justify-content:space-between;padding:3px 0"><span>− Mezz IO</span><span class="mono" style="color:var(--red)">($45,000)</span></div>
-      <div style="font-size:11px;display:flex;justify-content:space-between;padding:3px 0;border-top:1px solid var(--accent);font-weight:600"><span>Distributable</span><span class="mono" style="color:var(--green)">$168,417</span></div>
-    </div>
   </div>
 </div>
 
-<!-- PROPERTY DETAILS + DOCUMENTS + TIMELINE -->
-<div class="g3 mb">
-  <div class="card">
-    <div class="ch"><div class="ct">🏠 Property Details</div></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px">
-      <div><span style="color:var(--muted)">Address</span><br><strong>1305 N. 9th Ave</strong></div>
-      <div><span style="color:var(--muted)">Type / Class</span><br><strong>Office / B</strong></div>
-      <div><span style="color:var(--muted)">GLA</span><br><strong>27,675 SF</strong></div>
-      <div><span style="color:var(--muted)">Neighborhood</span><br><strong>East Hill</strong></div>
-      <div><span style="color:var(--muted)">Renovated</span><br><strong>2022 & 2025 ($4.1M)</strong></div>
-      <div><span style="color:var(--muted)">Deposit</span><br><strong>$100,000 (Escrow)</strong></div>
-      <div><span style="color:var(--muted)">Metro Pop</span><br><strong>~500,000</strong></div>
-      <div><span style="color:var(--muted)">Discount</span><br><strong style="color:var(--green)">$500K below OM</strong></div>
-      <div><span style="color:var(--muted)">County</span><br><strong>Escambia</strong></div>
-      <div><span style="color:var(--muted)">Circuit</span><br><strong>1 (4 counties)</strong></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="ch"><div class="ct">📄 Transaction Documents</div></div>
-    <div style="display:flex;flex-direction:column;gap:6px">
-      <div style="background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:12px;display:flex;align-items:center;gap:8px;cursor:pointer">📑 Original Offering Memorandum <span class="badge info" style="margin-left:auto">PDF</span></div>
-      <div style="background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:12px;display:flex;align-items:center;gap:8px;cursor:pointer">✍️ Signed Letter of Intent <span class="badge ok" style="margin-left:auto">Executed</span></div>
-      <div style="background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:12px;display:flex;align-items:center;gap:8px;opacity:.6">📋 Purchase & Sale Agreement <span class="badge warn" style="margin-left:auto">Pending</span></div>
-      <div style="background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:12px;display:flex;align-items:center;gap:8px;cursor:pointer">📊 CoStar Report <span class="badge info" style="margin-left:auto">PDF</span></div>
-      <div style="background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:12px;display:flex;align-items:center;gap:8px;cursor:pointer">🔍 Full Institutional Analysis <span class="badge purple" style="margin-left:auto">Terminal</span></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="ch"><div class="ct">⏱️ Deal Timeline</div></div>
-    <div style="display:flex;flex-direction:column;gap:10px">
-      <div style="display:flex;align-items:center;gap:10px"><div style="width:10px;height:10px;border-radius:50%;background:var(--green)"></div><div><div style="font-size:12px;font-weight:600">LOI Executed</div><div style="font-size:10px;color:var(--muted)">Completed · $500K below ask</div></div></div>
-      <div style="border-left:2px solid var(--green);height:12px;margin-left:4px"></div>
-      <div style="display:flex;align-items:center;gap:10px"><div style="width:10px;height:10px;border-radius:50%;background:var(--yellow);animation:pulse 2s infinite"></div><div><div style="font-size:12px;font-weight:600;color:var(--yellow)">Due Diligence</div><div style="font-size:10px;color:var(--muted)">8 days remaining</div></div><span class="badge warn" style="margin-left:auto">Active</span></div>
-      <div style="border-left:2px dashed var(--border);height:12px;margin-left:4px"></div>
-      <div style="display:flex;align-items:center;gap:10px"><div style="width:10px;height:10px;border-radius:50%;border:2px solid var(--border)"></div><div><div style="font-size:12px;color:var(--muted)">Closing</div><div style="font-size:10px;color:var(--dim)">10 days after DD</div></div></div>
-      <div style="border-left:2px dashed var(--border);height:12px;margin-left:4px"></div>
-      <div style="display:flex;align-items:center;gap:10px"><div style="width:10px;height:10px;border-radius:50%;border:2px solid var(--border)"></div><div><div style="font-size:12px;color:var(--muted)">Extension Option</div><div style="font-size:10px;color:var(--dim)">30-day optional</div></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- LEASE EXPIRATION SCHEDULE -->
-<div class="card mb">
-  <div class="ch"><div class="ct">📅 Lease Expiration Schedule</div></div>
-  <div style="display:flex;gap:2px;height:60px;align-items:flex-end">
-    <div style="flex:1" title="2026-2031: No expirations">
-      <div style="height:100%;display:flex;align-items:flex-end;gap:1px">
-        <div style="flex:1;background:var(--card2);height:10%;border-radius:2px 2px 0 0" title="2026"></div>
-        <div style="flex:1;background:var(--card2);height:10%;border-radius:2px 2px 0 0" title="2027"></div>
-        <div style="flex:1;background:var(--card2);height:10%;border-radius:2px 2px 0 0" title="2028"></div>
-        <div style="flex:1;background:var(--card2);height:10%;border-radius:2px 2px 0 0" title="2029"></div>
-        <div style="flex:1;background:var(--card2);height:10%;border-radius:2px 2px 0 0" title="2030"></div>
-        <div style="flex:1;background:var(--card2);height:10%;border-radius:2px 2px 0 0" title="2031"></div>
-        <div style="flex:1;background:var(--green);height:66%;border-radius:2px 2px 0 0" title="2032: DCF (66%)"></div>
-        <div style="flex:1;background:var(--card2);height:10%;border-radius:2px 2px 0 0" title="2033"></div>
-        <div style="flex:1;background:var(--card2);height:10%;border-radius:2px 2px 0 0" title="2034"></div>
-        <div style="flex:1;background:var(--card2);height:10%;border-radius:2px 2px 0 0" title="2035"></div>
-        <div style="flex:1;background:var(--accent);height:34%;border-radius:2px 2px 0 0" title="2036: DJJ (34%)"></div>
-      </div>
-    </div>
-  </div>
-  <div style="display:flex;font-size:9px;color:var(--dim);justify-content:space-between;margin-top:4px">
-    <span>2026</span><span>2027</span><span>2028</span><span>2029</span><span>2030</span><span>2031</span><span style="color:var(--green)">2032</span><span>2033</span><span>2034</span><span>2035</span><span style="color:var(--accent)">2036</span>
-  </div>
-  <div style="display:flex;gap:16px;margin-top:8px;font-size:10px">
-    <div style="display:flex;align-items:center;gap:4px"><div style="width:8px;height:8px;border-radius:2px;background:var(--green)"></div>DCF — 66% of rent (Sep 2032)</div>
-    <div style="display:flex;align-items:center;gap:4px"><div style="width:8px;height:8px;border-radius:2px;background:var(--accent)"></div>DJJ — 34% of rent (Feb 2036)</div>
-  </div>
-</div>
-
-
-<!-- PHOTO GALLERY -->
-<div class="card mb">
-  <div class="ch"><div class="ct">📸 Property Photo Gallery</div><span class="badge info">From OM</span></div>
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
-    <div style="grid-column:span 2;grid-row:span 2;height:280px;background:url('/images/om_p1_img1.jpeg') center/cover;border-radius:8px;position:relative"><div style="position:absolute;bottom:6px;left:6px;background:rgba(0,0,0,.7);color:#fff;padding:3px 8px;border-radius:4px;font-size:10px">Front Elevation — Sunset</div></div>
-    <div style="height:137px;background:url('/images/om_p2_img2.jpeg') center/cover;border-radius:8px;position:relative"><div style="position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.6);color:#fff;padding:2px 6px;border-radius:4px;font-size:9px">Exterior — Dusk</div></div>
-    <div style="height:137px;background:url('/images/om_p3_img1.jpeg') center/cover;border-radius:8px;position:relative"><div style="position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.6);color:#fff;padding:2px 6px;border-radius:4px;font-size:9px">Exterior — Twilight</div></div>
-    <div style="height:137px;background:url('/images/om_p11_img1.jpeg') center/cover;border-radius:8px;position:relative"><div style="position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.6);color:#fff;padding:2px 6px;border-radius:4px;font-size:9px">Interior — Cubicles</div></div>
-    <div style="height:137px;background:url('/images/om_p11_img2.jpeg') center/cover;border-radius:8px;position:relative"><div style="position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.6);color:#fff;padding:2px 6px;border-radius:4px;font-size:9px">Interior — Lobby</div></div>
-    <div style="height:140px;background:url('/images/om_p11_img3.jpeg') center/cover;border-radius:8px;position:relative"><div style="position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.6);color:#fff;padding:2px 6px;border-radius:4px;font-size:9px">Interior — Office</div></div>
-    <div style="height:140px;background:url('/images/om_p11_img4.jpeg') center/cover;border-radius:8px;position:relative"><div style="position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.6);color:#fff;padding:2px 6px;border-radius:4px;font-size:9px">Interior — Kitchen</div></div>
-    <div style="height:140px;background:url('/images/om_p10_img1.jpeg') center/cover;border-radius:8px;position:relative"><div style="position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.6);color:#fff;padding:2px 6px;border-radius:4px;font-size:9px">Aerial — Parcel</div></div>
-    <div style="height:140px;background:url('/images/om_p14_img1.jpeg') center/cover;border-radius:8px;position:relative"><div style="position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.6);color:#fff;padding:2px 6px;border-radius:4px;font-size:9px">Aerial — Context Map</div></div>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px">
-    <div style="height:200px;background:url('/images/om_p9_img1.jpeg') center/cover;border-radius:8px;position:relative"><div style="position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.6);color:#fff;padding:2px 6px;border-radius:4px;font-size:9px">Floor Plan</div></div>
-    <div style="height:200px;background:url('/images/om_p13_img3.jpeg') center/cover;border-radius:8px;position:relative"><div style="position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.6);color:#fff;padding:2px 6px;border-radius:4px;font-size:9px">Location Map — Pensacola Bay</div></div>
-  </div>
-</div>
-<!-- SECTION: FINANCING -->
-<div id="financing">
-<div class="sh"><h2>🏦 Financing & Lending Products</h2><span class="badge info">Based on SOFR + FDIC data</span></div>
-<div class="card mb">
-  <div class="ch"><div class="ct">📋 Current Lending Products (SOFR-Indexed)</div></div>
+<!-- FINANCING -->
+<div class="sh"><h2>🏦 Financing & Lending Products</h2><span class="badge info">Live SOFR-Indexed</span></div>
+<div class="glass mb">
   <table class="rt" id="lending-table">
     <thead><tr><th>Product</th><th>Rate Range</th><th>Max LTV</th><th>Term</th><th>Amort</th><th>Min DSCR</th><th>Best For</th></tr></thead>
-    <tbody id="lending-body"><tr><td colspan="7" class="loading">Loading...</td></tr></tbody>
+    <tbody id="lending-body"><tr><td colspan="7" class="loading">Loading from live SOFR data...</td></tr></tbody>
   </table>
 </div>
 
-<div class="g2 mb">
-  <div class="card" id="fdic-card">
-    <div class="ch"><div class="ct">🏦 FDIC Banking Aggregate</div></div>
-    <div class="loading">Loading...</div>
-  </div>
-  <div class="card" id="rates-card">
-    <div class="ch"><div class="ct">📈 Key Rates & Benchmarks</div><span class="badge ok">Live</span></div>
-    <div id="rates-body2" class="loading">Loading...</div>
-  </div>
-</div>
-</div>
+<!-- MARKET CONTEXT -->
+<div class="sh"><h2>💹 Live Market Context</h2><span class="badge ok">Real-Time</span></div>
+<div class="g4 mb" id="market-grid"></div>
 
-<!-- SECTION: COMPARABLES -->
-<div id="comps">
-<div class="sh"><h2>🏢 Comparable Properties</h2><span class="badge info" id="comp-count">Loading...</span></div>
-<div class="card mb">
-  <div class="scroll-y">
-    <table class="rt" id="comps-table">
-      <thead><tr><th>Address</th><th>Borough</th><th>Zone</th><th>Class</th><th>Area (SF)</th><th>Floors</th><th>Year</th><th>Assessed Total</th><th>$/SF</th></tr></thead>
-      <tbody id="comps-body"><tr><td colspan="9" class="loading">Loading...</td></tr></tbody>
-    </table>
-  </div>
-</div>
-</div>
-
-<!-- SECTION: SENTIMENT -->
-<div id="sentiment">
-<div class="sh"><h2>📰 Market Sentiment & News</h2><span class="badge info" id="news-count2">Loading...</span></div>
+<!-- NEWS -->
+<div class="sh"><h2>📰 Market Sentiment</h2><span class="badge info" id="news-count">Loading...</span></div>
 <div class="g23 mb">
-  <div class="card scroll-y" id="news-feed2" style="max-height:500px">
-    <div class="loading">Loading news...</div>
-  </div>
+  <div class="glass scroll-y" id="news-feed"><div class="loading">Loading news...</div></div>
   <div>
-    <div class="card mb">
-      <div class="ch"><div class="ct">🎯 Sentiment Analysis</div></div>
+    <div class="glass mb">
+      <div class="ch"><div class="ct">🎯 Sentiment</div></div>
       <div id="sentiment-summary" class="loading">Loading...</div>
     </div>
-    <div class="card">
-      <div class="ch"><div class="ct">📡 News Sources</div></div>
-      <div id="news-sources2" class="loading">Loading...</div>
+    <div class="glass">
+      <div class="ch"><div class="ct">📡 Sources</div></div>
+      <div id="news-sources" style="font-size:11px"></div>
     </div>
   </div>
 </div>
+
+<!-- ENVIRONMENTAL -->
+<div class="sh"><h2>🌊 Environmental Risk · FEMA</h2></div>
+<div class="g3 mb" id="environmental-grid">
+  <div class="glass loading">Loading FEMA data...</div>
+  <div class="glass loading"></div>
+  <div class="glass loading"></div>
 </div>
 
-<!-- SECTION: ENVIRONMENTAL RISK -->
-<div id="risk">
-<div class="sh"><h2>🌊 Environmental & Flood Risk</h2><span class="badge info">FEMA Data</span></div>
-<div class="g3 mb">
-  <div class="card" id="flood-card"><div class="loading">Loading...</div></div>
-  <div class="card" id="disaster-card"><div class="loading">Loading...</div></div>
-  <div class="card" id="policy-card"><div class="loading">Loading...</div></div>
-</div>
-</div>
-
-<!-- SECTION: BUILDING PERMITS -->
-<div class="sh"><h2>🔨 Building Permits & Construction</h2><span class="badge info" id="permit-count">Loading...</span></div>
-<div class="card mb">
-  <div class="scroll-y">
-    <table class="rt" id="permit-table">
-      <thead><tr><th>City</th><th>Type</th><th>Address</th><th>Issue Date</th><th>Description</th></tr></thead>
-      <tbody id="permit-body"><tr><td colspan="5" class="loading">Loading...</td></tr></tbody>
-    </table>
-  </div>
-</div>
-
-<!-- SECTION: EXCHANGE RATES + CRYPTO -->
-<div class="g2 mb">
-  <div class="card">
-    <div class="ch"><div class="ct">💱 Exchange Rates (Bank of Israel)</div></div>
-    <div id="fx-data2" class="loading">Loading...</div>
-  </div>
-  <div class="card">
-    <div class="ch"><div class="ct">₿ Crypto Market</div></div>
-    <div id="crypto-data2" class="loading">Loading...</div>
-  </div>
-</div>
-
-<!-- SECTION: DATA SOURCES -->
-<div id="sources">
-<div class="sh"><h2>🗃️ Data Source Coverage</h2><span id="src-summary"></span></div>
-<div class="g3 mb">
-  <div class="card stat"><div class="lb">Total Sources</div><div class="vl" style="color:var(--accent)" id="s-total">—</div></div>
-  <div class="card stat"><div class="lb">Successfully Scraped</div><div class="vl" style="color:var(--green)" id="s-scraped">—</div></div>
-  <div class="card stat"><div class="lb">Total Records</div><div class="vl" style="color:var(--purple)" id="s-records">—</div></div>
-</div>
-<div class="card mb">
-  <div class="ch"><div class="ct">📊 Category Coverage</div></div>
-  <div id="cat-bars2"></div>
-</div>
+<!-- DATA SOURCES -->
+<div class="sh"><h2>🗃️ Data Source Coverage</h2><span class="badge info" id="src-summary">Loading...</span></div>
+<div class="glass mb" id="cat-card">
+  <div class="ch"><div class="ct">📊 Categories</div></div>
+  <div id="cat-bars"></div>
 </div>
 
 </div>
 
-<div class="footer">
-  RePrime Terminal v2.0 · Full Deal Intelligence · 611 Sources + 13 Live APIs · Data as of 2026-06-02<br>
-  <span style="color:var(--dim)">NY Fed · BLS · FDIC · FEMA · Treasury · Bank of Israel · CoinGecko · SEC EDGAR · Census · Bloomberg · 600+ more</span>
-</div>
+<footer>
+  <strong style="color:var(--text)">RePrime Terminal v2.0</strong> · 611 Sources + 13 Live APIs · © 2026 RePrime Group
+</footer>
 
 <script>
 const A='';
 
-// Clock
-setInterval(()=>{document.getElementById('clock').textContent=new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',second:'2-digit'})},1000);
+// Cursor
+document.addEventListener('mousemove',e=>{
+  document.getElementById('cursor').style.transform=`translate(${e.clientX}px,${e.clientY}px)`;
+});
+
+// Counters
+function counters(){
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const t=parseInt(el.dataset.count.replace(/,/g,''));
+    const sx=el.dataset.suffix||'';
+    const t0=Date.now();const dur=1500;
+    const tick=()=>{
+      const dt=Math.min((Date.now()-t0)/dur,1);
+      const eased=1-Math.pow(1-dt,3);
+      el.textContent=Math.floor(t*eased).toLocaleString()+sx;
+      if(dt<1)requestAnimationFrame(tick);
+    };
+    tick();
+  });
+}
 
 // Ticker
 async function loadTicker(){
-  const d=await(await fetch(A+'/api/live/ticker')).json();
-  const items=d.ticker.map(t=>`<div class="ti"><span class="l">${t.label}</span><span class="v">${t.value}</span>${t.change?`<span class="c ${t.direction==='up'?'up':t.direction==='down'?'down':'n'}">${t.direction==='up'?'▲':t.direction==='down'?'▼':''}${t.change}</span>`:''}</div>`).join('');
-  document.getElementById('ticker').innerHTML=items+items;
-}
-
-// Stats
-async function loadStats(){
-  const d=await(await fetch(A+'/api/stats')).json();
-  const s=[
-    {l:'Sources Scraped',v:d.by_status.scraped,c:'green'},
-    {l:'Total Records',v:d.total_records.toLocaleString(),c:'purple'},
-    {l:'Success Rate',v:Math.round(d.by_status.scraped/(d.total_sources-d.by_status.paid_skipped)*100)+'%',c:'cyan'},
-    {l:'Data Categories',v:Object.keys(d.by_category).length,c:'accent'},
-  ];
-  document.getElementById('top-stats').innerHTML=s.map(x=>`<div class="card stat"><div class="lb">${x.l}</div><div class="vl" style="color:var(--${x.c})">${x.v}</div></div>`).join('');
-  document.getElementById('s-total').textContent=d.total_sources;
-  document.getElementById('s-scraped').textContent=d.by_status.scraped;
-  document.getElementById('s-records').textContent=d.total_records.toLocaleString();
-  document.getElementById('src-summary').textContent=`${d.total_sources} sources · ${d.total_records.toLocaleString()} records`;
-
-  const cats=Object.entries(d.by_category).sort((a,b)=>b[1].total-a[1].total);
-  const maxT=Math.max(...cats.map(c=>c[1].total));
-  const cl=['#3b82f6','#22c55e','#a855f7','#eab308','#ef4444','#06b6d4','#f97316','#ec4899','#14b8a6','#8b5cf6','#6366f1','#84cc16','#f59e0b','#10b981'];
-  document.getElementById('cat-bars2').innerHTML=cats.map((c,i)=>`<div style="display:flex;align-items:center;gap:10px;margin-bottom:5px"><div style="width:130px;font-size:11px;text-align:right;color:var(--muted)">${c[0]}</div><div style="flex:1;background:var(--bg);border-radius:3px;height:20px;overflow:hidden"><div style="height:100%;width:${c[1].total/maxT*100}%;background:${cl[i%14]};border-radius:3px;display:flex;align-items:center;padding:0 6px;font-size:9px;font-weight:600">${c[1].scraped}/${c[1].total}</div></div><div style="width:50px;font-size:10px;color:var(--muted);text-align:right;font-family:'JetBrains Mono',monospace">${c[1].records}</div></div>`).join('');
+  try{
+    const d=await(await fetch(A+'/api/live/ticker')).json();
+    const items=d.ticker.map(t=>`<div class="ti"><span class="pulse"></span><span>${t.label}</span> <strong>${t.value}</strong> <span class="${parseFloat(t.change)>=0?'up':'dn'}">${t.change}</span></div>`).join('');
+    document.getElementById('ticker').innerHTML=items+items;
+  }catch(e){}
 }
 
 // Financing
-async function loadFinancing(){
-  const [d, liveMkt]=await Promise.all([
-    fetch(A+'/api/deal/financing').then(r=>r.json()),
-    fetch(A+'/api/live/market').then(r=>r.json()),
-  ]);
-  document.getElementById('lending-body').innerHTML=d.lending_products.map(p=>`<tr><td style="font-weight:500">${p.product}</td><td class="mono">${p.rate_range}</td><td class="mono">${p.ltv}</td><td class="mono">${p.term}</td><td class="mono">${p.amort}</td><td class="mono">${p.min_dscr}</td><td style="font-size:11px;color:var(--muted)">${p.best_for}</td></tr>`).join('');
-
-  const f=d.fdic_aggregate;
-  document.getElementById('fdic-card').innerHTML=`<div class="ch"><div class="ct">🏦 FDIC Banking Aggregate</div><span class="badge info">${f.bank_count} banks</span></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-      <div><div style="font-size:10px;color:var(--muted);margin-bottom:4px">CRE Loans (Non-Res)</div><div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--accent)">$${f.total_cre_billions}B</div></div>
-      <div><div style="font-size:10px;color:var(--muted);margin-bottom:4px">Total RE Loans</div><div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--green)">$${f.total_re_billions}B</div></div>
-      <div><div style="font-size:10px;color:var(--muted);margin-bottom:4px">Construction Loans</div><div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--yellow)">$${f.total_construction_billions}B</div></div>
-    </div>`;
-
-  const fr=liveMkt.fred||{};
-  document.getElementById('rates-body2').innerHTML=`<table class="rt"><tbody>
-    <tr><td>10Y Treasury</td><td class="mono" style="color:var(--accent)">${fr['10Y_Treasury_Yield']?.value||'—'}%</td><td class="mono" style="font-size:10px;color:var(--muted)">${fr['10Y_Treasury_Yield']?.date||''}</td></tr>
-    <tr><td>30Y Treasury</td><td class="mono">${fr['30Y_Treasury_Yield']?.value||'—'}%</td><td class="mono" style="font-size:10px;color:var(--muted)">${fr['30Y_Treasury_Yield']?.date||''}</td></tr>
-    <tr><td>5Y Treasury</td><td class="mono">${fr['5Y_Treasury_Yield']?.value||'—'}%</td><td></td></tr>
-    <tr><td>30Y Mortgage</td><td class="mono" style="color:var(--orange)">${fr['30Y_Fixed_Mortgage_Rate']?.value||'—'}%</td><td class="mono" style="font-size:10px;color:var(--muted)">${fr['30Y_Fixed_Mortgage_Rate']?.date||''}</td></tr>
-    <tr><td>Fed Funds</td><td class="mono">${fr['Fed_Funds_Rate']?.value||'—'}%</td><td></td></tr>
-    <tr><td>SOFR</td><td class="mono">${fr['SOFR_Rate']?.value||'—'}%</td><td></td></tr>
-    <tr><td>CRE Delinquency</td><td class="mono" style="color:var(--red)">${fr['CRE_Delinquency_Rate']?.value||'—'}%</td><td></td></tr>
-    <tr><td>Unemployment</td><td class="mono">${fr['Unemployment_Rate']?.value||'—'}%</td><td></td></tr>
-    <tr><td>Housing Starts (K)</td><td class="mono">${fr['Housing_Starts']?.value||'—'}</td><td></td></tr>
-    <tr><td>Case-Shiller HPI</td><td class="mono">${fr['Case_Shiller_Home_Price_Index']?.value||'—'}</td><td></td></tr>
-  </tbody></table>`;
+async function loadFin(){
+  try{
+    const d=await(await fetch(A+'/api/deal/financing')).json();
+    document.getElementById('lending-body').innerHTML=d.lending_products.map(p=>`<tr><td style="font-weight:600">${p.product}</td><td class="mono" style="color:var(--accent)">${p.rate_range}</td><td class="mono">${p.ltv}</td><td class="mono">${p.term}</td><td class="mono">${p.amort}</td><td class="mono">${p.min_dscr}</td><td style="font-size:11px;color:var(--muted)">${p.best_for}</td></tr>`).join('');
+  }catch(e){}
 }
 
-// Comps
-async function loadComps(){
-  const d=await(await fetch(A+'/api/deal/comps')).json();
-  document.getElementById('comp-count').textContent=`${d.total_parcels.toLocaleString()} parcels · ${d.comparable_properties.length} comps shown`;
-  document.getElementById('comps-body').innerHTML=d.comparable_properties.map(p=>`<tr>
-    <td style="font-weight:500">${p.address||'—'}</td>
-    <td class="mono">${p.borough}</td><td class="mono">${p.zone}</td><td class="mono">${p.building_class}</td>
-    <td class="mono">${p.building_area_sf.toLocaleString()}</td><td class="mono">${p.floors}</td><td class="mono">${p.year_built}</td>
-    <td class="mono">$${p.assessed_total.toLocaleString()}</td>
-    <td class="mono">${p.price_per_sf>0?'$'+p.price_per_sf.toFixed(0):'—'}</td>
-  </tr>`).join('');
+// Market
+async function loadMarket(){
+  try{
+    const d=await(await fetch(A+'/api/live/market')).json();
+    const fr=d.fred||{};const cr=d.crypto||{};const rt=d.reits||{};
+    const cards=[
+      {m:'10-Yr Treasury',v:(fr['10Y_Treasury_Yield']?.value||'—')+'%',s:'FRED',live:1},
+      {m:'30-Yr Mortgage',v:(fr['30Y_Fixed_Mortgage_Rate']?.value||'—')+'%',s:'FRED',live:1},
+      {m:'SOFR',v:(fr['SOFR_Rate']?.value||'—')+'%',s:'NY Fed',live:1},
+      {m:'Fed Funds',v:(fr['Fed_Funds_Rate']?.value||'—')+'%',s:'FRED'},
+      {m:'CRE Delinquency',v:(fr['CRE_Delinquency_Rate']?.value||'—')+'%',s:'FRED',red:1},
+      {m:'Case-Shiller HPI',v:fr['Case_Shiller_Home_Price_Index']?.value||'—',s:'S&P'},
+      {m:'Bitcoin',v:'$'+(cr.bitcoin?.usd||0).toLocaleString(),dl:(cr.bitcoin?.usd_24h_change||0).toFixed(1)+'%',s:'CoinGecko',live:1},
+      {m:'Realty Income',v:'$'+(rt.O?.current||0).toFixed(2),dl:(rt.O?.change_pct||0).toFixed(1)+'%',s:'Finnhub',live:1},
+    ];
+    document.getElementById('market-grid').innerHTML=cards.map(c=>`<div class="glass stat"><div class="lb">${c.live?'🟢 ':''}${c.m}</div><div class="vl" ${c.red?'style="color:var(--red)"':''}>${c.v}</div>${c.dl?`<div class="sb" style="color:${parseFloat(c.dl)>=0?'var(--green)':'var(--red)'}">${parseFloat(c.dl)>=0?'▲':'▼'} ${c.dl}</div>`:`<div class="sb">${c.s}</div>`}</div>`).join('');
+  }catch(e){}
 }
 
 // News
 async function loadNews(){
-  const d=await(await fetch(A+'/api/deal/news')).json();
-  document.getElementById('news-count2').textContent=`${d.total_articles} articles`;
-  const cl=['#3b82f6','#22c55e','#a855f7','#eab308','#ef4444','#06b6d4','#f97316','#ec4899'];
-  const srcMap={};d.sources.forEach((s,i)=>srcMap[s.name]=cl[i%cl.length]);
-
-  document.getElementById('news-feed2').innerHTML=d.articles.slice(0,40).map(a=>{
-    const sc=a.sentiment==='positive'?'ok':a.sentiment==='negative'?'bad':'';
-    return `<div class="ni"><div class="nd" style="background:${srcMap[a.source]||'#64748b'}"></div><div style="flex:1"><div class="src">${a.source}</div><div class="hl"><a href="${a.link}" target="_blank">${a.title}</a></div>${a.published?`<div class="tm">${a.published}</div>`:''}</div>${sc?`<span class="badge ${sc} sent">${a.sentiment}</span>`:''}</div>`;
-  }).join('');
-
-  // Sentiment summary
-  const ss=d.sentiment_summary;
-  const total=Object.values(ss).reduce((a,b)=>a+b,0);
-  document.getElementById('sentiment-summary').innerHTML=`
-    <div style="display:flex;height:20px;border-radius:6px;overflow:hidden;gap:1px;margin-bottom:12px">
-      ${ss.positive?`<div style="flex:${ss.positive};background:var(--green);font-size:9px;display:flex;align-items:center;justify-content:center;font-weight:600">${ss.positive}</div>`:''}
-      ${ss.neutral?`<div style="flex:${ss.neutral};background:var(--border2);font-size:9px;display:flex;align-items:center;justify-content:center;font-weight:600">${ss.neutral}</div>`:''}
-      ${ss.negative?`<div style="flex:${ss.negative};background:var(--red);font-size:9px;display:flex;align-items:center;justify-content:center;font-weight:600">${ss.negative}</div>`:''}
-    </div>
-    <div style="display:flex;gap:12px;font-size:11px">
-      <div style="display:flex;align-items:center;gap:4px"><div style="width:8px;height:8px;border-radius:2px;background:var(--green)"></div>Positive: ${ss.positive||0}</div>
-      <div style="display:flex;align-items:center;gap:4px"><div style="width:8px;height:8px;border-radius:2px;background:var(--border2)"></div>Neutral: ${ss.neutral||0}</div>
-      <div style="display:flex;align-items:center;gap:4px"><div style="width:8px;height:8px;border-radius:2px;background:var(--red)"></div>Negative: ${ss.negative||0}</div>
-    </div>`;
-
-  document.getElementById('news-sources2').innerHTML=d.sources.map((s,i)=>`<div style="display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid rgba(30,41,59,.3);font-size:11px"><div style="width:6px;height:6px;border-radius:50%;background:${cl[i%cl.length]}"></div>${s.name}<span class="mono" style="margin-left:auto;color:var(--muted)">${s.count}</span></div>`).join('');
+  try{
+    const d=await(await fetch(A+'/api/deal/news')).json();
+    document.getElementById('news-count').textContent=`${d.total_articles} articles`;
+    const cl=['#3b82f6','#22c55e','#8b5cf6','#fbbf24','#ef4444','#06b6d4','#fb923c','#f472b6'];
+    const srcMap={};d.sources.forEach((s,i)=>srcMap[s.name]=cl[i%cl.length]);
+    document.getElementById('news-feed').innerHTML=d.articles.slice(0,30).map(a=>`<div class="ni"><div class="nd" style="background:${srcMap[a.source]||'#64748b';color:${srcMap[a.source]||'#64748b'}"></div><div style="flex:1"><div class="src">${a.source}</div><div class="hl"><a href="${a.link}" target="_blank">${a.title}</a></div>${a.published?`<div class="tm">${a.published}</div>`:''}</div></div>`).join('');
+    const ss=d.sentiment_summary;const total=Object.values(ss).reduce((a,b)=>a+b,0);
+    document.getElementById('sentiment-summary').innerHTML=`
+      <div style="display:flex;height:24px;border-radius:8px;overflow:hidden;gap:2px;margin-bottom:12px">
+        ${ss.positive?`<div style="flex:${ss.positive};background:var(--green);font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff">${ss.positive}</div>`:''}
+        ${ss.neutral?`<div style="flex:${ss.neutral};background:rgba(148,163,184,.3);font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700">${ss.neutral}</div>`:''}
+        ${ss.negative?`<div style="flex:${ss.negative};background:var(--red);font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff">${ss.negative}</div>`:''}
+      </div>
+      <div style="display:flex;gap:14px;font-size:11px;flex-wrap:wrap">
+        <div><span style="color:var(--green)">●</span> Positive: ${ss.positive||0}</div>
+        <div><span style="color:var(--muted)">●</span> Neutral: ${ss.neutral||0}</div>
+        <div><span style="color:var(--red)">●</span> Negative: ${ss.negative||0}</div>
+      </div>`;
+    document.getElementById('news-sources').innerHTML=d.sources.map((s,i)=>`<div style="display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04)"><div style="width:6px;height:6px;border-radius:50%;background:${cl[i%cl.length]}"></div><span>${s.name}</span><span class="mono" style="margin-left:auto;color:var(--muted)">${s.count}</span></div>`).join('');
+  }catch(e){console.log(e)}
 }
 
 // Environmental
-async function loadEnvironmental(){
-  const d=await(await fetch(A+'/api/deal/environmental')).json();
-  document.getElementById('flood-card').innerHTML=`<div class="ch"><div class="ct">🌊 Flood Claims (NFIP)</div></div>
-    <div style="font-size:10px;color:var(--muted);margin-bottom:8px">Florida-specific FEMA flood insurance claims</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-      <div><div style="font-size:10px;color:var(--muted)">Total Claims</div><div style="font-size:20px;font-weight:700;font-family:'JetBrains Mono',monospace">${(d.flood.total_claims||0).toLocaleString()}</div></div>
-      <div><div style="font-size:10px;color:var(--muted)">FL Claims</div><div style="font-size:20px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--yellow)">${(d.flood.florida_claims||0).toLocaleString()}</div></div>
-      <div style="grid-column:span 2"><div style="font-size:10px;color:var(--muted)">FL Total Paid</div><div style="font-size:20px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--red)">$${((d.flood.florida_total_paid||0)/1000000).toFixed(1)}M</div></div>
-    </div>`;
-
-  document.getElementById('disaster-card').innerHTML=`<div class="ch"><div class="ct">⚠️ FL Disaster Declarations</div></div>
-    ${(d.disasters||[]).slice(0,6).map(x=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(30,41,59,.3);font-size:11px"><span>${x.title||'—'}</span><span style="color:var(--muted)">${x.date}</span></div>`).join('')}`;
-
-  document.getElementById('policy-card').innerHTML=`<div class="ch"><div class="ct">📋 Flood Insurance Policies</div></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-      <div><div style="font-size:10px;color:var(--muted)">Total Policies</div><div style="font-size:20px;font-weight:700;font-family:'JetBrains Mono',monospace">${(d.policies.total_policies||0).toLocaleString()}</div></div>
-      <div><div style="font-size:10px;color:var(--muted)">FL Policies</div><div style="font-size:20px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--accent)">${(d.policies.florida_policies||0).toLocaleString()}</div></div>
-    </div>`;
+async function loadEnv(){
+  try{
+    const d=await(await fetch(A+'/api/deal/environmental')).json();
+    document.getElementById('environmental-grid').innerHTML=`
+      <div class="glass">
+        <div class="ch"><div class="ct">🌊 Flood Claims (NFIP)</div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:11px">
+          <div><div style="color:var(--muted);font-size:10px">Total</div><div class="mono" style="font-size:20px;font-weight:700">${(d.flood.total_claims||0).toLocaleString()}</div></div>
+          <div><div style="color:var(--muted);font-size:10px">FL Claims</div><div class="mono" style="font-size:20px;font-weight:700;color:var(--gold)">${(d.flood.florida_claims||0).toLocaleString()}</div></div>
+          <div style="grid-column:span 2"><div style="color:var(--muted);font-size:10px">FL Total Paid</div><div class="mono" style="font-size:20px;font-weight:700;color:var(--red)">$${((d.flood.florida_total_paid||0)/1000000).toFixed(1)}M</div></div>
+        </div>
+      </div>
+      <div class="glass">
+        <div class="ch"><div class="ct">⚠️ FL Disasters</div></div>
+        ${(d.disasters||[]).slice(0,5).map(x=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:11px"><span>${x.title||'—'}</span><span style="color:var(--muted)">${x.date}</span></div>`).join('')}
+      </div>
+      <div class="glass">
+        <div class="ch"><div class="ct">📋 NFIP Policies</div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:11px">
+          <div><div style="color:var(--muted);font-size:10px">Total</div><div class="mono" style="font-size:20px;font-weight:700">${(d.policies.total_policies||0).toLocaleString()}</div></div>
+          <div><div style="color:var(--muted);font-size:10px">FL Policies</div><div class="mono" style="font-size:20px;font-weight:700;color:var(--accent)">${(d.policies.florida_policies||0).toLocaleString()}</div></div>
+        </div>
+      </div>`;
+  }catch(e){}
 }
 
-// Permits
-async function loadPermits(){
-  const d=await(await fetch(A+'/api/deal/permits')).json();
-  document.getElementById('permit-count').textContent=`${d.total_permits} permits`;
-  document.getElementById('permit-body').innerHTML=d.permits.slice(0,20).map(p=>`<tr>
-    <td><span class="badge info">${p.city}</span></td>
-    <td class="mono">${p.permit_type||'—'}</td>
-    <td style="font-size:11px">${p.address||'—'}</td>
-    <td class="mono">${(p.issue_date||'').substring(0,10)}</td>
-    <td style="font-size:11px;color:var(--muted)">${p.work_description||'—'}</td>
-  </tr>`).join('');
+// Categories
+async function loadCats(){
+  try{
+    const d=await(await fetch(A+'/api/stats')).json();
+    document.getElementById('src-summary').textContent=`${d.total_sources} sources · ${d.total_records.toLocaleString()} records · ${d.by_status.scraped} scraped`;
+    const cats=Object.entries(d.by_category).sort((a,b)=>b[1].total-a[1].total);
+    const maxT=Math.max(...cats.map(c=>c[1].total));
+    const cl=['#3b82f6','#22c55e','#8b5cf6','#fbbf24','#ef4444','#06b6d4','#fb923c','#f472b6','#14b8a6','#a78bfa','#6366f1','#84cc16','#f59e0b','#10b981'];
+    document.getElementById('cat-bars').innerHTML=cats.map((c,i)=>`<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px"><div style="width:140px;font-size:11px;text-align:right;color:var(--muted)">${c[0].replace('_',' ')}</div><div style="flex:1;background:rgba(255,255,255,.04);border-radius:6px;height:22px;overflow:hidden"><div style="height:100%;width:0;background:${cl[i%14]};border-radius:6px;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:700;transition:width 1.5s cubic-bezier(.23,1,.32,1)" data-w="${c[1].total/maxT*100}">${c[1].scraped}/${c[1].total}</div></div><div style="width:60px;font-size:10px;color:var(--muted);text-align:right;font-family:'JetBrains Mono',monospace">${c[1].records}</div></div>`).join('');
+    setTimeout(()=>document.querySelectorAll('[data-w]').forEach(el=>el.style.width=el.dataset.w+'%'),300);
+  }catch(e){}
 }
 
-// FX + Crypto
-async function loadMarketExtras(){
-  const [fx,cr,prop,reits]=await Promise.all([
-    fetch(A+'/api/market/exchange-rates').then(r=>r.json()),
-    fetch(A+'/api/live/market').then(r=>r.json()),
-    fetch(A+'/api/live/property').then(r=>r.json()),
-    fetch(A+'/api/live/reits').then(r=>r.json()),
-  ]);
-  const pairs=Object.entries(fx.rates||{}).slice(0,10);
-  document.getElementById('fx-data2').innerHTML=`<table class="rt"><tbody>${pairs.map(([k,v])=>{
-    const c=v.change||0;
-    return `<tr><td style="font-weight:500">ILS/${k}</td><td class="mono">${v.rate?.toFixed(4)}</td><td class="mono ${c>0?'up':'down'}" style="color:${c>0?'var(--green)':'var(--red)'}">${c>0?'▲':'▼'}${Math.abs(c).toFixed(3)}%</td></tr>`;
-  }).join('')}</tbody></table>`;
-
-  const btc=cr.crypto?.bitcoin||{};const eth=cr.crypto?.ethereum||{};
-  const wx=prop.weather||{};const ws=prop.property||{};const mc=prop.market_context||{};
-  document.getElementById('crypto-data2').innerHTML=`
-    <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px">
-      <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--orange)">$${(btc.usd||0).toLocaleString()}</div>
-      <div><div style="font-size:11px;color:var(--muted)">BTC/USD</div><div style="font-size:10px;color:${(btc.usd_24h_change||0)<0?'var(--red)':'var(--green)'}">${(btc.usd_24h_change||0).toFixed(1)}% 24h</div></div>
-    </div>
-    <div style="display:flex;align-items:center;gap:14px">
-      <div style="font-size:20px;font-weight:600;font-family:'JetBrains Mono',monospace;color:var(--purple)">$${(eth.usd||0).toLocaleString()}</div>
-      <div><div style="font-size:10px;color:var(--muted)">ETH/USD</div></div>
-    </div>
-    <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border);font-size:11px">
-      <div style="display:flex;justify-content:space-between;padding:3px 0"><span style="color:var(--muted)">🌡️ Pensacola Weather</span><span class="mono">${wx.temp_f||'—'}°F — ${wx.description||'—'}</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0"><span style="color:var(--muted)">🚶 Walk Score</span><span class="mono" style="color:var(--green)">${ws.walk_score||'—'} (${ws.walk_description||'—'})</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0"><span style="color:var(--muted)">⛽ Gas Price</span><span class="mono">$${mc.gas_price||'—'}/gal</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0"><span style="color:var(--muted)">🏠 Median US Home</span><span class="mono">$${parseInt(mc.median_home_price_us||0).toLocaleString()}</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0"><span style="color:var(--muted)">📊 Case-Shiller HPI</span><span class="mono">${mc.case_shiller_index||'—'}</span></div>
-    </div>`;
-
-  // Add REIT table after FX
-  const reitEntries=Object.entries(reits.reits||{});
-  if(reitEntries.length){
-    const reitHtml=reitEntries.map(([t,v])=>{
-      const chg=v.change_pct||0;
-      return '<tr><td style="font-weight:500">'+t+'</td><td class="mono">$'+(v.current||0).toFixed(2)+'</td><td class="mono" style="color:'+(chg>=0?'var(--green)':'var(--red)')+'">'+((chg>=0?'▲':'▼')+Math.abs(chg).toFixed(2)+'%')+'</td></tr>';
-    }).join('');
-    const fxEl=document.getElementById('fx-data2');
-    if(fxEl){
-      fxEl.insertAdjacentHTML('afterend','<div class="card" style="margin-top:14px"><div class="ch"><div class="ct">📈 REIT Index (Finnhub Live)</div><span class="badge ok">Real-Time</span></div><table class="rt"><thead><tr><th>Ticker</th><th>Price</th><th>Change</th></tr></thead><tbody>'+reitHtml+'</tbody></table></div>');
-    }
-  }
-}
-
-// Init all
-Promise.all([loadTicker(),loadStats(),loadFinancing(),loadComps(),loadNews(),loadEnvironmental(),loadPermits(),loadMarketExtras()]).then(async()=>{
-  const prop=await fetch(A+'/api/live/property').then(r=>r.json());
-  document.getElementById('ws-score').textContent=prop.property?.walk_score||'—';
-  document.getElementById('ws-desc').textContent=prop.property?.walk_description||'';
-  document.getElementById('wx-temp').textContent=(prop.weather?.temp_f||'—')+'°F';
-  document.getElementById('wx-desc').textContent=prop.weather?.description||'';
+// Tilt
+document.querySelectorAll('.hero-images .img').forEach(el=>{
+  el.addEventListener('mousemove',e=>{
+    const r=el.getBoundingClientRect();
+    const x=((e.clientX-r.left)/r.width-.5)*8;
+    const y=((e.clientY-r.top)/r.height-.5)*-8;
+    el.style.transform=`perspective(1000px) rotateY(${x}deg) rotateX(${y}deg) scale(1.04)`;
+  });
+  el.addEventListener('mouseleave',()=>el.style.transform='');
 });
+
+counters();loadTicker();loadFin();loadMarket();loadNews();loadEnv();loadCats();
 </script>
 </body>
 </html>
