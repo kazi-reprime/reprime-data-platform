@@ -35,13 +35,13 @@ import sys
 import time
 import urllib.parse
 import urllib.request
-from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutTimeout
+from concurrent.futures import ThreadPoolExecutor, wait as cf_wait
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler
 
 VERSION = "4.0-consolidated"
-PER_SOURCE_TIMEOUT = 8
-TOTAL_BUDGET = 25
+PER_SOURCE_TIMEOUT = 6
+TOTAL_BUDGET = 18
 CACHE_TTL = 300  # 5 min
 _CACHE: dict[str, tuple[float, dict]] = {}
 
@@ -135,18 +135,27 @@ def src_fred_rates(ctx: dict) -> dict:
         "treasury_10y": "DGS10", "mortgage_30y": "MORTGAGE30US",
         "fed_funds": "FEDFUNDS", "unemployment": "UNRATE", "cpi_yoy": "CPIAUCSL",
     }
-    for label, sid in series.items():
+
+    def _one(item):
+        label, sid = item
         try:
-            txt = _http(f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={sid}", timeout=6)
+            txt = _http(f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={sid}", timeout=5)
             rows = [r for r in txt.strip().splitlines() if r and not r.startswith("DATE") and "observation_date" not in r]
             if rows:
                 date, val = rows[-1].split(",")[:2]
                 if val not in (".", ""):
-                    out[label] = {"value": f"{float(val):.2f}%", "date": date, "source": "FRED"}
+                    return label, {"value": f"{float(val):.2f}%", "date": date, "source": "FRED"}
         except Exception:  # noqa: BLE001
-            continue
+            pass
+        return label, None
+
+    # fetch all FRED series concurrently (was sequential -> ~15s)
+    with ThreadPoolExecutor(max_workers=6) as ex:
+        for label, rec in ex.map(_one, series.items()):
+            if rec:
+                out[label] = rec
     try:
-        j = _http_json("https://markets.newyorkfed.org/api/rates/sofr/last/1.json", timeout=6)
+        j = _http_json("https://markets.newyorkfed.org/api/rates/sofr/last/1.json", timeout=5)
         r = (j.get("refRates") or [{}])[0]
         if r.get("percentRate") is not None:
             out["sofr"] = {"value": f"{r['percentRate']}%", "date": r.get("effectiveDate", ""), "source": "NY Fed"}
@@ -186,25 +195,18 @@ def src_fema_flood(ctx: dict) -> dict:
            f"?geometry={lon},{lat}&geometryType=esriGeometryPoint&inSR=4326"
            "&spatialRel=esriSpatialRelIntersects&outFields=FLD_ZONE,ZONE_SUBTY,SFHA_TF"
            "&returnGeometry=false&f=json")
-    last_err = None
-    for _ in range(2):  # NFHL occasionally drops TLS; one retry
-        try:
-            j = _http_json(url, timeout=8)
-            feats = j.get("features", [])
-            if feats:
-                a = feats[0]["attributes"]
-                zone = a.get("FLD_ZONE") or "Unknown"
-                sfha = a.get("SFHA_TF")
-                risk = ("High (Special Flood Hazard Area)" if sfha == "T"
-                        else "Minimal/Moderate" if zone in ("X", "C", "B") else "See zone")
-                return {"zone": zone, "subtype": a.get("ZONE_SUBTY"), "sfha": sfha,
-                        "risk": risk, "status": "ok", "source": "FEMA NFHL"}
-            return {"zone": "unavailable", "risk": "No mapped flood zone at point",
-                    "status": "no_feature", "source": "FEMA NFHL"}
-        except Exception as e:  # noqa: BLE001
-            last_err = e
-            time.sleep(0.4)
-    raise RuntimeError(f"FEMA NFHL unreachable: {last_err}")
+    j = _http_json(url, timeout=PER_SOURCE_TIMEOUT)  # single try; runner caps it
+    feats = j.get("features", [])
+    if feats:
+        a = feats[0]["attributes"]
+        zone = a.get("FLD_ZONE") or "Unknown"
+        sfha = a.get("SFHA_TF")
+        risk = ("High (Special Flood Hazard Area)" if sfha == "T"
+                else "Minimal/Moderate" if zone in ("X", "C", "B") else "See zone")
+        return {"zone": zone, "subtype": a.get("ZONE_SUBTY"), "sfha": sfha,
+                "risk": risk, "status": "ok", "source": "FEMA NFHL"}
+    return {"zone": "unavailable", "risk": "No mapped flood zone at point",
+            "status": "no_feature", "source": "FEMA NFHL"}
 
 
 def src_fema_disasters(ctx: dict) -> dict:
@@ -532,17 +534,24 @@ def run_search(address: str, user_value: float | None = None) -> dict:
     ctx["fips_tract_6"] = ft[-6:] if len(ft) >= 6 else ""
 
     results: dict[str, dict] = {}
-    deadline = TOTAL_BUDGET - (time.time() - t_start)
-    with ThreadPoolExecutor(max_workers=10) as ex:
-        futs = {ex.submit(_run_one, n, fn, ctx): n for n, fn in SOURCES.items()}
-        for fut in list(futs):
-            name = futs[fut]
-            try:
-                n, r = fut.result(timeout=max(1, deadline))
-                results[n] = r
-            except (FutTimeout, Exception) as e:  # noqa: BLE001
-                results[name] = {"status": "error", "latency_ms": int(PER_SOURCE_TIMEOUT * 1000),
-                                 "error": f"timeout/budget: {str(e)[:120]}"}
+    deadline = max(2.0, TOTAL_BUDGET - (time.time() - t_start))
+    # Hard-bounded fan-out: collect whatever finished within the deadline, then
+    # return immediately (non-blocking shutdown) so one stuck socket can't hang
+    # the whole function past Vercel's limit.
+    ex = ThreadPoolExecutor(max_workers=12)
+    futs = {ex.submit(_run_one, n, fn, ctx): n for n, fn in SOURCES.items()}
+    done, not_done = cf_wait(futs.keys(), timeout=deadline)
+    for fut in done:
+        name = futs[fut]
+        try:
+            n, r = fut.result()
+            results[n] = r
+        except Exception as e:  # noqa: BLE001
+            results[name] = {"status": "error", "latency_ms": 0, "error": str(e)[:120]}
+    for fut in not_done:
+        results[futs[fut]] = {"status": "error", "latency_ms": int(deadline * 1000),
+                              "error": "budget timeout"}
+    ex.shutdown(wait=False, cancel_futures=True)
 
     # feed derived sources from completed results
     ctx["_fred"] = (results.get("fred_rates", {}) or {}).get("data", {})
