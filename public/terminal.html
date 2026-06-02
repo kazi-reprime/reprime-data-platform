@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,20 +7,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#05060d;--surface:rgba(255,255,255,0.04);--surface-2:rgba(255,255,255,0.06);
-  --border:rgba(255,255,255,0.08);--border-2:rgba(255,255,255,0.15);
-  --text:#f8fafc;--muted:#94a3b8;--dim:#64748b;
-  --accent:#3b82f6;--accent2:#8b5cf6;--accent3:#06b6d4;
-  --green:#22c55e;--red:#ef4444;--gold:#fbbf24;--orange:#fb923c;--pink:#f472b6;
-  --grad-1:linear-gradient(135deg,#3b82f6 0%,#8b5cf6 50%,#ec4899 100%);
-  --grad-mesh:radial-gradient(at 27% 37%,#3b82f6 0px,transparent 50%),radial-gradient(at 97% 21%,#8b5cf6 0px,transparent 50%),radial-gradient(at 52% 99%,#06b6d4 0px,transparent 50%);
-}
+:root[data-theme="dark"]{--bg:#05060d;--surface:rgba(255,255,255,0.04);--surface-2:rgba(255,255,255,0.06);--border:rgba(255,255,255,0.08);--border-2:rgba(255,255,255,0.15);--text:#f8fafc;--muted:#94a3b8;--dim:#64748b;--accent:#3b82f6;--accent2:#8b5cf6;--accent3:#06b6d4;--green:#22c55e;--red:#ef4444;--gold:#fbbf24;--orange:#fb923c;--pink:#f472b6;--glass-bg:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);--shadow:rgba(0,0,0,.4);--mesh-opacity:.18}
+:root[data-theme="light"]{--bg:#fafbfc;--surface:rgba(15,23,42,0.03);--surface-2:rgba(15,23,42,0.06);--border:rgba(15,23,42,0.08);--border-2:rgba(15,23,42,0.15);--text:#0f172a;--muted:#475569;--dim:#64748b;--accent:#3b82f6;--accent2:#8b5cf6;--accent3:#0891b2;--green:#16a34a;--red:#dc2626;--gold:#ca8a04;--orange:#ea580c;--pink:#db2777;--glass-bg:rgba(255,255,255,0.6);--glass-border:rgba(15,23,42,0.08);--shadow:rgba(15,23,42,.08);--mesh-opacity:.05}
+:root[data-theme="midnight"]{--bg:#0b1220;--surface:rgba(99,102,241,0.06);--surface-2:rgba(99,102,241,0.1);--border:rgba(99,102,241,0.12);--border-2:rgba(99,102,241,0.2);--text:#e0e7ff;--muted:#a5b4fc;--dim:#818cf8;--accent:#818cf8;--accent2:#c084fc;--accent3:#22d3ee;--green:#34d399;--red:#f87171;--gold:#fcd34d;--orange:#fb923c;--pink:#f9a8d4;--glass-bg:rgba(99,102,241,0.04);--glass-border:rgba(99,102,241,0.12);--shadow:rgba(0,0,0,.5);--mesh-opacity:.25}
+:root{--grad-1:linear-gradient(135deg,#3b82f6 0%,#8b5cf6 50%,#ec4899 100%);--grad-mesh:radial-gradient(at 27% 37%,#3b82f6 0px,transparent 50%),radial-gradient(at 97% 21%,#8b5cf6 0px,transparent 50%),radial-gradient(at 52% 99%,#06b6d4 0px,transparent 50%);--t:.4s cubic-bezier(.4,0,.2,1)}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background var(--t),color var(--t)}
 a{text-decoration:none;color:inherit}
 
-.mesh-bg{position:fixed;inset:0;z-index:-1;background:var(--grad-mesh);filter:blur(140px);opacity:.18;animation:drift 20s ease-in-out infinite}
+.mesh-bg{position:fixed;inset:0;z-index:-1;background:var(--grad-mesh);filter:blur(140px);opacity:var(--mesh-opacity);animation:drift 20s ease-in-out infinite;transition:opacity var(--t)}
 @keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(-2%,2%)}}
 
 .ticker{position:sticky;top:0;z-index:200;background:rgba(5,6,13,.7);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);overflow:hidden;height:38px}
@@ -55,7 +50,7 @@ nav .live .dot{width:5px;height:5px;border-radius:50%;background:var(--green);bo
 .g23{display:grid;grid-template-columns:2fr 1fr;gap:14px}
 .mb{margin-bottom:18px}
 
-.glass{background:rgba(255,255,255,.04);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--border);border-radius:16px;padding:20px;transition:transform .3s,border-color .3s,box-shadow .3s}
+.glass{background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--glass-border);border-radius:16px;padding:20px;transition:transform .3s,border-color .3s,box-shadow .3s}
 .glass:hover{border-color:var(--border-2);box-shadow:0 10px 40px rgba(59,130,246,.08)}
 
 .ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
@@ -126,9 +121,24 @@ footer{padding:32px;text-align:center;color:var(--dim);font-size:11px;border-top
 
 @media(max-width:1100px){.g3,.g4,.g6{grid-template-columns:repeat(2,1fr)}.g23{grid-template-columns:1fr}.hero-images{grid-template-columns:1fr;height:auto}.hero-images .side{flex-direction:row;height:120px}.hero-images .img{height:100%}}
 @media(max-width:768px){.g2,.g3,.g4,.g6{grid-template-columns:1fr}.container{padding:14px}}
+
+.theme-switcher{position:fixed;bottom:24px;right:24px;z-index:300;display:flex;background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--glass-border);border-radius:14px;padding:4px;gap:2px;box-shadow:0 10px 30px var(--shadow)}
+.theme-switcher button{background:transparent;border:none;padding:8px 12px;color:var(--muted);cursor:pointer;border-radius:10px;font-size:14px;transition:.2s;font-family:inherit}
+.theme-switcher button:hover{color:var(--text);background:var(--surface)}
+.theme-switcher button.active{background:var(--grad-1);color:#fff}
+.pills{display:flex;gap:4px;padding:4px;background:var(--surface);border-radius:10px;border:1px solid var(--border)}
+.pills a{padding:6px 14px;font-size:12px;font-weight:600;color:var(--muted);border-radius:8px;transition:.2s}
+.pills a:hover{color:var(--text);background:var(--surface-2)}
+.pills a.active{background:var(--grad-1);color:#fff}
 </style>
 </head>
 <body>
+
+<div class="theme-switcher" id="theme-switcher">
+  <button data-theme="dark" class="active">🌙</button>
+  <button data-theme="midnight">🌌</button>
+  <button data-theme="light">☀️</button>
+</div>
 
 <div class="mesh-bg"></div>
 <div class="cursor-glow" id="cursor"></div>
@@ -137,10 +147,14 @@ footer{padding:32px;text-align:center;color:var(--dim);font-size:11px;border-top
 
 <nav>
   <div class="logo"><div class="logo-icon">R</div><span>Re</span>Prime Terminal</div>
-  <div style="display:flex;gap:12px;align-items:center">
-    <span class="live"><span class="dot"></span>LIVE DATA</span>
-    <a href="/site" class="btn btn-glass">← Site</a>
-    <a href="/" class="btn btn-glass">Dashboard</a>
+  <div class="pills">
+    <a href="/site">🌐 Site</a>
+    <a href="/terminal" class="active">📊 Terminal</a>
+    <a href="/dashboard">🗂️ Dashboard</a>
+  </div>
+  <div style="display:flex;gap:10px;align-items:center">
+    <span class="live"><span class="dot"></span>LIVE</span>
+    <a href="https://github.com/kazi-reprime/reprime-data-platform" target="_blank" class="btn btn-glass">⭐</a>
   </div>
 </nav>
 
@@ -306,6 +320,13 @@ footer{padding:32px;text-align:center;color:var(--dim);font-size:11px;border-top
 
 <script>
 const A='';
+// Theme
+const _saved=localStorage.getItem('theme')||'dark';
+document.documentElement.dataset.theme=_saved;
+document.querySelectorAll('.theme-switcher button').forEach(b=>{
+  if(b.dataset.theme===_saved)b.classList.add('active');else b.classList.remove('active');
+  b.addEventListener('click',()=>{document.documentElement.dataset.theme=b.dataset.theme;localStorage.setItem('theme',b.dataset.theme);document.querySelectorAll('.theme-switcher button').forEach(x=>x.classList.toggle('active',x===b));});
+});
 
 // Cursor
 document.addEventListener('mousemove',e=>{

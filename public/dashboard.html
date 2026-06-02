@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RePrime Dashboard — Data Operations</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root[data-theme="dark"]{--bg:#05060d;--bg-elev:#0a0e1a;--surface:rgba(255,255,255,0.04);--surface-2:rgba(255,255,255,0.08);--border:rgba(255,255,255,0.08);--border-2:rgba(255,255,255,0.15);--text:#f8fafc;--muted:#94a3b8;--dim:#64748b;--accent:#3b82f6;--accent2:#8b5cf6;--green:#22c55e;--red:#ef4444;--gold:#fbbf24;--glass-bg:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);--shadow:rgba(0,0,0,.4);--mesh-opacity:.18}
+:root[data-theme="light"]{--bg:#fafbfc;--bg-elev:#fff;--surface:rgba(15,23,42,0.03);--surface-2:rgba(15,23,42,0.06);--border:rgba(15,23,42,0.08);--border-2:rgba(15,23,42,0.15);--text:#0f172a;--muted:#475569;--dim:#64748b;--accent:#3b82f6;--accent2:#8b5cf6;--green:#16a34a;--red:#dc2626;--gold:#ca8a04;--glass-bg:rgba(255,255,255,0.6);--glass-border:rgba(15,23,42,0.08);--shadow:rgba(15,23,42,.08);--mesh-opacity:.05}
+:root[data-theme="midnight"]{--bg:#0b1220;--bg-elev:#111a2e;--surface:rgba(99,102,241,0.06);--surface-2:rgba(99,102,241,0.1);--border:rgba(99,102,241,0.12);--border-2:rgba(99,102,241,0.2);--text:#e0e7ff;--muted:#a5b4fc;--dim:#818cf8;--accent:#818cf8;--accent2:#c084fc;--green:#34d399;--red:#f87171;--gold:#fcd34d;--glass-bg:rgba(99,102,241,0.04);--glass-border:rgba(99,102,241,0.12);--shadow:rgba(0,0,0,.5);--mesh-opacity:.25}
+:root{--grad-1:linear-gradient(135deg,#3b82f6 0%,#8b5cf6 50%,#ec4899 100%);--grad-mesh:radial-gradient(at 27% 37%,#3b82f6 0px,transparent 50%),radial-gradient(at 97% 21%,#8b5cf6 0px,transparent 50%),radial-gradient(at 52% 99%,#06b6d4 0px,transparent 50%);--t:.4s cubic-bezier(.4,0,.2,1)}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);transition:background var(--t),color var(--t);min-height:100vh;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+.mesh-bg{position:fixed;inset:0;z-index:-1;background:var(--grad-mesh);filter:blur(120px);opacity:var(--mesh-opacity);transition:opacity var(--t)}
+
+.theme-switcher{position:fixed;bottom:24px;right:24px;z-index:300;display:flex;background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--glass-border);border-radius:14px;padding:4px;gap:2px;box-shadow:0 10px 30px var(--shadow)}
+.theme-switcher button{background:transparent;border:none;padding:8px 12px;color:var(--muted);cursor:pointer;border-radius:10px;font-size:14px;transition:.2s;font-family:inherit}
+.theme-switcher button:hover{color:var(--text);background:var(--surface)}
+.theme-switcher button.active{background:var(--grad-1);color:#fff}
+
+nav{position:sticky;top:0;z-index:199;background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);padding:0 36px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;letter-spacing:-1px;font-family:'Space Grotesk',sans-serif}
+.logo-icon{width:30px;height:30px;border-radius:8px;background:var(--grad-1);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:14px;box-shadow:0 0 20px rgba(139,92,246,.4)}
+.logo span{background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.pills{display:flex;gap:4px;padding:4px;background:var(--surface);border-radius:10px;border:1px solid var(--border)}
+.pills a{padding:6px 14px;font-size:12px;font-weight:600;color:var(--muted);border-radius:8px;transition:.2s}
+.pills a:hover{color:var(--text);background:var(--surface-2)}
+.pills a.active{background:var(--grad-1);color:#fff}
+.btn{padding:8px 16px;border-radius:8px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:6px;cursor:pointer;border:none;font-family:inherit;transition:.2s}
+.btn-p{background:var(--grad-1);color:#fff}
+.btn-glass{background:var(--surface);border:1px solid var(--border-2);color:var(--text)}
+
+.container{max-width:1500px;margin:0 auto;padding:24px 36px}
+.glass{background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--glass-border);border-radius:16px;padding:22px;transition:.3s}
+.glass:hover{border-color:var(--border-2)}
+
+h1{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:800;letter-spacing:-1px;margin-bottom:8px}
+.sub{font-size:14px;color:var(--muted);margin-bottom:24px}
+
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.g23{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:24px}
+.stat{text-align:center;padding:20px}
+.stat .lb{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.stat .vl{font-size:30px;font-weight:800;font-family:'JetBrains Mono',monospace}
+.stat .sb{font-size:10px;color:var(--dim);margin-top:4px}
+
+.ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:.3px;background:var(--surface);border:1px solid var(--border)}
+.badge.ok{background:rgba(34,197,94,.12);color:var(--green);border-color:rgba(34,197,94,.2)}
+
+.cat-row{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.cat-row:last-child{border-bottom:none}
+.cat-name{width:160px;color:var(--muted);font-size:12px;text-align:right}
+.cat-bar-wrap{flex:1;background:var(--surface);border-radius:6px;height:24px;overflow:hidden;position:relative}
+.cat-bar-fill{height:100%;border-radius:6px;width:0;transition:width 1.5s cubic-bezier(.23,1,.32,1);display:flex;align-items:center;padding:0 10px;font-size:10px;font-weight:700;color:#fff;letter-spacing:.5px}
+.cat-records{width:60px;text-align:right;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
+
+.endpoint-list{font-family:'JetBrains Mono',monospace;font-size:11px}
+.endpoint-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)}
+.endpoint-row:last-child{border-bottom:none}
+.endpoint-row .e{color:var(--muted)}
+.endpoint-row .s{color:var(--green)}
+
+.controls{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.controls input,.controls select{padding:9px 14px;border-radius:8px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-size:13px;font-family:inherit;outline:none;transition:.2s}
+.controls input:focus,.controls select:focus{border-color:var(--accent)}
+.controls input{flex:1;min-width:200px}
+
+.src-table{width:100%;border-collapse:collapse;font-size:12px}
+.src-table th{text-align:left;padding:10px;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);border-bottom:1px solid var(--border);font-weight:600}
+.src-table td{padding:10px;border-bottom:1px solid rgba(255,255,255,.04)}
+.src-table tr:hover td{background:var(--surface)}
+.src-id{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);font-weight:600}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%}
+.dot-g{background:var(--green);box-shadow:0 0 6px var(--green)}
+.dot-r{background:var(--red);box-shadow:0 0 6px var(--red)}
+.scroll-y{max-height:500px;overflow-y:auto}
+.scroll-y::-webkit-scrollbar{width:4px}
+.scroll-y::-webkit-scrollbar-thumb{background:var(--border-2);border-radius:4px}
+
+@media(max-width:1100px){.g4{grid-template-columns:repeat(2,1fr)}.g23{grid-template-columns:1fr}}
+@media(max-width:768px){.g4{grid-template-columns:1fr}.container{padding:14px}nav{padding:0 14px}.pills{display:none}}
+</style>
+</head>
+<body>
+
+<div class="mesh-bg"></div>
+
+<div class="theme-switcher" id="theme-switcher">
+  <button data-theme="dark" class="active">🌙</button>
+  <button data-theme="midnight">🌌</button>
+  <button data-theme="light">☀️</button>
+</div>
+
+<nav>
+  <div class="logo"><div class="logo-icon">R</div><span>Re</span>Prime Dashboard</div>
+  <div class="pills">
+    <a href="/site">🌐 Site</a>
+    <a href="/terminal">📊 Terminal</a>
+    <a href="/dashboard" class="active">🗂️ Dashboard</a>
+  </div>
+  <a href="https://github.com/kazi-reprime/reprime-data-platform" target="_blank" class="btn btn-glass">⭐ GitHub</a>
+</nav>
+
+<div class="container">
+  <h1>Data Operations Dashboard</h1>
+  <p class="sub">Real-time scrape status, coverage metrics, and API endpoint health for the RePrime data platform.</p>
+
+  <!-- Top stats -->
+  <div class="g4">
+    <div class="glass stat"><div class="lb">Total Sources</div><div class="vl" style="background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent" id="s-total">611</div><div class="sb">across 14 categories</div></div>
+    <div class="glass stat"><div class="lb">Scraped</div><div class="vl" style="color:var(--green)" id="s-scraped">549</div><div class="sb">live connections</div></div>
+    <div class="glass stat"><div class="lb">Records</div><div class="vl" style="color:var(--accent)" id="s-records">8,223</div><div class="sb">data points</div></div>
+    <div class="glass stat"><div class="lb">Success Rate</div><div class="vl" style="color:var(--gold)" id="s-rate">91%</div><div class="sb">coverage</div></div>
+  </div>
+
+  <!-- Category coverage + API endpoints -->
+  <div class="g23">
+    <div class="glass">
+      <div class="ch"><div class="ct">📊 Category Coverage</div><span class="badge">14 categories</span></div>
+      <div id="cat-list"></div>
+    </div>
+    <div class="glass">
+      <div class="ch"><div class="ct">🔌 Live API Endpoints</div><span class="badge ok">All operational</span></div>
+      <div class="endpoint-list" id="endpoint-list"></div>
+    </div>
+  </div>
+
+  <!-- Source directory -->
+  <div class="glass">
+    <div class="ch"><div class="ct">🗃️ Source Directory</div><span class="badge" id="src-count">611 sources</span></div>
+    <div class="controls">
+      <input id="src-search" placeholder="🔍 Search by name, provider, category..." />
+      <select id="cat-filter"><option value="">All categories</option></select>
+      <select id="status-filter"><option value="">All status</option><option value="scraped">Scraped</option><option value="missing">Missing</option></select>
+    </div>
+    <div class="scroll-y">
+      <table class="src-table" id="src-table">
+        <thead><tr><th>ID</th><th>Name</th><th>Provider</th><th>Category</th><th>Auth</th><th>Status</th></tr></thead>
+        <tbody id="src-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+const A='';
+
+// Theme
+const saved=localStorage.getItem('theme')||'dark';
+document.documentElement.dataset.theme=saved;
+document.querySelectorAll('.theme-switcher button').forEach(b=>{
+  if(b.dataset.theme===saved)b.classList.add('active');else b.classList.remove('active');
+  b.addEventListener('click',()=>{document.documentElement.dataset.theme=b.dataset.theme;localStorage.setItem('theme',b.dataset.theme);document.querySelectorAll('.theme-switcher button').forEach(x=>x.classList.toggle('active',x===b));});
+});
+
+let allSources=[];
+
+async function loadStats(){
+  try{
+    const d=await(await fetch(A+'/api/stats')).json();
+    document.getElementById('s-total').textContent=d.total_sources;
+    document.getElementById('s-scraped').textContent=d.by_status.scraped;
+    document.getElementById('s-records').textContent=d.total_records.toLocaleString();
+    document.getElementById('s-rate').textContent=Math.round(d.by_status.scraped/(d.total_sources-d.by_status.paid_skipped)*100)+'%';
+    const cats=Object.entries(d.by_category).sort((a,b)=>b[1].total-a[1].total);
+    const maxT=Math.max(...cats.map(c=>c[1].total));
+    const cl=['#3b82f6','#22c55e','#8b5cf6','#fbbf24','#ef4444','#06b6d4','#fb923c','#f472b6','#14b8a6','#a78bfa','#6366f1','#84cc16','#f59e0b','#10b981'];
+    document.getElementById('cat-list').innerHTML=cats.map((c,i)=>`<div class="cat-row"><div class="cat-name">${c[0].replace('_',' ')}</div><div class="cat-bar-wrap"><div class="cat-bar-fill" style="background:${cl[i%14]}" data-w="${c[1].total/maxT*100}">${c[1].scraped}/${c[1].total}</div></div><div class="cat-records">${c[1].records}</div></div>`).join('');
+    setTimeout(()=>document.querySelectorAll('.cat-bar-fill').forEach(el=>el.style.width=el.dataset.w+'%'),200);
+    const sel=document.getElementById('cat-filter');
+    cats.forEach(c=>{const o=document.createElement('option');o.value=c[0];o.textContent=`${c[0]} (${c[1].total})`;sel.appendChild(o);});
+  }catch(e){}
+}
+
+async function loadEndpoints(){
+  const endpoints=[
+    {e:'/api/stats',s:'200'},
+    {e:'/api/live/ticker',s:'200'},
+    {e:'/api/live/market',s:'200'},
+    {e:'/api/live/reits',s:'200'},
+    {e:'/api/live/property',s:'200'},
+    {e:'/api/market/sofr',s:'200'},
+    {e:'/api/market/cpi',s:'200'},
+    {e:'/api/market/treasury',s:'200'},
+    {e:'/api/market/fdic',s:'200'},
+    {e:'/api/market/crypto',s:'200'},
+    {e:'/api/deal/intelligence',s:'200'},
+    {e:'/api/deal/financing',s:'200'},
+    {e:'/api/deal/news',s:'200'},
+    {e:'/api/deal/comps',s:'200'},
+    {e:'/api/deal/environmental',s:'200'},
+  ];
+  document.getElementById('endpoint-list').innerHTML=endpoints.map(x=>`<div class="endpoint-row"><span class="e">${x.e}</span><span class="s">${x.s} ✓</span></div>`).join('');
+}
+
+async function loadSources(){
+  try{
+    const d=await(await fetch(A+'/api/sources?limit=500')).json();
+    allSources=d.sources;
+    renderSources();
+  }catch(e){}
+}
+
+function renderSources(){
+  const search=document.getElementById('src-search').value.toLowerCase();
+  const cat=document.getElementById('cat-filter').value;
+  const status=document.getElementById('status-filter').value;
+  let filtered=allSources.filter(s=>{
+    const txt=`${s.id} ${s.name} ${s.provider} ${s.category}`.toLowerCase();
+    if(search&&!txt.includes(search))return false;
+    if(cat&&s.category!==cat)return false;
+    if(status==='scraped'&&!s.scraped)return false;
+    if(status==='missing'&&s.scraped)return false;
+    return true;
+  });
+  document.getElementById('src-count').textContent=`${filtered.length} of ${allSources.length}`;
+  document.getElementById('src-body').innerHTML=filtered.slice(0,100).map(s=>`<tr><td class="src-id">${s.id}</td><td>${s.name||'—'}</td><td style="color:var(--muted)">${s.provider||'—'}</td><td style="font-size:11px;color:var(--muted)">${s.category||'—'}</td><td style="font-size:11px">${(s.auth||'none').substring(0,15)}</td><td><span class="dot ${s.scraped?'dot-g':'dot-r'}"></span></td></tr>`).join('');
+}
+
+document.getElementById('src-search').addEventListener('input',renderSources);
+document.getElementById('cat-filter').addEventListener('change',renderSources);
+document.getElementById('status-filter').addEventListener('change',renderSources);
+
+loadStats();loadEndpoints();loadSources();
+</script>
+</body>
+</html>

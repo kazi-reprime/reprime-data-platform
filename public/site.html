@@ -1,35 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RePrime Group — Data-Driven Real Estate Intelligence</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
+
+/* THEME SYSTEM — 3 modes */
+:root[data-theme="dark"]{
   --bg:#05060d;--bg-elev:#0a0e1a;--surface:rgba(255,255,255,0.04);--surface-2:rgba(255,255,255,0.08);
   --border:rgba(255,255,255,0.08);--border-2:rgba(255,255,255,0.15);
-  --text:#f8fafc;--muted:#94a3b8;--dim:#64748b;
+  --text:#f8fafc;--text-2:#e2e8f0;--muted:#94a3b8;--dim:#64748b;
   --accent:#3b82f6;--accent2:#8b5cf6;--accent3:#06b6d4;
   --green:#22c55e;--red:#ef4444;--gold:#fbbf24;--orange:#fb923c;--pink:#f472b6;
+  --shadow:rgba(0,0,0,.4);
+  --glass-bg:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);
+  --mesh-opacity:.25;--noise-opacity:.03;
+}
+:root[data-theme="light"]{
+  --bg:#fafbfc;--bg-elev:#fff;--surface:rgba(15,23,42,0.03);--surface-2:rgba(15,23,42,0.06);
+  --border:rgba(15,23,42,0.08);--border-2:rgba(15,23,42,0.15);
+  --text:#0f172a;--text-2:#1e293b;--muted:#475569;--dim:#64748b;
+  --accent:#3b82f6;--accent2:#8b5cf6;--accent3:#0891b2;
+  --green:#16a34a;--red:#dc2626;--gold:#ca8a04;--orange:#ea580c;--pink:#db2777;
+  --shadow:rgba(15,23,42,.08);
+  --glass-bg:rgba(255,255,255,0.6);--glass-border:rgba(15,23,42,0.08);
+  --mesh-opacity:.08;--noise-opacity:.02;
+}
+:root[data-theme="midnight"]{
+  --bg:#0b1220;--bg-elev:#111a2e;--surface:rgba(99,102,241,0.06);--surface-2:rgba(99,102,241,0.1);
+  --border:rgba(99,102,241,0.12);--border-2:rgba(99,102,241,0.2);
+  --text:#e0e7ff;--text-2:#c7d2fe;--muted:#a5b4fc;--dim:#818cf8;
+  --accent:#818cf8;--accent2:#c084fc;--accent3:#22d3ee;
+  --green:#34d399;--red:#f87171;--gold:#fcd34d;--orange:#fb923c;--pink:#f9a8d4;
+  --shadow:rgba(0,0,0,.5);
+  --glass-bg:rgba(99,102,241,0.04);--glass-border:rgba(99,102,241,0.12);
+  --mesh-opacity:.3;--noise-opacity:.03;
+}
+:root{
   --grad-1:linear-gradient(135deg,#3b82f6 0%,#8b5cf6 50%,#ec4899 100%);
   --grad-2:linear-gradient(135deg,#06b6d4 0%,#3b82f6 100%);
   --grad-3:linear-gradient(135deg,#22c55e 0%,#06b6d4 100%);
   --grad-mesh:radial-gradient(at 27% 37%,#3b82f6 0px,transparent 50%),radial-gradient(at 97% 21%,#8b5cf6 0px,transparent 50%),radial-gradient(at 52% 99%,#06b6d4 0px,transparent 50%),radial-gradient(at 10% 29%,#ec4899 0px,transparent 50%);
+  --t:.4s cubic-bezier(.4,0,.2,1);
 }
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
 a{text-decoration:none;color:inherit}
 ::selection{background:var(--accent);color:#fff}
 
-/* ANIMATED BACKGROUND MESH */
-.mesh-bg{position:fixed;inset:0;z-index:-1;background:var(--grad-mesh);filter:blur(120px);opacity:.25;animation:mesh-drift 20s ease-in-out infinite}
+/* MESH BG */
+.mesh-bg{position:fixed;inset:0;z-index:-1;background:var(--grad-mesh);filter:blur(120px);opacity:var(--mesh-opacity);animation:mesh-drift 25s ease-in-out infinite;transition:opacity var(--t)}
 @keyframes mesh-drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-3%,2%) scale(1.05)}}
-.noise{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")}
+.noise{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:var(--noise-opacity);background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* DOT GRID */
+.dot-grid{position:fixed;inset:0;z-index:-1;background-image:radial-gradient(circle,var(--muted) 1px,transparent 1px);background-size:32px 32px;opacity:.05;pointer-events:none}
+
+/* THEME TOGGLE */
+.theme-switcher{position:fixed;bottom:24px;right:24px;z-index:300;display:flex;background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--glass-border);border-radius:14px;padding:4px;gap:2px;box-shadow:0 10px 30px var(--shadow)}
+.theme-switcher button{background:transparent;border:none;padding:8px 12px;color:var(--muted);cursor:pointer;border-radius:10px;font-size:14px;transition:.2s;display:flex;align-items:center;justify-content:center;font-family:inherit}
+.theme-switcher button:hover{color:var(--text);background:var(--surface)}
+.theme-switcher button.active{background:var(--grad-1);color:#fff;box-shadow:0 4px 12px rgba(139,92,246,.3)}
 
 /* TICKER */
-.ticker{position:sticky;top:0;z-index:200;background:rgba(5,6,13,.7);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);overflow:hidden;height:42px}
+.ticker{position:sticky;top:0;z-index:200;background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);overflow:hidden;height:42px}
 .ticker::before,.ticker::after{content:'';position:absolute;top:0;width:80px;height:100%;z-index:2;pointer-events:none}
 .ticker::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
 .ticker::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
@@ -44,38 +82,45 @@ a{text-decoration:none;color:inherit}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
 
 /* NAV */
-nav{position:sticky;top:42px;z-index:199;background:rgba(5,6,13,.6);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:68px}
+nav{position:sticky;top:42px;z-index:199;background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:68px;transition:background var(--t),border-color var(--t)}
 .logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;letter-spacing:-1px;font-family:'Space Grotesk',sans-serif}
-.logo-icon{width:32px;height:32px;border-radius:8px;background:var(--grad-1);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;box-shadow:0 0 20px rgba(139,92,246,.4)}
+.logo-icon{width:34px;height:34px;border-radius:10px;background:var(--grad-1);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;box-shadow:0 0 20px rgba(139,92,246,.4)}
 .logo span{background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-nav .links{display:flex;gap:32px}
-nav .links a{font-size:13px;color:var(--muted);font-weight:500;transition:.25s;position:relative}
+nav .links{display:flex;gap:30px}
+nav .links a{font-size:13px;color:var(--muted);font-weight:500;transition:.25s;position:relative;cursor:pointer}
 nav .links a::after{content:'';position:absolute;bottom:-6px;left:0;width:0;height:2px;background:var(--grad-1);transition:width .25s}
-nav .links a:hover{color:var(--text)}
-nav .links a:hover::after{width:100%}
-.btn{padding:11px 24px;border-radius:10px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:.25s;cursor:pointer;border:none;font-family:inherit}
+nav .links a:hover,nav .links a.active{color:var(--text)}
+nav .links a:hover::after,nav .links a.active::after{width:100%}
+
+/* PLATFORM NAV PILLS */
+.platform-pills{display:flex;gap:6px;padding:4px;background:var(--surface);border-radius:12px;border:1px solid var(--border)}
+.platform-pills a{padding:6px 14px;font-size:12px;font-weight:600;color:var(--muted);border-radius:8px;transition:.2s;display:flex;align-items:center;gap:5px}
+.platform-pills a:hover{color:var(--text);background:var(--surface-2)}
+.platform-pills a.active{background:var(--grad-1);color:#fff;box-shadow:0 4px 12px rgba(139,92,246,.3)}
+
+.btn{padding:11px 22px;border-radius:10px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:.25s;cursor:pointer;border:none;font-family:inherit}
 .btn-p{background:var(--grad-1);color:#fff;box-shadow:0 4px 20px rgba(139,92,246,.3)}
 .btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(139,92,246,.5)}
-.btn-glass{background:rgba(255,255,255,.05);backdrop-filter:blur(20px);border:1px solid var(--border-2);color:var(--text)}
-.btn-glass:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3)}
-.btn-sm{padding:8px 16px;font-size:12px}
-.btn-lg{padding:15px 32px;font-size:15px}
+.btn-glass{background:var(--surface);backdrop-filter:blur(20px);border:1px solid var(--border-2);color:var(--text)}
+.btn-glass:hover{background:var(--surface-2);border-color:var(--border-2)}
+.btn-sm{padding:8px 14px;font-size:12px}
+.btn-lg{padding:14px 28px;font-size:14px}
 
 /* HERO */
-.hero{position:relative;padding:120px 48px 100px;overflow:hidden}
-.hero-content{position:relative;z-index:2;max-width:900px}
+.hero{position:relative;padding:100px 48px 80px;overflow:hidden}
+.hero-content{position:relative;z-index:2;max-width:880px}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);border-radius:99px;font-size:11px;font-weight:600;color:var(--accent);margin-bottom:24px;animation:fadeUp .8s ease-out}
 .hero-eyebrow .live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
-.hero h1{font-family:'Space Grotesk',sans-serif;font-size:64px;font-weight:800;letter-spacing:-3px;line-height:1.05;animation:fadeUp 1s ease-out .1s both}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:60px;font-weight:800;letter-spacing:-3px;line-height:1.05;animation:fadeUp 1s ease-out .1s both}
 .hero h1 .grad{background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:grad-shift 5s ease infinite}
 @keyframes grad-shift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-.hero p{font-size:19px;color:var(--muted);margin-top:24px;line-height:1.6;max-width:700px;animation:fadeUp 1s ease-out .2s both}
-.hero .ctas{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;animation:fadeUp 1s ease-out .3s both}
+.hero p{font-size:18px;color:var(--muted);margin-top:22px;line-height:1.6;max-width:680px;animation:fadeUp 1s ease-out .2s both}
+.hero .ctas{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;animation:fadeUp 1s ease-out .3s both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 
-/* FLOATING GLASS CARDS in hero */
+/* FLOATING CARDS */
 .floats{position:absolute;inset:0;pointer-events:none;z-index:1}
-.float-card{position:absolute;background:rgba(255,255,255,.06);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--border-2);border-radius:14px;padding:14px 18px;animation:float 8s ease-in-out infinite;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.float-card{position:absolute;background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--glass-border);border-radius:14px;padding:14px 18px;animation:float 8s ease-in-out infinite;box-shadow:0 20px 60px var(--shadow)}
 .float-card .mini-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
 .float-card .mini-val{font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace}
 .float-1{top:15%;right:8%;animation-delay:0s}
@@ -84,150 +129,179 @@ nav .links a:hover::after{width:100%}
 @keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-20px) rotate(1deg)}}
 
 /* STAT BAR */
-.stat-bar{display:grid;grid-template-columns:repeat(5,1fr);background:rgba(255,255,255,.04);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--border);border-radius:24px;margin:-30px 48px 0;position:relative;z-index:10;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.stat-bar{display:grid;grid-template-columns:repeat(5,1fr);background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--glass-border);border-radius:24px;margin:-30px 48px 0;position:relative;z-index:10;overflow:hidden;box-shadow:0 30px 80px var(--shadow)}
 .stat-bar::before{content:'';position:absolute;inset:0;background:var(--grad-1);opacity:.05;pointer-events:none}
-.sb-item{padding:32px 24px;text-align:center;border-right:1px solid var(--border);position:relative}
+.sb-item{padding:30px 20px;text-align:center;border-right:1px solid var(--border);position:relative}
 .sb-item:last-child{border-right:none}
-.sb-item .v{font-size:42px;font-weight:800;font-family:'JetBrains Mono',monospace;background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.sb-item .v{font-size:38px;font-weight:800;font-family:'JetBrains Mono',monospace;background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
 .sb-item .l{font-size:11px;color:var(--muted);margin-top:8px;text-transform:uppercase;letter-spacing:1px}
-.sb-item:hover{background:rgba(255,255,255,.02)}
+
+/* PLATFORM MAP */
+.platform-map{padding:80px 48px;max-width:1400px;margin:0 auto}
+.pmap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.pmap-card{padding:32px;border-radius:20px;background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--glass-border);transition:transform .3s,border-color .3s;position:relative;overflow:hidden}
+.pmap-card:hover{transform:translateY(-6px);border-color:var(--border-2)}
+.pmap-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-1)}
+.pmap-num{font-family:'Space Grotesk',sans-serif;font-size:64px;font-weight:800;background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:.9;letter-spacing:-3px;margin-bottom:8px}
+.pmap-card h3{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.pmap-card .pmap-url{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:14px;padding:4px 10px;background:var(--surface);border-radius:6px;display:inline-block}
+.pmap-card p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:16px}
+.pmap-features{list-style:none;font-size:12px;color:var(--muted);margin-bottom:20px}
+.pmap-features li{padding:4px 0;display:flex;align-items:center;gap:8px}
+.pmap-features li::before{content:'✓';color:var(--green);font-weight:700}
+.pmap-card .pmap-cta{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--accent);padding:10px 18px;background:var(--surface);border:1px solid var(--border);border-radius:10px;transition:.2s}
+.pmap-card .pmap-cta:hover{background:var(--surface-2);transform:translateX(4px)}
 
 /* SECTIONS */
-.sec{padding:100px 48px;max-width:1400px;margin:0 auto;position:relative}
+.sec{padding:80px 48px;max-width:1400px;margin:0 auto;position:relative}
 .sec-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:3px;background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-align:center;margin-bottom:12px}
-.sec-title{font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:800;letter-spacing:-1.5px;text-align:center;line-height:1.1}
-.sec-sub{font-size:17px;color:var(--muted);text-align:center;max-width:680px;margin:16px auto 60px;line-height:1.6}
+.sec-title{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:800;letter-spacing:-1.5px;text-align:center;line-height:1.1}
+.sec-sub{font-size:16px;color:var(--muted);text-align:center;max-width:660px;margin:14px auto 50px;line-height:1.6}
 
-/* REVEAL ON SCROLL */
+/* REVEAL */
 .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
 .reveal.in{opacity:1;transform:translateY(0)}
 
-/* GLASS CARD */
-.glass{background:rgba(255,255,255,.04);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--border);border-radius:20px;transition:transform .3s,border-color .3s,box-shadow .3s}
-.glass:hover{transform:translateY(-4px);border-color:var(--border-2);box-shadow:0 20px 60px rgba(59,130,246,.1)}
+/* GLASS */
+.glass{background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--glass-border);border-radius:18px;transition:transform .3s,border-color .3s,box-shadow .3s}
+.glass:hover{transform:translateY(-4px);border-color:var(--border-2);box-shadow:0 20px 60px var(--shadow)}
 
-/* 3 COLUMN WHY */
-.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.why-card{padding:32px;text-align:center;position:relative;overflow:hidden}
-.why-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:var(--grad-1);opacity:0;transition:opacity .4s;z-index:-1;filter:blur(40px)}
-.why-card:hover::before{opacity:.1}
-.why-icon{width:64px;height:64px;border-radius:16px;background:var(--grad-1);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px;box-shadow:0 10px 30px rgba(139,92,246,.3)}
-.why-card h3{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;margin-bottom:10px}
-.why-card p{font-size:14px;color:var(--muted);line-height:1.6}
+/* WHY GRID */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.why-card{padding:28px;text-align:left;position:relative;overflow:hidden}
+.why-icon{width:56px;height:56px;border-radius:14px;background:var(--grad-1);display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:24px;box-shadow:0 10px 30px rgba(139,92,246,.3)}
+.why-card h3{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px}
+.why-card p{font-size:13px;color:var(--muted);line-height:1.6}
 
-/* INTELLIGENCE PIPELINE */
+/* PIPELINE */
 .pipeline{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;position:relative;margin-top:40px}
 .pipeline::before{content:'';position:absolute;top:30px;left:5%;right:5%;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3),var(--green));opacity:.3;z-index:0}
-.pipe-step{position:relative;z-index:1;text-align:center;padding:20px 10px}
-.pipe-num{width:60px;height:60px;border-radius:50%;background:var(--bg);border:2px solid;background-image:var(--grad-1);background-clip:padding-box;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:800;color:#fff;box-shadow:0 10px 30px rgba(139,92,246,.3);transition:transform .3s}
+.pipe-step{position:relative;z-index:1;text-align:center;padding:18px 8px}
+.pipe-num{width:60px;height:60px;border-radius:50%;background:var(--bg);background-image:var(--grad-1);background-clip:padding-box;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:800;color:#fff;box-shadow:0 10px 30px rgba(139,92,246,.3);transition:transform .3s}
 .pipe-step:hover .pipe-num{transform:scale(1.1) rotate(5deg)}
-.pipe-step h4{font-size:14px;font-weight:700;margin-bottom:6px}
+.pipe-step h4{font-size:13px;font-weight:700;margin-bottom:5px}
 .pipe-step p{font-size:11px;color:var(--muted);line-height:1.4}
 
-/* BENTO GRID */
+/* RESEARCH METHODOLOGY */
+.method-grid{display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-top:40px}
+.method-main{padding:32px}
+.method-step{display:flex;gap:18px;padding:18px 0;border-bottom:1px solid var(--border)}
+.method-step:last-child{border-bottom:none}
+.method-step-num{width:34px;height:34px;border-radius:10px;background:var(--grad-1);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;font-family:'JetBrains Mono',monospace}
+.method-step h4{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;margin-bottom:5px}
+.method-step p{font-size:12px;color:var(--muted);line-height:1.5}
+.method-side{display:flex;flex-direction:column;gap:14px}
+.method-stat{padding:22px;text-align:center}
+.method-stat .v{font-size:32px;font-weight:800;font-family:'JetBrains Mono',monospace;background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.method-stat .l{font-size:10px;color:var(--muted);margin-top:6px;text-transform:uppercase;letter-spacing:1px}
+
+/* BENTO */
 .bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:140px;gap:14px}
-.bento-item{padding:24px;position:relative;overflow:hidden;cursor:default}
-.bento-item .icon{font-size:28px;margin-bottom:12px;display:inline-block}
-.bento-item h4{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;margin-bottom:6px}
-.bento-item .num{font-size:36px;font-weight:800;font-family:'JetBrains Mono',monospace;background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin:6px 0}
-.bento-item p{font-size:12px;color:var(--muted);line-height:1.4}
+.bento-item{padding:22px;position:relative;overflow:hidden}
+.bento-item .icon{font-size:28px;margin-bottom:10px;display:inline-block}
+.bento-item h4{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;margin-bottom:5px}
+.bento-item .num{font-size:34px;font-weight:800;font-family:'JetBrains Mono',monospace;background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin:5px 0}
+.bento-item p{font-size:11px;color:var(--muted);line-height:1.4}
 .bento-item .tag{display:inline-block;font-size:9px;font-weight:700;padding:3px 8px;border-radius:99px;margin-top:8px;letter-spacing:.5px;text-transform:uppercase}
-.bento-tag-live{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.2)}
-.bento-tag-api{background:rgba(59,130,246,.12);color:var(--accent);border:1px solid rgba(59,130,246,.2)}
-.bento-tag-feed{background:rgba(139,92,246,.12);color:var(--accent2);border:1px solid rgba(139,92,246,.2)}
-.bento-tag-bulk{background:rgba(251,191,36,.12);color:var(--gold);border:1px solid rgba(251,191,36,.2)}
+.tag-live{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.2)}
+.tag-api{background:rgba(59,130,246,.12);color:var(--accent);border:1px solid rgba(59,130,246,.2)}
+.tag-feed{background:rgba(139,92,246,.12);color:var(--accent2);border:1px solid rgba(139,92,246,.2)}
+.tag-bulk{background:rgba(251,191,36,.12);color:var(--gold);border:1px solid rgba(251,191,36,.2)}
 .b-span2{grid-column:span 2}
 .b-rowspan2{grid-row:span 2}
 
 /* DATA CARDS */
 .data-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.d-card{padding:20px;text-align:left;position:relative;overflow:hidden}
+.d-card{padding:20px;position:relative;overflow:hidden}
 .d-card .metric{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;display:flex;align-items:center;gap:6px}
-.d-card .metric .live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:pulse 2s infinite}
-.d-card .val{font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace}
-.d-card .delta{font-size:11px;margin-top:6px;font-family:'JetBrains Mono',monospace;display:flex;align-items:center;gap:4px}
+.d-card .live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:pulse 2s infinite}
+.d-card .val{font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace}
+.d-card .delta{font-size:11px;margin-top:6px;font-family:'JetBrains Mono',monospace}
 .d-card .src{font-size:9px;color:var(--dim);margin-top:8px;letter-spacing:.5px;text-transform:uppercase}
-.d-card .spark{position:absolute;bottom:0;right:0;width:80px;height:30px;opacity:.3}
 
-/* PROPERTY GALLERY 3D */
-.gallery-3d{display:grid;grid-template-columns:2fr 1fr 1fr;gap:6px;border-radius:24px;overflow:hidden;perspective:1000px;height:380px}
-.gallery-3d .img{background-size:cover;background-position:center;position:relative;transition:transform .6s cubic-bezier(.23,1,.32,1);transform-style:preserve-3d}
-.gallery-3d .img:hover{transform:scale(1.03)}
+/* GALLERY */
+.gallery-3d{display:grid;grid-template-columns:2fr 1fr 1fr;gap:6px;border-radius:24px;overflow:hidden;height:360px}
+.gallery-3d .img{background-size:cover;background-position:center;position:relative;transition:transform .6s cubic-bezier(.23,1,.32,1)}
+.gallery-3d .img:hover{transform:scale(1.04)}
 .gallery-3d .main{grid-row:span 2}
 .gallery-3d .side{display:flex;flex-direction:column;gap:6px}
 .gallery-3d .side .img{height:100%}
-.img-label{position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,.7);backdrop-filter:blur(10px);color:#fff;padding:5px 12px;border-radius:8px;font-size:11px;font-weight:600}
+.img-label{position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);color:#fff;padding:5px 12px;border-radius:8px;font-size:11px;font-weight:600}
 
-/* DEAL METRICS */
 .deal-row{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:24px}
-.deal-m{padding:20px;text-align:center;position:relative;overflow:hidden}
+.deal-m{padding:18px;text-align:center;position:relative;overflow:hidden}
 .deal-m::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-1)}
-.deal-m .v{font-size:26px;font-weight:800;font-family:'JetBrains Mono',monospace}
+.deal-m .v{font-size:24px;font-weight:800;font-family:'JetBrains Mono',monospace}
 .deal-m .l{font-size:10px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:1px}
 
-/* TEAM */
-.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.team-card{padding:28px 20px;text-align:center;position:relative}
-.team-avatar{width:80px;height:80px;border-radius:50%;background:var(--grad-1);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:800;color:#fff;box-shadow:0 10px 30px rgba(139,92,246,.3);transition:transform .3s}
-.team-card:hover .team-avatar{transform:scale(1.1) rotate(5deg)}
-.team-card h4{font-size:15px;font-weight:700;margin-bottom:4px}
-.team-card .ti{font-size:11px;color:var(--muted);line-height:1.4}
+/* CATEGORY */
+.cat-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+.cat-card{padding:18px 14px;text-align:center}
+.cat-card .num{font-size:22px;font-weight:800;font-family:'JetBrains Mono',monospace;background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.cat-card .name{font-size:10px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.5px;font-weight:500}
+.cat-card .meta{font-size:9px;color:var(--dim);margin-top:2px}
+.cat-card .bar{height:3px;background:var(--surface-2);border-radius:99px;margin-top:10px;overflow:hidden}
+.cat-card .bar-fill{height:100%;border-radius:99px;background:var(--grad-1);width:0;transition:width 1.5s cubic-bezier(.23,1,.32,1)}
 
-/* TESTIMONIALS */
-.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.test{padding:28px}
-.test .co{font-size:10px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
-.test .q{font-size:14px;color:var(--text);line-height:1.6;font-style:italic;margin-bottom:14px;position:relative}
-.test .q::before{content:'"';font-size:48px;color:var(--accent);opacity:.3;position:absolute;top:-20px;left:-10px;font-family:'Space Grotesk',sans-serif}
-.test .au{font-size:12px;font-weight:600}.test .rl{font-size:11px;color:var(--muted)}
-
-/* PARTNERS MARQUEE */
-.marquee{overflow:hidden;padding:20px 0;position:relative;margin:30px 0}
+/* MARQUEE */
+.marquee{overflow:hidden;padding:18px 0;position:relative;margin:24px 0}
 .marquee::before,.marquee::after{content:'';position:absolute;top:0;width:120px;height:100%;z-index:2;pointer-events:none}
 .marquee::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
 .marquee::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
-.marquee-track{display:flex;animation:scroll 40s linear infinite;white-space:nowrap;gap:14px}
+.marquee-track{display:flex;animation:scroll 40s linear infinite;white-space:nowrap;gap:12px}
 .marquee.reverse .marquee-track{animation-direction:reverse;animation-duration:50s}
-.mq-item{padding:14px 26px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;font-size:13px;font-weight:600;color:var(--muted);white-space:nowrap;backdrop-filter:blur(10px);flex-shrink:0}
-.mq-item:hover{background:rgba(255,255,255,.08);color:var(--text);border-color:var(--border-2)}
+.mq-item{padding:12px 22px;background:var(--surface);border:1px solid var(--border);border-radius:12px;font-size:13px;font-weight:600;color:var(--muted);white-space:nowrap;backdrop-filter:blur(10px);flex-shrink:0}
 
-/* CATEGORY GRID */
-.cat-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
-.cat-card{padding:18px 14px;text-align:center;position:relative}
-.cat-card .num{font-size:24px;font-weight:800;font-family:'JetBrains Mono',monospace;background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.cat-card .name{font-size:10px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.5px;font-weight:500}
-.cat-card .meta{font-size:9px;color:var(--dim);margin-top:2px}
-.cat-card .bar{height:3px;background:rgba(255,255,255,.06);border-radius:99px;margin-top:10px;overflow:hidden}
-.cat-card .bar-fill{height:100%;border-radius:99px;background:var(--grad-1);width:0;transition:width 1.5s cubic-bezier(.23,1,.32,1)}
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.team-card{padding:24px 18px;text-align:center}
+.team-avatar{width:72px;height:72px;border-radius:50%;background:var(--grad-1);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:800;color:#fff;box-shadow:0 10px 30px rgba(139,92,246,.3);transition:transform .3s}
+.team-card:hover .team-avatar{transform:scale(1.1) rotate(5deg)}
+.team-card h4{font-size:14px;font-weight:700;margin-bottom:3px}
+.team-card .ti{font-size:11px;color:var(--muted);line-height:1.4}
 
-/* CTA SECTION */
+/* TESTIMONIALS */
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.test{padding:24px}
+.test .co{font-size:10px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.test .q{font-size:13px;color:var(--text);line-height:1.6;font-style:italic;margin-bottom:12px;position:relative}
+.test .au{font-size:12px;font-weight:600}.test .rl{font-size:11px;color:var(--muted)}
+
+/* CTA */
 .cta-final{padding:80px 48px;margin:40px;border-radius:32px;background:var(--grad-1);position:relative;overflow:hidden;text-align:center}
-.cta-final::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.3'/%3E%3C/svg%3E")}
-.cta-final h2{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:800;color:#fff;letter-spacing:-1px;position:relative}
-.cta-final p{font-size:17px;color:rgba(255,255,255,.85);margin-top:14px;position:relative}
+.cta-final h2{font-family:'Space Grotesk',sans-serif;font-size:38px;font-weight:800;color:#fff;letter-spacing:-1px;position:relative}
+.cta-final p{font-size:16px;color:rgba(255,255,255,.85);margin-top:14px;position:relative}
 .cta-final .ctas{margin-top:30px;position:relative;justify-content:center;display:flex;gap:14px}
 
 /* FOOTER */
-footer{background:var(--bg-elev);border-top:1px solid var(--border);padding:48px 48px 32px;text-align:center;font-size:12px;color:var(--muted)}
-footer a{color:var(--accent)}
-footer .ft-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-bottom:40px;text-align:left;max-width:1200px;margin-left:auto;margin-right:auto}
-footer .ft-col h5{font-size:13px;color:var(--text);margin-bottom:14px;font-weight:600}
-footer .ft-col a{display:block;color:var(--muted);margin-bottom:8px;font-size:12px;transition:color .2s}
-footer .ft-col a:hover{color:var(--text)}
+footer{background:var(--bg-elev);border-top:1px solid var(--border);padding:48px 48px 32px;font-size:12px;color:var(--muted);transition:background var(--t)}
+.ft-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-bottom:32px;max-width:1300px;margin-left:auto;margin-right:auto}
+.ft-col h5{font-size:13px;color:var(--text);margin-bottom:14px;font-weight:600}
+.ft-col a{display:block;color:var(--muted);margin-bottom:8px;font-size:12px;transition:color .2s}
+.ft-col a:hover{color:var(--text)}
+.ft-bot{text-align:center;border-top:1px solid var(--border);padding-top:24px;max-width:1300px;margin:0 auto}
 
-/* CURSOR GLOW */
-.cursor-glow{position:fixed;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.15),transparent 70%);pointer-events:none;z-index:0;transition:transform .15s ease-out;filter:blur(40px);transform:translate(-50%,-50%)}
+/* CURSOR GLOW (dark themes only) */
+.cursor-glow{position:fixed;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.12),transparent 70%);pointer-events:none;z-index:0;transition:transform .15s ease-out;filter:blur(40px);transform:translate(-50%,-50%);opacity:0}
+:root[data-theme="dark"] .cursor-glow,:root[data-theme="midnight"] .cursor-glow{opacity:1}
 
-/* RESPONSIVE */
-@media(max-width:1100px){.bento,.data-grid{grid-template-columns:repeat(2,1fr)}.cat-grid{grid-template-columns:repeat(4,1fr)}.pipeline{grid-template-columns:repeat(3,1fr);gap:30px}.pipeline::before{display:none}.team-grid{grid-template-columns:repeat(2,1fr)}.stat-bar{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:768px){.why-grid,.bento,.data-grid,.test-grid,.team-grid,.deal-row,.cat-grid,.pipeline{grid-template-columns:1fr}.stat-bar{grid-template-columns:1fr 1fr;margin:0 16px}.sec{padding:60px 20px}.hero{padding:60px 20px}.hero h1{font-size:38px}.gallery-3d{grid-template-columns:1fr;height:auto}.gallery-3d .main{grid-row:auto;height:240px}.gallery-3d .side{flex-direction:row;height:120px}.gallery-3d .side .img{height:100%}.nav{padding:0 20px}.nav .links{display:none}}
+@media(max-width:1100px){.bento,.data-grid{grid-template-columns:repeat(2,1fr)}.cat-grid{grid-template-columns:repeat(4,1fr)}.pipeline{grid-template-columns:repeat(3,1fr);gap:24px}.pipeline::before{display:none}.team-grid{grid-template-columns:repeat(2,1fr)}.stat-bar{grid-template-columns:repeat(3,1fr)}.pmap-grid,.why-grid,.method-grid{grid-template-columns:1fr}}
+@media(max-width:768px){.test-grid,.deal-row,.cat-grid,.pipeline{grid-template-columns:1fr}.stat-bar{grid-template-columns:1fr 1fr;margin:0 16px}.sec,.hero{padding:60px 20px}.hero h1{font-size:36px}.gallery-3d{grid-template-columns:1fr;height:auto}.gallery-3d .main{grid-row:auto;height:240px}.gallery-3d .side{flex-direction:row;height:120px}.gallery-3d .side .img{height:100%}nav{padding:0 20px}nav .links,.platform-pills{display:none}}
 </style>
 </head>
 <body>
 
 <div class="mesh-bg"></div>
 <div class="noise"></div>
+<div class="dot-grid"></div>
 <div class="cursor-glow" id="cursor"></div>
+
+<!-- THEME SWITCHER -->
+<div class="theme-switcher" id="theme-switcher">
+  <button data-theme="dark" title="Dark mode" class="active">🌙</button>
+  <button data-theme="midnight" title="Midnight mode">🌌</button>
+  <button data-theme="light" title="Light mode">☀️</button>
+</div>
 
 <!-- TICKER -->
 <div class="ticker"><div class="ticker-track" id="ticker"></div></div>
@@ -238,16 +312,13 @@ footer .ft-col a:hover{color:var(--text)}
     <div class="logo-icon">R</div>
     <span>Re</span>Prime Group
   </div>
-  <div class="links">
-    <a href="#about">About</a>
-    <a href="#pipeline">Intelligence</a>
-    <a href="#sources">Data</a>
-    <a href="#deal">Deal</a>
-    <a href="#team">Team</a>
-    <a href="#contact">Contact</a>
+  <div class="platform-pills">
+    <a href="/site" class="active">🌐 Site</a>
+    <a href="/terminal">📊 Terminal</a>
+    <a href="/dashboard">🗂️ Dashboard</a>
   </div>
   <div style="display:flex;gap:10px">
-    <a href="/terminal" class="btn btn-glass btn-sm">Terminal →</a>
+    <a href="https://github.com/kazi-reprime/reprime-data-platform" target="_blank" class="btn btn-glass btn-sm">⭐ GitHub</a>
     <a href="#contact" class="btn btn-p btn-sm">Submit Deal</a>
   </div>
 </nav>
@@ -255,25 +326,16 @@ footer .ft-col a:hover{color:var(--text)}
 <!-- HERO -->
 <section class="hero">
   <div class="floats">
-    <div class="float-card float-1">
-      <div class="mini-label">SOFR 30d</div>
-      <div class="mini-val" style="color:var(--green)">3.59%</div>
-    </div>
-    <div class="float-card float-2">
-      <div class="mini-label">FRED Sources</div>
-      <div class="mini-val" style="color:var(--accent)">35</div>
-    </div>
-    <div class="float-card float-3">
-      <div class="mini-label">Live APIs</div>
-      <div class="mini-val" style="color:var(--accent2)">13</div>
-    </div>
+    <div class="float-card float-1"><div class="mini-label">SOFR 30d</div><div class="mini-val" style="color:var(--green)">3.59%</div></div>
+    <div class="float-card float-2"><div class="mini-label">FRED Sources</div><div class="mini-val" style="color:var(--accent)">35</div></div>
+    <div class="float-card float-3"><div class="mini-label">Live APIs</div><div class="mini-val" style="color:var(--accent2)">13</div></div>
   </div>
   <div class="hero-content">
-    <div class="hero-eyebrow"><span class="live-dot"></span>611 SOURCES · 13 LIVE APIS · UPDATED CONTINUOUSLY</div>
+    <div class="hero-eyebrow"><span class="live-dot"></span>611 SOURCES · 13 LIVE APIS · CONTINUOUSLY VERIFIED</div>
     <h1>Institutional Capital.<br><span class="grad">Data-Driven Execution.</span></h1>
     <p>We don't guess — we verify. Every acquisition is backed by 611 real-time data sources, 13 live API feeds, and an institutional research pipeline that leaves nothing to assumption.</p>
     <div class="ctas">
-      <a href="#pipeline" class="btn btn-glass btn-lg">See How We Research →</a>
+      <a href="#platform" class="btn btn-glass btn-lg">Explore the Platform →</a>
       <a href="/terminal" class="btn btn-p btn-lg">Open Data Terminal</a>
     </div>
   </div>
@@ -288,6 +350,57 @@ footer .ft-col a:hover{color:var(--text)}
   <div class="sb-item"><div class="v" data-count="91" data-suffix="%">0</div><div class="l">Source Coverage</div></div>
 </div>
 
+<!-- PLATFORM MAP -->
+<section class="platform-map" id="platform">
+  <div class="reveal sec-label">Three Connected Experiences</div>
+  <h2 class="reveal sec-title">The RePrime Platform</h2>
+  <p class="reveal sec-sub">Three views of the same intelligence — designed for different audiences and depths of analysis. All powered by the same 611-source research pipeline.</p>
+  <div class="pmap-grid">
+    <div class="pmap-card reveal">
+      <div class="pmap-num">01</div>
+      <h3>🌐 Company Site</h3>
+      <div class="pmap-url">/site</div>
+      <p>The investor-facing storefront. Shows how we research, what sources we use, and why our methodology is institutional-grade.</p>
+      <ul class="pmap-features">
+        <li>Intelligence pipeline visualization</li>
+        <li>611 sources breakdown by category</li>
+        <li>Live market context (FRED, BLS, REITs)</li>
+        <li>Featured deal showcase</li>
+        <li>Team, partners, testimonials</li>
+      </ul>
+      <a href="/site" class="pmap-cta">You are here →</a>
+    </div>
+    <div class="pmap-card reveal">
+      <div class="pmap-num">02</div>
+      <h3>📊 Deal Terminal</h3>
+      <div class="pmap-url">/terminal</div>
+      <p>The institutional analysis view. Full deal intelligence with property photos, capital stack, tenant roster, financing products, and live market context.</p>
+      <ul class="pmap-features">
+        <li>Real property photos from OM</li>
+        <li>Capital stack & cash flow waterfall</li>
+        <li>Tenant roster with credit ratings</li>
+        <li>6 SOFR-indexed lending products</li>
+        <li>News sentiment & environmental risk</li>
+      </ul>
+      <a href="/terminal" class="pmap-cta">Open terminal →</a>
+    </div>
+    <div class="pmap-card reveal">
+      <div class="pmap-num">03</div>
+      <h3>🗂️ Data Dashboard</h3>
+      <div class="pmap-url">/dashboard</div>
+      <p>The technical operations view. Source-by-source scrape coverage, category breakdown, and data quality metrics.</p>
+      <ul class="pmap-features">
+        <li>All 611 sources searchable</li>
+        <li>14 category coverage breakdown</li>
+        <li>Scrape success/error rates</li>
+        <li>Live vs cached data status</li>
+        <li>Direct API endpoint testing</li>
+      </ul>
+      <a href="/dashboard" class="pmap-cta">Open dashboard →</a>
+    </div>
+  </div>
+</section>
+
 <!-- WHY -->
 <section class="sec" id="about">
   <div class="reveal sec-label">Why This Matters</div>
@@ -295,23 +408,60 @@ footer .ft-col a:hover{color:var(--text)}
   <p class="reveal sec-sub">Every claim in our offering memorandums is sourced from live government databases, federal reserve data, SEC filings, and institutional-grade analytics. Investors see the exact data trail behind every number.</p>
   <div class="why-grid">
     <div class="glass why-card reveal"><div class="why-icon">🔬</div><h3>Research-Driven Underwriting</h3><p>Every deal is analyzed against 611 data sources before an offer is made. Cap rates, vacancy, debt maturities, tenant credit — all verified against primary sources.</p></div>
-    <div class="glass why-card reveal"><div class="why-icon">📡</div><h3>Live Market Monitoring</h3><p>13 API feeds update continuously — FRED, NY Fed, FDIC, BLS, Finnhub, CoinGecko, Walk Score, OpenWeather, EIA, Treasury, and more.</p></div>
+    <div class="glass why-card reveal"><div class="why-icon">📡</div><h3>Live Market Monitoring</h3><p>13 API feeds update continuously — FRED, NY Fed, FDIC, BLS, Finnhub, CoinGecko, Walk Score, OpenWeather, EIA, and more.</p></div>
     <div class="glass why-card reveal"><div class="why-icon">🛡️</div><h3>Investor Transparency</h3><p>Every data point on our terminal links back to its source. Investors can verify any number independently. No black boxes.</p></div>
   </div>
 </section>
 
-<!-- PIPELINE -->
+<!-- INTELLIGENCE PIPELINE -->
 <section class="sec" id="pipeline">
   <div class="reveal sec-label">Our Process</div>
   <h2 class="reveal sec-title">The Intelligence Pipeline</h2>
   <p class="reveal sec-sub">How we transform 611 raw data sources into institutional-grade deal intelligence — in real time.</p>
   <div class="pipeline">
-    <div class="pipe-step reveal"><div class="pipe-num">1</div><h4>Source</h4><p>611 sources identified across government, financial, and market data providers</p></div>
-    <div class="pipe-step reveal"><div class="pipe-num">2</div><h4>Connect</h4><p>Automated connectors for REST APIs, RSS feeds, Socrata, ArcGIS, bulk downloads</p></div>
+    <div class="pipe-step reveal"><div class="pipe-num">1</div><h4>Source</h4><p>611 sources identified across government, financial, and market providers</p></div>
+    <div class="pipe-step reveal"><div class="pipe-num">2</div><h4>Connect</h4><p>Automated connectors for REST, RSS, Socrata, ArcGIS, bulk downloads</p></div>
     <div class="pipe-step reveal"><div class="pipe-num">3</div><h4>Scrape</h4><p>Async parallel scraping — 549 sources connected, 8,223 records collected</p></div>
-    <div class="pipe-step reveal"><div class="pipe-num">4</div><h4>Enrich</h4><p>13 live API keys add real-time rates, prices, weather, walk scores, REIT data</p></div>
+    <div class="pipe-step reveal"><div class="pipe-num">4</div><h4>Enrich</h4><p>13 live API keys add real-time rates, prices, weather, walk scores</p></div>
     <div class="pipe-step reveal"><div class="pipe-num">5</div><h4>Analyze</h4><p>Cross-reference all sources against deal metrics — cap rates, NOI, credit</p></div>
-    <div class="pipe-step reveal"><div class="pipe-num">6</div><h4>Deliver</h4><p>Terminal delivers verified intelligence with full source attribution to investors</p></div>
+    <div class="pipe-step reveal"><div class="pipe-num">6</div><h4>Deliver</h4><p>Terminal delivers verified intelligence with full source attribution</p></div>
+  </div>
+</section>
+
+<!-- RESEARCH METHODOLOGY -->
+<section class="sec">
+  <div class="reveal sec-label">Behind the Numbers</div>
+  <h2 class="reveal sec-title">Research Methodology</h2>
+  <p class="reveal sec-sub">Our institutional research process is documented, reproducible, and auditable. Here's exactly how we do it.</p>
+  <div class="method-grid">
+    <div class="glass method-main reveal">
+      <div class="method-step">
+        <div class="method-step-num">A</div>
+        <div><h4>Source Identification</h4><p>Curated 611 data sources spanning government APIs (FRED, Census, BLS, FDIC, FEMA, SEC EDGAR, EPA, EIA, Treasury), municipal portals (NYC PLUTO, Chicago Open Data, Dallas), RSS feeds (Bloomberg, Federal Reserve, CFPB, Commercial Observer), and live API integrations (Finnhub for REITs, CoinGecko for crypto, Walk Score for location).</p></div>
+      </div>
+      <div class="method-step">
+        <div class="method-step-num">B</div>
+        <div><h4>Classification & Tagging</h4><p>Each source is tagged with metadata: connector type (REST/RSS/Socrata/ArcGIS/Bulk), auth requirement (none vs free API key vs paid), update frequency, data category (14 categories), and reliability score. 400 sources require zero auth; 211 use free API keys.</p></div>
+      </div>
+      <div class="method-step">
+        <div class="method-step-num">C</div>
+        <div><h4>Async Parallel Scraping</h4><p>Python asyncio with httpx for concurrent fetches. Tenacity for retry logic with exponential backoff. Custom connectors per source type. 549 of 611 sources successfully scraped (91% success rate). 8,223 individual records collected across all categories.</p></div>
+      </div>
+      <div class="method-step">
+        <div class="method-step-num">D</div>
+        <div><h4>Live API Enrichment</h4><p>13 real-time API keys layered on top of scraped data: FRED (20 economic series), BLS (CPI, employment), Census (Pensacola MSA demographics), BEA (GDP), Finnhub (10 REIT prices), CoinGecko (BTC/ETH), Walk Score (location walkability), OpenWeather (current conditions), EIA (energy prices), Twelve Data, Alpha Vantage, NY Fed, Treasury.gov.</p></div>
+      </div>
+      <div class="method-step">
+        <div class="method-step-num">E</div>
+        <div><h4>Source Attribution</h4><p>Every data point on the terminal displays its source. Investors can click any number to see the original API call, response timestamp, and data lineage. No black-box analytics. Reports include full citation trails for due diligence.</p></div>
+      </div>
+    </div>
+    <div class="method-side">
+      <div class="glass method-stat reveal"><div class="v">8,223</div><div class="l">Records Collected</div></div>
+      <div class="glass method-stat reveal"><div class="v">91%</div><div class="l">Source Success Rate</div></div>
+      <div class="glass method-stat reveal"><div class="v">0</div><div class="l">Paid APIs Required</div></div>
+      <div class="glass method-stat reveal"><div class="v">30+</div><div class="l">Real Property Images</div></div>
+    </div>
   </div>
 </section>
 
@@ -320,50 +470,24 @@ footer .ft-col a:hover{color:var(--text)}
   <div class="reveal sec-label">The Foundation</div>
   <h2 class="reveal sec-title">611 Verified Sources</h2>
   <p class="reveal sec-sub">Every source is classified, connected, and continuously monitored.</p>
-
-  <div class="bento" style="margin-bottom:40px">
+  <div class="bento" style="margin-bottom:36px">
     <div class="glass bento-item b-span2 b-rowspan2 reveal" style="grid-row:span 2">
       <div class="icon" style="font-size:36px">🏛️</div>
-      <h4 style="font-size:18px">Government APIs</h4>
-      <div class="num" style="font-size:54px">422</div>
-      <p style="font-size:13px">FRED, Census, BLS, FDIC, FEMA, SEC EDGAR, EPA, EIA, Treasury — direct feeds from federal agencies</p>
-      <span class="tag bento-tag-api">REST API</span>
+      <h4 style="font-size:17px">Government APIs</h4>
+      <div class="num" style="font-size:50px">422</div>
+      <p style="font-size:12px">FRED, Census, BLS, FDIC, FEMA, SEC EDGAR, EPA, EIA, Treasury — direct feeds from federal agencies</p>
+      <span class="tag tag-api">REST API</span>
     </div>
-    <div class="glass bento-item reveal">
-      <div class="icon">📊</div>
-      <h4>Dataset Portals</h4>
-      <div class="num">120</div>
-      <p>Socrata/CKAN portals — NYC, Chicago, Dallas, data.gov</p>
-      <span class="tag bento-tag-bulk">Bulk</span>
-    </div>
-    <div class="glass bento-item reveal">
-      <div class="icon">📰</div>
-      <h4>RSS Feeds</h4>
-      <div class="num">69</div>
-      <p>Bloomberg, Federal Reserve, CFPB — real-time sentiment</p>
-      <span class="tag bento-tag-feed">Live</span>
-    </div>
-    <div class="glass bento-item reveal">
-      <div class="icon">🔑</div>
-      <h4>Live API Integrations</h4>
-      <div class="num">13</div>
-      <p>FRED, Finnhub, CoinGecko, Walk Score, OpenWeather, EIA</p>
-      <span class="tag bento-tag-live">Real-Time</span>
-    </div>
-    <div class="glass bento-item reveal">
-      <div class="icon">🌐</div>
-      <h4>ArcGIS Services</h4>
-      <div class="num">40+</div>
-      <p>Geospatial feature services for parcels & zoning</p>
-      <span class="tag bento-tag-api">GIS</span>
-    </div>
+    <div class="glass bento-item reveal"><div class="icon">📊</div><h4>Dataset Portals</h4><div class="num">120</div><p>Socrata/CKAN — NYC, Chicago, Dallas, data.gov</p><span class="tag tag-bulk">Bulk</span></div>
+    <div class="glass bento-item reveal"><div class="icon">📰</div><h4>RSS Feeds</h4><div class="num">69</div><p>Bloomberg, Federal Reserve, CFPB — real-time</p><span class="tag tag-feed">Live</span></div>
+    <div class="glass bento-item reveal"><div class="icon">🔑</div><h4>Live APIs</h4><div class="num">13</div><p>FRED, Finnhub, CoinGecko, Walk Score, OpenWeather</p><span class="tag tag-live">Real-Time</span></div>
+    <div class="glass bento-item reveal"><div class="icon">🌐</div><h4>ArcGIS Services</h4><div class="num">40+</div><p>Geospatial feature services for parcels & zoning</p><span class="tag tag-api">GIS</span></div>
   </div>
-
-  <h3 class="reveal" style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;margin-bottom:24px;text-align:center">Coverage Across 14 Market Categories</h3>
+  <h3 class="reveal" style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;margin-bottom:20px;text-align:center">Coverage Across 14 Market Categories</h3>
   <div class="cat-grid" id="cat-grid"></div>
 </section>
 
-<!-- LIVE MARKET DATA -->
+<!-- LIVE MARKET -->
 <section class="sec">
   <div class="reveal sec-label">Live Right Now</div>
   <h2 class="reveal sec-title">Real-Time Market Intelligence</h2>
@@ -371,24 +495,20 @@ footer .ft-col a:hover{color:var(--text)}
   <div class="data-grid" id="market-grid"></div>
 </section>
 
-<!-- PARTNERS MARQUEE -->
+<!-- PARTNERS -->
 <section class="sec">
   <div class="reveal sec-label">Our Sources</div>
   <h2 class="reveal sec-title">60+ Data Providers</h2>
-  <p class="reveal sec-sub">Federal agencies, financial institutions, municipal governments, and market data vendors.</p>
-  <div class="marquee">
-    <div class="marquee-track" id="providers-1"></div>
-  </div>
-  <div class="marquee reverse">
-    <div class="marquee-track" id="providers-2"></div>
-  </div>
+  <p class="reveal sec-sub">Federal agencies, financial institutions, municipal governments, and market vendors.</p>
+  <div class="marquee"><div class="marquee-track" id="providers-1"></div></div>
+  <div class="marquee reverse"><div class="marquee-track" id="providers-2"></div></div>
 </section>
 
-<!-- FEATURED DEAL -->
+<!-- DEAL -->
 <section class="sec" id="deal">
   <div class="reveal sec-label">In Action</div>
   <h2 class="reveal sec-title">Featured Acquisition</h2>
-  <p class="reveal sec-sub">Pensacola, FL Government Office — See how our data pipeline informs every deal metric.</p>
+  <p class="reveal sec-sub">Pensacola, FL Government Office — See how our data pipeline informs every metric.</p>
   <div class="reveal gallery-3d">
     <div class="img main" style="background-image:url('/images/om_p1_img1.jpeg')"><div class="img-label">Exterior — Sunset</div></div>
     <div class="side">
@@ -396,26 +516,26 @@ footer .ft-col a:hover{color:var(--text)}
       <div class="img" style="background-image:url('/images/om_p11_img1.jpeg')"><div class="img-label">Interior</div></div>
     </div>
     <div class="side">
-      <div class="img" style="background-image:url('/images/om_p14_img1.jpeg')"><div class="img-label">Aerial Context</div></div>
-      <div class="img" style="background-image:url('/images/om_p10_img1.jpeg')"><div class="img-label">Aerial Parcel</div></div>
+      <div class="img" style="background-image:url('/images/om_p14_img1.jpeg')"><div class="img-label">Aerial</div></div>
+      <div class="img" style="background-image:url('/images/om_p10_img1.jpeg')"><div class="img-label">Parcel</div></div>
     </div>
   </div>
   <div class="deal-row">
-    <div class="glass deal-m"><div class="v" style="color:var(--accent)">$6.0M</div><div class="l">Purchase Price</div></div>
+    <div class="glass deal-m"><div class="v" style="color:var(--accent)">$6.0M</div><div class="l">Purchase</div></div>
     <div class="glass deal-m"><div class="v" style="color:var(--green)">8.95%</div><div class="l">Cap Rate</div></div>
     <div class="glass deal-m"><div class="v" style="color:var(--accent3)">$537K</div><div class="l">NOI</div></div>
     <div class="glass deal-m"><div class="v" style="color:var(--accent2)">21.8%</div><div class="l">IRR (5yr)</div></div>
     <div class="glass deal-m"><div class="v" style="color:var(--green)">100%</div><div class="l">Occupancy</div></div>
-    <div class="glass deal-m"><div class="v" style="color:var(--gold)">AAA</div><div class="l">Tenant Credit</div></div>
+    <div class="glass deal-m"><div class="v" style="color:var(--gold)">AAA</div><div class="l">Credit</div></div>
   </div>
-  <div style="text-align:center;margin-top:32px"><a href="/terminal" class="btn btn-p btn-lg">View Full Deal Intelligence →</a></div>
+  <div style="text-align:center;margin-top:30px"><a href="/terminal" class="btn btn-p btn-lg">View Full Deal Intelligence →</a></div>
 </section>
 
 <!-- TESTIMONIALS -->
 <section class="sec">
   <div class="reveal sec-label">In Their Own Words</div>
   <h2 class="reveal sec-title">Every Institution Has Put It In Writing</h2>
-  <div class="test-grid" id="testimonials" style="margin-top:48px"></div>
+  <div class="test-grid" id="testimonials" style="margin-top:40px"></div>
 </section>
 
 <!-- TEAM -->
@@ -432,7 +552,7 @@ footer .ft-col a:hover{color:var(--text)}
   <p>Open the data terminal. Verify every claim. See the live data behind every deal.</p>
   <div class="ctas">
     <a href="/terminal" class="btn btn-glass btn-lg" style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.3);color:#fff">Open Terminal →</a>
-    <a href="#contact" class="btn btn-lg" style="background:#fff;color:var(--accent2)">Investor Access</a>
+    <a href="/dashboard" class="btn btn-lg" style="background:#fff;color:var(--accent2)">Browse Data</a>
   </div>
 </div>
 
@@ -445,17 +565,17 @@ footer .ft-col a:hover{color:var(--text)}
     </div>
     <div class="ft-col">
       <h5>Platform</h5>
-      <a href="/">Data Dashboard</a>
-      <a href="/terminal">Deal Terminal</a>
-      <a href="/site">Company Site</a>
-      <a href="#sources">Data Sources</a>
+      <a href="/site">🌐 Company Site</a>
+      <a href="/terminal">📊 Deal Terminal</a>
+      <a href="/dashboard">🗂️ Data Dashboard</a>
+      <a href="https://github.com/kazi-reprime/reprime-data-platform" target="_blank">⭐ GitHub</a>
     </div>
     <div class="ft-col">
       <h5>Resources</h5>
       <a href="#about">About</a>
-      <a href="#pipeline">Intelligence Pipeline</a>
+      <a href="#pipeline">Pipeline</a>
+      <a href="#sources">Data Sources</a>
       <a href="#team">Team</a>
-      <a href="https://github.com/kazi-reprime/reprime-data-platform" target="_blank">GitHub →</a>
     </div>
     <div class="ft-col">
       <h5>Contact</h5>
@@ -464,7 +584,7 @@ footer .ft-col a:hover{color:var(--text)}
       <a>123 N Lawler St, Postville, IA</a>
     </div>
   </div>
-  <div style="border-top:1px solid var(--border);padding-top:24px">
+  <div class="ft-bot">
     <strong style="color:var(--text)">RePrime Group</strong> — Powered by 611 Sources + 13 Live APIs · © 2026 All rights reserved
   </div>
 </footer>
@@ -472,19 +592,31 @@ footer .ft-col a:hover{color:var(--text)}
 <script>
 const A='';
 
-// Cursor glow
-document.addEventListener('mousemove',e=>{
-  const c=document.getElementById('cursor');
-  c.style.transform=`translate(${e.clientX}px,${e.clientY}px)`;
+// THEME TOGGLE
+const savedTheme=localStorage.getItem('theme')||'dark';
+document.documentElement.dataset.theme=savedTheme;
+document.querySelectorAll('.theme-switcher button').forEach(b=>{
+  if(b.dataset.theme===savedTheme)b.classList.add('active');else b.classList.remove('active');
+  b.addEventListener('click',()=>{
+    const t=b.dataset.theme;
+    document.documentElement.dataset.theme=t;
+    localStorage.setItem('theme',t);
+    document.querySelectorAll('.theme-switcher button').forEach(x=>x.classList.toggle('active',x===b));
+  });
 });
 
-// Count-up animation
+// CURSOR
+document.addEventListener('mousemove',e=>{
+  document.getElementById('cursor').style.transform=`translate(${e.clientX}px,${e.clientY}px)`;
+});
+
+// COUNTERS
 function animateCounters(){
   document.querySelectorAll('[data-count]').forEach(el=>{
+    if(el.dataset.done)return;el.dataset.done='1';
     const target=parseInt(el.dataset.count);
     const suffix=el.dataset.suffix||'';
-    let cur=0;const step=target/60;const dur=1500;
-    const t0=Date.now();
+    const t0=Date.now();const dur=1500;
     const tick=()=>{
       const dt=Math.min((Date.now()-t0)/dur,1);
       const eased=1-Math.pow(1-dt,3);
@@ -495,29 +627,27 @@ function animateCounters(){
   });
 }
 
-// Reveal on scroll
+// REVEAL
 const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
       e.target.classList.add('in');
-      if(e.target.classList.contains('stat-bar')||e.target.querySelector('[data-count]')){
-        animateCounters();
-      }
+      if(e.target.classList.contains('stat-bar')||e.target.querySelector('[data-count]')){animateCounters();}
       io.unobserve(e.target);
     }
   });
 },{threshold:.1});
 
-// Ticker
+// TICKER
 async function loadTicker(){
   try{
     const d=await(await fetch(A+'/api/live/ticker')).json();
     const items=d.ticker.map(t=>`<div class="ti"><span class="pulse"></span><span>${t.label}</span> <strong>${t.value}</strong> <span class="${parseFloat(t.change)>=0?'up':'dn'}">${t.change}</span> <span class="src">${t.source||''}</span></div>`).join('');
     document.getElementById('ticker').innerHTML=items+items;
-  }catch(e){console.log('ticker',e)}
+  }catch(e){}
 }
 
-// Market data
+// MARKET
 async function loadMarket(){
   try{
     const d=await(await fetch(A+'/api/live/market')).json();
@@ -534,13 +664,13 @@ async function loadMarket(){
       {m:'Housing Starts',v:(parseFloat(fr['Housing_Starts']?.value||0)/1000).toFixed(1)+'M',s:'Census'},
       {m:'Bitcoin',v:'$'+(cr.bitcoin?.usd||0).toLocaleString(),dl:(cr.bitcoin?.usd_24h_change||0).toFixed(1)+'%',s:'CoinGecko',live:1},
       {m:'Realty Income',v:'$'+(rt.O?.current||0).toFixed(2),dl:(rt.O?.change_pct||0).toFixed(1)+'%',s:'Finnhub',live:1},
-      {m:'Prologis (PLD)',v:'$'+(rt.PLD?.current||0).toFixed(2),dl:(rt.PLD?.change_pct||0).toFixed(1)+'%',s:'Finnhub',live:1},
+      {m:'Prologis',v:'$'+(rt.PLD?.current||0).toFixed(2),dl:(rt.PLD?.change_pct||0).toFixed(1)+'%',s:'Finnhub',live:1},
     ];
     document.getElementById('market-grid').innerHTML=cards.map(c=>`<div class="glass d-card"><div class="metric">${c.live?'<span class="live-dot"></span>':''}${c.m}</div><div class="val" ${c.red?'style="color:var(--red)"':''}>${c.v}</div>${c.dl?`<div class="delta" style="color:${parseFloat(c.dl)>=0?'var(--green)':'var(--red)'}">${parseFloat(c.dl)>=0?'▲':'▼'} ${c.dl}</div>`:(c.d?`<div class="delta" style="color:var(--dim)">${c.d}</div>`:'')}<div class="src">${c.s}</div></div>`).join('');
-  }catch(e){console.log('market',e)}
+  }catch(e){}
 }
 
-// Categories
+// CATEGORIES
 async function loadCats(){
   try{
     const d=await(await fetch(A+'/api/stats')).json();
@@ -550,17 +680,16 @@ async function loadCats(){
       return `<div class="glass cat-card"><div class="num">${c[1].scraped}</div><div class="name">${c[0].replace('_',' ')}</div><div class="meta">${c[1].total} · ${c[1].records} rec</div><div class="bar"><div class="bar-fill" data-w="${pct}"></div></div></div>`;
     }).join('');
     setTimeout(()=>document.querySelectorAll('.bar-fill').forEach(el=>el.style.width=el.dataset.w+'%'),300);
-  }catch(e){console.log('cats',e)}
+  }catch(e){}
 }
 
-// Providers marquee
+// PROVIDERS
 const provs=['FRED','SEC EDGAR','US Census','BLS','FEMA','EPA','FDIC','CMS','USGS','EIA','Bank of Israel','Federal Register','Yahoo Finance','NY Fed','Treasury.gov','World Bank','OECD','CBS Israel','OpenFEMA','CoinGecko','Finnhub','Walk Score','OpenWeather','Alpha Vantage','Twelve Data','HUD','FCC','DOT','NYC Open Data','Chicago Open Data','Dallas Open Data','data.gov.il','Overpass/OSM','FINRA','Calculated Risk','Bloomberg','Commercial Observer','CFPB','ArcGIS Services','Socrata Portals'];
-const half1=provs.slice(0,20),half2=provs.slice(20);
 const mqHtml=arr=>[...arr,...arr].map(p=>`<div class="mq-item">${p}</div>`).join('');
-document.getElementById('providers-1').innerHTML=mqHtml(half1);
-document.getElementById('providers-2').innerHTML=mqHtml(half2);
+document.getElementById('providers-1').innerHTML=mqHtml(provs.slice(0,20));
+document.getElementById('providers-2').innerHTML=mqHtml(provs.slice(20));
 
-// Testimonials
+// TESTIMONIALS
 const tests=[
   {co:'FM Capital',q:'Fantastic job sourcing and executing on this transaction.',au:'Daniel K.',rl:'SVP Originations'},
   {co:'SunTrust Bank',q:'Successful conclusion with cooperation and diligence.',au:'Christyne A.',rl:'First Vice President'},
@@ -569,9 +698,9 @@ const tests=[
   {co:'Midland States Bank',q:'Good financial standing and of high business integrity.',au:'Jennifer P.',rl:'Sr. Commercial RM'},
   {co:'1st United Bank',q:'Appreciate your effort and expertise in bringing this transaction to a successful conclusion.',au:'Dan S.',rl:'REO Asset Manager'},
 ];
-document.getElementById('testimonials').innerHTML=tests.map(t=>`<div class="glass test reveal"><div class="co">${t.co}</div><div class="q">${t.q}</div><div class="au">${t.au}</div><div class="rl">${t.rl}</div></div>`).join('');
+document.getElementById('testimonials').innerHTML=tests.map(t=>`<div class="glass test reveal"><div class="co">${t.co}</div><div class="q">"${t.q}"</div><div class="au">${t.au}</div><div class="rl">${t.rl}</div></div>`).join('');
 
-// Team
+// TEAM
 const team=[
   {n:'Shirel Ben Harroush',t:'CEO — Strategic partnerships and capital markets',i:'SB'},
   {n:'Gideon Gratsiani',t:'Founder — 30+ years U.S. commercial real estate',i:'GG'},
@@ -584,10 +713,10 @@ const team=[
 ];
 document.getElementById('team-grid').innerHTML=team.map(t=>`<div class="glass team-card reveal"><div class="team-avatar">${t.i}</div><h4>${t.n}</h4><div class="ti">${t.t}</div></div>`).join('');
 
-// Observe reveals
+// OBSERVE
 setTimeout(()=>document.querySelectorAll('.reveal,.stat-bar').forEach(el=>io.observe(el)),100);
 
-// Tilt on gallery hover
+// TILT
 document.querySelectorAll('.gallery-3d .img').forEach(el=>{
   el.addEventListener('mousemove',e=>{
     const r=el.getBoundingClientRect();

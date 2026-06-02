@@ -4,19 +4,17 @@
   "rewrites": [
     { "source": "/site", "destination": "/site.html" },
     { "source": "/terminal", "destination": "/terminal.html" },
+    { "source": "/dashboard", "destination": "/dashboard.html" },
     { "source": "/api/live/:metric", "destination": "/data/live/:metric.json" },
     { "source": "/api/market/:metric", "destination": "/data/market/:metric.json" },
     { "source": "/api/deal/:metric", "destination": "/data/deal/:metric.json" },
     { "source": "/api/:metric", "destination": "/data/:metric.json" }
   ],
   "headers": [
-    {
-      "source": "/data/(.*)",
-      "headers": [
-        { "key": "Content-Type", "value": "application/json" },
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Cache-Control", "value": "public, max-age=300" }
-      ]
-    }
+    { "source": "/data/(.*)", "headers": [
+      { "key": "Content-Type", "value": "application/json" },
+      { "key": "Access-Control-Allow-Origin", "value": "*" },
+      { "key": "Cache-Control", "value": "public, max-age=300" }
+    ]}
   ]
 }
