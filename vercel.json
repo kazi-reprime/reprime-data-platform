@@ -1,60 +1,71 @@
 {
   "version": 2,
-  "cleanUrls": true,
-  "functions": {
-    "api/search.py": {
-      "runtime": "@vercel/python",
-      "maxDuration": 30
+  "builds": [
+    {
+      "src": "api/search.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "data/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "public/**",
+      "use": "@vercel/static"
     }
-  },
-  "rewrites": [
+  ],
+  "routes": [
     {
-      "source": "/site",
-      "destination": "/site.html"
+      "src": "/api/search(.*)",
+      "dest": "/api/search.py$1"
     },
     {
-      "source": "/explore",
-      "destination": "/explore.html"
+      "src": "/site",
+      "dest": "/site.html"
     },
     {
-      "source": "/terminal",
-      "destination": "/terminal.html"
+      "src": "/explore",
+      "dest": "/explore.html"
     },
     {
-      "source": "/dashboard",
-      "destination": "/dashboard.html"
+      "src": "/terminal",
+      "dest": "/terminal.html"
     },
     {
-      "source": "/api/live/:path*",
-      "destination": "/data/live/:path*.json"
+      "src": "/dashboard",
+      "dest": "/dashboard.html"
     },
     {
-      "source": "/api/market/:path*",
-      "destination": "/data/market/:path*.json"
+      "src": "/api/live/(.*)",
+      "dest": "/data/live/$1.json"
     },
     {
-      "source": "/api/deal/:path*",
-      "destination": "/data/deal/:path*.json"
+      "src": "/api/market/(.*)",
+      "dest": "/data/market/$1.json"
     },
     {
-      "source": "/api/stats",
-      "destination": "/data/stats.json"
+      "src": "/api/deal/(.*)",
+      "dest": "/data/deal/$1.json"
     },
     {
-      "source": "/api/categories",
-      "destination": "/data/categories.json"
+      "src": "/api/stats",
+      "dest": "/data/stats.json"
     },
     {
-      "source": "/api/sources",
-      "destination": "/data/sources.json"
+      "src": "/api/sources",
+      "dest": "/data/sources.json"
     },
     {
-      "source": "/api/health",
-      "destination": "/data/health.json"
+      "src": "/images/(.*)",
+      "dest": "/public/images/$1"
     },
     {
-      "source": "/images/:path*",
-      "destination": "/public/images/:path*"
+      "src": "/(.*)",
+      "dest": "/$1"
     }
   ]
 }
