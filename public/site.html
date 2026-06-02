@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RePrime Group — Data-Driven Real Estate Intelligence</title>
-<meta name="description" content="RePrime Group: Institutional CRE intelligence platform. 611 data sources, 8,223 records, 13 live APIs.">
+<meta name="description" content="RePrime Group: Institutional CRE intelligence platform. 630 free data sources across 14 categories, 20 live search layers.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -335,7 +335,7 @@ footer a:hover{color:var(--gold)}
   <div>
     <div class="hero-badge"><span class="dot"></span> Live Intelligence Platform</div>
     <h1>Institutional CRE Data.<br><span class="grad">Zero Guesswork.</span></h1>
-    <p>611 sources. 13 live APIs. 8,223 data records scraped, normalized, and delivered in real time. The intelligence layer institutional investors need — built for the deals others miss.</p>
+    <p>611 curated free sources · 630 cataloged APIs · 20 live search layers querying every address in real time. The intelligence layer institutional investors need — built for the deals others miss.</p>
     <div class="hero-ctas">
       <a href="/terminal" class="btn btn-gold">Open Terminal →</a>
       <a href="/" class="btn btn-glass">View Dashboard</a>
@@ -366,11 +366,10 @@ footer a:hover{color:var(--gold)}
 
 <!-- STAT BAR -->
 <div class="stat-bar reveal">
-  <div class="stat-cell"><div class="stat-num"><span class="counter" data-target="611">0</span></div><div class="stat-label">Data Sources</div></div>
-  <div class="stat-cell"><div class="stat-num"><span class="counter" data-target="8223">0</span></div><div class="stat-label">Records Scraped</div></div>
-  <div class="stat-cell"><div class="stat-num"><span class="counter" data-target="13">0</span></div><div class="stat-label">Live APIs</div></div>
-  <div class="stat-cell"><div class="stat-num"><span class="counter" data-target="14">0</span></div><div class="stat-label">Categories</div></div>
-  <div class="stat-cell"><div class="stat-num"><span class="counter" data-target="549">0</span></div><div class="stat-label">URLs Scraped</div></div>
+  <div class="stat-cell"><div class="stat-num"><span class="counter" id="cFree" data-target="611">0</span></div><div class="stat-label">Free Sources</div></div>
+  <div class="stat-cell"><div class="stat-num"><span class="counter" id="cCatalog" data-target="630">0</span></div><div class="stat-label">Cataloged APIs</div></div>
+  <div class="stat-cell"><div class="stat-num"><span class="counter" id="cLayers" data-target="20">0</span></div><div class="stat-label">Live Search Layers</div></div>
+  <div class="stat-cell"><div class="stat-num"><span class="counter" id="cCats" data-target="14">0</span></div><div class="stat-label">Categories</div></div>
 </div>
 
 <!-- WHY IT MATTERS -->
@@ -380,8 +379,8 @@ footer a:hover{color:var(--gold)}
   <div class="section-title">The data layer institutional<br>investors have been missing</div>
   <div class="section-desc">Most CRE platforms give you listings. We give you intelligence — regulatory filings, environmental risk, tenant distress signals, capital migration patterns, and real-time market pulse from 13 government and commercial APIs.</div>
   <div class="pipeline">
-    <div class="pipe-card"><div class="pipe-num">01</div><div class="pipe-icon">📡</div><div class="pipe-title">Ingest</div><div class="pipe-desc">611 sources across FRED, BLS, Census, FEMA, SEC, HUD, Fannie Mae, Freddie Mac, and 6 commercial APIs. Real-time and batch.</div></div>
-    <div class="pipe-card"><div class="pipe-num">02</div><div class="pipe-icon">⚡</div><div class="pipe-title">Normalize</div><div class="pipe-desc">8,223 data points cleaned, de-duplicated, and standardized. Cross-referenced against primary and against-interest sources.</div></div>
+    <div class="pipe-card"><div class="pipe-num">01</div><div class="pipe-icon">📡</div><div class="pipe-title">Ingest</div><div class="pipe-desc">Free sources across FRED, BLS, Census, FEMA, NWS, USGS, FCC, FDIC, EPA, GDELT and more — government &amp; market APIs, queried live per address.</div></div>
+    <div class="pipe-card"><div class="pipe-num">02</div><div class="pipe-icon">⚡</div><div class="pipe-title">Normalize</div><div class="pipe-desc">Every source response normalized, de-duplicated, and standardized — cross-referenced against primary and against-interest sources.</div></div>
     <div class="pipe-card"><div class="pipe-num">03</div><div class="pipe-icon">🔬</div><div class="pipe-title">Analyze</div><div class="pipe-desc">Cap rates, DSCR, IRR, environmental risk, tenant distress, migration patterns — all computed and surfaced in the terminal.</div></div>
     <div class="pipe-card"><div class="pipe-num">04</div><div class="pipe-icon">📊</div><div class="pipe-title">Visualize</div><div class="pipe-desc">Bloomberg-grade terminal interface with live tickers, interactive charts, deal comps, and geospatial overlays.</div></div>
     <div class="pipe-card"><div class="pipe-num">05</div><div class="pipe-icon">🎯</div><div class="pipe-title">Decide</div><div class="pipe-desc">Surface the 3 metrics that matter for each deal. Capital stack, risk-adjusted returns, and exit timing — data, not gut.</div></div>
@@ -394,7 +393,7 @@ footer a:hover{color:var(--gold)}
 <section class="reveal">
 <div class="container">
   <div class="section-label">Data Coverage</div>
-  <div class="section-title">14 categories. 611 sources.<br>Every signal that moves a deal.</div>
+  <div class="section-title">14 categories. 630 free APIs.<br>Every signal that moves a deal.</div>
   <div class="bento" id="bentoGrid"></div>
 </div>
 </section>
@@ -485,7 +484,7 @@ footer a:hover{color:var(--gold)}
 <div class="container">
   <div class="cta-banner">
     <h2>Ready to see the full picture?</h2>
-    <p>Access 611 data sources, 13 live APIs, and Bloomberg-grade deal intelligence.</p>
+    <p>Access 630 free data sources, 20 live search layers, and Bloomberg-grade deal intelligence.</p>
     <a href="/terminal" class="btn btn-gold">Launch Terminal →</a>
   </div>
 </div>
@@ -577,125 +576,94 @@ const counterObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.i
 }})},{threshold:.5});
 document.querySelectorAll('.counter').forEach(el=>counterObs.observe(el));
 
-/* ═══ HERO MINI CHARTS ═══ */
-function miniChart(id,count){
-  const el=document.getElementById(id);if(!el)return;
-  for(let i=0;i<count;i++){const s=document.createElement('span');const h=Math.random()*30+10;s.style.setProperty('--h',h+'px');s.style.animationDelay=(i*.05)+'s';el.appendChild(s)}
+/* ═══ HERO MINI CHARTS (decorative) ═══ */
+function miniChart(id, count) {
+  const el = document.getElementById(id); if (!el) return;
+  for (let i = 0; i < count; i++) { const s = document.createElement('span'); const h = Math.random() * 30 + 10; s.style.setProperty('--h', h + 'px'); s.style.animationDelay = (i * .05) + 's'; el.appendChild(s); }
 }
-miniChart('heroChart1',12);miniChart('heroChart2',12);miniChart('heroChart3',12);
+miniChart('heroChart1', 12); miniChart('heroChart2', 12); miniChart('heroChart3', 12);
 
-/* ═══ FETCH TICKER DATA ═══ */
-fetch('/api/live/ticker').then(r=>r.json()).then(d=>{
-  const track=document.getElementById('tickerTrack');
-  const items=[
-    {l:'10Y Treasury',v:d.treasury_10y?.value||'4.45%',c:'dn',s:'FRED'},
-    {l:'SOFR',v:d.sofr?.value||'4.31%',c:'up',s:'NY Fed'},
-    {l:'30Y Mortgage',v:d.mortgage_30y?.value||'6.53%',c:'dn',s:'FRED'},
-    {l:'Fed Funds',v:d.fed_funds?.value||'4.33%',c:'dn',s:'FRED'},
-    {l:'CPI YoY',v:'2.3%',c:'dn',s:'BLS'},
-    {l:'S&P 500',v:'5,892',c:'up',s:'Finnhub'},
-    {l:'VNQ (REITs)',v:'$89.42',c:'up',s:'Finnhub'},
-    {l:'Bitcoin',v:'$107,645',c:'up',s:'CoinGecko'},
-    {l:'Ethereum',v:'$2,547',c:'up',s:'CoinGecko'},
-    {l:'Gold',v:'$2,345',c:'up',s:'Finnhub'},
-    {l:'CRE Delinquency',v:'$163.5B',c:'dn',s:'FDIC'},
-    {l:'Unemployment',v:'4.2%',c:'up',s:'BLS'},
-  ];
-  let html='';for(let r=0;r<2;r++){items.forEach(i=>{
-    html+=`<div class="ti"><span class="pulse"></span>${i.l} <strong>${i.v}</strong> <span class="${i.c}">${i.c==='up'?'▲':'▼'}</span> <span class="src">${i.s}</span></div>`;
-  })}
-  track.innerHTML=html;
-  // Update hero values
-  document.getElementById('heroTreas').textContent=d.treasury_10y?.value||'4.45%';
-  document.getElementById('heroSofr').textContent=d.sofr?.value||'4.31%';
-}).catch(()=>{});
+/* ═══ REAL COUNTERS from /api/stats ═══ */
+fetch('/api/stats').then(r => r.json()).then(d => {
+  const set = (id, v) => { const el = document.getElementById(id); if (el && v != null) el.dataset.target = v; };
+  set('cCatalog', d.cataloged_sources);
+  set('cLayers', d.live_search_layers);
+  set('cCats', d.category_count);
+}).catch(() => {});
 
-/* ═══ BENTO GRID — DATA SOURCES ═══ */
-const bentoData=[
-  {icon:'🏛️',title:'Government APIs',count:89,desc:'FRED, BLS, Census ACS, HUD, FEMA, SEC EDGAR, USDA',w:'89',span:'span2',tall:''},
-  {icon:'📈',title:'Market Rates',count:47,desc:'Treasury yields, SOFR, mortgage rates, Fed Funds',w:'47',span:'',tall:'tall'},
-  {icon:'🏗️',title:'Construction & Permits',count:62,desc:'Census building permits, zoning, AHJ databases',w:'62',span:'',tall:''},
-  {icon:'🌊',title:'Environmental Risk',count:38,desc:'FEMA flood zones, EPA Superfund, climate models',w:'38',span:'',tall:''},
-  {icon:'🏢',title:'CRE Transactions',count:95,desc:'Comps, cap rates, CMBS, agency lending data',w:'95',span:'span2',tall:''},
-  {icon:'👥',title:'Demographics',count:44,desc:'Migration, income, employment, Census ACS 5-year',w:'44',span:'',tall:''},
-  {icon:'💰',title:'Capital Markets',count:51,desc:'CMBS watchlist, agency lending, debt markets',w:'51',span:'',tall:''},
-  {icon:'📰',title:'News & Sentiment',count:73,desc:'CRE news feeds, SEC filings, court records',w:'73',span:'',tall:''},
-];
-const bentoEl=document.getElementById('bentoGrid');
-bentoData.forEach(b=>{
-  bentoEl.innerHTML+=`<div class="bento-card ${b.span} ${b.tall}">
-    <div><div class="bc-icon">${b.icon}</div><div class="bc-title">${b.title}</div><div class="bc-desc">${b.desc}</div></div>
-    <div><div class="bc-count">${b.count}</div><div class="bc-bar"><span style="--w:${b.w}%"></span></div></div>
-  </div>`;
-});
+/* ═══ LIVE TICKER (real /api/live/ticker dict) ═══ */
+fetch('/api/live/ticker').then(r => r.json()).then(d => {
+  const track = document.getElementById('tickerTrack'); if (!track) return;
+  const labels = { treasury_10y: '10Y Treasury', mortgage_30y: '30Y Mortgage', fed_funds: 'Fed Funds', unemployment: 'Unemployment', sofr: 'SOFR', bitcoin: 'Bitcoin', ethereum: 'Ethereum' };
+  const items = Object.entries(d).filter(([k, v]) => v && v.value).map(([k, v]) => ({ l: labels[k] || k, val: v.value, s: v.source || '' }));
+  let html = ''; for (let r = 0; r < 2; r++) { items.forEach(i => { html += `<div class="ti"><span class="pulse"></span>${i.l} <strong>${i.val}</strong> <span class="src">${i.s}</span></div>`; }); }
+  track.innerHTML = html;
+  const ht = document.getElementById('heroTreas'); if (ht && d.treasury_10y) ht.textContent = d.treasury_10y.value;
+  const hs = document.getElementById('heroSofr'); if (hs) hs.textContent = (d.sofr && d.sofr.value) || (d.fed_funds && d.fed_funds.value) || '—';
+}).catch(() => {});
 
-/* ═══ LIVE MARKET DATA ═══ */
-fetch('/api/live/market').then(r=>r.json()).then(d=>{
-  const g=document.getElementById('marketGrid');
-  const cards=[
-    {l:'10Y Treasury',v:d.fred?.treasury_10y||'4.45%',ch:'-2bp',dir:'dn'},
-    {l:'SOFR Rate',v:d.fred?.sofr||'4.31%',ch:'+0bp',dir:'up'},
-    {l:'30Y Mortgage',v:d.fred?.mortgage_30y||'6.53%',ch:'-4bp',dir:'dn'},
-    {l:'Fed Funds',v:d.fred?.fed_funds||'4.33%',ch:'+0bp',dir:'up'},
-    {l:'S&P 500',v:d.stocks?.SPY?.price||'$589.21',ch:'+0.4%',dir:'up'},
-    {l:'VNQ REITs',v:d.stocks?.VNQ?.price||'$89.42',ch:'+1.2%',dir:'up'},
-    {l:'Bitcoin',v:d.crypto?.bitcoin?.price||'$107,645',ch:'+2.1%',dir:'up'},
-    {l:'Ethereum',v:d.crypto?.ethereum?.price||'$2,547',ch:'+1.8%',dir:'up'},
-    {l:'CPI (YoY)',v:'2.3%',ch:'-0.1%',dir:'dn'},
-    {l:'Unemployment',v:'4.2%',ch:'+0.1%',dir:'up'},
-    {l:'CRE Delinquency',v:'$163.5B',ch:'+$2.1B',dir:'dn'},
-    {l:'Walk Score (Miami)',v:d.walkability?.walk_score||'78',ch:'',dir:'up'},
-  ];
-  cards.forEach(c=>{
-    const spark=Array.from({length:10},()=>`<span style="height:${Math.random()*28+4}px"></span>`).join('');
-    g.innerHTML+=`<div class="market-card">
-      <div class="mc-header"><span class="mc-label">${c.l}</span><span class="mc-live"><span class="dot"></span>LIVE</span></div>
-      <div class="mc-value">${c.v}</div>
-      <div class="mc-change ${c.dir}">${c.ch} ${c.dir==='up'?'▲':'▼'}</div>
-      <div class="mc-spark">${spark}</div>
-    </div>`;
-  });
-}).catch(()=>{});
+/* ═══ LIVE MARKET GRID (real /api/live/market) ═══ */
+fetch('/api/live/market').then(r => r.json()).then(d => {
+  const g = document.getElementById('marketGrid'); if (!g) return;
+  const fr = d.fred || {}, cr = d.crypto || {}, boi = d.boi || {};
+  const cards = [];
+  const add = (l, v, s) => { if (v != null && v !== undefined) cards.push({ l, v, s }); };
+  add('10Y Treasury', fr.treasury_10y && fr.treasury_10y.value, 'FRED · DGS10');
+  add('30Y Mortgage', fr.mortgage_30y && fr.mortgage_30y.value, 'FRED · MORTGAGE30US');
+  add('Fed Funds', fr.fed_funds && fr.fed_funds.value, 'FRED · FEDFUNDS');
+  add('Bitcoin', cr.bitcoin && cr.bitcoin.price, 'CoinGecko');
+  add('Ethereum', cr.ethereum && cr.ethereum.price, 'CoinGecko');
+  if (boi.rate) add('USD/ILS', Number(boi.rate).toFixed(3), 'Bank of Israel');
+  g.innerHTML = cards.map(c =>
+    `<div class="market-card"><div class="mc-header"><span class="mc-label">${c.l}</span><span class="mc-live"><span class="dot"></span>LIVE</span></div><div class="mc-value">${c.v}</div><div class="mc-change up">${c.s}</div></div>`).join('');
+}).catch(() => {});
 
-/* ═══ CATEGORY GRID ═══ */
-const cats=[
-  {icon:'🏛️',name:'Government & Regulatory',count:89,pct:85},
-  {icon:'📈',name:'Market Rates & Indices',count:47,pct:70},
-  {icon:'🏗️',name:'Construction & Permits',count:62,pct:78},
-  {icon:'🌊',name:'Environmental & Climate',count:38,pct:55},
-  {icon:'🏢',name:'Property Transactions',count:95,pct:92},
-  {icon:'👥',name:'Demographics & Migration',count:44,pct:65},
-  {icon:'💰',name:'Capital & Lending',count:51,pct:72},
-  {icon:'📰',name:'News & Sentiment',count:73,pct:82},
-  {icon:'🏠',name:'Multifamily & Agency',count:41,pct:60},
-  {icon:'💼',name:'Tenant & Credit',count:29,pct:45},
-  {icon:'⚖️',name:'Legal & Zoning',count:22,pct:35},
-  {icon:'🌍',name:'Israeli Capital Flows',count:18,pct:28},
-  {icon:'📊',name:'CMBS & Watchlist',count:34,pct:50},
-  {icon:'🛰️',name:'Geospatial & Walk Score',count:16,pct:25},
-];
-const catEl=document.getElementById('catGrid');
-cats.forEach(c=>{
-  catEl.innerHTML+=`<div class="cat-item">
-    <div class="cat-icon">${c.icon}</div>
-    <div class="cat-info"><div class="cat-name">${c.name}</div><div class="cat-bar-wrap"><div class="cat-bar-fill" data-width="${c.pct}%"></div></div></div>
-    <div class="cat-count">${c.count}</div>
-  </div>`;
-});
-// Animate bars on scroll
-const barObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){
-  e.target.querySelectorAll('.cat-bar-fill').forEach(b=>{b.style.width=b.dataset.width});
-  barObs.unobserve(e.target);
-}})},{threshold:.2});
-barObs.observe(catEl);
+/* ═══ BENTO + CATEGORY GRID + MARQUEE (real /api/stats + /api/sources) ═══ */
+const CAT_META = {
+  economic: ['📈', 'Economic Indicators'], demographic: ['👥', 'Demographics & Migration'],
+  housing_re: ['🏢', 'Housing & Real Estate'], hazard_environmental: ['🌊', 'Hazard & Environmental'],
+  infrastructure: ['🛰️', 'Infrastructure'], capital_markets: ['💰', 'Capital Markets'],
+  other: ['🗂️', 'Other'], insurance_climate: ['🌀', 'Insurance & Climate'],
+  zoning_parcel: ['⚖️', 'Zoning & Parcel'], news_sentiment: ['📰', 'News & Sentiment'],
+  israeli: ['🌍', 'Israeli Capital'], construction_pipeline: ['🏗️', 'Construction Pipeline'],
+  macro_indicator: ['📊', 'Macro Indicators'], energy: ['⚡', 'Energy'],
+};
+fetch('/api/stats').then(r => r.json()).then(d => {
+  const entries = Object.entries(d.by_category || {}).sort((a, b) => b[1] - a[1]);
+  const max = Math.max(...entries.map(e => e[1]), 1);
 
-/* ═══ SOURCE MARQUEE ═══ */
-const sources=['FRED','BLS','Census','FEMA','SEC EDGAR','HUD','Fannie Mae','Freddie Mac','Finnhub','CoinGecko','OpenWeather','Walk Score','USDA','EPA','FDIC','IRS','CoStar','Reonomy','Zillow','Redfin','Trepp','MSCI','Bloomberg','S&P Global'];
-const mq=document.getElementById('sourceMarquee');
-let mqHTML='';for(let r=0;r<3;r++){sources.forEach(s=>{
-  mqHTML+=`<span style="display:inline-block;padding:8px 28px;margin:0 8px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:12px;font-weight:500;color:var(--muted);white-space:nowrap">${s}</span>`;
-})}
-mq.innerHTML=mqHTML;
+  // bento — top 8 categories
+  const bentoEl = document.getElementById('bentoGrid');
+  if (bentoEl) {
+    bentoEl.innerHTML = entries.slice(0, 8).map(([cat, n], i) => {
+      const [icon, name] = CAT_META[cat] || ['🗂️', cat];
+      const span = (i === 0 || i === 4) ? 'span2' : '';
+      return `<div class="bento-card ${span}"><div><div class="bc-icon">${icon}</div><div class="bc-title">${name}</div><div class="bc-desc">${n} free API sources cataloged</div></div><div><div class="bc-count">${n}</div><div class="bc-bar"><span style="--w:${Math.round(n / max * 100)}%"></span></div></div></div>`;
+    }).join('');
+  }
+
+  // category grid — all 14
+  const catEl = document.getElementById('catGrid');
+  if (catEl) {
+    catEl.innerHTML = entries.map(([cat, n]) => {
+      const [icon, name] = CAT_META[cat] || ['🗂️', cat];
+      const pct = Math.round(n / max * 100);
+      return `<div class="cat-item"><div class="cat-icon">${icon}</div><div class="cat-info"><div class="cat-name">${name}</div><div class="cat-bar-wrap"><div class="cat-bar-fill" data-width="${pct}%"></div></div></div><div class="cat-count">${n}</div></div>`;
+    }).join('');
+    const barObs = new IntersectionObserver((es) => { es.forEach(e => { if (e.isIntersecting) { e.target.querySelectorAll('.cat-bar-fill').forEach(b => b.style.width = b.dataset.width); barObs.unobserve(e.target); } }); }, { threshold: .2 });
+    barObs.observe(catEl);
+  }
+}).catch(() => {});
+
+/* source marquee — real providers from the registry */
+fetch('/api/sources').then(r => r.json()).then(d => {
+  const mq = document.getElementById('sourceMarquee'); if (!mq) return;
+  const provs = [...new Set((d.sources || []).map(s => s.provider).filter(p => p && p.length > 1 && p.length < 40))];
+  const names = provs.length >= 12 ? provs.slice(0, 30) : ['FRED', 'BLS', 'Census Bureau', 'FEMA', 'USGS', 'NWS', 'FCC', 'FDIC', 'EPA', 'HUD', 'EIA', 'CDC', 'USDA', 'Federal Register', 'CoinGecko', 'ECB', 'Bank of Israel', 'GDELT'];
+  let html = ''; for (let r = 0; r < 3; r++) { names.forEach(s => { html += `<span style="display:inline-block;padding:8px 28px;margin:0 8px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:12px;font-weight:500;color:var(--muted);white-space:nowrap">${s}</span>`; }); }
+  mq.innerHTML = html;
+}).catch(() => {});
+
 </script>
 </body>
 </html>

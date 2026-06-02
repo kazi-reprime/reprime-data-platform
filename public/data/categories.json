@@ -1,1 +1,19 @@
-{"categories":{"other":176,"capital_markets":88,"zoning_parcel":69,"hazard_environmental":47,"news_sentiment":39,"macro_indicator":37,"energy":33,"infrastructure":30,"demographic":25,"israeli":23,"economic":19,"housing_re":12,"insurance_climate":7,"construction_pipeline":6}}
+{
+  "categories": {
+    "economic": 161,
+    "demographic": 159,
+    "housing_re": 133,
+    "hazard_environmental": 44,
+    "infrastructure": 30,
+    "capital_markets": 26,
+    "other": 17,
+    "insurance_climate": 15,
+    "zoning_parcel": 14,
+    "news_sentiment": 12,
+    "israeli": 7,
+    "construction_pipeline": 5,
+    "macro_indicator": 4,
+    "energy": 3
+  },
+  "last_updated": "2026-06-02T23:01:04.154403+00:00"
+}

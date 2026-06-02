@@ -11,7 +11,6 @@
     { "source": "/api/deal/:metric", "destination": "/data/deal/:metric.json" },
     { "source": "/api/stats", "destination": "/data/stats.json" },
     { "source": "/api/categories", "destination": "/data/categories.json" },
-    { "source": "/api/sources", "destination": "/data/sources.json" },
-    { "source": "/api/health", "destination": "/data/health.json" }
+    { "source": "/api/sources", "destination": "/data/sources.json" }
   ]
 }

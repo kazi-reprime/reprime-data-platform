@@ -1,0 +1,11 @@
+{
+  "_label": "SAMPLE — illustrative portfolio for demonstration. Connect a deal-management system for live data.",
+  "total": "$284M",
+  "deals": [
+    {"name": "The Palms at Doral", "meta": "240 units · Multifamily · Doral, FL", "value": "$61.2M", "color": "green", "type": "MF", "noi": "$3.8M", "cap": "6.2%", "dscr": "1.45x"},
+    {"name": "Coral Springs Office", "meta": "145K SF · Office · Coral Springs, FL", "value": "$38.5M", "color": "gold", "type": "Off", "noi": "$2.1M", "cap": "7.1%", "dscr": "1.32x"},
+    {"name": "Tampa Bay Industrial", "meta": "220K SF · Industrial · Tampa, FL", "value": "$52.8M", "color": "bright", "type": "Ind", "noi": "$4.2M", "cap": "5.8%", "dscr": "1.62x"},
+    {"name": "Orlando Mixed-Use", "meta": "180 units + 25K SF retail · Orlando, FL", "value": "$89.3M", "color": "teal", "type": "Mix", "noi": "$6.1M", "cap": "5.5%", "dscr": "1.51x"},
+    {"name": "Ft Lauderdale Retail", "meta": "65K SF · Retail · Ft Lauderdale, FL", "value": "$42.7M", "color": "amber", "type": "Ret", "noi": "$2.8M", "cap": "6.8%", "dscr": "1.28x"}
+  ]
+}

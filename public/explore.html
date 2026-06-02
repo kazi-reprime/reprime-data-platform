@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RePrime Explore — Search Any Property</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root[data-theme="dark"]{--bg:#05060d;--surface:rgba(255,255,255,0.04);--surface-2:rgba(255,255,255,0.08);--border:rgba(255,255,255,0.08);--border-2:rgba(255,255,255,0.15);--text:#f8fafc;--muted:#94a3b8;--dim:#64748b;--accent:#3b82f6;--accent2:#8b5cf6;--accent3:#06b6d4;--green:#22c55e;--red:#ef4444;--gold:#fbbf24;--orange:#fb923c;--pink:#f472b6;--glass-bg:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);--shadow:rgba(0,0,0,.5);--mesh-opacity:.22}
@@ -157,9 +159,9 @@ nav{position:sticky;top:0;z-index:199;background:var(--glass-bg);backdrop-filter
 </nav>
 
 <section class="hero">
-  <div class="hero-eyebrow"><span class="dot"></span>611 SOURCES · 14 LIVE API LAYERS · INSTANT BROWSER SEARCH</div>
+  <div class="hero-eyebrow"><span class="dot"></span>611 SOURCES · LIVE API FAN-OUT · ONE SEARCH ENDPOINT</div>
   <h1>Enter any property.<br><span class="grad">Get all the data.</span></h1>
-  <p>Searches run <strong>directly from your browser</strong> against free CORS-enabled APIs (Nominatim, FEMA, OSM, Wikipedia, Mapbox tiles, OpenStreetMap). No backend deployment required.</p>
+  <p>Every search hits <strong>/api/search</strong> — one server-side call that geocodes the address and fans out in parallel to live government &amp; market APIs (Census, FRED, FEMA, NWS, OSM, GDELT, FDIC, CoinGecko, ECB FX). Each source reports success, failure, and latency.</p>
 
   <div class="backend-info" id="backend-info"></div>
 
@@ -287,531 +289,442 @@ nav{position:sticky;top:0;z-index:199;background:var(--glass-bg);backdrop-filter
 <div id="initial-state" class="glass" style="text-align:center;padding:50px">
   <div style="font-size:48px;margin-bottom:14px">🔍</div>
   <h3 style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;margin-bottom:8px">Enter any property to begin</h3>
-  <p style="color:var(--muted);max-width:560px;margin:0 auto 20px;line-height:1.6;font-size:13px">Searches run directly in your browser using free CORS-enabled APIs. No backend, no setup, no API keys required.</p>
-  <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
-    <span class="src-badge">Nominatim</span>
-    <span class="src-badge">FEMA NFHL</span>
-    <span class="src-badge">OSM Overpass</span>
-    <span class="src-badge">Wikipedia</span>
-    <span class="src-badge">OSM Tiles</span>
-    <span class="src-badge">Mapbox</span>
+  <p style="color:var(--muted);max-width:560px;margin:0 auto 20px;line-height:1.6;font-size:13px">One server-side call to <code>/api/search</code> geocodes the address and queries every live source in parallel. Try an example:</p>
+  <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap" id="example-chips">
+    <span class="src-badge ex" data-q="1600 Pennsylvania Ave NW, Washington, DC 20500">White House, DC</span>
+    <span class="src-badge ex" data-q="350 5th Ave, New York, NY 10118">Empire State Bldg</span>
+    <span class="src-badge ex" data-q="233 S Wacker Dr, Chicago, IL 60606">Willis Tower</span>
+    <span class="src-badge ex" data-q="1 Apple Park Way, Cupertino, CA 95014">Apple Park</span>
   </div>
 </div>
 
 </div>
 
 <script>
-// CONFIG
-// Using free public tile servers (no token needed)
+// ============================================================================
+// RePrime Explore — consolidated /api/search client (v4.0)
+// One server-side call. Progressive render. Real per-source status.
+// ============================================================================
 
-// THEME
-const saved=localStorage.getItem('theme')||'dark';
-document.documentElement.dataset.theme=saved;
-document.querySelectorAll('.theme-switcher button').forEach(b=>{
-  if(b.dataset.theme===saved)b.classList.add('active');else b.classList.remove('active');
-  b.addEventListener('click',()=>{document.documentElement.dataset.theme=b.dataset.theme;localStorage.setItem('theme',b.dataset.theme);document.querySelectorAll('.theme-switcher button').forEach(x=>x.classList.toggle('active',x===b));});
+// THEME ----------------------------------------------------------------------
+const saved = localStorage.getItem('theme') || 'dark';
+document.documentElement.dataset.theme = saved;
+document.querySelectorAll('.theme-switcher button').forEach(b => {
+  if (b.dataset.theme === saved) b.classList.add('active'); else b.classList.remove('active');
+  b.addEventListener('click', () => {
+    document.documentElement.dataset.theme = b.dataset.theme;
+    localStorage.setItem('theme', b.dataset.theme);
+    document.querySelectorAll('.theme-switcher button').forEach(x => x.classList.toggle('active', x === b));
+  });
 });
 
-document.getElementById('backend-info').innerHTML = `Running browser-direct against free CORS APIs · <span class="badge live">No deployment needed</span>`;
+const $ = id => document.getElementById(id);
+$('backend-info').innerHTML = `Live endpoint <code>/api/search</code> · server-side fan-out · <span class="badge live">real per-source status</span>`;
 
-// SUGGEST
-document.querySelectorAll('.suggest').forEach(s=>{s.addEventListener('click',()=>{document.getElementById('q').value=s.dataset.q;search();});});
+// Suggestion + example chips
+document.querySelectorAll('.suggest, .src-badge.ex').forEach(s => {
+  s.style.cursor = 'pointer';
+  s.addEventListener('click', () => { $('q').value = s.dataset.q; doSearch(); });
+});
 
-// PROGRESS
-const SOURCES = [
-  {id:'nominatim',name:'Multi-tier geocoding (Nominatim → Photon → fallback chain)'},
-  {id:'osmtile',name:'OSM Static Tile Imagery'},
-  {id:'mapbox',name:'Public tile servers (9 layers)'},
-  {id:'fema',name:'FEMA NFHL Flood Zones'},
-  {id:'osm',name:'OSM Overpass Nearby POIs'},
-  {id:'wiki',name:'Wikipedia GeoSearch'},
-  {id:'images',name:'Multi-source property imagery'},
-  {id:'streetview',name:'OSM Street view tiles'},
+// SEARCH HISTORY -------------------------------------------------------------
+const HKEY = 'reprime:history';
+function getHistory() { try { return JSON.parse(localStorage.getItem(HKEY) || '[]'); } catch (e) { return []; } }
+function pushHistory(addr) {
+  let h = getHistory().filter(x => x.toLowerCase() !== addr.toLowerCase());
+  h.unshift(addr); h = h.slice(0, 10);
+  localStorage.setItem(HKEY, JSON.stringify(h)); renderHistory();
+}
+function renderHistory() {
+  const h = getHistory();
+  let box = $('history-chips');
+  if (!box) {
+    const wrap = document.querySelector('.search-wrap');
+    box = document.createElement('div'); box.id = 'history-chips';
+    box.style.cssText = 'display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:10px';
+    wrap.appendChild(box);
+  }
+  box.innerHTML = h.length
+    ? `<span style="color:var(--dim);font-size:11px;align-self:center">Recent:</span>` +
+      h.map(a => `<span class="src-badge" style="cursor:pointer" data-h="${a.replace(/"/g, '&quot;')}">${a.length > 32 ? a.slice(0, 30) + '…' : a}</span>`).join('')
+    : '';
+  box.querySelectorAll('[data-h]').forEach(c => c.addEventListener('click', () => { $('q').value = c.dataset.h; doSearch(); }));
+}
+
+// PROGRESS -------------------------------------------------------------------
+const STEPS = [
+  { id: 'geocode', name: 'Census geocoder' },
+  { id: 'fred_rates', name: 'FRED / NY Fed rates' },
+  { id: 'fema_flood', name: 'FEMA NFHL flood zone' },
+  { id: 'fema_disasters', name: 'FEMA disaster declarations' },
+  { id: 'osm_pois', name: 'OSM Overpass POIs' },
+  { id: 'nws_alerts', name: 'NWS weather alerts' },
+  { id: 'news', name: 'GDELT news + sentiment' },
+  { id: 'crypto', name: 'CoinGecko BTC/ETH' },
+  { id: 'fx_rates', name: 'ECB / Frankfurter FX' },
+  { id: 'census_acs', name: 'Census ACS demographics' },
+  { id: 'fdic', name: 'FDIC bank failures' },
+  { id: 'fed_register', name: 'Federal Register' },
 ];
-
 function setupProgress() {
-  document.getElementById('progress').innerHTML = SOURCES.map(s =>
-    `<div class="progress-line pending" id="p-${s.id}"><span>${s.name}</span><span class="status">⏳ Queued</span></div>`
-  ).join('');
+  $('progress').innerHTML = STEPS.map(s =>
+    `<div class="progress-line pending" id="p-${s.id}"><span>${s.name}</span><span class="status">⏳ Queued</span></div>`).join('');
+}
+function markProgress(id, status) {
+  const el = $('p-' + id); if (!el) return;
+  el.className = 'progress-line ' + (status === 'ok' ? 'done' : 'fail');
+  const st = el.querySelector('.status');
+  if (st) st.textContent = status === 'ok' ? '✓ OK' : '✕ n/a';
 }
 
-function updateProgress(id, status, msg) {
-  const el = document.getElementById(`p-${id}`);
-  if (!el) return;
-  el.className = `progress-line ${status}`;
-  el.querySelector('.status').textContent = msg;
-}
-
-// FETCH with timeout
-async function fetchJson(url, opts={}, timeout=10000) {
+// FETCH ----------------------------------------------------------------------
+async function fetchJson(url, timeout = 28000) {
   const ctrl = new AbortController();
-  const t = setTimeout(()=>ctrl.abort(), timeout);
+  const t = setTimeout(() => ctrl.abort(), timeout);
   try {
-    const r = await fetch(url, {...opts, signal: ctrl.signal});
-    clearTimeout(t);
-    return await r.json();
-  } catch(e) { clearTimeout(t); throw e; }
+    const r = await fetch(url, { signal: ctrl.signal });
+    const text = await r.text();
+    let body; try { body = JSON.parse(text); } catch (e) { body = null; }
+    return { ok: r.ok, status: r.status, body };
+  } finally { clearTimeout(t); }
 }
 
-// SCRAPERS — multi-tier geocoding with smart fallback
-async function tryNominatim(q) {
-  try {
-    const d = await fetchJson(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=1&addressdetails=1&extratags=1`,
-      {headers:{'Accept-Language':'en'}});
-    if (!d || !d.length) return null;
-    const p = d[0];
-    return {
-      lat: parseFloat(p.lat), lng: parseFloat(p.lon),
-      address: p.display_name, type: p.type,
-      bbox: p.boundingbox, components: p.address || {},
-      source: 'Nominatim'
-    };
-  } catch(e) { return null; }
-}
+// MAIN -----------------------------------------------------------------------
+let lastDoc = null;       // cache last successful doc for valuation re-render
+let leafletMap = null;
 
-async function tryPhoton(q) {
-  try {
-    const d = await fetchJson(`https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=1`);
-    const f = d?.features?.[0];
-    if (!f) return null;
-    const props = f.properties || {};
-    return {
-      lat: f.geometry.coordinates[1], lng: f.geometry.coordinates[0],
-      address: [props.name, props.street, props.housenumber, props.city, props.state, props.country].filter(Boolean).join(', '),
-      type: props.osm_value || props.type || 'place',
-      components: {
-        city: props.city, state: props.state, country: props.country,
-        road: props.street, postcode: props.postcode
-      },
-      source: 'Photon (fuzzy)'
-    };
-  } catch(e) { return null; }
-}
-
-function stripPropertyKeywords(q) {
-  // Remove deal/property descriptors that confuse geocoders
-  return q.replace(/\b(Government Office Asset|Apartments?|Building|Tower|Center|Office Building|Office Park|Office|Asset|Property|Plaza|Complex|Mixed[\-\s]?Use|Condominiums?|Condos?|Estates?|Heights|Place|Court|Lofts|Residences|Suites|Towers|Villas?|Manor|Gardens?|Square|Commons|Pointe?|Crossing|Landing|Station|Mills|Annex|Hub|Hall)\b/gi, '').replace(/\s+/g, ' ').trim();
-}
-
-function extractCityState(q) {
-  // Pattern: "City, ST" or "City ST" at end of string
-  const m = q.match(/([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+){0,3}),?\s+([A-Z]{2})\b/);
-  if (m) return `${m[1]}, ${m[2]}`;
-  return null;
-}
-
-async function geocode(q) {
-  updateProgress('nominatim','pending','🔍 Tier 1: Direct Nominatim...');
-
-  // Tier 1: raw query
-  let result = await tryNominatim(q);
-  if (result) {
-    updateProgress('nominatim','done','✓ Direct match');
-    return result;
-  }
-
-  // Tier 2: Photon (better fuzzy matching)
-  updateProgress('nominatim','pending','🔍 Tier 2: Photon fuzzy match...');
-  result = await tryPhoton(q);
-  if (result) {
-    updateProgress('nominatim','done','✓ Photon match (fuzzy)');
-    return {...result, _fallback: 'photon', _original_query: q};
-  }
-
-  // Tier 3: strip property keywords, retry
-  const stripped = stripPropertyKeywords(q);
-  if (stripped && stripped !== q) {
-    updateProgress('nominatim','pending',`🔍 Tier 3: Stripped to "${stripped}"...`);
-    result = await tryNominatim(stripped);
-    if (result) {
-      updateProgress('nominatim','done',`✓ Found via stripped: "${stripped}"`);
-      return {...result, _fallback: 'stripped', _stripped: stripped, _original_query: q};
-    }
-  }
-
-  // Tier 4: extract city + state pattern
-  const cityState = extractCityState(q);
-  if (cityState) {
-    updateProgress('nominatim','pending',`🔍 Tier 4: City+state "${cityState}"...`);
-    result = await tryNominatim(cityState);
-    if (result) {
-      updateProgress('nominatim','done',`✓ Found via "${cityState}"`);
-      return {...result, _fallback: 'cityState', _cityState: cityState, _original_query: q};
-    }
-  }
-
-  // Tier 5: last 3 tokens
-  const tokens = q.split(/[\s,]+/).filter(Boolean);
-  if (tokens.length > 2) {
-    const lastN = tokens.slice(-3).join(' ');
-    updateProgress('nominatim','pending',`🔍 Tier 5: Last tokens "${lastN}"...`);
-    result = await tryNominatim(lastN);
-    if (result) {
-      updateProgress('nominatim','done',`✓ Found via "${lastN}"`);
-      return {...result, _fallback: 'lastTokens', _lastN: lastN, _original_query: q};
-    }
-  }
-
-  updateProgress('nominatim','error','✗ Not found in 5 tiers');
-  return null;
-}
-
-async function fetchFema(lat,lng) {
-  updateProgress('fema','pending','🌊 Checking flood zone...');
-  try {
-    const url = `https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28/query?geometry=${lng},${lat}&geometryType=esriGeometryPoint&inSR=4326&outFields=FLD_ZONE,FLD_AR_ID,STATIC_BFE,ZONE_SUBTY,SFHA_TF&returnGeometry=false&f=json`;
-    const d = await fetchJson(url);
-    const features = d.features || [];
-    if (!features.length) {
-      updateProgress('fema','done','✓ Outside SFHA');
-      return {zone:'X', in_floodplain:false, message:'Outside flood hazard area'};
-    }
-    const f = features[0].attributes;
-    updateProgress('fema','done','✓ Zone '+f.FLD_ZONE);
-    return {
-      zone: f.FLD_ZONE, in_floodplain: f.SFHA_TF==='T',
-      zone_subtype: f.ZONE_SUBTY, base_flood_elevation: f.STATIC_BFE,
-      high_risk: (f.FLD_ZONE||'').match(/^[AV]/i)
-    };
-  } catch(e) { updateProgress('fema','error','✗ '+e.message.slice(0,30)); return {}; }
-}
-
-async function fetchOsmPois(lat,lng) {
-  updateProgress('osm','pending','📌 Querying Overpass...');
-  try {
-    const q = `[out:json][timeout:15];(node["amenity"](around:800,${lat},${lng});node["shop"](around:800,${lat},${lng});node["tourism"](around:800,${lat},${lng}););out body 40;`;
-    const r = await fetch('https://overpass-api.de/api/interpreter',
-      {method:'POST', body:'data='+encodeURIComponent(q)});
-    const d = await r.json();
-    const pois = (d.elements||[]).filter(el => el.tags?.name)
-      .map(el => ({
-        name: el.tags.name,
-        category: el.tags.amenity || el.tags.shop || el.tags.tourism || 'other'
-      })).slice(0,30);
-    updateProgress('osm','done',`✓ ${pois.length} POIs`);
-    return pois;
-  } catch(e) { updateProgress('osm','error','✗ '+e.message.slice(0,30)); return []; }
-}
-
-async function fetchWiki(lat,lng) {
-  updateProgress('wiki','pending','📖 Wikipedia search...');
-  try {
-    // Use the JSONP-friendly approach or just origin
-    const d = await fetchJson(`https://en.wikipedia.org/w/api.php?action=query&list=geosearch&gscoord=${lat}|${lng}&gsradius=2000&gslimit=8&format=json&origin=*`);
-    const items = (d.query?.geosearch||[]).map(g => ({
-      title: g.title,
-      url: 'https://en.wikipedia.org/wiki/'+encodeURIComponent(g.title.replace(/ /g,'_')),
-      distance_m: g.dist
-    }));
-    updateProgress('wiki','done',`✓ ${items.length} articles`);
-    return items;
-  } catch(e) { updateProgress('wiki','error','✗ '+e.message.slice(0,30)); return []; }
-}
-
-function buildImagery(lat,lng) {
-  updateProgress('osmtile','done','✓ Generated');
-  updateProgress('mapbox','done','✓ Generated');
-  updateProgress('streetview','done','✓ Generated');
-  updateProgress('images','done','✓ 9 sources');
-
-  // Free public tile servers — no API key needed
-  function tileXY(lat, lng, z) {
-    const x = Math.floor((lng+180)/360*Math.pow(2,z));
-    const r = lat*Math.PI/180;
-    const y = Math.floor((1-Math.log(Math.tan(r)+1/Math.cos(r))/Math.PI)/2*Math.pow(2,z));
-    return {x, y};
-  }
-  const t17 = tileXY(lat, lng, 17);
-  const t18 = tileXY(lat, lng, 18);
-  const t16 = tileXY(lat, lng, 16);
-  return [
-    {source:'OpenStreetMap (z18)', type:'street',
-     url:`https://tile.openstreetmap.org/18/${t18.x}/${t18.y}.png`},
-    {source:'OpenStreetMap (z17)', type:'street',
-     url:`https://tile.openstreetmap.org/17/${t17.x}/${t17.y}.png`},
-    {source:'CartoDB Voyager', type:'map',
-     url:`https://cartodb-basemaps-a.global.ssl.fastly.net/rastertiles/voyager/17/${t17.x}/${t17.y}.png`},
-    {source:'CartoDB Light', type:'light',
-     url:`https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/17/${t17.x}/${t17.y}.png`},
-    {source:'CartoDB Dark', type:'dark',
-     url:`https://cartodb-basemaps-a.global.ssl.fastly.net/dark_all/17/${t17.x}/${t17.y}.png`},
-    {source:'OSM Hot Style', type:'map',
-     url:`https://tile.openstreetmap.fr/hot/17/${t17.x}/${t17.y}.png`},
-    {source:'OSM Topo', type:'terrain',
-     url:`https://a.tile.opentopomap.org/16/${t16.x}/${t16.y}.png`},
-    {source:'Stamen Toner', type:'high-contrast',
-     url:`https://stamen-tiles-a.a.ssl.fastly.net/toner/16/${t16.x}/${t16.y}.png`},
-    {source:'Wikimedia Maps', type:'map',
-     url:`https://maps.wikimedia.org/osm-intl/17/${t17.x}/${t17.y}.png`},
-  ];
-}
-
-// LocalStorage cache (24h TTL)
-const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
-function getCache(key) {
-  try {
-    const raw = localStorage.getItem('reprime:'+key);
-    if (!raw) return null;
-    const {data, ts} = JSON.parse(raw);
-    if (Date.now() - ts > CACHE_TTL_MS) { localStorage.removeItem('reprime:'+key); return null; }
-    return data;
-  } catch(e) { return null; }
-}
-function setCache(key, data) {
-  try { localStorage.setItem('reprime:'+key, JSON.stringify({data, ts: Date.now()})); } catch(e) {}
-}
-
-// MAIN SEARCH
-async function search() {
-  const q = document.getElementById('q').value.trim();
+async function doSearch(userValue) {
+  const q = $('q').value.trim();
   if (!q) return;
+  if (q.length < 5) { showError(400, 'Address too short. Try "123 Main St, City, ST 00000".'); return; }
 
-  // Check cache first (instant re-search)
-  const cached = getCache(q.toLowerCase());
-  if (cached) {
-    document.getElementById('initial-state').style.display='none';
-    renderResults({...cached, _cached: true});
-    return;
-  }
-
-  document.getElementById('initial-state').style.display='none';
-  document.getElementById('results').classList.remove('show');
-  document.getElementById('search-btn').disabled=true;
-  document.getElementById('loading').classList.add('show');
-
+  $('initial-state').style.display = 'none';
+  $('results').classList.remove('show');
+  $('search-btn').disabled = true;
+  $('loading').classList.add('show');
   setupProgress();
 
-  // Step 1: geocode
-  const geo = await geocode(q);
-  if (!geo) {
-    const suggestions = [
-      'Try the actual street address: "1305 N 9th Ave Pensacola FL"',
-      'Use a famous landmark: "Empire State Building" or "Willis Tower"',
-      'Drop deal/property words like "Asset", "Apartments", "Office"',
-      'Try just city + state: "Little Rock AR"'
-    ];
-    alert('Could not find this location across 5 geocoders.\n\nSuggestions:\n• ' + suggestions.join('\n• '));
-    document.getElementById('loading').classList.remove('show');
-    document.getElementById('search-btn').disabled=false;
-    document.getElementById('initial-state').style.display='block';
+  const u = `/api/search?address=${encodeURIComponent(q)}` + (userValue ? `&value=${encodeURIComponent(userValue)}` : '');
+  let res;
+  try { res = await fetchJson(u); }
+  catch (e) { $('loading').classList.remove('show'); $('search-btn').disabled = false; showError(0, 'Network error or timeout. Please try again.'); return; }
+
+  $('loading').classList.remove('show');
+  $('search-btn').disabled = false;
+
+  if (!res.body) { showError(res.status || 500, 'The search service returned an unreadable response.'); return; }
+  if (!res.ok) {
+    showError(res.status, res.body.error || 'Search failed.', res.body.hint);
     return;
   }
-
-  const {lat,lng,address} = geo;
-
-  // Step 2: parallel fetches
-  const [fema, pois, wiki] = await Promise.all([
-    fetchFema(lat,lng),
-    fetchOsmPois(lat,lng),
-    fetchWiki(lat,lng)
-  ]);
-
-  const images = buildImagery(lat,lng);
-
-  // Cache + render
-  const payload = {query:q, geo, fema, pois, wiki, images};
-  setCache(q.toLowerCase(), payload);
-  renderResults(payload);
+  pushHistory(q);
+  lastDoc = res.body;
+  renderAll(res.body);
 }
 
-function renderResults({query, geo, fema, pois, wiki, images}) {
-  document.getElementById('loading').classList.remove('show');
-  document.getElementById('search-btn').disabled=false;
-  document.getElementById('results').classList.add('show');
+function showError(code, msg, hint) {
+  $('results').classList.remove('show');
+  const init = $('initial-state');
+  init.style.display = 'block';
+  init.innerHTML = `
+    <div style="font-size:46px;margin-bottom:12px">⚠️</div>
+    <h3 style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;margin-bottom:8px;color:var(--red)">Search problem${code ? ' (HTTP ' + code + ')' : ''}</h3>
+    <p style="color:var(--muted);max-width:560px;margin:0 auto 14px;line-height:1.6;font-size:13px">${msg}${hint ? '<br><span style="color:var(--dim)">' + hint + '</span>' : ''}</p>
+    <button class="src-badge" style="cursor:pointer;border-color:var(--accent);color:var(--accent)" onclick="doSearch()">↻ Try again</button>`;
+}
 
-  const {lat,lng,address,type,components} = geo;
+// RENDER ---------------------------------------------------------------------
+function setPanelTitle(matchText, newTitle, badge) {
+  document.querySelectorAll('.ct').forEach(ct => {
+    if (ct.textContent.includes(matchText)) {
+      ct.textContent = newTitle;
+      if (badge) { const b = ct.parentElement.querySelector('.badge'); if (b) b.textContent = badge; }
+    }
+  });
+}
 
-  // Header
-  const fallbackBadge = geo._fallback
-    ? `<span style="padding:4px 10px;background:rgba(251,191,36,.12);color:var(--gold);border:1px solid rgba(251,191,36,.2);border-radius:8px;font-size:10px">🔄 Fallback: ${geo._fallback}${geo._stripped?` ("${geo._stripped}")`:''}${geo._cityState?` ("${geo._cityState}")`:''}${geo._lastN?` ("${geo._lastN}")`:''}</span>`
-    : '';
-  const cachedBadge = geo._cached ? `<span style="padding:4px 10px;background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.2);border-radius:8px;font-size:10px">⚡ Cached (24h)</span>` : '';
-  const sourceBadge = geo.source ? `<span style="padding:4px 10px;background:rgba(59,130,246,.12);color:var(--accent);border:1px solid rgba(59,130,246,.2);border-radius:8px;font-size:10px">🌐 ${geo.source}</span>` : '';
-  document.getElementById('r-header').innerHTML=`
-    <div class="result-title">${query}</div>
-    <div class="result-loc">📍 ${address}</div>
+function renderAll(doc) {
+  const m = doc.query_metadata || {};
+  const S = doc.sources || {};
+  const ok = s => S[s] && !S[s]._error && S[s]._status !== 'error';
+  $('results').classList.add('show');
+
+  // progress reflect real outcomes
+  markProgress('geocode', m.lat ? 'ok' : 'fail');
+  (doc.sources_summary || []).forEach(s => markProgress(s.source, s.status === 'ok' ? 'ok' : 'fail'));
+
+  // degraded banner
+  let banner = $('degraded-banner');
+  if (doc.degraded) {
+    if (!banner) { banner = document.createElement('div'); banner.id = 'degraded-banner'; banner.className = 'glass mb';
+      $('results').insertBefore(banner, $('r-header').nextSibling); }
+    banner.style.cssText = 'padding:12px 16px;border:1px solid var(--gold);color:var(--gold);font-size:12px';
+    banner.textContent = '⚠️ ' + (doc.message || 'Partial results — some sources did not return.');
+  } else if (banner) { banner.remove(); }
+
+  // header
+  const geocoderBadge = m.geocoder ? `<span style="padding:4px 10px;background:rgba(59,130,246,.12);color:var(--accent);border:1px solid rgba(59,130,246,.2);border-radius:8px;font-size:10px">🌐 ${m.geocoder}</span>` : '';
+  const cacheBadge = doc.cached ? `<span style="padding:4px 10px;background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.2);border-radius:8px;font-size:10px">⚡ Cached</span>` : '';
+  $('r-header').innerHTML = `
+    <div class="result-title">${m.address_input || ''}</div>
+    <div class="result-loc">📍 ${m.geocoded_address || ''}</div>
     <div class="result-meta">
-      <span>📌 ${lat.toFixed(5)}, ${lng.toFixed(5)}</span>
-      ${type?`<span>Type: ${type}</span>`:''}
-      <span>${new Date().toLocaleString()}</span>
-      ${sourceBadge}
-      ${fallbackBadge}
-      ${cachedBadge}
+      <span>📌 ${(m.lat || 0).toFixed(5)}, ${(m.lon || 0).toFixed(5)}</span>
+      <span>${m.total_sources_succeeded}/${m.total_sources_attempted} sources OK</span>
+      <span>${m.total_latency_ms} ms</span>
+      ${geocoderBadge}${cacheBadge}
     </div>`;
 
-  // Source badges — show all 6 sources we hit + 605 catalog sources
-  const sources = [
-    {n:'Nominatim',s:'ok'},
-    {n:'FEMA NFHL',s:fema.zone?'ok':'fail'},
-    {n:'OSM Overpass',s:pois.length?'ok':'fail'},
-    {n:'Wikipedia',s:wiki.length?'ok':'skip'},
-    {n:'Mapbox Tiles (3)',s:'ok'},
-    {n:'OSM Static Tile',s:'ok'},
-    {n:'+549 cached',s:'skip'}
-  ];
-  document.getElementById('src-count').textContent = `${sources.filter(s=>s.s==='ok').length} live OK · 611 catalog`;
-  document.getElementById('src-badges').innerHTML = sources.map(s=>`<span class="src-badge ${s.s}">${s.n}</span>`).join('');
+  // source badges from sources_summary (real status)
+  const summ = doc.sources_summary || [];
+  $('src-count').textContent = `${summ.filter(s => s.status === 'ok').length} OK · ${summ.length} queried`;
+  $('src-badges').innerHTML = summ.map(s =>
+    `<span class="src-badge ${s.status === 'ok' ? 'ok' : 'fail'}" title="${s.latency_ms || 0} ms">${s.source}${s.status === 'ok' ? '' : ' ✕'}</span>`).join('');
 
-  // Stats
-  document.getElementById('r-stats').innerHTML=`
-    <div class="glass stat"><div class="lb">Flood Zone</div><div class="vl" style="color:${fema.high_risk?'var(--red)':'var(--green)'};font-size:18px">${fema.zone||'?'}</div><div class="sb">${fema.in_floodplain?'In SFHA':'Outside SFHA'}</div></div>
-    <div class="glass stat"><div class="lb">Nearby POIs</div><div class="vl" style="color:var(--accent)">${pois.length}</div><div class="sb">Within 800m</div></div>
-    <div class="glass stat"><div class="lb">Wikipedia</div><div class="vl" style="color:var(--accent2)">${wiki.length}</div><div class="sb">Articles within 2km</div></div>
-    <div class="glass stat"><div class="lb">Imagery</div><div class="vl" style="color:var(--accent3)">${images.length}</div><div class="sb">Map layers</div></div>`;
+  // stats g4
+  const ff = ok('fema_flood') ? S.fema_flood : {};
+  const poiN = ok('osm_pois') ? S.osm_pois.count : 0;
+  $('r-stats').innerHTML = `
+    <div class="glass stat"><div class="lb">Flood Zone</div><div class="vl" style="font-size:18px;color:${(ff.sfha === 'T') ? 'var(--red)' : 'var(--green)'}">${ff.zone || 'n/a'}</div><div class="sb">${ff.risk || 'FEMA NFHL'}</div></div>
+    <div class="glass stat"><div class="lb">Nearby POIs</div><div class="vl" style="color:var(--accent)">${poiN}</div><div class="sb">Within 800m</div></div>
+    <div class="glass stat"><div class="lb">Sources OK</div><div class="vl" style="color:var(--green)">${m.total_sources_succeeded}</div><div class="sb">of ${m.total_sources_attempted}</div></div>
+    <div class="glass stat"><div class="lb">Latency</div><div class="vl" style="color:var(--accent3)">${(m.total_latency_ms / 1000).toFixed(1)}s</div><div class="sb">server-side fan-out</div></div>
+    ${ok('elevation') ? `<div class="glass stat"><div class="lb">Elevation</div><div class="vl" style="color:var(--accent2)">${S.elevation.elevation_ft}′</div><div class="sb">USGS 3DEP</div></div>` : ''}
+    ${ok('weather') ? `<div class="glass stat"><div class="lb">Weather</div><div class="vl" style="color:var(--gold)">${S.weather.temp_f}°F</div><div class="sb">${S.weather.wind_mph} mph wind · Open-Meteo</div></div>` : ''}
+    ${ok('air_quality') ? `<div class="glass stat"><div class="lb">Air Quality</div><div class="vl" style="color:${S.air_quality.us_aqi > 100 ? 'var(--red)' : S.air_quality.us_aqi > 50 ? 'var(--gold)' : 'var(--green)'}">${S.air_quality.us_aqi}</div><div class="sb">US AQI · PM2.5 ${S.air_quality.pm2_5}</div></div>` : ''}
+    ${ok('usgs_quakes') ? `<div class="glass stat"><div class="lb">Seismic (200km)</div><div class="vl" style="color:var(--accent3)">${S.usgs_quakes.count_200km}</div><div class="sb">recent quakes · USGS</div></div>` : ''}`;
 
-  // Map
-  document.getElementById('r-map').innerHTML=`<iframe src="https://www.openstreetmap.org/export/embed.html?bbox=${lng-0.008}%2C${lat-0.005}%2C${lng+0.008}%2C${lat+0.005}&layer=mapnik&marker=${lat}%2C${lng}"></iframe>`;
+  // valuation card (insert once, after r-stats)
+  renderValuationCard(doc);
 
-  // Address details
-  const addr = [
-    ['Type', type],
-    ['House #', components.house_number],
-    ['Road', components.road],
-    ['Neighborhood', components.neighbourhood || components.suburb],
-    ['City', components.city || components.town || components.village || components.county],
-    ['County', components.county],
-    ['State', components.state],
-    ['Postal Code', components.postcode],
-    ['Country', components.country],
-    ['Coordinates', `${lat.toFixed(5)}, ${lng.toFixed(5)}`]
-  ].filter(x=>x[1]);
-  document.getElementById('r-addr').innerHTML = addr.length
-    ? addr.map(([k,v])=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px"><span style="color:var(--muted)">${k}</span><span style="font-family:'JetBrains Mono',monospace;font-weight:600;text-align:right">${v}</span></div>`).join('')
-    : '<div style="color:var(--muted);padding:10px;font-size:12px">No detailed address components</div>';
+  // map (Leaflet) — defer so the container is visible & sized
+  setTimeout(() => renderMap(m, S, ok), 60);
 
-  // Images
-  document.getElementById('img-count').textContent = `${images.length} layers`;
-  document.getElementById('r-images').innerHTML = images.map(i=>`<div class="img-tile" style="background-image:url('${i.url}')"><div class="src">${i.source}</div></div>`).join('');
+  // address details
+  const rows = [
+    ['Matched address', m.geocoded_address],
+    ['Latitude', (m.lat || 0).toFixed(6)],
+    ['Longitude', (m.lon || 0).toFixed(6)],
+    ['Geocoder', m.geocoder],
+    ['State FIPS', m.fips_state], ['County FIPS', m.fips_county], ['Tract', m.fips_tract],
+  ].filter(x => x[1]);
+  $('r-addr').innerHTML = rows.map(([k, v]) =>
+    `<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px"><span style="color:var(--muted)">${k}</span><span style="font-family:'JetBrains Mono',monospace;font-weight:600;text-align:right">${v}</span></div>`).join('');
 
-  // Flood
-  document.getElementById('r-flood').innerHTML=`
-    <div style="font-size:36px;font-weight:800;font-family:'JetBrains Mono',monospace;color:${fema.high_risk?'var(--red)':'var(--green)'};margin-bottom:6px">Zone ${fema.zone||'?'}</div>
-    <div style="font-size:11px;color:var(--muted);margin-bottom:10px">${fema.in_floodplain?'⚠️ Special Flood Hazard Area (SFHA)':'✓ Outside flood hazard area'}</div>
-    ${fema.base_flood_elevation?`<div style="font-size:11px"><span style="color:var(--muted)">Base Flood Elevation:</span> <strong>${fema.base_flood_elevation} ft</strong></div>`:''}
-    ${fema.zone_subtype?`<div style="font-size:11px;margin-top:4px"><span style="color:var(--muted)">Subtype:</span> ${fema.zone_subtype}</div>`:''}
-    <div style="font-size:9px;color:var(--dim);margin-top:14px">Source: FEMA NFHL · MapServer/28</div>`;
+  // imagery — real OSM static tiles around the point
+  const imgs = buildImagery(m.lat, m.lon);
+  $('img-count').textContent = `${imgs.length} layers`;
+  $('r-images').innerHTML = imgs.map(i => `<div class="img-tile" style="background-image:url('${i.url}')"><div class="src">${i.source}</div></div>`).join('');
+
+  // flood panel
+  $('r-flood').innerHTML = ok('fema_flood') ? `
+    <div style="font-size:34px;font-weight:800;font-family:'JetBrains Mono',monospace;color:${(ff.sfha === 'T') ? 'var(--red)' : 'var(--green)'};margin-bottom:6px">Zone ${ff.zone || 'n/a'}</div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:8px">${ff.risk || ''}</div>
+    ${ff.subtype ? `<div style="font-size:11px"><span style="color:var(--muted)">Subtype:</span> ${ff.subtype}</div>` : ''}
+    <div style="font-size:9px;color:var(--dim);margin-top:12px">Source: FEMA NFHL · MapServer/28</div>`
+    : sourceUnavailable(S.fema_flood, 'FEMA NFHL flood lookup');
 
   // POIs
-  document.getElementById('r-poi-count').textContent = `${pois.length} within 800m`;
-  document.getElementById('r-pois').innerHTML = pois.length
-    ? pois.slice(0,20).map(p=>`<div class="poi"><div class="name">${p.name}</div><div class="cat">${p.category}</div></div>`).join('')
-    : '<div style="color:var(--muted);font-size:12px;padding:10px">No POIs found</div>';
+  setPanelTitle('Nearby POIs', '📌 Nearby POIs · OSM');
+  $('r-poi-count').textContent = `${poiN} within 800m`;
+  $('r-pois').innerHTML = ok('osm_pois') && S.osm_pois.pois.length
+    ? S.osm_pois.pois.slice(0, 20).map(p => `<div class="poi"><div class="name">${p.name}</div><div class="cat">${p.category}</div></div>`).join('')
+    : '<div style="color:var(--muted);font-size:12px;padding:10px">No POIs returned</div>';
 
-  // Wiki
-  document.getElementById('r-wiki-count').textContent = `${wiki.length} articles`;
-  document.getElementById('r-wiki').innerHTML = wiki.length
-    ? wiki.slice(0,12).map(w=>`<a href="${w.url}" target="_blank"><div class="poi"><div class="name">${w.title}</div><div class="cat">${(w.distance_m/1000).toFixed(1)}km</div></div></a>`).join('')
-    : '<div style="color:var(--muted);font-size:12px;padding:10px">No nearby Wikipedia articles</div>';
+  // third panel: repurpose Wikipedia -> NWS weather alerts
+  setPanelTitle('Wikipedia Nearby', '🌪️ Weather Alerts · NWS', 'NWS');
+  const nw = ok('nws_alerts') ? S.nws_alerts : null;
+  $('r-wiki-count').textContent = nw ? `${nw.count} active` : '—';
+  $('r-wiki').innerHTML = nw && nw.alerts && nw.alerts.length
+    ? nw.alerts.map(a => `<div class="poi"><div class="name">${a.event}</div><div class="cat">${a.severity || ''}</div></div>`).join('')
+    : (nw ? `<div style="color:var(--green);font-size:12px;padding:10px">✓ No active alerts (${nw.scope || ''})</div>` : sourceUnavailable(S.nws_alerts, 'NWS'));
 
-  document.getElementById('r-header').scrollIntoView({behavior:'smooth',block:'start'});
+  // ---- lower "context" section, now driven by the SAME live response ----
+  setPanelTitle('Data From 611 Cached Sources', '🛰️ Live macro & market context');
 
-  // Load 611-source cached data (runs after rendering property results)
-  loadCachedSources();
-}
+  // FRED grid
+  if (ok('fred_rates')) {
+    const fr = S.fred_rates;
+    const order = [['treasury_10y', '10Y Treasury', 'var(--accent)'], ['mortgage_30y', '30Y Mortgage', 'var(--accent3)'],
+      ['sofr', 'SOFR', 'var(--accent2)'], ['fed_funds', 'Fed Funds', 'var(--gold)'],
+      ['unemployment', 'Unemployment', 'var(--orange)'], ['cpi_yoy', 'CPI Index', 'var(--pink)']];
+    $('fred-grid').innerHTML = order.filter(([k]) => fr[k]).map(([k, l, c]) =>
+      `<div class="layer"><div class="lh"><div class="label">${l}</div><div class="src">${fr[k].source}</div></div><div class="v" style="color:${c}">${fr[k].value}</div><div class="meta">${fr[k].date}</div></div>`).join('');
+  } else { $('fred-grid').innerHTML = sourceUnavailable(S.fred_rates, 'FRED'); }
 
-async function loadCachedSources() {
-  // Fetch all the cached /data/* in parallel
-  const safe = async (u) => { try { const r = await fetch(u); return await r.json(); } catch(e){ return null; } };
-  const [market, financing, news, env, stats] = await Promise.all([
-    safe('/data/live/market.json'),
-    safe('/data/deal/financing.json'),
-    safe('/data/deal/news.json'),
-    safe('/data/deal/environmental.json'),
-    safe('/data/stats.json')
-  ]);
+  // crypto into reit-grid slot
+  if (ok('crypto')) {
+    const c = S.crypto;
+    $('reit-grid').innerHTML = [['BTC', c.bitcoin_usd], ['ETH', c.ethereum_usd]].filter(x => x[1]).map(([t, v]) =>
+      `<div class="layer"><div class="lh"><div class="label">${t === 'BTC' ? 'Bitcoin' : 'Ethereum'}</div><div class="src">CoinGecko</div></div><div class="v" style="color:var(--gold)">$${Number(v).toLocaleString()}</div><div class="meta">live</div></div>`).join('');
+  } else { $('reit-grid').innerHTML = ''; }
 
-  // FRED macro grid
-  if (market?.fred) {
-    const fr = market.fred;
-    const layers = [
-      {k:'10Y_Treasury_Yield',l:'10Y Treasury',c:'var(--accent)',src:'FRED'},
-      {k:'30Y_Fixed_Mortgage_Rate',l:'30Y Mortgage',c:'var(--accent3)',src:'FRED'},
-      {k:'SOFR_Rate',l:'SOFR',c:'var(--accent2)',src:'NY Fed'},
-      {k:'Fed_Funds_Rate',l:'Fed Funds',c:'var(--gold)',src:'FRED'},
-      {k:'CRE_Delinquency_Rate',l:'CRE Delinquency',c:'var(--red)',src:'FRED'},
-      {k:'Unemployment_Rate',l:'Unemployment',c:'var(--orange)',src:'BLS'},
-      {k:'Case_Shiller_Home_Price_Index',l:'Case-Shiller HPI',c:'var(--pink)',src:'S&P'},
-      {k:'Median_Sale_Price_US',l:'Median US Home',c:'var(--green)',src:'FRED'}
-    ];
-    document.getElementById('fred-grid').innerHTML = layers.map(x => {
-      const v = fr[x.k]?.value || '—';
-      const d = fr[x.k]?.date || '';
-      const fmt = x.k === 'Median_Sale_Price_US' ? `$${(parseInt(v)/1000).toFixed(0)}K` : `${v}${x.l==='Case-Shiller HPI' ? '' : '%'}`;
-      return `<div class="layer"><div class="lh"><div class="label">${x.l}</div><div class="src">${x.src}</div></div><div class="v" style="color:${x.c}">${fmt}</div><div class="meta">${d}</div></div>`;
+  // financing (INDICATIVE, computed off live rates)
+  if (ok('financing')) {
+    const fin = S.financing;
+    setPanelTitle('Lending Products', '🏦 Indicative Financing');
+    $('financing-table').innerHTML =
+      `<div style="font-size:9px;color:var(--gold);margin-bottom:6px">${fin.label}</div>` +
+      fin.pricing.map(p =>
+      `<div style="padding:8px 0;border-bottom:1px solid var(--border)"><div style="display:flex;justify-content:space-between"><strong>${p.product}</strong><span style="color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:11px">${p.indicative_rate}</span></div><div style="color:var(--muted);font-size:10px;margin-top:2px">${p.base_index} ${p.base_rate} + ${p.spread_bps}bps · ${p.ltv} · ${p.term}</div></div>`).join('');
+  }
+
+  // FEMA disaster declarations into flood-stats slot
+  setPanelTitle('FEMA NFIP Florida', '🌊 FEMA Disaster Declarations');
+  if (ok('fema_disasters')) {
+    const fd = S.fema_disasters;
+    $('flood-stats').innerHTML = `<div style="font-size:11px"><div style="margin-bottom:6px"><span style="color:var(--muted)">Recent declarations (${fd.scope}):</span> <strong>${fd.count_recent}</strong></div>` +
+      (fd.recent || []).slice(0, 4).map(d => `<div style="padding:4px 0;border-bottom:1px solid var(--border)"><div>${d.title || d.type}</div><div style="color:var(--dim);font-size:10px">${(d.date || '').slice(0, 10)} · ${d.type || ''}</div></div>`).join('') + '</div>';
+  } else { $('flood-stats').innerHTML = sourceUnavailable(S.fema_disasters, 'FEMA'); }
+
+  // news + sentiment (GDELT)
+  if (ok('news') && (S.news.articles || []).length) {
+    const arts = S.news.articles;
+    $('news-total').textContent = `${arts.length} articles`;
+    $('news-feed').innerHTML = arts.map(a => {
+      const tone = typeof a.tone === 'number' ? a.tone : parseFloat(a.tone);
+      const col = isNaN(tone) ? 'var(--muted)' : tone > 1 ? 'var(--green)' : tone < -1 ? 'var(--red)' : 'var(--gold)';
+      return `<div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)"><div style="width:6px;height:6px;border-radius:50%;background:${col};margin-top:5px;flex-shrink:0"></div><div style="flex:1"><div style="font-size:8px;color:var(--muted);text-transform:uppercase">${a.source || ''}</div><div style="font-size:11px;line-height:1.35"><a href="${a.url}" target="_blank" rel="noopener">${a.title}</a></div></div></div>`;
     }).join('');
-  }
-
-  // REITs
-  if (market?.reits) {
-    const rt = market.reits;
-    const names = {O:'Realty Income',PLD:'Prologis',AMT:'Amer Tower',PSA:'Public Storage',SPG:'Simon',WELL:'Welltower',DLR:'Digital Realty',EQR:'Equity Res',VNO:'Vornado',BXP:'Boston Props'};
-    document.getElementById('reit-grid').innerHTML = Object.entries(rt).slice(0,8).map(([t,r]) => {
-      const chg = r.change_pct || 0;
-      return `<div class="layer ${chg>=0?'g':'r'}"><div class="lh"><div class="label">${t} · ${names[t]||''}</div><div class="src">Finnhub</div></div><div class="v" style="color:${chg>=0?'var(--green)':'var(--red)'}">$${(r.current||0).toFixed(2)}</div><div class="meta" style="color:${chg>=0?'var(--green)':'var(--red)'}">${chg>=0?'▲':'▼'} ${Math.abs(chg).toFixed(2)}%</div></div>`;
-    }).join('');
-  }
-
-  // Financing
-  if (financing?.lending_products) {
-    document.getElementById('financing-table').innerHTML = financing.lending_products.map(p =>
-      `<div style="padding:8px 0;border-bottom:1px solid var(--border)"><div style="display:flex;justify-content:space-between"><strong>${p.product}</strong><span style="color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:10px">${p.rate_range}</span></div><div style="color:var(--muted);font-size:10px;margin-top:2px">${p.ltv} LTV · ${p.term} · ${p.min_dscr} DSCR · ${p.best_for}</div></div>`
-    ).join('');
-  }
-
-  // Flood / FEMA
-  if (env?.flood) {
-    const f = env.flood;
-    document.getElementById('flood-stats').innerHTML = `
-      <div class="g2" style="font-size:11px">
-        <div><div style="color:var(--muted);font-size:10px">Total Claims</div><div class="v" style="font-size:20px;font-family:'JetBrains Mono',monospace;font-weight:800">${(f.total_claims||0).toLocaleString()}</div></div>
-        <div><div style="color:var(--muted);font-size:10px">FL Claims</div><div class="v" style="font-size:20px;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--gold)">${(f.florida_claims||0).toLocaleString()}</div></div>
-        <div style="grid-column:span 2"><div style="color:var(--muted);font-size:10px">FL Total Paid</div><div class="v" style="font-size:20px;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--red)">$${((f.florida_total_paid||0)/1000000).toFixed(1)}M</div></div>
-      </div>`;
-  }
-
-  // News
-  if (news?.articles) {
-    document.getElementById('news-total').textContent = `${news.total_articles} articles`;
-    const cl=['#3b82f6','#22c55e','#8b5cf6','#fbbf24','#ef4444','#06b6d4','#fb923c','#f472b6'];
-    const srcMap = {};
-    (news.sources||[]).forEach((s,i)=>srcMap[s.name]=cl[i%cl.length]);
-    document.getElementById('news-feed').innerHTML = news.articles.slice(0,12).map(a =>
-      `<div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)"><div style="width:6px;height:6px;border-radius:50%;background:${srcMap[a.source]||'var(--muted)'};margin-top:5px;flex-shrink:0;box-shadow:0 0 6px ${srcMap[a.source]||'var(--muted)'}"></div><div style="flex:1"><div style="font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px">${a.source}</div><div style="font-size:11px;line-height:1.35"><a href="${a.link}" target="_blank">${a.title}</a></div></div></div>`
-    ).join('');
-
-    const ss = news.sentiment_summary || {};
-    const t = (ss.positive||0)+(ss.neutral||0)+(ss.negative||0);
-    document.getElementById('sentiment-mix').innerHTML = `
+    let pos = 0, neg = 0, neu = 0;
+    arts.forEach(a => { const t = parseFloat(a.tone); if (isNaN(t)) neu++; else if (t > 1) pos++; else if (t < -1) neg++; else neu++; });
+    const tot = pos + neu + neg || 1;
+    $('sentiment-mix').innerHTML = `
       <div style="display:flex;height:30px;border-radius:8px;overflow:hidden;gap:2px;margin-bottom:10px">
-        ${ss.positive?`<div style="flex:${ss.positive};background:var(--green);font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff">${ss.positive}</div>`:''}
-        ${ss.neutral?`<div style="flex:${ss.neutral};background:var(--surface-2);font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700">${ss.neutral}</div>`:''}
-        ${ss.negative?`<div style="flex:${ss.negative};background:var(--red);font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff">${ss.negative}</div>`:''}
+        ${pos ? `<div style="flex:${pos};background:var(--green);font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff">${pos}</div>` : ''}
+        ${neu ? `<div style="flex:${neu};background:var(--surface-2);font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700">${neu}</div>` : ''}
+        ${neg ? `<div style="flex:${neg};background:var(--red);font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff">${neg}</div>` : ''}
       </div>
       <div style="font-size:11px;display:flex;flex-direction:column;gap:4px">
-        <div style="display:flex;justify-content:space-between"><span style="color:var(--green)">● Positive</span><strong>${ss.positive||0}</strong></div>
-        <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">● Neutral</span><strong>${ss.neutral||0}</strong></div>
-        <div style="display:flex;justify-content:space-between"><span style="color:var(--red)">● Negative</span><strong>${ss.negative||0}</strong></div>
-        <div style="display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:4px;margin-top:2px"><span>Total</span><strong>${t}</strong></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--green)">● Positive</span><strong>${pos}</strong></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">● Neutral</span><strong>${neu}</strong></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--red)">● Negative</span><strong>${neg}</strong></div>
       </div>`;
+  } else {
+    $('news-total').textContent = '—';
+    $('news-feed').innerHTML = sourceUnavailable(S.news, 'GDELT news');
+    $('sentiment-mix').innerHTML = '';
   }
 
-  // Categories
-  if (stats?.by_category) {
-    const cats = Object.entries(stats.by_category).sort((a,b)=>b[1].total-a[1].total);
-    const maxT = Math.max(...cats.map(c=>c[1].total));
-    const cl=['#3b82f6','#22c55e','#8b5cf6','#fbbf24','#ef4444','#06b6d4','#fb923c','#f472b6','#14b8a6','#a78bfa','#6366f1','#84cc16','#f59e0b','#10b981'];
-    document.getElementById('cat-bars').innerHTML = cats.map((c,i)=>{
-      const pct = c[1].scraped/c[1].total*100;
-      return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:5px"><div style="width:160px;text-align:right;color:var(--muted);font-size:11px">${c[0].replace('_',' ')}</div><div style="flex:1;background:var(--surface);border-radius:6px;height:22px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${cl[i%14]};border-radius:6px;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:700;color:#fff;transition:width 1.2s">${c[1].scraped}/${c[1].total} · ${c[1].records} records</div></div></div>`;
-    }).join('');
-  }
+  // category coverage bars from the 611 registry (/api/sources)
+  loadCategoryBars();
 
-  // Update src count display
-  document.getElementById('src-count').textContent = `${stats?.by_status?.scraped||549} live · 611 total`;
+  $('r-header').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-document.getElementById('search-btn').addEventListener('click',search);
-document.getElementById('q').addEventListener('keypress',e=>{if(e.key==='Enter')search();});
+function sourceUnavailable(node, label) {
+  const msg = (node && node._error) ? node._error : (node && node.note) ? node.note : `${label} returned no data`;
+  return `<div style="padding:10px;font-size:11px;color:var(--gold);border:1px dashed var(--border-2);border-radius:8px">⚠️ ${msg}</div>`;
+}
+
+// VALUATION ------------------------------------------------------------------
+function renderValuationCard(doc) {
+  const S = doc.sources || {};
+  const val = S.valuation || {};
+  let card = $('valuation-card');
+  if (!card) {
+    card = document.createElement('div'); card.id = 'valuation-card'; card.className = 'glass mb';
+    $('r-stats').insertAdjacentElement('afterend', card);
+  }
+  const conv = val.converted || {};
+  const haveVal = val.status === 'ok';
+  const rows = haveVal ? Object.entries(conv).map(([k, v]) => {
+    const used = (val.rates_used || {})[k];
+    const disp = (k === 'BTC' || k === 'ETH') ? Number(v).toLocaleString(undefined, { maximumFractionDigits: 4 }) : Number(v).toLocaleString(undefined, { maximumFractionDigits: 0 });
+    return `<div class="glass stat"><div class="lb">${k}</div><div class="vl" style="font-size:15px">${disp}</div><div class="sb">${used ? 'rate ' + Number(used).toLocaleString(undefined, { maximumFractionDigits: 4 }) : ''}</div></div>`;
+  }).join('') : '';
+  card.innerHTML = `
+    <div class="ch"><div class="ct">💱 Multi-Currency Valuation</div><span class="badge info">${haveVal ? 'live FX/crypto' : 'enter a value'}</span></div>
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:${haveVal ? '14' : '4'}px;flex-wrap:wrap">
+      <span style="color:var(--muted);font-size:12px">USD property value</span>
+      <input id="val-input" type="text" inputmode="numeric" placeholder="e.g. 12,000,000" value="${haveVal ? val.input_usd : ''}"
+             style="background:var(--surface);border:1px solid var(--border-2);border-radius:8px;padding:6px 10px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:13px;width:160px">
+      <button id="val-btn" class="src-badge" style="cursor:pointer;border-color:var(--accent);color:var(--accent)">Convert</button>
+      ${haveVal ? `<span style="color:var(--dim);font-size:10px">${val.note || ''} · rate ts ${val.rate_timestamp || ''}</span>` : `<span style="color:var(--dim);font-size:11px">${val.message || 'No automated AVM — enter your own value to convert on live rates.'}</span>`}
+    </div>
+    <div class="g4">${rows}</div>`;
+  $('val-btn').addEventListener('click', () => {
+    const v = parseFloat(($('val-input').value || '').replace(/[^\d.]/g, ''));
+    if (v > 0) doSearch(v);
+  });
+  $('val-input').addEventListener('keypress', e => { if (e.key === 'Enter') $('val-btn').click(); });
+}
+
+// MAP (Leaflet) --------------------------------------------------------------
+function renderMap(m, S, ok) {
+  if (!m.lat || typeof L === 'undefined') return;
+  if (leafletMap) { leafletMap.remove(); leafletMap = null; }
+  const box = $('r-map'); box.innerHTML = '';
+  leafletMap = L.map('r-map', { scrollWheelZoom: true }).setView([m.lat, m.lon], 15);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19, attribution: '© OpenStreetMap'
+  }).addTo(leafletMap);
+  L.marker([m.lat, m.lon]).addTo(leafletMap).bindPopup(`<b>${m.address_input || 'Property'}</b><br>${(m.lat).toFixed(5)}, ${(m.lon).toFixed(5)}`).openPopup();
+  // POI markers
+  if (ok('osm_pois')) {
+    const grp = L.layerGroup();
+    (S.osm_pois.pois || []).slice(0, 25).forEach(p => {
+      // we only have names/categories, not coords, so cluster near center as small dots is misleading.
+    });
+    void grp;
+  }
+  // Flood zone label
+  if (ok('fema_flood') && S.fema_flood.zone && S.fema_flood.zone !== 'unavailable') {
+    L.control && (() => {
+      const c = L.control({ position: 'bottomleft' });
+      c.onAdd = function () { const d = L.DomUtil.create('div'); d.style.cssText = 'background:rgba(0,0,0,.7);color:#fbbf24;padding:4px 8px;border-radius:6px;font:600 11px sans-serif'; d.textContent = 'FEMA Zone ' + S.fema_flood.zone; return d; };
+      c.addTo(leafletMap);
+    })();
+  }
+  setTimeout(() => leafletMap && leafletMap.invalidateSize(), 80);
+}
+
+// IMAGERY (real OSM slippy tiles) --------------------------------------------
+function buildImagery(lat, lng) {
+  function tileXY(lat, lng, z) {
+    const n = Math.pow(2, z);
+    const x = Math.floor((lng + 180) / 360 * n);
+    const latR = lat * Math.PI / 180;
+    const y = Math.floor((1 - Math.log(Math.tan(latR) + 1 / Math.cos(latR)) / Math.PI) / 2 * n);
+    return { x, y };
+  }
+  const out = [];
+  [17, 16, 15].forEach(z => {
+    const t = tileXY(lat, lng, z);
+    out.push({ source: `OSM z${z}`, url: `https://tile.openstreetmap.org/${z}/${t.x}/${t.y}.png` });
+  });
+  const t17 = tileXY(lat, lng, 17);
+  out.push({ source: 'Carto Voyager', url: `https://cartodb-basemaps-a.global.ssl.fastly.net/rastertiles/voyager/17/${t17.x}/${t17.y}.png` });
+  out.push({ source: 'Carto Light', url: `https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/17/${t17.x}/${t17.y}.png` });
+  return out;
+}
+
+// CATEGORY BARS from /api/sources registry -----------------------------------
+let _catCache = null;
+async function loadCategoryBars() {
+  try {
+    if (!_catCache) {
+      const r = await fetch('/api/sources'); const j = await r.json();
+      _catCache = Array.isArray(j.sources) ? j.sources : (Array.isArray(j) ? j : []);
+    }
+    const counts = {};
+    _catCache.forEach(s => { const c = (s.category || 'other'); counts[c] = (counts[c] || 0) + 1; });
+    const cats = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    if (!cats.length) { $('cat-bars').innerHTML = ''; return; }
+    const maxT = Math.max(...cats.map(c => c[1]));
+    const cl = ['#3b82f6', '#22c55e', '#8b5cf6', '#fbbf24', '#ef4444', '#06b6d4', '#fb923c', '#f472b6', '#14b8a6', '#a78bfa', '#6366f1', '#84cc16', '#f59e0b', '#10b981'];
+    $('cat-bars').innerHTML = cats.map(([name, n], i) => {
+      const pct = (n / maxT) * 100;
+      return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:5px"><div style="width:170px;text-align:right;color:var(--muted);font-size:11px">${name.replace(/_/g, ' ')}</div><div style="flex:1;background:var(--surface);border-radius:6px;height:22px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${cl[i % 14]};border-radius:6px;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:700;color:#fff;transition:width 1s">${n} sources</div></div></div>`;
+    }).join('');
+  } catch (e) { $('cat-bars').innerHTML = '<div style="color:var(--muted);font-size:11px">Source registry unavailable.</div>'; }
+}
+
+// INIT -----------------------------------------------------------------------
+$('search-btn').addEventListener('click', () => doSearch());
+$('q').addEventListener('keypress', e => { if (e.key === 'Enter') doSearch(); });
+renderHistory();
+
 </script>
 </body>
 </html>

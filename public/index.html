@@ -157,9 +157,9 @@ a{text-decoration:none;color:inherit}::selection{background:var(--gold);color:#0
   <div class="kpi"><div class="kpi-label">10Y Treasury <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k1">4.45%</div><div class="kpi-change dn">▼ -2bp</div><div class="kpi-spark" id="spark1"></div></div>
   <div class="kpi"><div class="kpi-label">SOFR <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k2">4.31%</div><div class="kpi-change up">▲ +0bp</div><div class="kpi-spark" id="spark2"></div></div>
   <div class="kpi"><div class="kpi-label">30Y Mortgage <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k3">6.53%</div><div class="kpi-change dn">▼ -4bp</div><div class="kpi-spark" id="spark3"></div></div>
-  <div class="kpi"><div class="kpi-label">S&P 500 <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k4">$589</div><div class="kpi-change up">▲ +0.4%</div><div class="kpi-spark" id="spark4"></div></div>
+  <div class="kpi"><div class="kpi-label">Fed Funds <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k4">—</div><div class="kpi-change" style="color:var(--dim)">FRED</div><div class="kpi-spark" id="spark4"></div></div>
   <div class="kpi"><div class="kpi-label">Bitcoin <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k5">$107K</div><div class="kpi-change up">▲ +2.1%</div><div class="kpi-spark" id="spark5"></div></div>
-  <div class="kpi"><div class="kpi-label">Data Sources <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val">611</div><div class="kpi-change up">14 categories</div><div class="kpi-spark" id="spark6"></div></div>
+  <div class="kpi"><div class="kpi-label">Data Sources <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="kSources">611</div><div class="kpi-change up">14 categories</div><div class="kpi-spark" id="spark6"></div></div>
 </div>
 
 <!-- MAIN GRID -->
@@ -167,8 +167,8 @@ a{text-decoration:none;color:inherit}::selection{background:var(--gold);color:#0
   <!-- Column 1: Deal Pipeline + Portfolio -->
   <div style="display:flex;flex-direction:column;gap:16px">
     <div class="panel">
-      <div class="panel-header"><span class="panel-title">Deal Pipeline</span><span class="panel-badge">$284M Active</span></div>
-      <div class="panel-body">
+      <div class="panel-header"><span class="panel-title">Deal Pipeline</span><span class="panel-badge" id="pipelineBadge">Sample · $284M</span></div>
+      <div class="panel-body" id="pipelineBody">
         <div class="pipeline-stage"><div class="ps-dot" style="background:var(--green)"></div><div class="ps-info"><div class="ps-name">The Palms at Doral</div><div class="ps-meta">240 units · Multifamily · Doral, FL</div></div><div class="ps-val">$61.2M</div></div>
         <div class="pipeline-stage"><div class="ps-dot" style="background:var(--gold)"></div><div class="ps-info"><div class="ps-name">Coral Springs Office</div><div class="ps-meta">145K SF · Office · Coral Springs, FL</div></div><div class="ps-val">$38.5M</div></div>
         <div class="pipeline-stage"><div class="ps-dot" style="background:var(--bright)"></div><div class="ps-info"><div class="ps-name">Tampa Bay Industrial</div><div class="ps-meta">220K SF · Industrial · Tampa, FL</div></div><div class="ps-val">$52.8M</div></div>
@@ -177,9 +177,9 @@ a{text-decoration:none;color:inherit}::selection{background:var(--gold);color:#0
       </div>
     </div>
     <div class="panel">
-      <div class="panel-header"><span class="panel-title">Portfolio Summary</span><span class="panel-badge">5 Assets</span></div>
+      <div class="panel-header"><span class="panel-title">Portfolio Summary</span><span class="panel-badge">Sample</span></div>
       <div class="panel-body" style="padding:0">
-        <table class="port-table">
+        <table class="port-table" id="portfolioBody">
           <tr><th>Asset</th><th>Type</th><th>NOI</th><th>Cap</th><th>DSCR</th></tr>
           <tr><td>Palms Doral</td><td>MF</td><td>$3.8M</td><td>6.2%</td><td>1.45x</td></tr>
           <tr><td>Coral Springs</td><td>Off</td><td>$2.1M</td><td>7.1%</td><td>1.32x</td></tr>
@@ -201,7 +201,7 @@ a{text-decoration:none;color:inherit}::selection{background:var(--gold);color:#0
         <div class="rate-row"><span class="rate-name">30Y Mortgage</span><div class="rate-bar"><span style="width:90%"></span></div><span class="rate-val" id="r3">6.53%</span></div>
         <div class="rate-row"><span class="rate-name">Fed Funds</span><div class="rate-bar"><span style="width:60%"></span></div><span class="rate-val" id="r4">4.33%</span></div>
         <div class="rate-row"><span class="rate-name">CPI (YoY)</span><div class="rate-bar"><span style="width:32%"></span></div><span class="rate-val">2.3%</span></div>
-        <div class="rate-row"><span class="rate-name">Unemployment</span><div class="rate-bar"><span style="width:58%"></span></div><span class="rate-val">4.2%</span></div>
+        <div class="rate-row"><span class="rate-name">Unemployment</span><div class="rate-bar"><span style="width:58%"></span></div><span class="rate-val" id="rUnemp">4.2%</span></div>
       </div>
     </div>
     <div class="panel">
@@ -238,32 +238,12 @@ a{text-decoration:none;color:inherit}::selection{background:var(--gold);color:#0
       </div>
     </div>
     <div class="panel">
-      <div class="panel-header"><span class="panel-title">Activity Feed</span><span class="panel-badge">Today</span></div>
-      <div class="panel-body">
-        <div class="activity-item"><div class="act-icon">📡</div><div class="act-content"><div class="act-text"><strong>FRED API</strong> updated Treasury yields — 10Y at 4.45%</div><div class="act-time">2 hours ago</div></div></div>
-        <div class="activity-item"><div class="act-icon">🏢</div><div class="act-content"><div class="act-text"><strong>Palms Doral</strong> underwriting model updated — IRR revised to 18.4%</div><div class="act-time">4 hours ago</div></div></div>
-        <div class="activity-item"><div class="act-icon">🌊</div><div class="act-content"><div class="act-text"><strong>FEMA</strong> risk assessment complete — Zone X confirmed for Doral site</div><div class="act-time">6 hours ago</div></div></div>
-        <div class="activity-item"><div class="act-icon">📰</div><div class="act-content"><div class="act-text"><strong>BLS</strong> — South Florida employment +2.3% YoY, multifamily demand signal</div><div class="act-time">8 hours ago</div></div></div>
-        <div class="activity-item"><div class="act-icon">💰</div><div class="act-content"><div class="act-text"><strong>FDIC</strong> — CRE delinquencies at $163.5B, monitoring bank exposure</div><div class="act-time">1 day ago</div></div></div>
-      </div>
+      <div class="panel-header"><span class="panel-title">Activity Feed</span><span class="panel-badge">Live</span></div>
+      <div class="panel-body" id="activityFeed"><div class="activity-item"><div class="act-text" style="color:var(--muted)">Loading…</div></div></div>
     </div>
     <div class="panel">
       <div class="panel-header"><span class="panel-title">Source Health</span><span class="panel-badge" id="srcCount">13 APIs</span></div>
-      <div class="panel-body" id="sourceHealth">
-        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">FRED (Federal Reserve)</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">142ms</span></div>
-        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">BLS (Labor Statistics)</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">89ms</span></div>
-        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">FEMA (Risk Data)</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">215ms</span></div>
-        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">Finnhub (Stocks)</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">67ms</span></div>
-        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">CoinGecko (Crypto)</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">183ms</span></div>
-        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">OpenWeather</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">95ms</span></div>
-        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">Walk Score</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">312ms</span></div>
-        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">SEC EDGAR</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">445ms</span></div>
-        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">Census ACS</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">380ms</span></div>
-        <div class="src-row"><span class="src-dot warn"></span><span class="src-name">HUD (Housing)</span><span class="src-status" style="color:var(--gold)">● Slow</span><span class="src-latency">1.2s</span></div>
-        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">FDIC (Banking)</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">198ms</span></div>
-        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">EPA (Environmental)</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">267ms</span></div>
-        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">IRS (Tax Data)</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">523ms</span></div>
-      </div>
+      <div class="panel-body" id="sourceHealth"><div class="src-row"><span class="src-name" style="color:var(--muted)">Checking endpoints…</span></div></div>
     </div>
   </div>
 </div>
@@ -271,58 +251,106 @@ a{text-decoration:none;color:inherit}::selection{background:var(--gold);color:#0
 
 <script>
 /* THEME */
-const saved=localStorage.getItem('rp-theme')||'dark';
-document.documentElement.setAttribute('data-theme',saved);
-document.querySelectorAll('.theme-tog button').forEach(b=>{
-  b.classList.toggle('active',b.dataset.theme===saved);
-  b.addEventListener('click',()=>{
-    document.documentElement.setAttribute('data-theme',b.dataset.theme);
-    localStorage.setItem('rp-theme',b.dataset.theme);
-    document.querySelectorAll('.theme-tog button').forEach(x=>x.classList.remove('active'));
+const saved = localStorage.getItem('rp-theme') || 'dark';
+document.documentElement.setAttribute('data-theme', saved);
+document.querySelectorAll('.theme-tog button').forEach(b => {
+  b.classList.toggle('active', b.dataset.theme === saved);
+  b.addEventListener('click', () => {
+    document.documentElement.setAttribute('data-theme', b.dataset.theme);
+    localStorage.setItem('rp-theme', b.dataset.theme);
+    document.querySelectorAll('.theme-tog button').forEach(x => x.classList.remove('active'));
     b.classList.add('active');
   });
 });
+const $ = id => document.getElementById(id);
 
 /* CLOCK */
-function updateTime(){
-  const now=new Date();
-  document.getElementById('dashTime').textContent=now.toLocaleString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit'})+' EST';
+function updateTime() {
+  $('dashTime').textContent = new Date().toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' }) + ' EST';
 }
-updateTime();setInterval(updateTime,1000);
+updateTime(); setInterval(updateTime, 1000);
 
-/* SPARKLINES */
-function sparkline(id,color){
-  const el=document.getElementById(id);if(!el)return;
-  for(let i=0;i<20;i++){const s=document.createElement('span');s.style.height=Math.random()*20+4+'px';s.style.background=color||'var(--gold)';s.style.opacity='.4';el.appendChild(s)}
-}
-sparkline('spark1','var(--blue)');sparkline('spark2','var(--teal)');sparkline('spark3','var(--gold)');
-sparkline('spark4','var(--green)');sparkline('spark5','var(--amber)');sparkline('spark6','var(--bright)');
+/* KPIs + RATE PANEL — live /api/live/ticker */
+fetch('/api/live/ticker').then(r => r.json()).then(d => {
+  const set = (id, v) => { const e = $(id); if (e && v) e.textContent = v; };
+  if (d.treasury_10y) { set('k1', d.treasury_10y.value); set('r1', d.treasury_10y.value); }
+  if (d.sofr) { set('k2', d.sofr.value); set('r2', d.sofr.value); }
+  if (d.mortgage_30y) { set('k3', d.mortgage_30y.value); set('r3', d.mortgage_30y.value); }
+  if (d.fed_funds) { set('k4', d.fed_funds.value); set('r4', d.fed_funds.value); }
+  if (d.unemployment) set('rUnemp', d.unemployment.value);
+}).catch(() => {});
 
-/* FETCH LIVE DATA */
-fetch('/api/live/ticker').then(r=>r.json()).then(d=>{
-  if(d.treasury_10y){document.getElementById('k1').textContent=d.treasury_10y.value;document.getElementById('r1').textContent=d.treasury_10y.value}
-  if(d.sofr){document.getElementById('k2').textContent=d.sofr.value;document.getElementById('r2').textContent=d.sofr.value}
-  if(d.mortgage_30y){document.getElementById('k3').textContent=d.mortgage_30y.value;document.getElementById('r3').textContent=d.mortgage_30y.value}
-  if(d.fed_funds){document.getElementById('r4').textContent=d.fed_funds.value}
-}).catch(()=>{});
+/* Bitcoin KPI + market assets — live /api/live/market */
+fetch('/api/live/market').then(r => r.json()).then(d => {
+  const cr = d.crypto || {}, fr = d.fred || {}, boi = d.boi || {};
+  if (cr.bitcoin && cr.bitcoin.price) {
+    const n = parseFloat(String(cr.bitcoin.price).replace(/[$,]/g, ''));
+    if (n) $('k5').textContent = '$' + Math.round(n / 1000) + 'K';
+  }
+  const el = $('marketAssets'); if (!el) return;
+  const rows = [];
+  if (cr.bitcoin) rows.push(['Bitcoin', cr.bitcoin.price, 'CoinGecko']);
+  if (cr.ethereum) rows.push(['Ethereum', cr.ethereum.price, 'CoinGecko']);
+  if (boi.rate) rows.push(['USD/ILS', Number(boi.rate).toFixed(3), 'Bank of Israel']);
+  if (fr.fed_funds) rows.push(['Fed Funds', fr.fed_funds.value, 'FRED']);
+  el.innerHTML = rows.map(([n, v, s]) =>
+    `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)"><span style="font-size:12px;color:var(--text2)">${n}</span><span style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--text)">${v} <span style="font-size:10px;color:var(--dim)">${s}</span></span></div>`).join('');
+}).catch(() => {});
 
-fetch('/api/live/market').then(r=>r.json()).then(d=>{
-  if(d.stocks?.SPY)document.getElementById('k4').textContent='$'+Math.round(parseFloat(d.stocks.SPY.price));
-  if(d.crypto?.bitcoin)document.getElementById('k5').textContent='$'+Math.round(parseFloat(d.crypto.bitcoin.price.replace(/[$,]/g,''))/1000)+'K';
-  // Market assets sidebar
-  const el=document.getElementById('marketAssets');
-  const assets=[
-    {n:'VNQ REITs',v:d.stocks?.VNQ?.price||'$89.42',ch:'+1.2%',dir:'up'},
-    {n:'Gold',v:'$2,345',ch:'+0.8%',dir:'up'},
-    {n:'Ethereum',v:d.crypto?.ethereum?.price||'$2,547',ch:'+1.8%',dir:'up'},
-  ];
-  assets.forEach(a=>{
-    el.innerHTML+=`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)">
-      <span style="font-size:12px;color:var(--text2)">${a.n}</span>
-      <span style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--text)">${a.v} <span style="font-size:10px;color:var(--${a.dir==='up'?'green':'red'})">${a.ch}</span></span>
-    </div>`;
-  });
-}).catch(()=>{});
+/* DATA SOURCES KPI — real registry count */
+fetch('/api/stats').then(r => r.json()).then(d => {
+  if ($('kSources') && d.cataloged_sources) $('kSources').textContent = d.cataloged_sources;
+}).catch(() => {});
+
+/* PIPELINE + PORTFOLIO — labeled sample from /data/portfolio.json */
+fetch('/data/portfolio.json').then(r => r.json()).then(p => {
+  const col = c => 'var(--' + (c || 'gold') + ')';
+  if ($('pipelineBody')) $('pipelineBody').innerHTML = p.deals.map(d =>
+    `<div class="pipeline-stage"><div class="ps-dot" style="background:${col(d.color)}"></div><div class="ps-info"><div class="ps-name">${d.name}</div><div class="ps-meta">${d.meta}</div></div><div class="ps-val">${d.value}</div></div>`).join('');
+  if ($('portfolioBody')) $('portfolioBody').innerHTML =
+    '<tr><th>Asset</th><th>Type</th><th>NOI</th><th>Cap</th><th>DSCR</th></tr>' +
+    p.deals.map(d => `<tr><td>${d.name.replace('The ', '')}</td><td>${d.type}</td><td>${d.noi}</td><td>${d.cap}</td><td>${d.dscr}</td></tr>`).join('');
+  if ($('pipelineBadge')) { $('pipelineBadge').textContent = 'Sample · ' + p.total; $('pipelineBadge').title = p._label; }
+}).catch(() => {});
+
+/* ACTIVITY — real: search history + registry freshness */
+(async () => {
+  const ago = ts => { const s = (Date.now() - new Date(ts).getTime()) / 1000; if (isNaN(s)) return ''; if (s < 3600) return Math.round(s / 60) + ' min ago'; if (s < 86400) return Math.round(s / 3600) + ' hr ago'; return Math.round(s / 86400) + ' d ago'; };
+  const ev = [];
+  let hist = []; try { hist = JSON.parse(localStorage.getItem('reprime:history') || '[]'); } catch (e) {}
+  hist.slice(0, 5).forEach(a => ev.push(['🔍', '<strong>Search</strong> — ' + a, '']));
+  try {
+    const st = await (await fetch('/api/stats')).json();
+    ev.push(['🗃️', `<strong>Registry</strong> — ${st.cataloged_sources} free APIs, ${st.category_count} categories`, ago(st.last_updated)]);
+    ev.push(['⚡', `<strong>Engine</strong> — ${st.live_search_layers} live layers per address`, '']);
+  } catch (e) {}
+  if (!hist.length) ev.push(['ℹ️', 'No searches yet — run one on <strong>Explore</strong>', '']);
+  const el = $('activityFeed');
+  if (el) el.innerHTML = ev.map(([i, t, ts]) =>
+    `<div class="activity-item"><div class="act-icon">${i}</div><div class="act-content"><div class="act-text">${t}</div>${ts ? `<div class="act-time">${ts}</div>` : ''}</div></div>`).join('');
+})();
+
+/* SOURCE HEALTH — real: ping endpoints, measure latency */
+(async () => {
+  const el = $('sourceHealth'); if (!el) return;
+  const eps = [['FRED rates', '/api/live/ticker'], ['Source registry', '/api/sources'], ['Platform stats', '/api/stats'],
+    ['Market cache', '/api/live/market'], ['Health', '/api/health'], ['Live search', '/api/search?address=1600+Pennsylvania+Ave+NW,+Washington,+DC']];
+  el.innerHTML = eps.map(([n], i) => `<div class="src-row" id="sh${i}"><span class="src-dot"></span><span class="src-name">${n}</span><span class="src-status" style="color:var(--muted)">checking…</span><span class="src-latency"></span></div>`).join('');
+  let ok = 0;
+  await Promise.all(eps.map(async ([n, u], i) => {
+    const t0 = performance.now();
+    let cls = 'src-dot', stat = '● n/a', col = 'var(--red)', lat = '';
+    try {
+      const r = await fetch(u, { cache: 'no-store' });
+      const ms = Math.round(performance.now() - t0); lat = ms < 1000 ? ms + 'ms' : (ms / 1000).toFixed(1) + 's';
+      if (r.ok) { ok++; cls = 'src-dot ' + (ms < 600 ? 'ok' : 'warn'); col = ms < 600 ? 'var(--green)' : 'var(--gold)'; stat = ms < 600 ? '● OK' : '● Slow'; }
+      else { cls = 'src-dot'; stat = '● ' + r.status; }
+    } catch (e) { stat = '● down'; }
+    const row = $('sh' + i); if (row) { row.querySelector('.src-dot').className = cls; const s = row.querySelector('.src-status'); s.textContent = stat; s.style.color = col; row.querySelector('.src-latency').textContent = lat; }
+  }));
+  if ($('srcCount')) $('srcCount').textContent = `${ok}/${eps.length} OK`;
+})();
+
 </script>
 </body>
 </html>

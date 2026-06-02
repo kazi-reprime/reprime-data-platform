@@ -169,10 +169,10 @@ a{text-decoration:none;color:inherit}::selection{background:var(--gold);color:#0
 <div class="term-wrap">
 <!-- TOP KPIs -->
 <div class="term-top" id="kpiRow">
-  <div class="kpi"><div class="kpi-label">10Y Treasury <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="kTreas">4.45%</div><div class="kpi-change dn">▼ -2bp</div></div>
-  <div class="kpi"><div class="kpi-label">SOFR <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="kSofr">4.31%</div><div class="kpi-change up">▲ +0bp</div></div>
-  <div class="kpi"><div class="kpi-label">30Y Mortgage <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="kMort">6.53%</div><div class="kpi-change dn">▼ -4bp</div></div>
-  <div class="kpi"><div class="kpi-label">CRE Delinquency <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="kDelq">$163.5B</div><div class="kpi-change dn">▼ FDIC</div></div>
+  <div class="kpi"><div class="kpi-label">10Y Treasury <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="kTreas">—</div><div class="kpi-change dn">▼ -2bp</div></div>
+  <div class="kpi"><div class="kpi-label">SOFR <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="kSofr">—</div><div class="kpi-change up">▲ +0bp</div></div>
+  <div class="kpi"><div class="kpi-label">30Y Mortgage <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="kMort">—</div><div class="kpi-change dn">▼ -4bp</div></div>
+  <div class="kpi"><div class="kpi-label">Fed Funds <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="kDelq">—</div><div class="kpi-change" style="color:var(--dim)">FRED</div></div>
 </div>
 
 <div class="term-main">
@@ -196,47 +196,30 @@ a{text-decoration:none;color:inherit}::selection{background:var(--gold);color:#0
 
   <!-- Key Metrics -->
   <div class="panel">
-    <div class="panel-header"><span class="panel-title">Key Metrics</span><span class="panel-badge">Underwriting</span></div>
+    <div class="panel-header"><span class="panel-title">Key Metrics</span><span class="panel-badge" id="dealLabel">Sample · Underwriting</span></div>
     <div class="panel-body">
-      <div class="metrics-grid">
-        <div class="metric"><div class="metric-val">6.2%</div><div class="metric-label">Cap Rate</div></div>
-        <div class="metric"><div class="metric-val">$3.8M</div><div class="metric-label">NOI</div></div>
-        <div class="metric"><div class="metric-val">18.4%</div><div class="metric-label">IRR (5yr)</div></div>
-        <div class="metric"><div class="metric-val">9.8%</div><div class="metric-label">Cash-on-Cash</div></div>
-        <div class="metric"><div class="metric-val">1.45x</div><div class="metric-label">DSCR</div></div>
-        <div class="metric"><div class="metric-val">7.2 yrs</div><div class="metric-label">WALT</div></div>
+      <div class="metrics-grid" id="metricsGrid"></div></div>
       </div>
     </div>
   </div>
 
   <!-- Capital Stack -->
   <div class="panel">
-    <div class="panel-header"><span class="panel-title">Capital Stack</span><span class="panel-badge">$61.2M Total</span></div>
+    <div class="panel-header"><span class="panel-title">Capital Stack</span><span class="panel-badge" id="capTotal">Sample</span></div>
     <div class="panel-body">
-      <div class="cap-stack">
-        <div class="cap-seg senior">Senior 75%</div>
+      <div class="cap-stack" id="capStack"></div>
         <div class="cap-seg mezz">Mezz 15%</div>
         <div class="cap-seg equity">Eq 10%</div>
       </div>
-      <div class="cap-legend">
-        <span><span class="dot" style="background:var(--blue)"></span> Senior Debt — $45.9M @ 5.8%</span>
-        <span><span class="dot" style="background:var(--gold)"></span> Mezzanine — $9.2M @ 9.5%</span>
-        <span><span class="dot" style="background:var(--teal)"></span> Equity — $6.1M</span>
-      </div>
+      <div class="cap-legend" id="capLegend"></div>
     </div>
   </div>
 
   <!-- Tenant Roster -->
   <div class="panel">
-    <div class="panel-header"><span class="panel-title">Tenant Roster</span><span class="panel-badge">Top 5</span></div>
+    <div class="panel-header"><span class="panel-title">Tenant Roster</span><span class="panel-badge">Sample</span></div>
     <div class="panel-body" style="padding:0">
-      <table class="t-table">
-        <tr><th>Tenant</th><th>Units</th><th>Rent/Mo</th><th>Lease Exp</th><th>Status</th></tr>
-        <tr><td>Market Rate Pool</td><td>168</td><td>$2,150</td><td>Rolling</td><td style="color:var(--green)">● Current</td></tr>
-        <tr><td>Section 8 Block</td><td>36</td><td>$1,680</td><td>Annual</td><td style="color:var(--green)">● Current</td></tr>
-        <tr><td>Corporate Lease</td><td>24</td><td>$2,450</td><td>Dec 2027</td><td style="color:var(--green)">● Current</td></tr>
-        <tr><td>Vacant Units</td><td>12</td><td>—</td><td>—</td><td style="color:var(--gold)">● Vacant</td></tr>
-      </table>
+      <table class="t-table" id="tenantTable"><tr><td style="color:var(--muted);padding:10px">Loading…</td></tr></table>
     </div>
   </div>
 
@@ -271,10 +254,7 @@ a{text-decoration:none;color:inherit}::selection{background:var(--gold);color:#0
   <div class="panel">
     <div class="panel-header"><span class="panel-title">Environmental Risk</span><span class="panel-badge">FEMA + EPA</span></div>
     <div class="panel-body">
-      <div class="risk-cards">
-        <div class="risk-card"><div class="risk-icon">🌊</div><div class="risk-label">Flood Zone</div><div class="risk-val low">Zone X</div></div>
-        <div class="risk-card"><div class="risk-icon">🌀</div><div class="risk-label">Hurricane</div><div class="risk-val med">Moderate</div></div>
-        <div class="risk-card"><div class="risk-icon">☢️</div><div class="risk-label">Superfund</div><div class="risk-val low">Clear</div></div>
+      <div class="risk-cards"><div style="color:var(--muted);font-size:11px;padding:8px">Loading risk data…</div></div></div>
       </div>
     </div>
   </div>
@@ -282,13 +262,7 @@ a{text-decoration:none;color:inherit}::selection{background:var(--gold);color:#0
   <!-- News Feed -->
   <div class="panel">
     <div class="panel-header"><span class="panel-title">News Feed</span><span class="panel-badge">Sentiment</span></div>
-    <div class="panel-body" id="newsFeed">
-      <div class="news-item"><div class="news-meta"><span class="news-src">FRED</span><span class="news-time">2h ago</span></div><div class="news-title">10Y Treasury drops 2bp to 4.45% as inflation expectations ease</div><div class="news-sentiment pos">Positive for CRE</div></div>
-      <div class="news-item"><div class="news-meta"><span class="news-src">FDIC</span><span class="news-time">4h ago</span></div><div class="news-title">CRE delinquencies at $163.5B — bank stress test implications</div><div class="news-sentiment neg">Risk Signal</div></div>
-      <div class="news-item"><div class="news-meta"><span class="news-src">BLS</span><span class="news-time">6h ago</span></div><div class="news-title">South Florida employment grows 2.3% YoY — multifamily demand signal</div><div class="news-sentiment pos">Positive</div></div>
-      <div class="news-item"><div class="news-meta"><span class="news-src">Census</span><span class="news-time">1d ago</span></div><div class="news-title">Miami-Dade net in-migration: 18,400 in Q1 2026</div><div class="news-sentiment pos">Demand Signal</div></div>
-      <div class="news-item"><div class="news-meta"><span class="news-src">Finnhub</span><span class="news-time">1d ago</span></div><div class="news-title">VNQ REIT index +1.2% this week as rate cut expectations firm</div><div class="news-sentiment pos">Positive</div></div>
-    </div>
+    <div class="panel-body" id="newsFeed"><div class="news-item"><div class="news-title" style="color:var(--muted)">Loading live news…</div></div></div>
   </div>
 
   <!-- Data Coverage -->
@@ -302,69 +276,144 @@ a{text-decoration:none;color:inherit}::selection{background:var(--gold);color:#0
 
 <script>
 /* THEME */
-const saved=localStorage.getItem('rp-theme')||'dark';
-document.documentElement.setAttribute('data-theme',saved);
-document.querySelectorAll('.theme-tog button').forEach(b=>{
-  b.classList.toggle('active',b.dataset.theme===saved);
-  b.addEventListener('click',()=>{
-    document.documentElement.setAttribute('data-theme',b.dataset.theme);
-    localStorage.setItem('rp-theme',b.dataset.theme);
-    document.querySelectorAll('.theme-tog button').forEach(x=>x.classList.remove('active'));
+const saved = localStorage.getItem('rp-theme') || 'dark';
+document.documentElement.setAttribute('data-theme', saved);
+document.querySelectorAll('.theme-tog button').forEach(b => {
+  b.classList.toggle('active', b.dataset.theme === saved);
+  b.addEventListener('click', () => {
+    document.documentElement.setAttribute('data-theme', b.dataset.theme);
+    localStorage.setItem('rp-theme', b.dataset.theme);
+    document.querySelectorAll('.theme-tog button').forEach(x => x.classList.remove('active'));
     b.classList.add('active');
   });
 });
 
 /* HERO IMAGE SWAP */
-function swapHero(el){
-  document.getElementById('heroImg').src=el.src;
-  document.querySelectorAll('.gallery img').forEach(i=>i.classList.remove('active'));
+function swapHero(el) {
+  document.getElementById('heroImg').src = el.src;
+  document.querySelectorAll('.gallery img').forEach(i => i.classList.remove('active'));
   el.classList.add('active');
 }
 
-/* FETCH LIVE DATA */
-fetch('/api/live/ticker').then(r=>r.json()).then(d=>{
-  if(d.treasury_10y)document.getElementById('kTreas').textContent=d.treasury_10y.value;
-  if(d.sofr)document.getElementById('kSofr').textContent=d.sofr.value;
-  if(d.mortgage_30y)document.getElementById('kMort').textContent=d.mortgage_30y.value;
-}).catch(()=>{});
+const $ = id => document.getElementById(id);
+const sentClass = t => { const n = parseFloat(t); if (isNaN(n)) return 'neu'; return n > 1 ? 'pos' : n < -1 ? 'neg' : 'neu'; };
+const sentLabel = t => { const n = parseFloat(t); if (isNaN(n)) return 'Neutral'; return n > 1 ? 'Positive' : n < -1 ? 'Risk Signal' : 'Neutral'; };
 
-/* SIDEBAR MARKET */
-fetch('/api/live/market').then(r=>r.json()).then(d=>{
-  const el=document.getElementById('sideMarket');
-  const items=[
-    {l:'S&P 500',v:d.stocks?.SPY?.price||'$589.21',ch:'+0.4%',dir:'up'},
-    {l:'VNQ REITs',v:d.stocks?.VNQ?.price||'$89.42',ch:'+1.2%',dir:'up'},
-    {l:'Bitcoin',v:d.crypto?.bitcoin?.price||'$107,645',ch:'+2.1%',dir:'up'},
-    {l:'Ethereum',v:d.crypto?.ethereum?.price||'$2,547',ch:'+1.8%',dir:'up'},
-    {l:'Gold',v:'$2,345',ch:'+0.8%',dir:'up'},
-    {l:'Walk Score',v:d.walkability?.walk_score||'78',ch:'Doral, FL',dir:'up'},
-    {l:'CPI (YoY)',v:'2.3%',ch:'-0.1%',dir:'dn'},
-    {l:'Unemployment',v:'4.2%',ch:'+0.1%',dir:'up'},
-  ];
-  items.forEach(i=>{
-    el.innerHTML+=`<div class="sm-card"><div><div class="sm-label">${i.l}</div></div><div style="text-align:right"><div class="sm-val">${i.v}</div><span class="sm-change ${i.dir}">${i.ch} ${i.dir==='up'?'▲':'▼'}</span></div></div>`;
-  });
-}).catch(()=>{});
+/* TOP KPIs — live rates */
+fetch('/api/live/ticker').then(r => r.json()).then(d => {
+  if (d.treasury_10y) $('kTreas').textContent = d.treasury_10y.value;
+  if (d.sofr) $('kSofr').textContent = d.sofr.value;
+  if (d.mortgage_30y) $('kMort').textContent = d.mortgage_30y.value;
+  if (d.fed_funds) $('kDelq').textContent = d.fed_funds.value;
+}).catch(() => {});
 
-/* COVERAGE BARS */
-const covData=[
-  {n:'Government & Regulatory',c:89,p:85},{n:'Property Transactions',c:95,p:92},
-  {n:'Market Rates',c:47,p:70},{n:'News & Sentiment',c:73,p:82},
-  {n:'Construction',c:62,p:78},{n:'Capital Markets',c:51,p:72},
-  {n:'Demographics',c:44,p:65},{n:'Environmental',c:38,p:55},
-];
-const covEl=document.getElementById('coverageBars');
-covData.forEach(c=>{
-  covEl.innerHTML+=`<div style="margin-bottom:10px">
-    <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px">
-      <span style="color:var(--text2);font-weight:500">${c.n}</span>
-      <span style="font-family:'JetBrains Mono',monospace;color:var(--gold);font-weight:600">${c.c}</span>
-    </div>
-    <div style="height:4px;background:var(--surface2);border-radius:2px;overflow:hidden">
-      <div style="height:100%;width:${c.p}%;background:var(--grad-gold);border-radius:2px;transition:width 1s ease-out"></div>
-    </div>
-  </div>`;
-});
+/* SIDEBAR MARKET — real /api/live/market shape */
+fetch('/api/live/market').then(r => r.json()).then(d => {
+  const el = $('sideMarket'); if (!el) return;
+  const fr = d.fred || {}, cr = d.crypto || {}, boi = d.boi || {};
+  const items = [];
+  const add = (l, v, ch) => { if (v != null && v !== undefined) items.push({ l, v, ch }); };
+  add('10Y Treasury', fr.treasury_10y?.value, 'FRED');
+  add('30Y Mortgage', fr.mortgage_30y?.value, 'FRED');
+  add('Fed Funds', fr.fed_funds?.value, 'FRED');
+  add('Bitcoin', cr.bitcoin?.price, 'CoinGecko');
+  add('Ethereum', cr.ethereum?.price, 'CoinGecko');
+  if (boi.rate) add('USD/ILS', Number(boi.rate).toFixed(3), 'Bank of Israel');
+  el.innerHTML = items.map(i =>
+    `<div class="sm-card"><div><div class="sm-label">${i.l}</div></div><div style="text-align:right"><div class="sm-val">${i.v}</div><span class="sm-change up">${i.ch}</span></div></div>`).join('');
+}).catch(() => {});
+
+/* FEATURED DEAL (clearly-labeled sample) + LIVE PROPERTY DATA */
+fetch('/data/featured_deal.json').then(r => r.json()).then(deal => {
+  // header / hero
+  const h2 = document.querySelector('.prop-hero-overlay h2'); if (h2) h2.textContent = deal.name;
+  const p = document.querySelector('.prop-hero-overlay p'); if (p) p.textContent = deal.summary;
+  if (deal._label && $('dealLabel')) $('dealLabel').title = deal._label;
+
+  // metrics
+  if ($('metricsGrid')) $('metricsGrid').innerHTML = deal.metrics.map(m =>
+    `<div class="metric"><div class="metric-val">${m.value}</div><div class="metric-label">${m.label}</div></div>`).join('');
+
+  // capital stack
+  const cs = deal.capital_stack || {};
+  if ($('capTotal')) $('capTotal').textContent = 'Sample · ' + (cs.total || '');
+  const colors = { blue: 'var(--blue)', gold: 'var(--gold)', teal: 'var(--teal)' };
+  if ($('capStack')) $('capStack').innerHTML = (cs.tranches || []).map(t =>
+    `<div class="cap-seg ${t.color === 'blue' ? 'senior' : t.color === 'gold' ? 'mezz' : 'equity'}" style="width:${t.pct}%">${t.name.split(' ')[0]} ${t.pct}%</div>`).join('');
+  if ($('capLegend')) $('capLegend').innerHTML = (cs.tranches || []).map(t =>
+    `<span><span class="dot" style="background:${colors[t.color] || 'var(--muted)'}"></span> ${t.name} — ${t.amount}${t.rate ? ' @ ' + t.rate : ''}</span>`).join('');
+
+  // tenants
+  if ($('tenantTable')) {
+    $('tenantTable').innerHTML = '<tr><th>Tenant</th><th>Units</th><th>Rent/Mo</th><th>Lease Exp</th><th>Status</th></tr>' +
+      deal.tenants.map(t => `<tr><td>${t.name}</td><td>${t.units}</td><td>${t.rent}</td><td>${t.exp}</td><td style="color:${t.status === 'Vacant' ? 'var(--gold)' : 'var(--green)'}">● ${t.status}</td></tr>`).join('');
+  }
+
+  // ---- live data for the deal's address via /api/search ----
+  if (deal.address) loadLive(deal.address);
+}).catch(() => {});
+
+function loadLive(address) {
+  fetch('/api/search?address=' + encodeURIComponent(address)).then(r => r.json()).then(doc => {
+    if (!doc || !doc.sources) return;
+    const S = doc.sources, ok = s => S[s] && !S[s]._error && S[s]._status !== 'error';
+
+    // FEMA / environmental risk cards (real)
+    const risk = document.querySelector('.risk-cards');
+    if (risk) {
+      const ff = ok('fema_flood') ? S.fema_flood : null;
+      const fd = ok('fema_disasters') ? S.fema_disasters : null;
+      const epa = ok('epa_facilities') ? S.epa_facilities : null;
+      const zone = ff && ff.zone && ff.zone !== 'unavailable' ? ff.zone : 'n/a';
+      const zoneClass = ff && ff.sfha === 'T' ? 'high' : 'low';
+      risk.innerHTML =
+        `<div class="risk-card"><div class="risk-icon">🌊</div><div class="risk-label">Flood Zone</div><div class="risk-val ${zoneClass}">${zone}</div></div>` +
+        `<div class="risk-card"><div class="risk-icon">🌀</div><div class="risk-label">Disasters</div><div class="risk-val ${fd && fd.count_recent ? 'med' : 'low'}">${fd ? fd.count_recent + ' recent' : 'n/a'}</div></div>` +
+        `<div class="risk-card"><div class="risk-icon">☢️</div><div class="risk-label">EPA Sites</div><div class="risk-val ${epa && epa.count_nearby ? 'med' : 'low'}">${epa ? (epa.count_nearby || 0) + ' nearby' : 'n/a'}</div></div>`;
+    }
+
+    // News feed (real GDELT)
+    const nf = $('newsFeed');
+    if (nf) {
+      if (ok('news') && (S.news.articles || []).length) {
+        nf.innerHTML = S.news.articles.map(a =>
+          `<div class="news-item"><div class="news-meta"><span class="news-src">${a.source || 'news'}</span><span class="news-time">${(a.date || '').slice(0, 8)}</span></div><div class="news-title"><a href="${a.url}" target="_blank" rel="noopener" style="color:inherit">${a.title}</a></div><div class="news-sentiment ${sentClass(a.tone)}">${sentLabel(a.tone)}</div></div>`).join('');
+      } else {
+        const note = (S.news && (S.news.note || S.news._error)) || 'No news returned for this locale.';
+        nf.innerHTML = `<div class="news-item"><div class="news-title" style="color:var(--muted)">⚠️ ${note}</div></div>`;
+      }
+    }
+
+    // Coverage bars — which live sources actually returned for this property
+    const cov = $('coverageBars');
+    if (cov && doc.sources_summary) {
+      const groups = {
+        'Geocode & Location': ['fcc_census', 'osm_pois', 'wikipedia', 'elevation'],
+        'Hazard & Environment': ['fema_flood', 'fema_disasters', 'usgs_quakes', 'epa_facilities', 'air_quality'],
+        'Rates & Markets': ['fred_rates', 'crypto', 'fx_rates', 'fdic'],
+        'Demographics': ['census_acs'],
+        'Weather': ['weather', 'nws_alerts'],
+        'News & Regulatory': ['news', 'fed_register'],
+      };
+      const stat = {}; doc.sources_summary.forEach(s => stat[s.source] = s.status);
+      cov.innerHTML = Object.entries(groups).map(([name, keys]) => {
+        const present = keys.filter(k => k in stat);
+        const okN = present.filter(k => stat[k] === 'ok').length;
+        const pct = present.length ? Math.round(okN / present.length * 100) : 0;
+        return `<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px"><span style="color:var(--text2);font-weight:500">${name}</span><span style="font-family:'JetBrains Mono',monospace;color:${pct >= 67 ? 'var(--green)' : pct >= 34 ? 'var(--gold)' : 'var(--red)'};font-weight:600">${okN}/${present.length}</span></div><div style="height:4px;background:var(--surface2);border-radius:2px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${pct >= 67 ? 'var(--green)' : pct >= 34 ? 'var(--gold)' : 'var(--red)'};border-radius:2px;transition:width 1s ease-out"></div></div></div>`;
+      }).join('');
+    }
+
+    // Financing landscape (real, indicative)
+    if (ok('financing') && $('finBody')) {
+      const fin = S.financing;
+      if ($('finCount')) $('finCount').textContent = 'Indicative';
+      $('finBody').innerHTML = '<table class="fin-table"><tr><th>Product</th><th>Base</th><th>Rate</th><th>LTV</th><th>Term</th></tr>' +
+        fin.pricing.map(pr => `<tr><td>${pr.product}</td><td style="font-size:10px;color:var(--muted)">${pr.base_index} ${pr.base_rate}</td><td>${pr.indicative_rate}</td><td>${pr.ltv}</td><td>${pr.term}</td></tr>`).join('') + '</table>';
+    }
+  }).catch(() => {});
+}
+
 </script>
 </body>
 </html>

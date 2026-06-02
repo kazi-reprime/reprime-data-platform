@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RePrime Dashboard — Data Operations Console</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root[data-theme="dark"]{--bg:#05060d;--bg-elev:#0a0e1a;--surface:rgba(255,255,255,0.04);--surface-2:rgba(255,255,255,0.08);--border:rgba(255,255,255,0.08);--border-2:rgba(255,255,255,0.15);--text:#f8fafc;--muted:#94a3b8;--dim:#64748b;--accent:#3b82f6;--accent2:#8b5cf6;--accent3:#06b6d4;--green:#22c55e;--red:#ef4444;--gold:#fbbf24;--orange:#fb923c;--pink:#f472b6;--glass-bg:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);--shadow:rgba(0,0,0,.5);--mesh-opacity:.18}
@@ -156,20 +157,24 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:800;letter-
 
   <!-- TOP STATS -->
   <div class="g4">
-    <div class="glass stat"><div class="lb">Total Sources</div><div class="vl" style="background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent" id="s-total">—</div><div class="sb">across 14 categories</div></div>
-    <div class="glass stat"><div class="lb">Live Connections</div><div class="vl" style="color:var(--green)" id="s-scraped">—</div><div class="sb">successfully scraped</div></div>
-    <div class="glass stat"><div class="lb">Total Records</div><div class="vl" style="color:var(--accent)" id="s-records">—</div><div class="sb">data points</div></div>
-    <div class="glass stat"><div class="lb">Success Rate</div><div class="vl" style="color:var(--gold)" id="s-rate">—</div><div class="sb">coverage</div></div>
+    <div class="glass stat"><div class="lb">Cataloged Sources</div><div class="vl" style="background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent" id="s-total">—</div><div class="sb" id="data-fresh">free API sources</div></div>
+    <div class="glass stat"><div class="lb">Live Search Layers</div><div class="vl" style="color:var(--green)" id="s-scraped">—</div><div class="sb">queried per address</div></div>
+    <div class="glass stat"><div class="lb">Categories</div><div class="vl" style="color:var(--accent)" id="s-records">—</div><div class="sb">coverage areas</div></div>
+    <div class="glass stat"><div class="lb">Cost</div><div class="vl" style="color:var(--gold)" id="s-rate">—</div><div class="sb">free / no paid keys</div></div>
   </div>
 
   <!-- LIVE MARKET STATS -->
-  <h3 style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;margin:24px 0 14px;display:flex;align-items:center;gap:8px">📈 Live Market Intelligence <span class="badge live">Real-Time · 13 APIs</span></h3>
+  <h3 style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;margin:24px 0 14px;display:flex;align-items:center;gap:8px">📈 Live Market Intelligence <span class="badge live">FRED · NY Fed · CoinGecko · BoI</span></h3>
   <div class="g4" id="market-grid"></div>
+  <div class="glass" style="margin-top:14px">
+    <div class="ch"><div class="ct">📊 Rate Environment</div><span class="badge info">live · FRED</span></div>
+    <div style="height:240px"><canvas id="rate-chart"></canvas></div>
+  </div>
 
   <!-- CAT COVERAGE + ENDPOINTS -->
   <div class="g23">
     <div class="glass">
-      <div class="ch"><div class="ct">📊 Category Coverage (611 Sources)</div><span class="badge">14 categories</span></div>
+      <div class="ch"><div class="ct">📊 Category Coverage</div><span class="badge">14 categories</span></div>
       <div id="cat-list"></div>
     </div>
     <div class="glass">
@@ -181,7 +186,7 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:800;letter-
   <!-- LIVE APIs + RECENT ACTIVITY -->
   <div class="g23">
     <div class="glass">
-      <div class="ch"><div class="ct">🔑 13 Live API Integrations</div><span class="badge info">Configured</span></div>
+      <div class="ch"><div class="ct">⚡ Live Search Layers</div><span class="badge live">all free · live</span></div>
       <div class="g3" style="margin-bottom:0" id="api-grid"></div>
     </div>
     <div class="glass">
@@ -192,7 +197,7 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:800;letter-
 
   <!-- SOURCE DIRECTORY -->
   <div class="glass">
-    <div class="ch"><div class="ct">🗃️ Source Directory · Searchable</div><span class="badge" id="src-count">611 sources</span></div>
+    <div class="ch"><div class="ct">🗃️ Source Directory · Searchable</div><span class="badge" id="src-count">— sources</span></div>
     <div class="controls">
       <input id="src-search" placeholder="🔍 Search by name, provider, category, ID..." />
       <select id="cat-filter"><option value="">All categories</option></select>
@@ -210,178 +215,175 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:800;letter-
 </div>
 
 <script>
-// THEME
-const saved=localStorage.getItem('theme')||'dark';
-document.documentElement.dataset.theme=saved;
-document.querySelectorAll('.theme-switcher button').forEach(b=>{
-  if(b.dataset.theme===saved)b.classList.add('active');else b.classList.remove('active');
-  b.addEventListener('click',()=>{document.documentElement.dataset.theme=b.dataset.theme;localStorage.setItem('theme',b.dataset.theme);document.querySelectorAll('.theme-switcher button').forEach(x=>x.classList.toggle('active',x===b));});
+// ============================================================================
+// RePrime Dashboard — live data layer (v4.0). No hardcoded literals.
+// ============================================================================
+const saved = localStorage.getItem('theme') || 'dark';
+document.documentElement.dataset.theme = saved;
+document.querySelectorAll('.theme-switcher button').forEach(b => {
+  if (b.dataset.theme === saved) b.classList.add('active'); else b.classList.remove('active');
+  b.addEventListener('click', () => {
+    document.documentElement.dataset.theme = b.dataset.theme;
+    localStorage.setItem('theme', b.dataset.theme);
+    document.querySelectorAll('.theme-switcher button').forEach(x => x.classList.toggle('active', x === b));
+  });
 });
+const $ = id => document.getElementById(id);
+const num = v => { const n = parseFloat(String(v).replace(/[^\d.\-]/g, '')); return isNaN(n) ? null : n; };
+const ago = ts => { const s = (Date.now() - new Date(ts).getTime()) / 1000; if (isNaN(s)) return ''; if (s < 60) return Math.round(s) + 's ago'; if (s < 3600) return Math.round(s / 60) + ' min ago'; if (s < 86400) return Math.round(s / 3600) + ' hr ago'; return Math.round(s / 86400) + ' d ago'; };
 
-// TICKER
-async function loadTicker(){
-  try {
-    const d=await(await fetch('/data/live/ticker.json')).json();
-    const items=d.ticker.map(t=>`<div class="ti"><span class="pulse"></span><span>${t.label}</span> <strong>${t.value}</strong> <span class="${parseFloat(t.change)>=0?'up':'dn'}">${t.change}</span></div>`).join('');
-    document.getElementById('ticker').innerHTML=items+items;
-  } catch(e){}
-}
-
-// MARKET STATS — Live data layer cards from /data/live/market.json
-async function loadMarket() {
-  try {
-    const d=await(await fetch('/data/live/market.json')).json();
-    const fr=d.fred||{};const cr=d.crypto||{};const rt=d.reits||{};
-    const cards=[
-      {l:'10-Yr Treasury',v:fr['10Y_Treasury_Yield']?.value+'%',d:fr['10Y_Treasury_Yield']?.date,s:'FRED · DGS10'},
-      {l:'30-Yr Mortgage',v:fr['30Y_Fixed_Mortgage_Rate']?.value+'%',d:fr['30Y_Fixed_Mortgage_Rate']?.date,s:'FRED · MORTGAGE30US'},
-      {l:'SOFR',v:fr['SOFR_Rate']?.value+'%',d:fr['SOFR_Rate']?.date,s:'NY Fed · SOFR'},
-      {l:'Fed Funds',v:fr['Fed_Funds_Rate']?.value+'%',d:fr['Fed_Funds_Rate']?.date,s:'FRED · FEDFUNDS'},
-      {l:'CRE Delinquency',v:fr['CRE_Delinquency_Rate']?.value+'%',d:fr['CRE_Delinquency_Rate']?.date,s:'FRED · DRCRELEXFACBS',red:1},
-      {l:'Unemployment',v:fr['Unemployment_Rate']?.value+'%',d:fr['Unemployment_Rate']?.date,s:'BLS · UNRATE'},
-      {l:'Median Home (US)',v:'$'+(parseInt(fr['Median_Sale_Price_US']?.value||0)/1000).toFixed(0)+'K',d:fr['Median_Sale_Price_US']?.date,s:'FRED · MSPUS'},
-      {l:'Case-Shiller HPI',v:fr['Case_Shiller_Home_Price_Index']?.value,d:fr['Case_Shiller_Home_Price_Index']?.date,s:'S&P · CSUSHPISA'},
-      {l:'Bitcoin',v:'$'+(cr.bitcoin?.usd||0).toLocaleString(),d:(cr.bitcoin?.usd_24h_change||0).toFixed(1)+'%',s:'CoinGecko',delta:cr.bitcoin?.usd_24h_change},
-      {l:'Realty Income',v:'$'+(rt.O?.current||0).toFixed(2),d:(rt.O?.change_pct||0).toFixed(2)+'%',s:'Finnhub · O',delta:rt.O?.change_pct},
-      {l:'Prologis',v:'$'+(rt.PLD?.current||0).toFixed(2),d:(rt.PLD?.change_pct||0).toFixed(2)+'%',s:'Finnhub · PLD',delta:rt.PLD?.change_pct},
-      {l:'Amer Tower',v:'$'+(rt.AMT?.current||0).toFixed(2),d:(rt.AMT?.change_pct||0).toFixed(2)+'%',s:'Finnhub · AMT',delta:rt.AMT?.change_pct}
-    ];
-    document.getElementById('market-grid').innerHTML=cards.map(c=>{
-      let deltaHtml='';
-      if(c.delta!==undefined){deltaHtml=`<div class="delta" style="color:${c.delta>=0?'var(--green)':'var(--red)'}">${c.delta>=0?'▲':'▼'} ${c.d}</div>`;}
-      else{deltaHtml=`<div class="delta" style="color:var(--dim)">${c.d||''}</div>`;}
-      return `<div class="metric-card"><div class="label">${c.l}</div><div class="v" ${c.red?'style="color:var(--red)"':''}>${c.v}</div>${deltaHtml}<div class="src">${c.s}</div></div>`;
-    }).join('');
-  } catch(e){}
-}
-
-// STATS + CATEGORIES
+// STATS + CATEGORY COVERAGE (real registry) ----------------------------------
 async function loadStats() {
   try {
-    const d=await(await fetch('/data/stats.json')).json();
-    document.getElementById('s-total').textContent=d.total_sources;
-    document.getElementById('s-scraped').textContent=d.by_status.scraped;
-    document.getElementById('s-records').textContent=d.total_records.toLocaleString();
-    document.getElementById('s-rate').textContent=Math.round(d.by_status.scraped/(d.total_sources-d.by_status.paid_skipped)*100)+'%';
-    const cats=Object.entries(d.by_category).sort((a,b)=>b[1].total-a[1].total);
-    const maxT=Math.max(...cats.map(c=>c[1].total));
-    const cl=['#3b82f6','#22c55e','#8b5cf6','#fbbf24','#ef4444','#06b6d4','#fb923c','#f472b6','#14b8a6','#a78bfa','#6366f1','#84cc16','#f59e0b','#10b981'];
-    document.getElementById('cat-list').innerHTML=cats.map((c,i)=>`<div class="cat-row" onclick="filterByCat('${c[0]}')"><div class="cat-name">${c[0].replace('_',' ')}</div><div class="cat-bar-wrap"><div class="cat-bar-fill" style="background:${cl[i%14]}" data-w="${c[1].total/maxT*100}">${c[1].scraped}/${c[1].total}</div></div><div class="cat-records">${c[1].records} rec</div></div>`).join('');
-    setTimeout(()=>document.querySelectorAll('.cat-bar-fill').forEach(el=>el.style.width=el.dataset.w+'%'),200);
-    const sel=document.getElementById('cat-filter');
-    cats.forEach(c=>{const o=document.createElement('option');o.value=c[0];o.textContent=`${c[0]} (${c[1].total})`;sel.appendChild(o);});
-  } catch(e){}
+    const d = await (await fetch('/api/stats')).json();
+    $('s-total').textContent = (d.cataloged_sources || 0).toLocaleString();
+    $('s-scraped').textContent = d.live_search_layers || 0;
+    $('s-records').textContent = d.category_count || 0;
+    $('s-rate').textContent = '100%';
+    const fresh = $('data-fresh'); if (fresh) fresh.textContent = 'Registry updated ' + ago(d.last_updated);
+    const cats = Object.entries(d.by_category || {}).sort((a, b) => b[1] - a[1]);
+    const maxT = Math.max(...cats.map(c => c[1]), 1);
+    const cl = ['#3b82f6', '#22c55e', '#8b5cf6', '#fbbf24', '#ef4444', '#06b6d4', '#fb923c', '#f472b6', '#14b8a6', '#a78bfa', '#6366f1', '#84cc16', '#f59e0b', '#10b981'];
+    $('cat-list').innerHTML = cats.map((c, i) =>
+      `<div class="cat-row" onclick="filterByCat('${c[0]}')"><div class="cat-name">${c[0].replace(/_/g, ' ')}</div><div class="cat-bar-wrap"><div class="cat-bar-fill" style="background:${cl[i % 14]}" data-w="${c[1] / maxT * 100}">${c[1]}</div></div><div class="cat-records">${c[1]} src</div></div>`).join('');
+    setTimeout(() => document.querySelectorAll('.cat-bar-fill').forEach(el => el.style.width = el.dataset.w + '%'), 200);
+    const sel = $('cat-filter');
+    cats.forEach(c => { const o = document.createElement('option'); o.value = c[0]; o.textContent = `${c[0]} (${c[1]})`; sel.appendChild(o); });
+  } catch (e) { $('cat-list').innerHTML = '<div style="color:var(--muted);font-size:12px">Stats unavailable</div>'; }
 }
 
-// LIVE APIs
-function loadAPIs() {
-  const apis=[
-    {n:'FRED',d:'St. Louis Fed — 20 economic series',m:'905***451b',req:'120/min'},
-    {n:'Census ACS',d:'Demographics by tract',m:'8a4***4fd',req:'500/day'},
-    {n:'BLS',d:'CPI, employment, wages',m:'2a5***dc44',req:'500/day'},
-    {n:'BEA',d:'GDP, accounts',m:'976***D174',req:'1000/day'},
-    {n:'EIA',d:'Energy prices, gas',m:'OYy***1GU',req:'1000/day'},
-    {n:'Finnhub',d:'10 REIT stock prices',m:'d8e***ueqg',req:'60/min'},
-    {n:'CoinGecko',d:'Bitcoin, Ethereum prices',m:'CG-***vZ',req:'30/min'},
-    {n:'Walk Score',d:'Per-address walkability',m:'65f***e98a',req:'5000/day'},
-    {n:'OpenWeather',d:'Per-location weather',m:'49e***92f3',req:'60/min'},
-    {n:'Alpha Vantage',d:'Stock data, forex',m:'PH3***FEBF',req:'25/day'},
-    {n:'Twelve Data',d:'Market indices',m:'c6c***fed',req:'800/day'},
-    {n:'Data.gov',d:'Federal datasets',m:'dFx***6Ly',req:'unlimited'}
+// TICKER (dict shape) --------------------------------------------------------
+async function loadTicker() {
+  try {
+    const d = await (await fetch('/api/live/ticker')).json();
+    const labels = { treasury_10y: '10Y Treasury', mortgage_30y: '30Y Mortgage', fed_funds: 'Fed Funds', unemployment: 'Unemployment', sofr: 'SOFR', bitcoin: 'BTC', ethereum: 'ETH' };
+    const items = Object.entries(d).filter(([k, v]) => v && v.value).map(([k, v]) =>
+      `<div class="ti"><span class="pulse"></span><span>${labels[k] || k}</span> <strong>${v.value}</strong> <span style="color:var(--dim)">${v.source || ''}</span></div>`).join('');
+    $('ticker').innerHTML = items + items;
+  } catch (e) {}
+}
+
+// MARKET GRID + RATE CHART ---------------------------------------------------
+let rateChart = null;
+async function loadMarket() {
+  try {
+    const d = await (await fetch('/api/live/market')).json();
+    const fr = d.fred || {}, cr = d.crypto || {}, boi = d.boi || {};
+    const cards = [];
+    const add = (l, v, dt, s, red) => { if (v != null && v !== 'null' && v !== undefined) cards.push({ l, v, d: dt, s, red }); };
+    add('10-Yr Treasury', fr.treasury_10y?.value, fr.treasury_10y?.date, 'FRED · DGS10');
+    add('30-Yr Mortgage', fr.mortgage_30y?.value, fr.mortgage_30y?.date, 'FRED · MORTGAGE30US');
+    add('Fed Funds', fr.fed_funds?.value, fr.fed_funds?.date, 'FRED · FEDFUNDS');
+    add('Bitcoin', cr.bitcoin?.price, 'live', 'CoinGecko');
+    add('Ethereum', cr.ethereum?.price, 'live', 'CoinGecko');
+    if (boi.rate) add('USD/ILS', Number(boi.rate).toFixed(3), 'live', 'Bank of Israel');
+    $('market-grid').innerHTML = cards.map(c =>
+      `<div class="metric-card"><div class="label">${c.l}</div><div class="v" ${c.red ? 'style="color:var(--red)"' : ''}>${c.v}</div><div class="delta" style="color:var(--dim)">${c.d || ''}</div><div class="src">${c.s}</div></div>`).join('') || '<div style="color:var(--muted)">Market cache unavailable</div>';
+
+    // rate chart from real values
+    const series = [['10Y Treasury', fr.treasury_10y?.value], ['30Y Mortgage', fr.mortgage_30y?.value], ['Fed Funds', fr.fed_funds?.value]].map(([l, v]) => [l, num(v)]).filter(x => x[1] != null);
+    const cv = $('rate-chart');
+    if (cv && typeof Chart !== 'undefined' && series.length) {
+      if (rateChart) rateChart.destroy();
+      const css = getComputedStyle(document.documentElement);
+      rateChart = new Chart(cv, {
+        type: 'bar',
+        data: { labels: series.map(s => s[0]), datasets: [{ label: 'Rate %', data: series.map(s => s[1]), backgroundColor: ['#3b82f6', '#06b6d4', '#fbbf24'] }] },
+        options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { color: css.getPropertyValue('--muted') } }, x: { ticks: { color: css.getPropertyValue('--muted') } } } }
+      });
+    }
+  } catch (e) { $('market-grid').innerHTML = '<div style="color:var(--muted)">Market cache unavailable</div>'; }
+}
+
+// REAL ENDPOINT HEALTH -------------------------------------------------------
+async function loadEndpoints() {
+  const eps = ['/api/health', '/api/sources', '/api/stats', '/api/categories', '/api/live/ticker', '/api/live/market'];
+  $('endpoint-list').innerHTML = eps.map(e => `<div class="endpoint-row" id="ep-${btoa(e)}"><span class="e">${e}</span><span class="s" style="color:var(--muted)">checking…</span></div>`).join('');
+  let okCount = 0;
+  await Promise.all(eps.map(async e => {
+    const t0 = performance.now();
+    let status, color;
+    try {
+      const r = await fetch(e, { cache: 'no-store' });
+      const ms = Math.round(performance.now() - t0);
+      if (r.ok) { okCount++; status = `${r.status} · ${ms}ms`; color = ms < 400 ? 'var(--green)' : 'var(--gold)'; }
+      else { status = `${r.status} ✕`; color = 'var(--red)'; }
+    } catch (err) { status = 'unreachable'; color = 'var(--red)'; }
+    const row = $('ep-' + btoa(e)); if (row) row.querySelector('.s').innerHTML = `<span style="color:${color}">${status}</span>`;
+  }));
+  const badge = document.querySelector('#endpoint-list')?.closest('.glass')?.querySelector('.badge');
+  if (badge) { badge.textContent = `${okCount}/${eps.length} OK`; badge.className = 'badge ' + (okCount === eps.length ? 'ok' : ''); }
+}
+
+// LIVE SEARCH LAYERS (replaces leaked-key API grid) --------------------------
+function loadLiveLayers() {
+  const layers = [
+    ['Census Geocoder', 'geocode'], ['FRED / NY Fed', 'rates'], ['CoinGecko', 'crypto'], ['ECB / Frankfurter', 'fx'],
+    ['Federal Register', 'regulatory'], ['FDIC', 'banking'], ['FEMA NFHL', 'flood'], ['FEMA OpenFEMA', 'disasters'],
+    ['OSM Overpass', 'POIs'], ['NWS', 'weather alerts'], ['Census ACS', 'demographics'], ['USGS 3DEP', 'elevation'],
+    ['Open-Meteo', 'weather'], ['Open-Meteo AQ', 'air quality'], ['FCC', 'census/FIPS'], ['Wikipedia', 'context'],
+    ['USGS Quakes', 'seismic'], ['EPA Envirofacts', 'environmental'], ['GDELT', 'news/sentiment'], ['RePrime', 'financing+FX valuation'],
   ];
-  document.getElementById('api-grid').innerHTML=apis.map(a=>`<div class="api-card"><div class="name">${a.n}</div><div class="desc">${a.d}</div><div class="meta"><span>${a.m}</span><span>${a.req}</span></div></div>`).join('');
+  $('api-grid').innerHTML = layers.map(([n, d]) =>
+    `<div class="api-card"><div class="name">${n}</div><div class="desc">${d}</div><div class="meta"><span style="color:var(--green)">● live</span><span>free</span></div></div>`).join('');
 }
 
-// ENDPOINTS
-function loadEndpoints() {
-  const endpoints=[
-    ['/data/stats.json','200 ✓ ok'],
-    ['/data/categories.json','200 ✓ ok'],
-    ['/data/sources.json','200 ✓ ok'],
-    ['/data/live/ticker.json','200 ✓ ok'],
-    ['/data/live/market.json','200 ✓ ok'],
-    ['/data/live/reits.json','200 ✓ ok'],
-    ['/data/live/property.json','200 ✓ ok'],
-    ['/data/market/sofr.json','200 ✓ ok'],
-    ['/data/market/cpi.json','200 ✓ ok'],
-    ['/data/market/treasury.json','200 ✓ ok'],
-    ['/data/market/fdic.json','200 ✓ ok'],
-    ['/data/market/crypto.json','200 ✓ ok'],
-    ['/data/market/exchange-rates.json','200 ✓ ok'],
-    ['/data/market/fema.json','200 ✓ ok'],
-    ['/data/deal/intelligence.json','200 ✓ ok'],
-    ['/data/deal/financing.json','200 ✓ ok'],
-    ['/data/deal/comps.json','200 ✓ ok'],
-    ['/data/deal/permits.json','200 ✓ ok'],
-    ['/data/deal/news.json','200 ✓ ok'],
-    ['/data/deal/environmental.json','200 ✓ ok'],
-    ['/data/health.json','200 ✓ ok']
-  ];
-  document.getElementById('endpoint-list').innerHTML=endpoints.map(([e,s])=>`<div class="endpoint-row"><span class="e">${e}</span><span class="s">${s}</span></div>`).join('');
+// REAL ACTIVITY (from search history + data freshness) ------------------------
+async function loadActivity() {
+  const ev = [];
+  let hist = []; try { hist = JSON.parse(localStorage.getItem('reprime:history') || '[]'); } catch (e) {}
+  hist.slice(0, 6).forEach(a => ev.push({ i: '🔍', t: 'Property search', m: a, ts: '' }));
+  try {
+    const st = await (await fetch('/api/stats')).json();
+    ev.push({ i: '🗃️', t: 'Source registry', m: `${st.cataloged_sources} free APIs · ${st.category_count} categories`, ts: ago(st.last_updated) });
+    ev.push({ i: '⚡', t: 'Live search layers', m: `${st.live_search_layers} sources queried per address`, ts: '' });
+  } catch (e) {}
+  if (!hist.length) ev.push({ i: 'ℹ️', t: 'No searches yet', m: 'Run a search on Explore — your history appears here.', ts: '' });
+  $('activity-feed').innerHTML = ev.map(e =>
+    `<div class="activity-item"><div class="activity-icon">${e.i}</div><div style="flex:1"><div style="font-size:12px;font-weight:600">${e.t}</div><div style="font-size:11px;color:var(--muted);margin-top:2px">${e.m}</div>${e.ts ? `<div style="font-size:9px;color:var(--dim);margin-top:2px;font-family:'JetBrains Mono',monospace">${e.ts}</div>` : ''}</div></div>`).join('');
 }
 
-// ACTIVITY
-function loadActivity() {
-  const events=[
-    {i:'🔄',t:'Hourly market refresh',m:'13 APIs polled, 12 OK, 1 timeout',ts:'2 min ago'},
-    {i:'✓',t:'FRED data updated',m:'20 series refreshed (10Y, SOFR, CPI...)',ts:'2 min ago'},
-    {i:'✓',t:'Finnhub REITs updated',m:'10 tickers · O $59.55 · PLD $139.02',ts:'3 min ago'},
-    {i:'✓',t:'CoinGecko crypto',m:'BTC $71,095 (-3.7% 24h) · ETH $2,000',ts:'3 min ago'},
-    {i:'🌍',t:'Property search executed',m:'1707 Arrowhead Road, North Little Rock AR',ts:'5 min ago'},
-    {i:'📰',t:'News feed refreshed',m:'197 articles from 10 RSS sources',ts:'15 min ago'},
-    {i:'🌊',t:'FEMA NFHL query',m:'Flood zone check for Pulaski County',ts:'15 min ago'},
-    {i:'📊',t:'Daily scrape complete',m:'549/611 sources scraped, 8,223 records',ts:'8 hr ago'},
-    {i:'🔑',t:'API key validated',m:'Walk Score · 78 score returned',ts:'9 hr ago'},
-    {i:'⚙️',t:'Scheduler heartbeat',m:'APScheduler online · next run in 47min',ts:'now'}
-  ];
-  document.getElementById('activity-feed').innerHTML=events.map(e=>`<div class="activity-item"><div class="activity-icon">${e.i}</div><div style="flex:1"><div style="font-size:12px;font-weight:600">${e.t}</div><div style="font-size:11px;color:var(--muted);margin-top:2px">${e.m}</div><div style="font-size:9px;color:var(--dim);margin-top:2px;font-family:'JetBrains Mono',monospace">${e.ts}</div></div></div>`).join('');
-}
-
-// SOURCES — load all + filter
-let allSources=[];
-
+// SOURCE DIRECTORY (real registry fields) ------------------------------------
+let allSources = [];
 async function loadSources() {
   try {
-    const d=await(await fetch('/data/sources.json')).json();
-    allSources=d.sources;
-    // Build provider filter
-    const providers=[...new Set(allSources.map(s=>s.provider).filter(Boolean))].sort();
-    const ps=document.getElementById('provider-filter');
-    providers.slice(0,40).forEach(p=>{const o=document.createElement('option');o.value=p;o.textContent=p;ps.appendChild(o);});
+    const d = await (await fetch('/api/sources')).json();
+    allSources = d.sources || [];
+    if ($('src-count')) $('src-count').textContent = `${allSources.length} sources`;
+    const providers = [...new Set(allSources.map(s => s.provider).filter(Boolean))].sort();
+    const ps = $('provider-filter');
+    providers.slice(0, 40).forEach(p => { const o = document.createElement('option'); o.value = p; o.textContent = p; ps.appendChild(o); });
     renderSources();
-  } catch(e){}
+  } catch (e) {}
 }
-
 function renderSources() {
-  const search=document.getElementById('src-search').value.toLowerCase();
-  const cat=document.getElementById('cat-filter').value;
-  const provider=document.getElementById('provider-filter').value;
-  const status=document.getElementById('status-filter').value;
-  const auth=document.getElementById('auth-filter').value;
-  let filtered=allSources.filter(s=>{
-    const txt=`${s.id} ${s.name} ${s.provider} ${s.category} ${s.notes||''}`.toLowerCase();
-    if(search&&!txt.includes(search))return false;
-    if(cat&&s.category!==cat)return false;
-    if(provider&&s.provider!==provider)return false;
-    if(status==='scraped'&&!s.scraped)return false;
-    if(status==='missing'&&s.scraped)return false;
-    if(auth==='no'&&!(s.auth||'').toLowerCase().includes('no'))return false;
-    if(auth==='key'&&!(s.auth||'').toLowerCase().includes('key'))return false;
+  const search = $('src-search').value.toLowerCase();
+  const cat = $('cat-filter').value;
+  const provider = $('provider-filter').value;
+  const auth = $('auth-filter').value;
+  const filtered = allSources.filter(s => {
+    const txt = `${s.name} ${s.provider} ${s.category} ${s.cre_use || ''}`.toLowerCase();
+    if (search && !txt.includes(search)) return false;
+    if (cat && s.category !== cat) return false;
+    if (provider && s.provider !== provider) return false;
+    if (auth === 'no' && (s.auth || '').toLowerCase().includes('key')) return false;
+    if (auth === 'key' && !(s.auth || '').toLowerCase().includes('key')) return false;
     return true;
   });
-  document.getElementById('src-count').textContent=`${filtered.length} of ${allSources.length}`;
-  document.getElementById('src-body').innerHTML=filtered.slice(0,150).map(s=>`<tr><td class="src-id">${s.id}</td><td>${s.name||'—'}</td><td style="color:var(--muted);font-size:11px">${s.provider||'—'}</td><td style="font-size:11px;color:var(--muted)">${s.category||'—'}</td><td style="font-size:10px;color:var(--dim)">${s.source_type||'—'}</td><td style="font-size:10px">${(s.auth||'none').substring(0,20)}</td><td><span class="dot ${s.scraped?'dot-g':'dot-r'}"></span></td></tr>`).join('');
+  if ($('src-count')) $('src-count').textContent = `${filtered.length} of ${allSources.length}`;
+  $('src-body').innerHTML = filtered.slice(0, 150).map((s, i) =>
+    `<tr><td class="src-id">${i + 1}</td><td>${s.name || '—'}</td><td style="color:var(--muted);font-size:11px">${s.provider || '—'}</td><td style="font-size:11px;color:var(--muted)">${s.category || '—'}</td><td style="font-size:10px;color:var(--dim)">${s.type || '—'}</td><td style="font-size:10px">${(s.auth || 'none').substring(0, 20) || 'none'}</td><td><span class="dot ${s.status === 'OK' ? 'dot-g' : 'dot-r'}"></span></td></tr>`).join('');
 }
+function filterByCat(c) { $('cat-filter').value = c; renderSources(); window.scrollTo({ top: document.querySelector('.controls').offsetTop - 100, behavior: 'smooth' }); }
 
-function filterByCat(c){document.getElementById('cat-filter').value=c;renderSources();window.scrollTo({top:document.querySelector('.controls').offsetTop-100,behavior:'smooth'});}
+['src-search', 'cat-filter', 'provider-filter', 'auth-filter'].forEach(id => {
+  const el = $(id); if (el) el.addEventListener(id === 'src-search' ? 'input' : 'change', renderSources);
+});
 
-document.getElementById('src-search').addEventListener('input',renderSources);
-document.getElementById('cat-filter').addEventListener('change',renderSources);
-document.getElementById('provider-filter').addEventListener('change',renderSources);
-document.getElementById('status-filter').addEventListener('change',renderSources);
-document.getElementById('auth-filter').addEventListener('change',renderSources);
+loadStats(); loadTicker(); loadMarket(); loadEndpoints(); loadLiveLayers(); loadActivity(); loadSources();
+setInterval(loadTicker, 60000);
+setInterval(loadEndpoints, 60000);
 
-loadTicker();loadMarket();loadStats();loadAPIs();loadEndpoints();loadActivity();loadSources();
 </script>
 </body>
 </html>

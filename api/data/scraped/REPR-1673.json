@@ -1,1 +1,0 @@
-{"source_id": "REPR-1673", "scraped_at": "2026-06-01T23:31:31.841859+00:00", "record_count": 1, "records": [{"error": true, "status": 401, "message": "invalid_app_id", "description": "Invalid App ID provided. Please sign up at https://openexchangerates.org/signup, or contact support@openexchangerates.org."}], "_demo": true}

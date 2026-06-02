@@ -1,0 +1,29 @@
+{
+  "_label": "SAMPLE — illustrative deal data for demonstration. Connect a deal-management system for live underwriting.",
+  "name": "The Palms at Doral",
+  "address": "8400 NW 36th St, Doral, FL 33166",
+  "summary": "240 Units · Class B+ · Doral, FL · Value-Add Multifamily",
+  "images": ["/images/om_p1_img1.jpeg", "/images/om_p5_img1.jpeg", "/images/om_p7_img1.jpeg", "/images/om_p9_img1.jpeg", "/images/om_p12_img1.jpeg"],
+  "metrics": [
+    {"label": "Cap Rate", "value": "6.2%"},
+    {"label": "NOI", "value": "$3.8M"},
+    {"label": "IRR (5yr)", "value": "18.4%"},
+    {"label": "Cash-on-Cash", "value": "9.8%"},
+    {"label": "DSCR", "value": "1.45x"},
+    {"label": "WALT", "value": "7.2 yrs"}
+  ],
+  "capital_stack": {
+    "total": "$61.2M",
+    "tranches": [
+      {"name": "Senior Debt", "pct": 75, "amount": "$45.9M", "rate": "5.8%", "color": "blue"},
+      {"name": "Mezzanine", "pct": 15, "amount": "$9.2M", "rate": "9.5%", "color": "gold"},
+      {"name": "Equity", "pct": 10, "amount": "$6.1M", "rate": "", "color": "teal"}
+    ]
+  },
+  "tenants": [
+    {"name": "Market Rate Pool", "units": 168, "rent": "$2,150", "exp": "Rolling", "status": "Current"},
+    {"name": "Section 8 Block", "units": 36, "rent": "$1,680", "exp": "Annual", "status": "Current"},
+    {"name": "Corporate Lease", "units": 24, "rent": "$2,450", "exp": "Dec 2027", "status": "Current"},
+    {"name": "Vacant Units", "units": 12, "rent": "—", "exp": "—", "status": "Vacant"}
+  ]
+}
