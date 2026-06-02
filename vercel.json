@@ -1,13 +1,18 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/server/app.py",
-      "use": "@vercel/python",
-      "config": { "maxLambdaSize": "50mb" }
-    }
-  ],
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
-    { "source": "/(.*)", "destination": "/api/server/app.py" }
+    { "source": "/site", "destination": "/site.html" },
+    { "source": "/terminal", "destination": "/terminal.html" }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json" },
+        { "key": "Cache-Control", "value": "public, max-age=300" }
+      ]
+    }
   ]
 }
