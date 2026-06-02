@@ -26,3 +26,4 @@ api/property/
 *.md
 LICENSE
 .gstack
+public/data/

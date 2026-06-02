@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "buildCommand": "echo 'static build'",
   "outputDirectory": "public",
   "functions": {
-    "api/property.py": { "maxDuration": 30 }
+    "api/property.py": {
+      "maxDuration": 30,
+      "memory": 256
+    }
   },
   "rewrites": [
     { "source": "/site", "destination": "/site.html" },
