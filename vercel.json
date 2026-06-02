@@ -3,6 +3,7 @@
   "outputDirectory": "public",
   "rewrites": [
     { "source": "/site", "destination": "/site.html" },
+    { "source": "/explore", "destination": "/explore.html" },
     { "source": "/terminal", "destination": "/terminal.html" },
     { "source": "/dashboard", "destination": "/dashboard.html" },
     { "source": "/api/live/:metric", "destination": "/data/live/:metric.json" },
