@@ -1,50 +1,63 @@
 {
   "version": 2,
-  "outputDirectory": "public",
   "rewrites": [
     {
+      "source": "/api/search",
+      "destination": "/api/search"
+    },
+    {
       "source": "/site",
-      "destination": "/site.html"
+      "destination": "/public/site.html"
     },
     {
       "source": "/explore",
-      "destination": "/explore.html"
+      "destination": "/public/explore.html"
     },
     {
       "source": "/terminal",
-      "destination": "/terminal.html"
+      "destination": "/public/terminal.html"
     },
     {
       "source": "/dashboard",
-      "destination": "/dashboard.html"
+      "destination": "/public/dashboard.html"
     },
     {
       "source": "/api/live/:metric",
-      "destination": "/data/live/:metric.json"
+      "destination": "/public/data/live/:metric.json"
     },
     {
       "source": "/api/market/:metric",
-      "destination": "/data/market/:metric.json"
+      "destination": "/public/data/market/:metric.json"
     },
     {
       "source": "/api/deal/:metric",
-      "destination": "/data/deal/:metric.json"
+      "destination": "/public/data/deal/:metric.json"
     },
     {
       "source": "/api/stats",
-      "destination": "/data/stats.json"
+      "destination": "/public/data/stats.json"
     },
     {
       "source": "/api/categories",
-      "destination": "/data/categories.json"
+      "destination": "/public/data/categories.json"
     },
     {
       "source": "/api/sources",
-      "destination": "/data/sources.json"
+      "destination": "/public/data/sources.json"
     },
     {
       "source": "/api/health",
-      "destination": "/data/health.json"
+      "destination": "/public/data/health.json"
+    },
+    {
+      "source": "/",
+      "destination": "/public/index.html"
     }
-  ]
+  ],
+  "functions": {
+    "api/search.py": {
+      "runtime": "@vercel/python",
+      "maxDuration": 30
+    }
+  }
 }

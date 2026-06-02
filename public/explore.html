@@ -694,6 +694,176 @@ async function fetchMarketRates() {
 }
 
 
+
+// SERVER-SIDE SEARCH — calls Python backend for aggregated results
+async function serverSearch(address) {
+  try {
+    const url = `/api/search?address=${encodeURIComponent(address)}`;
+    const r = await fetch(url);
+    if (!r.ok) return null;
+    return await r.json();
+  } catch(e) {
+    console.log('Server search unavailable, falling back to client-side', e);
+    return null;
+  }
+}
+
+// Render server results into the existing UI
+function renderServerResults(data) {
+  document.getElementById('loading').classList.remove('show');
+  document.getElementById('search-btn').disabled=false;
+  document.getElementById('results').classList.add('show');
+
+  const geo = data.geocode || {};
+  const flood = data.fema_flood || {};
+  const rates = data.fred_rates || {};
+  const fx = data.fx_rates || {};
+  const crypto = data.crypto || {};
+  const news = data.news || [];
+  const redfin = data.redfin || {};
+  const pois = data.osm_pois || [];
+  const svi = data.cdc_svi || {};
+  const weather = data.weather || [];
+  const epa = data.epa_sites || [];
+  const fdic = data.fdic || {};
+  const fedReg = data.fed_register || [];
+  const fcc = data.fcc_broadband || {};
+  const mc = data.multi_currency || {};
+  const meta = data._meta || {};
+
+  // Header
+  document.getElementById('r-header').innerHTML = `
+    <div class="result-title">${data.query}</div>
+    <div class="result-loc">📍 ${geo.matched_address || data.query}</div>
+    <div class="result-meta">
+      <span>📌 ${(geo.lat||0).toFixed(5)}, ${(geo.lon||0).toFixed(5)}</span>
+      <span>${geo.state||''}, ${geo.county||''} County</span>
+      <span>FIPS ${geo.fips_state||''}-${geo.fips_county||''}-${geo.tract||''}</span>
+      <span>⏱ ${meta.elapsed_seconds||0}s · ${meta.sources_hit||0} sources</span>
+      <span style="padding:3px 8px;background:rgba(0,169,128,.1);color:var(--green);border-radius:4px;font-weight:600">SERVER</span>
+    </div>`;
+
+  // Source badges
+  const srcList = meta.sources_list || [];
+  document.getElementById('src-count').textContent = `${srcList.length} live · 611 catalog`;
+  document.getElementById('src-badges').innerHTML = srcList.map(s => `<span class="src-badge ok">${s}</span>`).join('');
+
+  // Stats row
+  document.getElementById('r-stats').innerHTML = `
+    <div class="glass stat"><div class="lb">Flood Zone</div><div class="vl" style="color:${flood.risk==='HIGH'?'var(--red)':'var(--green)'};font-size:18px">${flood.zone||'?'}</div><div class="sb">${flood.in_sfha?'In SFHA':'Outside SFHA'}</div></div>
+    <div class="glass stat"><div class="lb">Nearby POIs</div><div class="vl" style="color:var(--accent2)">${pois.length}</div><div class="sb">Within 800m</div></div>
+    <div class="glass stat"><div class="lb">EPA Sites</div><div class="vl" style="color:${epa.length>0?'var(--red)':'var(--green)'}">${epa.length}</div><div class="sb">Within 2km</div></div>
+    <div class="glass stat"><div class="lb">Redfin</div><div class="vl" style="color:var(--accent)">${redfin.redfin_listings_count||0}</div><div class="sb">Nearby listings</div></div>`;
+
+  // Map
+  document.getElementById('r-map').innerHTML = `<iframe src="https://www.openstreetmap.org/export/embed.html?bbox=${geo.lon-0.008}%2C${geo.lat-0.005}%2C${geo.lon+0.008}%2C${geo.lat+0.005}&layer=mapnik&marker=${geo.lat}%2C${geo.lon}"></iframe>`;
+
+  // Address details
+  const addrRows = [
+    ['Matched', geo.matched_address],
+    ['State', geo.state],
+    ['County', geo.county],
+    ['Census Tract', geo.tract],
+    ['Block', geo.block],
+    ['FIPS', `${geo.fips_state}-${geo.fips_county}`],
+    ['Coordinates', `${(geo.lat||0).toFixed(5)}, ${(geo.lon||0).toFixed(5)}`],
+    ['Source', geo.source],
+  ].filter(x => x[1]);
+  document.getElementById('r-addr').innerHTML = addrRows.map(([k,v]) => `<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px"><span style="color:var(--muted)">${k}</span><span style="font-family:'JetBrains Mono',monospace;font-weight:600;text-align:right;max-width:60%">${v}</span></div>`).join('');
+
+  // Imagery
+  document.getElementById('img-count').textContent = '6 layers';
+  const imgs = buildImagery(geo.lat, geo.lon);
+  document.getElementById('r-images').innerHTML = imgs.map(i => `<div class="img-tile" style="background-image:url('${i.url}')"><div class="src">${i.source}</div></div>`).join('');
+
+  // Flood
+  document.getElementById('r-flood').innerHTML = `
+    <div style="font-size:36px;font-weight:800;font-family:'JetBrains Mono',monospace;color:${flood.risk==='HIGH'?'var(--red)':'var(--green)'};margin-bottom:6px">Zone ${flood.zone||'?'}</div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:10px">${flood.in_sfha?'⚠️ Special Flood Hazard Area':'✓ Outside flood hazard area'}</div>
+    ${flood.base_flood_elevation?`<div style="font-size:11px"><span style="color:var(--muted)">BFE:</span> <strong>${flood.base_flood_elevation} ft</strong></div>`:''}
+    ${flood.subtype?`<div style="font-size:11px;margin-top:4px"><span style="color:var(--muted)">Subtype:</span> ${flood.subtype}</div>`:''}
+    <div style="font-size:9px;color:var(--dim);margin-top:14px">Source: FEMA NFHL</div>`;
+
+  // POIs
+  document.getElementById('r-poi-count').textContent = `${pois.length} within 800m`;
+  document.getElementById('r-pois').innerHTML = pois.length
+    ? pois.map(p => `<div class="poi"><div class="name">${p.name}</div><div class="cat">${p.type}</div></div>`).join('')
+    : '<div style="color:var(--muted);font-size:12px;padding:10px">No POIs found</div>';
+
+  // Wiki (not from server, skip)
+  document.getElementById('r-wiki-count').textContent = '—';
+  document.getElementById('r-wiki').innerHTML = '<div style="color:var(--dim);font-size:11px">Use client-side search for Wikipedia</div>';
+
+  // Multi-currency
+  document.getElementById('currency-section').style.display = '';
+  document.getElementById('intel-section').style.display = '';
+  const mcRates = mc.rates || {};
+  const mcSample = mc.sample_10m || {};
+  document.getElementById('fx-panel').innerHTML = [
+    ['🇺🇸 USD', mcSample.USD || '$10,000,000', 'Base currency'],
+    ['🇮🇱 ILS', mcSample.ILS || '—', `1 USD = ₪${mcRates.USD_ILS||'?'} · Bank of Israel`],
+    ['₿ Bitcoin', mcSample.BTC || '—', `$${(mcRates.BTC_USD||0).toLocaleString()}/BTC · CoinGecko`],
+    ['Ξ Ethereum', mcSample.ETH || '—', `$${(mcRates.ETH_USD||0).toLocaleString()}/ETH · CoinGecko`],
+    ['🇪🇺 EUR', mcSample.EUR || '—', 'ECB reference'],
+    ['🇬🇧 GBP', mcSample.GBP || '—', 'ECB reference'],
+  ].map(([l,v,s]) => `<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border)"><span style="font-size:12px;color:var(--muted)">${l}</span><span><strong style="font-family:'JetBrains Mono',monospace;font-size:13px">${v}</strong><span style="font-size:9px;color:var(--dim);margin-left:6px">${s}</span></span></div>`).join('');
+
+  // Environmental risk panel
+  document.getElementById('env-risk-panel').innerHTML = `
+    <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border)"><span style="color:var(--muted);font-size:12px">FEMA Flood Zone</span><span style="color:${flood.risk==='HIGH'?'var(--red)':'var(--green)'};font-weight:700;font-family:'JetBrains Mono',monospace">Zone ${flood.zone||'?'}</span></div>
+    <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border)"><span style="color:var(--muted);font-size:12px">EPA Cleanup Sites</span><span style="font-size:12px;color:${epa.length>0?'var(--red)':'var(--green)'}">${epa.length>0?epa.length+' sites within 2km':'✓ Clear'}</span></div>
+    ${epa.slice(0,3).map(s => `<div style="padding:4px 0;font-size:10px;color:var(--dim);border-bottom:1px solid var(--border)">⚠ ${s.name} (${s.type})</div>`).join('')}
+    <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border)"><span style="color:var(--muted);font-size:12px">Weather Alerts</span><span style="font-size:12px">${weather.length>0?weather.map(a=>a.event).join(', '):'None active'}</span></div>
+    <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border)"><span style="color:var(--muted);font-size:12px">SVI Vulnerability</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px">${svi.overall_vulnerability?parseFloat(svi.overall_vulnerability).toFixed(2):'—'}</span></div>
+    <div style="display:flex;justify-content:space-between;padding:7px 0"><span style="color:var(--muted);font-size:12px">Broadband ISPs</span><span style="font-size:12px">${fcc.count||0} providers</span></div>
+  `;
+
+  // GDELT news
+  document.getElementById('gdelt-panel').innerHTML = news.length > 0
+    ? news.map(n => {
+        const cls = n.tone > 1 ? 'green' : n.tone < -1 ? 'red' : 'muted';
+        const lbl = n.tone > 1 ? 'Positive' : n.tone < -1 ? 'Negative' : 'Neutral';
+        return `<div style="padding:8px 0;border-bottom:1px solid var(--border)"><div style="font-size:11px;color:var(--text);line-height:1.4">${n.title}</div><div style="font-size:9px;color:var(--dim);margin-top:3px">${n.source} · ${n.date} <span style="color:var(--${cls});font-weight:600;margin-left:4px">${lbl}</span></div></div>`;
+      }).join('')
+    : '<div style="color:var(--dim);font-size:11px;padding:10px">No area news found</div>';
+
+  // Regulatory
+  const regItems = [];
+  fedReg.forEach(d => regItems.push(`<div style="padding:6px 0;border-bottom:1px solid var(--border)"><div style="font-size:10px;color:var(--text);line-height:1.3">${(d.title||'').substring(0,80)}...</div><div style="font-size:9px;color:var(--dim);margin-top:2px">${d.date||''} · ${d.type||''} · Fed Register</div></div>`));
+  (data.fema_disasters||[]).forEach(d => regItems.push(`<div style="padding:6px 0;border-bottom:1px solid var(--border)"><div style="font-size:10px;color:var(--text);line-height:1.3">${d.title||d.type||'Disaster'}</div><div style="font-size:9px;color:var(--dim);margin-top:2px">${d.date||''} · ${d.county||''} · FEMA</div></div>`));
+  if ((fdic.failures||[]).length) regItems.push(`<div style="padding:6px 0"><div style="font-size:10px;color:var(--red)">FDIC: ${fdic.failures.length} recent bank failures</div></div>`);
+  document.getElementById('reg-panel').innerHTML = regItems.length > 0 ? regItems.join('') : '<div style="color:var(--dim);font-size:11px;padding:10px">No regulatory alerts</div>';
+
+  // Redfin listings
+  if (redfin.redfin_listings && redfin.redfin_listings.length > 0) {
+    // Inject Redfin section if not exists
+    let rfSection = document.getElementById('redfin-section');
+    if (!rfSection) {
+      rfSection = document.createElement('div');
+      rfSection.id = 'redfin-section';
+      rfSection.className = 'glass mb';
+      document.getElementById('currency-section').before(rfSection);
+    }
+    rfSection.innerHTML = `
+      <div class="ch"><div class="ct">🏠 Redfin Nearby Listings</div><span class="badge live">${redfin.redfin_listings.length} properties</span></div>
+      <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:11px">
+        <tr>${['Address','Price','Beds','Baths','SqFt','Type','Status'].map(h=>`<th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--border);font-size:9px;font-weight:600;color:var(--muted);text-transform:uppercase">${h}</th>`).join('')}</tr>
+        ${redfin.redfin_listings.map(l => `<tr>
+          <td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text);font-weight:500">${l.ADDRESS||l.LOCATION||'—'}</td>
+          <td style="padding:6px 8px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;color:var(--gold);font-weight:600">${l.PRICE||l['PRICE']||'—'}</td>
+          <td style="padding:6px 8px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace">${l.BEDS||'—'}</td>
+          <td style="padding:6px 8px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace">${l.BATHS||'—'}</td>
+          <td style="padding:6px 8px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace">${l['SQUARE FEET']||l.SQFT||'—'}</td>
+          <td style="padding:6px 8px;border-bottom:1px solid var(--border)">${l['PROPERTY TYPE']||'—'}</td>
+          <td style="padding:6px 8px;border-bottom:1px solid var(--border)">${l.STATUS||'—'}</td>
+        </tr>`).join('')}
+      </table></div>`;
+  }
+
+  document.getElementById('r-header').scrollIntoView({behavior:'smooth', block:'start'});
+  loadCachedSources();
+}
+
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 function getCache(key) {
   try {
@@ -713,18 +883,27 @@ async function search() {
   const q = document.getElementById('q').value.trim();
   if (!q) return;
 
-  // Check cache first (instant re-search)
-  const cached = getCache(q.toLowerCase());
-  if (cached) {
-    document.getElementById('initial-state').style.display='none';
-    renderResults({...cached, _cached: true});
-    return;
-  }
-
   document.getElementById('initial-state').style.display='none';
   document.getElementById('results').classList.remove('show');
   document.getElementById('search-btn').disabled=true;
   document.getElementById('loading').classList.add('show');
+
+  // Try server-side search first (real Python backend with 14 parallel API calls)
+  const serverData = await serverSearch(q);
+  if (serverData && serverData.geocode) {
+    renderServerResults(serverData);
+    return;
+  }
+
+  // Fallback: client-side search (CORS APIs only)
+  console.log('Falling back to client-side search');
+
+  // Check cache
+  const cached = getCache(q.toLowerCase());
+  if (cached) {
+    renderResults({...cached, _cached: true});
+    return;
+  }
 
   setupProgress();
 
