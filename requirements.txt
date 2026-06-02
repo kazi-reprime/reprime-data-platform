@@ -3,3 +3,9 @@ uvicorn[standard]>=0.27.0
 httpx>=0.27.0
 python-dotenv>=1.0.0
 PyYAML>=6.0
+APScheduler>=3.10.0
+PYEOF
+sort -u requirements.txt > /tmp/req.txt && mv /tmp/req.txt requirements.txt
+
+echo "Scheduler ready. Files:"
+ls -la api/scheduler.py api/property/search.py

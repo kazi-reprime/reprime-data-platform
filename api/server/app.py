@@ -375,6 +375,30 @@ async def live_refresh():
     return {"status": "refresh started"}
 
 
+
+
+@app.get("/api/property/search")
+async def property_search(q: str = ""):
+    """Live property search — geocodes address and fetches data from 8+ sources."""
+    if not q:
+        return {"error": "Provide ?q=<address> parameter"}
+    from api.property.search import search_property
+    return await search_property(q)
+
+
+
+
+@app.on_event("startup")
+async def startup_event():
+    """Start the 24/7 background scheduler on app boot."""
+    try:
+        from api.scheduler import start_scheduler
+        app.state.scheduler = start_scheduler()
+        print("✓ Background scheduler started")
+    except Exception as e:
+        print(f"⚠ Scheduler not started: {e}")
+
+
 @app.get("/api/health")
 async def health():
     scraped_count = len(list(DATA_DIR.glob("*.json"))) if DATA_DIR.exists() else 0

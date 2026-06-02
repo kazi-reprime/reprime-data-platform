@@ -3,45 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RePrime Explore — Property Intelligence Search</title>
+<title>RePrime Explore — Search Any Property</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root[data-theme="dark"]{--bg:#05060d;--bg-elev:#0a0e1a;--surface:rgba(255,255,255,0.04);--surface-2:rgba(255,255,255,0.08);--border:rgba(255,255,255,0.08);--border-2:rgba(255,255,255,0.15);--text:#f8fafc;--muted:#94a3b8;--dim:#64748b;--accent:#3b82f6;--accent2:#8b5cf6;--accent3:#06b6d4;--green:#22c55e;--red:#ef4444;--gold:#fbbf24;--orange:#fb923c;--pink:#f472b6;--glass-bg:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);--shadow:rgba(0,0,0,.5);--mesh-opacity:.22}
-:root[data-theme="light"]{--bg:#fafbfc;--bg-elev:#fff;--surface:rgba(15,23,42,0.03);--surface-2:rgba(15,23,42,0.06);--border:rgba(15,23,42,0.08);--border-2:rgba(15,23,42,0.15);--text:#0f172a;--muted:#475569;--dim:#64748b;--accent:#3b82f6;--accent2:#8b5cf6;--accent3:#0891b2;--green:#16a34a;--red:#dc2626;--gold:#ca8a04;--orange:#ea580c;--pink:#db2777;--glass-bg:rgba(255,255,255,0.6);--glass-border:rgba(15,23,42,0.08);--shadow:rgba(15,23,42,.08);--mesh-opacity:.05}
-:root[data-theme="midnight"]{--bg:#0b1220;--bg-elev:#111a2e;--surface:rgba(99,102,241,0.06);--surface-2:rgba(99,102,241,0.1);--border:rgba(99,102,241,0.12);--border-2:rgba(99,102,241,0.2);--text:#e0e7ff;--muted:#a5b4fc;--dim:#818cf8;--accent:#818cf8;--accent2:#c084fc;--accent3:#22d3ee;--green:#34d399;--red:#f87171;--gold:#fcd34d;--orange:#fb923c;--pink:#f9a8d4;--glass-bg:rgba(99,102,241,0.04);--glass-border:rgba(99,102,241,0.12);--shadow:rgba(0,0,0,.5);--mesh-opacity:.3}
-:root{--grad-1:linear-gradient(135deg,#3b82f6 0%,#8b5cf6 50%,#ec4899 100%);--grad-2:linear-gradient(135deg,#22c55e 0%,#06b6d4 100%);--grad-3:linear-gradient(135deg,#f59e0b 0%,#ef4444 100%);--grad-mesh:radial-gradient(at 27% 37%,#3b82f6 0px,transparent 50%),radial-gradient(at 97% 21%,#8b5cf6 0px,transparent 50%),radial-gradient(at 52% 99%,#06b6d4 0px,transparent 50%);--t:.4s cubic-bezier(.4,0,.2,1)}
+:root[data-theme="dark"]{--bg:#05060d;--surface:rgba(255,255,255,0.04);--surface-2:rgba(255,255,255,0.08);--border:rgba(255,255,255,0.08);--border-2:rgba(255,255,255,0.15);--text:#f8fafc;--muted:#94a3b8;--dim:#64748b;--accent:#3b82f6;--accent2:#8b5cf6;--accent3:#06b6d4;--green:#22c55e;--red:#ef4444;--gold:#fbbf24;--orange:#fb923c;--pink:#f472b6;--glass-bg:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);--shadow:rgba(0,0,0,.5);--mesh-opacity:.22}
+:root[data-theme="light"]{--bg:#fafbfc;--surface:rgba(15,23,42,0.03);--surface-2:rgba(15,23,42,0.06);--border:rgba(15,23,42,0.08);--border-2:rgba(15,23,42,0.15);--text:#0f172a;--muted:#475569;--dim:#64748b;--accent:#3b82f6;--accent2:#8b5cf6;--accent3:#0891b2;--green:#16a34a;--red:#dc2626;--gold:#ca8a04;--glass-bg:rgba(255,255,255,0.6);--glass-border:rgba(15,23,42,0.08);--shadow:rgba(15,23,42,.08);--mesh-opacity:.05}
+:root[data-theme="midnight"]{--bg:#0b1220;--surface:rgba(99,102,241,0.06);--surface-2:rgba(99,102,241,0.1);--border:rgba(99,102,241,0.12);--border-2:rgba(99,102,241,0.2);--text:#e0e7ff;--muted:#a5b4fc;--dim:#818cf8;--accent:#818cf8;--accent2:#c084fc;--accent3:#22d3ee;--green:#34d399;--red:#f87171;--gold:#fcd34d;--orange:#fb923c;--glass-bg:rgba(99,102,241,0.04);--glass-border:rgba(99,102,241,0.12);--shadow:rgba(0,0,0,.5);--mesh-opacity:.3}
+:root{--grad-1:linear-gradient(135deg,#3b82f6 0%,#8b5cf6 50%,#ec4899 100%);--grad-mesh:radial-gradient(at 27% 37%,#3b82f6 0px,transparent 50%),radial-gradient(at 97% 21%,#8b5cf6 0px,transparent 50%),radial-gradient(at 52% 99%,#06b6d4 0px,transparent 50%);--t:.4s cubic-bezier(.4,0,.2,1)}
 html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);transition:background var(--t),color var(--t);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{text-decoration:none;color:inherit}
-::selection{background:var(--accent);color:#fff}
-
 .mesh-bg{position:fixed;inset:0;z-index:-1;background:var(--grad-mesh);filter:blur(120px);opacity:var(--mesh-opacity);animation:drift 20s ease-in-out infinite}
 @keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(-3%,2%)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+@keyframes spin{to{transform:rotate(360deg)}}
 
 .theme-switcher{position:fixed;bottom:24px;right:24px;z-index:300;display:flex;background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--glass-border);border-radius:14px;padding:4px;gap:2px;box-shadow:0 10px 30px var(--shadow)}
-.theme-switcher button{background:transparent;border:none;padding:8px 12px;color:var(--muted);cursor:pointer;border-radius:10px;font-size:14px;transition:.2s;font-family:inherit}
-.theme-switcher button:hover{color:var(--text);background:var(--surface)}
+.theme-switcher button{background:transparent;border:none;padding:8px 12px;color:var(--muted);cursor:pointer;border-radius:10px;font-size:14px;font-family:inherit}
 .theme-switcher button.active{background:var(--grad-1);color:#fff}
 
-/* TICKER */
-.ticker{position:sticky;top:0;z-index:200;background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);overflow:hidden;height:38px}
-.ticker::before,.ticker::after{content:'';position:absolute;top:0;width:80px;height:100%;z-index:2;pointer-events:none}
-.ticker::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
-.ticker::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
-.ticker-track{display:flex;animation:scroll 70s linear infinite;white-space:nowrap;height:100%;align-items:center}
-.ticker-track:hover{animation-play-state:paused}
-@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.ti{display:inline-flex;align-items:center;gap:8px;padding:0 24px;font-size:11px;color:var(--muted);border-right:1px solid var(--border)}
-.ti strong{color:var(--text);font-family:'JetBrains Mono',monospace;font-weight:600}
-.ti .up{color:var(--green)}.ti .dn{color:var(--red)}
-.ti .pulse{width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.3)}}
-
-/* NAV */
-nav{position:sticky;top:38px;z-index:199;background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);padding:0 36px;display:flex;align-items:center;justify-content:space-between;height:64px}
+nav{position:sticky;top:0;z-index:199;background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);padding:0 36px;display:flex;align-items:center;justify-content:space-between;height:64px}
 .logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;letter-spacing:-1px;font-family:'Space Grotesk',sans-serif}
-.logo-icon{width:30px;height:30px;border-radius:8px;background:var(--grad-1);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:14px;box-shadow:0 0 20px rgba(139,92,246,.4)}
+.logo-icon{width:30px;height:30px;border-radius:8px;background:var(--grad-1);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:14px}
 .logo span{background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .pills{display:flex;gap:4px;padding:4px;background:var(--surface);border-radius:10px;border:1px solid var(--border)}
 .pills a{padding:6px 14px;font-size:12px;font-weight:600;color:var(--muted);border-radius:8px;transition:.2s}
@@ -51,49 +35,42 @@ nav{position:sticky;top:38px;z-index:199;background:var(--glass-bg);backdrop-fil
 .btn-p{background:var(--grad-1);color:#fff;box-shadow:0 4px 14px rgba(139,92,246,.3)}
 .btn-glass{background:var(--surface);border:1px solid var(--border-2);color:var(--text)}
 
-/* HERO SEARCH */
-.hero{padding:60px 36px 40px;position:relative;text-align:center}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);border-radius:99px;font-size:11px;font-weight:600;color:var(--accent);margin-bottom:20px}
+/* HERO */
+.hero{padding:80px 36px 40px;position:relative;text-align:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);border-radius:99px;font-size:11px;font-weight:600;color:var(--green);margin-bottom:20px}
 .hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
-.hero h1{font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:800;letter-spacing:-2px;line-height:1.1;margin-bottom:14px;max-width:900px;margin-left:auto;margin-right:auto}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:54px;font-weight:800;letter-spacing:-2px;line-height:1.05;margin-bottom:16px;max-width:900px;margin-left:auto;margin-right:auto}
 .hero h1 .grad{background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{font-size:16px;color:var(--muted);max-width:680px;margin:0 auto 36px;line-height:1.6}
+.hero p{font-size:17px;color:var(--muted);max-width:680px;margin:0 auto 36px;line-height:1.6}
 
-/* SEARCH BAR */
-.search-wrap{max-width:780px;margin:0 auto;position:relative}
-.search-bar{display:flex;background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:2px solid var(--glass-border);border-radius:18px;padding:10px;gap:10px;box-shadow:0 20px 60px var(--shadow);transition:border-color .3s,box-shadow .3s}
+.search-wrap{max-width:800px;margin:0 auto;position:relative}
+.search-bar{display:flex;background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:2px solid var(--glass-border);border-radius:18px;padding:10px;gap:10px;box-shadow:0 20px 60px var(--shadow);transition:.3s}
 .search-bar:focus-within{border-color:var(--accent);box-shadow:0 20px 60px rgba(59,130,246,.2)}
-.search-bar input{flex:1;background:transparent;border:none;outline:none;padding:14px 18px;font-size:15px;color:var(--text);font-family:inherit}
+.search-bar input{flex:1;background:transparent;border:none;outline:none;padding:16px 18px;font-size:16px;color:var(--text);font-family:inherit}
 .search-bar input::placeholder{color:var(--muted)}
-.search-bar button{background:var(--grad-1);color:#fff;border:none;padding:14px 28px;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:inherit;transition:.2s;white-space:nowrap}
+.search-bar button{background:var(--grad-1);color:#fff;border:none;padding:16px 32px;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:inherit;transition:.2s;white-space:nowrap}
 .search-bar button:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(139,92,246,.4)}
-
+.search-bar button:disabled{opacity:.6;cursor:wait}
 .suggestions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:18px}
-.suggest-pill{padding:6px 14px;font-size:11px;background:var(--surface);border:1px solid var(--border);border-radius:99px;color:var(--muted);cursor:pointer;transition:.2s}
-.suggest-pill:hover{background:var(--surface-2);color:var(--text);border-color:var(--border-2)}
+.suggest{padding:6px 14px;font-size:11px;background:var(--surface);border:1px solid var(--border);border-radius:99px;color:var(--muted);cursor:pointer;transition:.2s}
+.suggest:hover{background:var(--surface-2);color:var(--text)}
 
-/* HERO STATS */
-.hero-stats{display:flex;justify-content:center;gap:28px;margin-top:32px;flex-wrap:wrap}
+.hero-stats{display:flex;justify-content:center;gap:28px;margin-top:36px;flex-wrap:wrap}
 .hs{text-align:center}
 .hs .v{font-size:22px;font-weight:800;font-family:'JetBrains Mono',monospace;background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .hs .l{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
 
-/* CONTAINER */
 .container{max-width:1500px;margin:0 auto;padding:0 36px 60px}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.g6{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
 .g23{display:grid;grid-template-columns:2fr 1fr;gap:14px}
-.g32{display:grid;grid-template-columns:1fr 2fr;gap:14px}
 .mb{margin-bottom:14px}
-.mb-lg{margin-bottom:24px}
 
 .glass{background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--glass-border);border-radius:16px;padding:18px;transition:.3s}
 .glass:hover{border-color:var(--border-2)}
-
 .ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.ct{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px}
 .badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:99px;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
 .badge.ok{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.2)}
 .badge.warn{background:rgba(251,191,36,.12);color:var(--gold);border:1px solid rgba(251,191,36,.2)}
@@ -101,32 +78,24 @@ nav{position:sticky;top:38px;z-index:199;background:var(--glass-bg);backdrop-fil
 .badge.live{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.2)}
 .badge.live::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 4px var(--green);animation:pulse 2s infinite}
 
-/* PROPERTY HEADER */
-.prop-header{background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--glass-border);border-radius:24px;overflow:hidden;margin-bottom:18px;position:relative}
-.prop-images{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3px;height:340px}
-.prop-images .img{background-size:cover;background-position:center;position:relative;transition:transform .6s cubic-bezier(.23,1,.32,1)}
-.prop-images .img:hover{transform:scale(1.04);z-index:2}
-.prop-images .side{display:flex;flex-direction:column;gap:3px}
-.prop-images .side .img{height:100%}
-.img-label{position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);color:#fff;padding:5px 12px;border-radius:8px;font-size:10px;font-weight:600}
-.prop-info{padding:24px}
-.prop-title{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;letter-spacing:-.5px;margin-bottom:6px}
-.prop-loc{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px;margin-bottom:14px}
-.prop-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
-.prop-tag{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.18);color:var(--accent);padding:4px 10px;border-radius:8px;font-size:11px;font-weight:500}
-.prop-tag.green{background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.18);color:var(--green)}
-.prop-tag.purple{background:rgba(139,92,246,.08);border-color:rgba(139,92,246,.18);color:var(--accent2)}
-.prop-tag.gold{background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.18);color:var(--gold)}
-.prop-price{position:absolute;top:24px;right:24px;background:rgba(0,0,0,.85);backdrop-filter:blur(20px);padding:14px 22px;border-radius:14px;text-align:right;border:1px solid rgba(255,255,255,.1)}
-.prop-price .l{font-size:9px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px}
-.prop-price .v{font-size:24px;font-weight:800;color:#fff;font-family:'JetBrains Mono',monospace;background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-top:2px}
-.prop-price .delta{font-size:10px;color:#22c55e;margin-top:4px}
+/* LOADING */
+.loading{display:none;text-align:center;padding:60px;color:var(--muted)}
+.loading.show{display:block}
+.spinner{display:inline-block;width:40px;height:40px;border:3px solid var(--surface);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite;margin-bottom:14px}
 
-/* TABS */
-.tabs{display:flex;gap:4px;background:var(--surface);border-radius:12px;padding:4px;border:1px solid var(--border);margin-bottom:18px;overflow-x:auto}
-.tab{padding:10px 18px;font-size:12px;font-weight:600;color:var(--muted);background:transparent;border:none;border-radius:8px;cursor:pointer;transition:.2s;font-family:inherit;white-space:nowrap}
-.tab:hover{color:var(--text)}
-.tab.active{background:var(--grad-1);color:#fff;box-shadow:0 4px 12px rgba(139,92,246,.3)}
+/* RESULTS — hidden until search */
+#results{display:none}
+#results.show{display:block}
+
+/* MAP */
+.map-box{height:380px;border-radius:14px;overflow:hidden;border:1px solid var(--glass-border)}
+.map-box iframe{width:100%;height:100%;border:0}
+:root[data-theme="dark"] .map-box iframe,:root[data-theme="midnight"] .map-box iframe{filter:invert(1) hue-rotate(180deg) brightness(.8)}
+
+/* IMAGES */
+.img-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.img-tile{aspect-ratio:1;background-size:cover;background-position:center;border-radius:10px;position:relative;overflow:hidden;background-color:var(--surface)}
+.img-tile .src{position:absolute;bottom:6px;left:6px;background:rgba(0,0,0,.75);backdrop-filter:blur(10px);color:#fff;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:600}
 
 /* STAT */
 .stat{text-align:center;padding:16px 12px}
@@ -134,71 +103,37 @@ nav{position:sticky;top:38px;z-index:199;background:var(--glass-bg);backdrop-fil
 .stat .vl{font-size:24px;font-weight:800;font-family:'JetBrains Mono',monospace;line-height:1}
 .stat .sb{font-size:9px;color:var(--dim);margin-top:4px}
 
-/* DATA SOURCE WALL */
-.wall{display:grid;grid-template-columns:repeat(20,1fr);gap:4px;padding:18px;background:var(--glass-bg);border-radius:16px;border:1px solid var(--border);margin-bottom:18px}
-.wall-cell{aspect-ratio:1;background:var(--surface);border-radius:4px;position:relative;cursor:pointer;transition:.2s}
-.wall-cell.active{background:var(--green);box-shadow:0 0 4px var(--green);animation:pulse-cell 3s infinite}
-.wall-cell.active:hover{background:#34d399;transform:scale(1.5);z-index:10}
-.wall-cell.error{background:var(--red);opacity:.4}
-.wall-cell.paid{background:var(--gold);opacity:.4}
-@keyframes pulse-cell{0%,100%{opacity:1}50%{opacity:.5}}
-.wall-cell .tip{position:absolute;bottom:120%;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.9);color:#fff;padding:4px 8px;border-radius:4px;font-size:9px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s;z-index:20}
-.wall-cell:hover .tip{opacity:1}
+/* RESULT HEADER */
+.result-header{padding:24px;background:var(--glass-bg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--glass-border);border-radius:20px;margin-bottom:14px}
+.result-title{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:800;letter-spacing:-.5px;margin-bottom:6px}
+.result-loc{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.result-meta{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;font-size:11px}
+.result-meta span{padding:4px 10px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--muted)}
 
-.wall-legend{display:flex;gap:14px;font-size:10px;color:var(--muted);margin-top:10px;flex-wrap:wrap;justify-content:center}
-.wall-legend .item{display:flex;align-items:center;gap:5px}
-.wall-legend .d{width:8px;height:8px;border-radius:2px}
+/* DATA LAYER */
+.layer{padding:16px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:14px;position:relative;overflow:hidden}
+.layer::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--grad-1)}
+.layer.g::before{background:var(--green)}.layer.r::before{background:var(--red)}.layer.y::before{background:var(--gold)}
+.layer.c::before{background:var(--accent3)}.layer.p::before{background:var(--accent2)}
+.layer .lh{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.layer .label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+.layer .src{font-size:8px;color:var(--dim);font-family:'JetBrains Mono',monospace}
+.layer .v{font-size:22px;font-weight:800;font-family:'JetBrains Mono',monospace;line-height:1}
+.layer .meta{font-size:10px;color:var(--muted);margin-top:4px}
 
-/* DATA LAYER CARDS */
-.layer-card{padding:16px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:14px;position:relative;overflow:hidden}
-.layer-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--grad-1)}
-.layer-card.green::before{background:var(--green)}
-.layer-card.red::before{background:var(--red)}
-.layer-card.gold::before{background:var(--gold)}
-.layer-card.cyan::before{background:var(--accent3)}
-.layer-card.purple::before{background:var(--accent2)}
-.layer-card .lh{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-.layer-card .label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
-.layer-card .src{font-size:8px;color:var(--dim);font-family:'JetBrains Mono',monospace}
-.layer-card .v{font-size:22px;font-weight:800;font-family:'JetBrains Mono',monospace;line-height:1}
-.layer-card .delta{font-size:10px;margin-top:4px;font-family:'JetBrains Mono',monospace}
-.layer-card .meta{font-size:9px;color:var(--dim);margin-top:4px}
+/* POIS / LISTS */
+.poi-list{max-height:300px;overflow-y:auto}
+.poi{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:11px;gap:8px}
+.poi .name{flex:1}
+.poi .cat{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:10px}
 
-/* DATA TRAIL */
-.trail{padding:14px;background:var(--surface);border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);max-height:200px;overflow-y:auto}
-.trail-line{padding:3px 0;display:flex;justify-content:space-between;border-bottom:1px solid var(--border)}
-.trail-line:last-child{border:none}
-.trail-line .ep{color:var(--accent)}
-.trail-line .st{color:var(--green)}
-.trail-line .ts{color:var(--dim)}
+/* SOURCE BADGE */
+.src-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;background:var(--surface);border:1px solid var(--border);border-radius:99px;font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;font-weight:600}
+.src-badge.ok{background:rgba(34,197,94,.08);color:var(--green);border-color:rgba(34,197,94,.2)}
+.src-badge::before{content:'●';font-size:8px}
 
-/* COMP CARDS */
-.comps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.comp{padding:14px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:12px;transition:.3s}
-.comp:hover{transform:translateY(-3px);border-color:var(--border-2)}
-.comp .ca{font-size:13px;font-weight:700;margin-bottom:4px}
-.comp .cl{font-size:10px;color:var(--muted);margin-bottom:8px}
-.comp .crow{display:flex;justify-content:space-between;padding:4px 0;border-top:1px solid var(--border);font-size:10px}
-.comp .crow span:last-child{font-family:'JetBrains Mono',monospace;font-weight:600}
-
-/* MAP PLACEHOLDER */
-.map-box{height:280px;background:linear-gradient(135deg,#0f172a,#1e293b);border-radius:14px;position:relative;overflow:hidden;border:1px solid var(--glass-border)}
-.map-box iframe{width:100%;height:100%;border:0;filter:invert(1) hue-rotate(180deg) brightness(.8) contrast(.9)}
-:root[data-theme="light"] .map-box iframe{filter:none}
-
-/* NEWS FEED */
-.news-feed{max-height:380px;overflow-y:auto}
-.ni{padding:10px 0;border-bottom:1px solid var(--border);display:flex;gap:8px}
-.ni .nd{width:6px;height:6px;border-radius:50%;margin-top:6px;flex-shrink:0;box-shadow:0 0 6px currentColor}
-.ni .nt{flex:1}
-.ni .ns{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-.ni .nh{font-size:11px;margin-top:2px;line-height:1.4}
-.ni .nh a{color:var(--text)}.ni .nh a:hover{color:var(--accent)}
-
-.empty{text-align:center;padding:40px;color:var(--muted);font-size:13px}
-
-@media(max-width:1100px){.g3,.g4,.g6{grid-template-columns:repeat(2,1fr)}.g23,.g32{grid-template-columns:1fr}.wall{grid-template-columns:repeat(15,1fr)}.comps{grid-template-columns:1fr}}
-@media(max-width:768px){.g2,.g3,.g4,.g6{grid-template-columns:1fr}.container,nav{padding:0 14px}.hero{padding:30px 14px 20px}.hero h1{font-size:30px}.prop-images{grid-template-columns:1fr;height:auto}.prop-images .side{flex-direction:row;height:120px}.prop-images .img{height:100%}.prop-price{position:relative;top:auto;right:auto;margin:14px}.pills{display:none}.wall{grid-template-columns:repeat(10,1fr)}}
+@media(max-width:1100px){.g3,.g4,.g23{grid-template-columns:1fr 1fr}.img-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.g2,.g3,.g4{grid-template-columns:1fr}.container,nav{padding:0 14px}.hero{padding:40px 14px 20px}.hero h1{font-size:32px}.pills{display:none}.img-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -211,8 +146,6 @@ nav{position:sticky;top:38px;z-index:199;background:var(--glass-bg);backdrop-fil
   <button data-theme="light">☀️</button>
 </div>
 
-<div class="ticker"><div class="ticker-track" id="ticker"></div></div>
-
 <nav>
   <div class="logo"><div class="logo-icon">R</div><span>Re</span>Prime Explore</div>
   <div class="pills">
@@ -224,306 +157,125 @@ nav{position:sticky;top:38px;z-index:199;background:var(--glass-bg);backdrop-fil
   <a href="https://github.com/kazi-reprime/reprime-data-platform" target="_blank" class="btn btn-glass">⭐ GitHub</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow"><span class="dot"></span>611 SOURCES · 13 LIVE APIS · UPDATED IN REAL-TIME</div>
-  <h1>Enter any property.<br><span class="grad">See all the data.</span></h1>
-  <p>Type an address, asset name, or market. We instantly populate 611 data sources, 13 live API feeds, and full institutional-grade due diligence — visualized in one place.</p>
+  <div class="hero-eyebrow"><span class="dot"></span>LIVE PROPERTY SEARCH · 8 PARALLEL DATA SOURCES</div>
+  <h1>Enter any property.<br><span class="grad">Get all the data.</span></h1>
+  <p>Type an address, neighborhood, or city anywhere in the world. We instantly geocode it and fan out to FREE government APIs to fetch demographics, flood zones, walkability, environmental hazards, weather, and macro context.</p>
   <div class="search-wrap">
     <div class="search-bar">
-      <input id="search-input" placeholder="Try: 1305 N. 9th Ave Pensacola, FL · or any property..." value="1305 N. 9th Avenue, Pensacola, FL 32503">
+      <input id="q" placeholder="350 Fifth Avenue New York · 1600 Pennsylvania Ave · or anywhere..." autocomplete="off">
       <button id="search-btn">🔍 Search All Sources</button>
     </div>
     <div class="suggestions">
-      <span class="suggest-pill" data-q="1305 N. 9th Avenue, Pensacola, FL">Pensacola Office</span>
-      <span class="suggest-pill" data-q="Manhattan, NY">Manhattan</span>
-      <span class="suggest-pill" data-q="Chicago, IL">Chicago CRE</span>
-      <span class="suggest-pill" data-q="Dallas, TX">Dallas</span>
-      <span class="suggest-pill" data-q="Brooklyn, NY">Brooklyn</span>
-      <span class="suggest-pill" data-q="Multifamily">Multifamily Sector</span>
-      <span class="suggest-pill" data-q="Office REIT">Office REITs</span>
+      <span class="suggest" data-q="Empire State Building, New York">🗽 Empire State</span>
+      <span class="suggest" data-q="1600 Pennsylvania Avenue NW, Washington DC">🏛️ White House</span>
+      <span class="suggest" data-q="One World Trade Center, New York">🏗️ One WTC</span>
+      <span class="suggest" data-q="Willis Tower Chicago">🏢 Willis Tower</span>
+      <span class="suggest" data-q="Beverly Hills CA">🌴 Beverly Hills</span>
+      <span class="suggest" data-q="South Beach Miami FL">🏖️ South Beach</span>
+      <span class="suggest" data-q="1305 N. 9th Avenue Pensacola FL">🏬 Pensacola Office</span>
     </div>
   </div>
   <div class="hero-stats">
-    <div class="hs"><div class="v">611</div><div class="l">Sources</div></div>
-    <div class="hs"><div class="v">549</div><div class="l">Live</div></div>
-    <div class="hs"><div class="v">13</div><div class="l">APIs</div></div>
-    <div class="hs"><div class="v">8,223</div><div class="l">Records</div></div>
-    <div class="hs"><div class="v">14</div><div class="l">Categories</div></div>
+    <div class="hs"><div class="v">8</div><div class="l">Parallel Sources</div></div>
+    <div class="hs"><div class="v">FREE</div><div class="l">No Paid APIs</div></div>
+    <div class="hs"><div class="v">~3s</div><div class="l">Avg Response</div></div>
+    <div class="hs"><div class="v">24/7</div><div class="l">Background Jobs</div></div>
   </div>
 </section>
 
 <div class="container">
 
-<!-- PROPERTY HEADER -->
-<div class="prop-header" id="prop-header">
-  <div class="prop-images">
-    <div class="img" style="background-image:url('/images/om_p1_img1.jpeg')"><div class="img-label">Exterior — Sunset</div></div>
-    <div class="side">
-      <div class="img" style="background-image:url('/images/om_p2_img2.jpeg')"><div class="img-label">Dusk</div></div>
-      <div class="img" style="background-image:url('/images/om_p11_img1.jpeg')"><div class="img-label">Interior Office</div></div>
-    </div>
-    <div class="side">
-      <div class="img" style="background-image:url('/images/om_p14_img1.jpeg')"><div class="img-label">Aerial Context</div></div>
-      <div class="img" style="background-image:url('/images/om_p10_img1.jpeg')"><div class="img-label">📸 11 Photos</div></div>
-    </div>
-  </div>
-  <div class="prop-price">
-    <div class="l">Purchase Price</div>
-    <div class="v">$6,000,000</div>
-    <div class="delta">▼ $500K below OM</div>
-  </div>
-  <div class="prop-info">
-    <div class="prop-title">Pensacola, FL Government Office Asset</div>
-    <div class="prop-loc">📍 1305 N. 9th Avenue, Pensacola, FL 32503 · Escambia County, Florida</div>
-    <div class="prop-tags">
-      <span class="prop-tag">Office · Class B</span>
-      <span class="prop-tag green">100% Occupied</span>
-      <span class="prop-tag green">AAA/Aaa Tenant</span>
-      <span class="prop-tag purple">Seller Financing</span>
-      <span class="prop-tag">State of Florida</span>
-      <span class="prop-tag">27,675 SF</span>
-      <span class="prop-tag gold">7.4yr WALT</span>
-      <span class="prop-tag">East Hill</span>
-      <span class="prop-tag">$216.80/SF</span>
-      <span class="prop-tag">1.68 AC Lot</span>
-    </div>
-    <!-- Key metrics inline -->
-    <div class="g6">
-      <div class="stat"><div class="lb">Cap Rate</div><div class="vl" style="color:var(--green)">8.95%</div><div class="sb">Going-in</div></div>
-      <div class="stat"><div class="lb">NOI</div><div class="vl" style="color:var(--accent)">$537K</div><div class="sb">Annual</div></div>
-      <div class="stat"><div class="lb">IRR</div><div class="vl" style="color:var(--accent2)">21.79%</div><div class="sb">5yr · 10% exit</div></div>
-      <div class="stat"><div class="lb">CoC</div><div class="vl" style="color:var(--accent3)">28.07%</div><div class="sb">w/ mezz</div></div>
-      <div class="stat"><div class="lb">DSCR</div><div class="vl" style="color:var(--gold)">1.46x</div><div class="sb">Combined</div></div>
-      <div class="stat"><div class="lb">Walk Score</div><div class="vl" style="color:var(--pink)">78</div><div class="sb">Very Walkable</div></div>
-    </div>
-  </div>
+<!-- LOADING -->
+<div class="loading" id="loading">
+  <div class="spinner"></div>
+  <div style="font-size:14px;color:var(--text);font-weight:600">Searching 8 data sources in parallel...</div>
+  <div style="font-size:11px;color:var(--muted);margin-top:8px" id="loading-status">Geocoding address via OpenStreetMap Nominatim...</div>
 </div>
 
-<!-- LIVE DATA SOURCE WALL -->
-<div class="glass mb-lg">
-  <div class="ch">
-    <div class="ct">🛰️ Live Data Source Wall <span class="badge live">REAL-TIME</span></div>
-    <span class="badge">611 sources visualized</span>
-  </div>
-  <div style="font-size:11px;color:var(--muted);margin-bottom:10px">Every cell is a data source. Green = active. Red = error. Gold = paid (excluded). Click any cell to see source details.</div>
-  <div class="wall" id="wall"></div>
-  <div class="wall-legend">
-    <div class="item"><div class="d" style="background:var(--green)"></div>Active (549)</div>
-    <div class="item"><div class="d" style="background:var(--red);opacity:.4"></div>Failed (53)</div>
-    <div class="item"><div class="d" style="background:var(--gold);opacity:.4"></div>Paid/Skipped (9)</div>
-  </div>
+<!-- RESULTS -->
+<div id="results">
+
+<!-- Header -->
+<div class="result-header" id="r-header"></div>
+
+<!-- Sources queried -->
+<div class="glass mb">
+  <div class="ch"><div class="ct">📡 Data Sources Queried</div><span class="badge live" id="src-count">— sources</span></div>
+  <div id="src-badges" style="display:flex;gap:6px;flex-wrap:wrap"></div>
 </div>
 
-<!-- TABS -->
-<div class="tabs">
-  <button class="tab active" data-tab="overview">📊 Overview</button>
-  <button class="tab" data-tab="financial">💰 Financials</button>
-  <button class="tab" data-tab="market">📈 Market Context</button>
-  <button class="tab" data-tab="risk">⚠️ Risk Analysis</button>
-  <button class="tab" data-tab="comps">🏢 Comparables</button>
-  <button class="tab" data-tab="trail">🔬 Data Trail</button>
-</div>
+<!-- Top stats from this property -->
+<div class="g4 mb" id="r-stats"></div>
 
-<!-- OVERVIEW TAB -->
-<div id="tab-overview" class="tab-content">
-  <!-- Data layers grid -->
-  <div class="g4 mb">
-    <div class="layer-card green"><div class="lh"><div class="label">10-Yr Treasury</div><div class="src">FRED · DGS10</div></div><div class="v" id="d-treasury">—</div><div class="delta" id="d-treasury-d">—</div></div>
-    <div class="layer-card cyan"><div class="lh"><div class="label">30-Yr Mortgage</div><div class="src">FRED · MORTGAGE30US</div></div><div class="v" id="d-mortgage">—</div><div class="delta" id="d-mortgage-d">—</div></div>
-    <div class="layer-card purple"><div class="lh"><div class="label">SOFR</div><div class="src">NY Fed · SOFRAI</div></div><div class="v" id="d-sofr">—</div><div class="delta" id="d-sofr-d">—</div></div>
-    <div class="layer-card"><div class="lh"><div class="label">Fed Funds</div><div class="src">FRED · FEDFUNDS</div></div><div class="v" id="d-fedfunds">—</div></div>
-    <div class="layer-card red"><div class="lh"><div class="label">CRE Delinquency</div><div class="src">FRED · DRCRELEXFACBS</div></div><div class="v" id="d-cre">—</div><div class="delta">▼ Improving</div></div>
-    <div class="layer-card gold"><div class="lh"><div class="label">Case-Shiller HPI</div><div class="src">S&P · CSUSHPISA</div></div><div class="v" id="d-shiller">—</div></div>
-    <div class="layer-card"><div class="lh"><div class="label">Median US Home</div><div class="src">FRED · MSPUS</div></div><div class="v" id="d-median">—</div></div>
-    <div class="layer-card"><div class="lh"><div class="label">Housing Starts</div><div class="src">Census · HOUST</div></div><div class="v" id="d-houst">—</div></div>
-    <div class="layer-card green"><div class="lh"><div class="label">Unemployment</div><div class="src">BLS · UNRATE</div></div><div class="v" id="d-unrate">—</div></div>
-    <div class="layer-card cyan"><div class="lh"><div class="label">5-Yr Treasury</div><div class="src">FRED · DGS5</div></div><div class="v" id="d-5y">—</div></div>
-    <div class="layer-card"><div class="lh"><div class="label">30-Yr Treasury</div><div class="src">FRED · DGS30</div></div><div class="v" id="d-30y">—</div></div>
-    <div class="layer-card purple"><div class="lh"><div class="label">Industrial Prod</div><div class="src">FRED · INDPRO</div></div><div class="v" id="d-indpro">—</div></div>
-  </div>
-
-  <!-- Location intel -->
-  <div class="g23 mb">
-    <div class="glass">
-      <div class="ch"><div class="ct">📍 Location Intelligence</div></div>
-      <div class="map-box">
-        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-87.2150%2C30.4220%2C-87.1990%2C30.4330&layer=mapnik&marker=30.4275%2C-87.2075"></iframe>
-      </div>
-      <div class="g4" style="margin-top:12px">
-        <div class="stat"><div class="lb">Walk Score</div><div class="vl" style="color:var(--green)">78</div><div class="sb">Very Walkable</div></div>
-        <div class="stat"><div class="lb">Pensacola</div><div class="vl" style="color:var(--accent3)" id="d-temp">84°F</div><div class="sb">Few clouds</div></div>
-        <div class="stat"><div class="lb">Metro Pop</div><div class="vl">~500K</div><div class="sb">MSA</div></div>
-        <div class="stat"><div class="lb">Gas Price</div><div class="vl" style="color:var(--gold)" id="d-gas">$4.61</div><div class="sb">EIA · US Avg</div></div>
-      </div>
-    </div>
-    <div class="glass">
-      <div class="ch"><div class="ct">🏛️ Bank of Israel FX</div><span class="badge info">Live</span></div>
-      <div id="fx-list" style="font-size:12px"></div>
-    </div>
-  </div>
-
-  <!-- REIT performance -->
-  <div class="glass mb">
-    <div class="ch"><div class="ct">📈 REIT Sector Performance — Live</div><span class="badge live">Finnhub</span></div>
-    <div class="g6" id="reit-grid"></div>
-  </div>
-</div>
-
-<!-- FINANCIAL TAB -->
-<div id="tab-financial" class="tab-content" style="display:none">
-  <div class="g3 mb">
-    <div class="glass">
-      <div class="ch"><div class="ct">💰 Capital Stack</div></div>
-      <div style="display:flex;height:28px;border-radius:8px;overflow:hidden;gap:2px;margin-bottom:14px">
-        <div style="flex:75;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff">Senior 75%</div>
-        <div style="flex:15;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff">Mezz 15%</div>
-        <div style="flex:10;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff">Eq 10%</div>
-      </div>
-      <table style="width:100%;border-collapse:collapse;font-size:12px">
-        <tr><td>Senior Debt</td><td style="font-family:'JetBrains Mono',monospace;text-align:right">$4,500,000</td><td style="font-family:'JetBrains Mono',monospace;text-align:right;color:var(--muted)">6.0% / 30yr</td></tr>
-        <tr><td>Seller Mezz</td><td style="font-family:'JetBrains Mono',monospace;text-align:right">$900,000</td><td style="font-family:'JetBrains Mono',monospace;text-align:right;color:var(--muted)">5.25% IO</td></tr>
-        <tr><td>Equity</td><td style="font-family:'JetBrains Mono',monospace;text-align:right">$600,000</td><td style="font-family:'JetBrains Mono',monospace;text-align:right;color:var(--muted)">Cash</td></tr>
-        <tr style="border-top:2px solid var(--accent)"><td style="font-weight:700">Total</td><td style="font-family:'JetBrains Mono',monospace;font-weight:700;text-align:right">$6,000,000</td><td></td></tr>
-      </table>
-    </div>
-    <div class="glass">
-      <div class="ch"><div class="ct">💵 Cash Flow Waterfall</div></div>
-      <div style="font-size:12px">
-        <div style="display:flex;justify-content:space-between;padding:6px 0"><span>Net Operating Income</span><span style="font-family:'JetBrains Mono',monospace;color:var(--green)">$537,174</span></div>
-        <div style="display:flex;justify-content:space-between;padding:6px 0;border-top:1px solid var(--border)"><span>− Senior Debt Service</span><span style="font-family:'JetBrains Mono',monospace;color:var(--red)">($323,757)</span></div>
-        <div style="display:flex;justify-content:space-between;padding:6px 0;border-top:1px solid var(--border)"><span>− Mezzanine IO</span><span style="font-family:'JetBrains Mono',monospace;color:var(--red)">($45,000)</span></div>
-        <div style="display:flex;justify-content:space-between;padding:8px 0;border-top:2px solid var(--accent);font-weight:700;margin-top:4px"><span>Distributable Cash Flow</span><span style="font-family:'JetBrains Mono',monospace;color:var(--green)">$168,417</span></div>
-      </div>
-    </div>
-    <div class="glass">
-      <div class="ch"><div class="ct">👥 Tenant Roster</div><span class="badge ok">AAA</span></div>
-      <table style="width:100%;border-collapse:collapse;font-size:11px">
-        <tr><td>FL DCF</td><td style="font-family:'JetBrains Mono',monospace;text-align:right">18,289 SF</td><td style="font-family:'JetBrains Mono',monospace;text-align:right;color:var(--accent)">Sep 2032</td></tr>
-        <tr><td>FL DJJ</td><td style="font-family:'JetBrains Mono',monospace;text-align:right">9,386 SF</td><td style="font-family:'JetBrains Mono',monospace;text-align:right;color:var(--accent)">Feb 2036</td></tr>
-      </table>
-      <div style="border-top:1px solid var(--border);margin-top:10px;padding-top:10px;font-size:11px;display:grid;grid-template-columns:1fr 1fr;gap:6px">
-        <div><span style="color:var(--muted)">WALT</span> <span style="font-family:'JetBrains Mono',monospace">7.4 yrs</span></div>
-        <div><span style="color:var(--muted)">Rent/SF</span> <span style="font-family:'JetBrains Mono',monospace">$28.75</span></div>
-        <div><span style="color:var(--muted)">Annual</span> <span style="font-family:'JetBrains Mono',monospace">$795,655</span></div>
-        <div><span style="color:var(--muted)">Lease</span> <span style="font-family:'JetBrains Mono',monospace">FSG</span></div>
-      </div>
-    </div>
-  </div>
-  <!-- Lending products -->
+<!-- Map + Demographics -->
+<div class="g23 mb">
   <div class="glass">
-    <div class="ch"><div class="ct">🏦 Live Lending Products (SOFR-Indexed)</div></div>
-    <table style="width:100%;border-collapse:collapse;font-size:11px">
-      <thead><tr><th style="text-align:left;padding:8px;color:var(--muted);font-size:10px;text-transform:uppercase">Product</th><th style="text-align:left;padding:8px;color:var(--muted);font-size:10px;text-transform:uppercase">Rate Range</th><th style="text-align:left;padding:8px;color:var(--muted);font-size:10px;text-transform:uppercase">LTV</th><th style="text-align:left;padding:8px;color:var(--muted);font-size:10px;text-transform:uppercase">Term</th><th style="text-align:left;padding:8px;color:var(--muted);font-size:10px;text-transform:uppercase">DSCR</th><th style="text-align:left;padding:8px;color:var(--muted);font-size:10px;text-transform:uppercase">Best For</th></tr></thead>
-      <tbody id="lending-body"></tbody>
-    </table>
-  </div>
-</div>
-
-<!-- MARKET TAB -->
-<div id="tab-market" class="tab-content" style="display:none">
-  <div class="g4 mb">
-    <div class="layer-card green"><div class="lh"><div class="label">Rental Vacancy</div><div class="src">FRED · RRVRUSQ156N</div></div><div class="v" id="d-rv">7.3%</div></div>
-    <div class="layer-card"><div class="lh"><div class="label">Homeownership</div><div class="src">FRED · RSAHORUSQ156S</div></div><div class="v" id="d-ho">65.4%</div></div>
-    <div class="layer-card cyan"><div class="lh"><div class="label">Building Permits</div><div class="src">Census · PERMIT</div></div><div class="v" id="d-perm">1,423K</div></div>
-    <div class="layer-card gold"><div class="lh"><div class="label">GDP</div><div class="src">FRED · GDP</div></div><div class="v" id="d-gdp">$31.8T</div></div>
-  </div>
-  <div class="g23 mb">
-    <div class="glass">
-      <div class="ch"><div class="ct">📰 Market News & Sentiment</div><span class="badge info">10 RSS Sources</span></div>
-      <div class="news-feed" id="news-feed"></div>
-    </div>
-    <div class="glass">
-      <div class="ch"><div class="ct">🎯 Sentiment Mix</div></div>
-      <div id="sentiment-bar"></div>
-    </div>
-  </div>
-</div>
-
-<!-- RISK TAB -->
-<div id="tab-risk" class="tab-content" style="display:none">
-  <div class="g3 mb">
-    <div class="glass">
-      <div class="ch"><div class="ct">🌊 Flood Risk · FEMA NFIP</div></div>
-      <div class="g2" style="font-size:11px">
-        <div><div style="color:var(--muted);font-size:10px">Total Claims</div><div style="font-size:22px;font-weight:800;font-family:'JetBrains Mono',monospace" id="r-claims">—</div></div>
-        <div><div style="color:var(--muted);font-size:10px">FL Claims</div><div style="font-size:22px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--gold)" id="r-flclaims">—</div></div>
-        <div style="grid-column:span 2"><div style="color:var(--muted);font-size:10px">FL Total Paid</div><div style="font-size:22px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--red)" id="r-paid">—</div></div>
-      </div>
-    </div>
-    <div class="glass">
-      <div class="ch"><div class="ct">⚠️ FL Disasters</div></div>
-      <div id="r-disasters" style="font-size:11px"></div>
-    </div>
-    <div class="glass">
-      <div class="ch"><div class="ct">📋 NFIP Policies</div></div>
-      <div class="g2" style="font-size:11px">
-        <div><div style="color:var(--muted);font-size:10px">Total</div><div style="font-size:22px;font-weight:800;font-family:'JetBrains Mono',monospace" id="r-pol">—</div></div>
-        <div><div style="color:var(--muted);font-size:10px">FL Policies</div><div style="font-size:22px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--accent)" id="r-flpol">—</div></div>
-      </div>
-    </div>
+    <div class="ch"><div class="ct">📍 Location · Live Map</div></div>
+    <div class="map-box" id="r-map"></div>
   </div>
   <div class="glass">
-    <div class="ch"><div class="ct">🏦 FDIC Banking Health · Local Market</div></div>
-    <div class="g4">
-      <div class="stat"><div class="lb">Total CRE Loans</div><div class="vl" style="color:var(--accent)" id="r-cre">$163.5B</div><div class="sb">500 banks</div></div>
-      <div class="stat"><div class="lb">Total RE</div><div class="vl" style="color:var(--green)">$393.6B</div><div class="sb">All loans</div></div>
-      <div class="stat"><div class="lb">Construction</div><div class="vl" style="color:var(--gold)">$35.5B</div><div class="sb">Active</div></div>
-      <div class="stat"><div class="lb">Sample Date</div><div class="vl" style="font-size:14px">Q4 2024</div><div class="sb">FDIC BankFind</div></div>
-    </div>
+    <div class="ch"><div class="ct">👥 Demographics · Census ACS</div><span class="badge info">2022</span></div>
+    <div id="r-demo"></div>
   </div>
 </div>
 
-<!-- COMPS TAB -->
-<div id="tab-comps" class="tab-content" style="display:none">
-  <div class="glass mb">
-    <div class="ch"><div class="ct">🏢 Comparable Properties · NYC PLUTO Parcels</div><span class="badge info">500 indexed</span></div>
-    <div class="comps" id="comps-list"></div>
+<!-- Flood + EPA + POIs -->
+<div class="g3 mb">
+  <div class="glass">
+    <div class="ch"><div class="ct">🌊 FEMA Flood Risk</div></div>
+    <div id="r-flood"></div>
   </div>
   <div class="glass">
-    <div class="ch"><div class="ct">🔨 Recent Building Permits · Multi-City</div><span class="badge info">Live</span></div>
-    <div id="permits-list" style="font-size:11px"></div>
+    <div class="ch"><div class="ct">⚗️ EPA Facilities Nearby</div><span class="badge" id="r-epa-count">—</span></div>
+    <div id="r-epa" class="poi-list"></div>
+  </div>
+  <div class="glass">
+    <div class="ch"><div class="ct">📌 Nearby POIs · OSM</div><span class="badge" id="r-poi-count">—</span></div>
+    <div id="r-pois" class="poi-list"></div>
   </div>
 </div>
 
-<!-- DATA TRAIL TAB -->
-<div id="tab-trail" class="tab-content" style="display:none">
-  <div class="glass mb">
-    <div class="ch"><div class="ct">🔬 Live Data Trail · Every Number Has a Source</div><span class="badge live">Verifiable</span></div>
-    <p style="font-size:12px;color:var(--muted);margin-bottom:12px">Every claim on this page links back to a primary source. Click any data point above to see its full API endpoint, response timestamp, and lineage.</p>
-    <div class="trail">
-      <div class="trail-line"><span class="ep">GET /api/live/ticker</span><span class="st">200 OK</span><span class="ts">cached 300s</span></div>
-      <div class="trail-line"><span class="ep">GET /api/live/market</span><span class="st">200 OK</span><span class="ts">12 FRED series</span></div>
-      <div class="trail-line"><span class="ep">GET /api/live/reits</span><span class="st">200 OK</span><span class="ts">Finnhub · 10 tickers</span></div>
-      <div class="trail-line"><span class="ep">GET /api/live/property</span><span class="st">200 OK</span><span class="ts">Walk Score 78</span></div>
-      <div class="trail-line"><span class="ep">GET /api/market/sofr</span><span class="st">200 OK</span><span class="ts">NY Fed · refRates</span></div>
-      <div class="trail-line"><span class="ep">GET /api/market/cpi</span><span class="st">200 OK</span><span class="ts">BLS · CUSR0000SA0</span></div>
-      <div class="trail-line"><span class="ep">GET /api/market/fdic</span><span class="st">200 OK</span><span class="ts">500 banks aggregated</span></div>
-      <div class="trail-line"><span class="ep">GET /api/deal/comps</span><span class="st">200 OK</span><span class="ts">NYC MapPLUTO</span></div>
-      <div class="trail-line"><span class="ep">GET /api/deal/news</span><span class="st">200 OK</span><span class="ts">197 articles · 10 RSS</span></div>
-      <div class="trail-line"><span class="ep">GET /api/deal/environmental</span><span class="st">200 OK</span><span class="ts">FEMA NFIP + disasters</span></div>
-      <div class="trail-line"><span class="ep">GET /api/deal/financing</span><span class="st">200 OK</span><span class="ts">6 SOFR-indexed products</span></div>
-      <div class="trail-line"><span class="ep">GET /api/stats</span><span class="st">200 OK</span><span class="ts">611 sources · 14 cats</span></div>
-    </div>
-  </div>
-  <div class="g2 mb">
-    <div class="glass">
-      <div class="ch"><div class="ct">🔌 Live API Health</div></div>
-      <div id="api-health" style="font-size:11px"></div>
-    </div>
-    <div class="glass">
-      <div class="ch"><div class="ct">📊 Data Source Categories</div></div>
-      <div id="cat-bars" style="font-size:11px"></div>
-    </div>
+<!-- Images -->
+<div class="glass mb">
+  <div class="ch"><div class="ct">📸 Imagery · Multi-Source</div></div>
+  <div class="img-grid" id="r-images"></div>
+</div>
+
+<!-- Macro context -->
+<div class="glass mb">
+  <div class="ch"><div class="ct">📈 Macro Market Context · FRED</div><span class="badge live">LIVE</span></div>
+  <div class="g4" id="r-macro"></div>
+</div>
+
+</div>
+
+<!-- INITIAL STATE -->
+<div id="initial-state" class="glass" style="text-align:center;padding:60px">
+  <div style="font-size:48px;margin-bottom:16px">🔍</div>
+  <h3 style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;margin-bottom:10px">Enter any property above to begin</h3>
+  <p style="color:var(--muted);max-width:560px;margin:0 auto 24px;line-height:1.6">We'll geocode your input via OpenStreetMap, then run 8 parallel queries against Census, FEMA, EPA, Walk Score, OpenWeather, OSM, Wikipedia, and FRED. No paid APIs needed.</p>
+  <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+    <span class="src-badge">Nominatim</span>
+    <span class="src-badge">Walk Score</span>
+    <span class="src-badge">OpenWeather</span>
+    <span class="src-badge">Census ACS</span>
+    <span class="src-badge">FEMA NFHL</span>
+    <span class="src-badge">EPA Envirofacts</span>
+    <span class="src-badge">OSM Overpass</span>
+    <span class="src-badge">Wikipedia</span>
+    <span class="src-badge">FRED</span>
   </div>
 </div>
 
 </div>
 
 <script>
-const A='';
+// API base — points to live backend if available, else uses static fallback
+const BACKEND = window.location.hostname === 'localhost' ? 'http://localhost:8001' : 'https://reprime-data-platform.vercel.app';
+const A = BACKEND;
 
-// THEME
+// Theme
 const saved=localStorage.getItem('theme')||'dark';
 document.documentElement.dataset.theme=saved;
 document.querySelectorAll('.theme-switcher button').forEach(b=>{
@@ -531,169 +283,137 @@ document.querySelectorAll('.theme-switcher button').forEach(b=>{
   b.addEventListener('click',()=>{document.documentElement.dataset.theme=b.dataset.theme;localStorage.setItem('theme',b.dataset.theme);document.querySelectorAll('.theme-switcher button').forEach(x=>x.classList.toggle('active',x===b));});
 });
 
-// SEARCH
-document.querySelectorAll('.suggest-pill').forEach(p=>{
-  p.addEventListener('click',()=>{document.getElementById('search-input').value=p.dataset.q;document.getElementById('search-btn').click();});
-});
-document.getElementById('search-btn').addEventListener('click',()=>{
-  const v=document.getElementById('search-input').value;
-  // Smooth scroll + simulate population
-  window.scrollTo({top:document.getElementById('prop-header').offsetTop-80,behavior:'smooth'});
-  // Refresh data
-  loadAll();
-});
-document.getElementById('search-input').addEventListener('keypress',e=>{if(e.key==='Enter')document.getElementById('search-btn').click();});
-
-// TICKER
-async function loadTicker(){
-  try{
-    const d=await(await fetch(A+'/api/live/ticker')).json();
-    const items=d.ticker.map(t=>`<div class="ti"><span class="pulse"></span><span>${t.label}</span> <strong>${t.value}</strong> <span class="${parseFloat(t.change)>=0?'up':'dn'}">${t.change}</span></div>`).join('');
-    document.getElementById('ticker').innerHTML=items+items;
-  }catch(e){}
-}
-
-// DATA WALL — 611 cells
-function buildWall(){
-  // 549 active, 53 error, 9 paid = 611 total
-  const cells=[];
-  for(let i=0;i<549;i++)cells.push({status:'active'});
-  for(let i=0;i<53;i++)cells.push({status:'error'});
-  for(let i=0;i<9;i++)cells.push({status:'paid'});
-  // Shuffle
-  for(let i=cells.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[cells[i],cells[j]]=[cells[j],cells[i]];}
-  document.getElementById('wall').innerHTML=cells.map((c,i)=>{
-    const cls=c.status==='active'?'active':c.status==='error'?'error':'paid';
-    return `<div class="wall-cell ${cls}" style="animation-delay:${(i*5)%3000}ms"><span class="tip">Source #${i+1} · ${c.status}</span></div>`;
-  }).join('');
-}
-
-// MARKET DATA
-async function loadMarket(){
-  try{
-    const d=await(await fetch(A+'/api/live/market')).json();
-    const fr=d.fred||{};const cr=d.crypto||{};const rt=d.reits||{};
-    document.getElementById('d-treasury').textContent=(fr['10Y_Treasury_Yield']?.value||'—')+'%';
-    document.getElementById('d-treasury-d').textContent=fr['10Y_Treasury_Yield']?.date||'';
-    document.getElementById('d-mortgage').textContent=(fr['30Y_Fixed_Mortgage_Rate']?.value||'—')+'%';
-    document.getElementById('d-mortgage-d').textContent=fr['30Y_Fixed_Mortgage_Rate']?.date||'';
-    document.getElementById('d-sofr').textContent=(fr['SOFR_Rate']?.value||'—')+'%';
-    document.getElementById('d-sofr-d').textContent=fr['SOFR_Rate']?.date||'';
-    document.getElementById('d-fedfunds').textContent=(fr['Fed_Funds_Rate']?.value||'—')+'%';
-    document.getElementById('d-cre').textContent=(fr['CRE_Delinquency_Rate']?.value||'—')+'%';
-    document.getElementById('d-shiller').textContent=fr['Case_Shiller_Home_Price_Index']?.value||'—';
-    document.getElementById('d-median').textContent='$'+(parseInt(fr['Median_Sale_Price_US']?.value||0)/1000).toFixed(0)+'K';
-    document.getElementById('d-houst').textContent=(parseFloat(fr['Housing_Starts']?.value||0)/1000).toFixed(1)+'M';
-    document.getElementById('d-unrate').textContent=(fr['Unemployment_Rate']?.value||'—')+'%';
-    document.getElementById('d-5y').textContent=(fr['5Y_Treasury_Yield']?.value||'—')+'%';
-    document.getElementById('d-30y').textContent=(fr['30Y_Treasury_Yield']?.value||'—')+'%';
-    document.getElementById('d-indpro').textContent=fr['Industrial_Production']?.value||'—';
-
-    // REITs
-    const reits=[
-      ['O','Realty Income'],['PLD','Prologis'],['AMT','Amer Tower'],['PSA','Public Storage'],['SPG','Simon'],['WELL','Welltower'],['DLR','Digital Realty'],['EQR','Equity Res'],['VNO','Vornado'],['BXP','Boston Props'],['EQR','Equity'],['WELL','Welltower']
-    ];
-    document.getElementById('reit-grid').innerHTML=reits.slice(0,6).map(([t,n])=>{
-      const r=rt[t]||{};const chg=r.change_pct||0;
-      return `<div class="stat"><div class="lb">${t}</div><div class="vl" style="color:${chg>=0?'var(--green)':'var(--red)'}">$${(r.current||0).toFixed(2)}</div><div class="sb" style="color:${chg>=0?'var(--green)':'var(--red)'}">${chg>=0?'▲':'▼'} ${Math.abs(chg).toFixed(2)}%</div></div>`;
-    }).join('');
-  }catch(e){console.log(e)}
-}
-
-// FX
-async function loadFX(){
-  try{
-    const d=await(await fetch(A+'/api/market/exchange-rates')).json();
-    const pairs=Object.entries(d.rates||{}).slice(0,8);
-    document.getElementById('fx-list').innerHTML=pairs.map(([k,v])=>{
-      const c=v.change||0;
-      return `<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border)"><span style="font-weight:500">ILS/${k}</span><span style="font-family:'JetBrains Mono',monospace">${v.rate?.toFixed(4)}</span><span style="font-family:'JetBrains Mono',monospace;color:${c>0?'var(--green)':'var(--red)'};font-size:10px">${c>0?'▲':'▼'} ${Math.abs(c).toFixed(2)}%</span></div>`;
-    }).join('');
-  }catch(e){}
-}
-
-// FINANCING
-async function loadFin(){
-  try{
-    const d=await(await fetch(A+'/api/deal/financing')).json();
-    document.getElementById('lending-body').innerHTML=d.lending_products.map(p=>`<tr><td style="padding:8px;font-weight:600">${p.product}</td><td style="padding:8px;font-family:'JetBrains Mono',monospace;color:var(--accent)">${p.rate_range}</td><td style="padding:8px;font-family:'JetBrains Mono',monospace">${p.ltv}</td><td style="padding:8px;font-family:'JetBrains Mono',monospace">${p.term}</td><td style="padding:8px;font-family:'JetBrains Mono',monospace">${p.min_dscr}</td><td style="padding:8px;color:var(--muted)">${p.best_for}</td></tr>`).join('');
-  }catch(e){}
-}
-
-// NEWS
-async function loadNews(){
-  try{
-    const d=await(await fetch(A+'/api/deal/news')).json();
-    const cl=['#3b82f6','#22c55e','#8b5cf6','#fbbf24','#ef4444','#06b6d4','#fb923c','#f472b6'];
-    const srcMap={};d.sources.forEach((s,i)=>srcMap[s.name]=cl[i%cl.length]);
-    document.getElementById('news-feed').innerHTML=d.articles.slice(0,18).map(a=>`<div class="ni"><div class="nd" style="background:${srcMap[a.source]||'#64748b'};color:${srcMap[a.source]||'#64748b'}"></div><div class="nt"><div class="ns">${a.source}</div><div class="nh"><a href="${a.link}" target="_blank">${a.title}</a></div></div></div>`).join('');
-    const ss=d.sentiment_summary;
-    document.getElementById('sentiment-bar').innerHTML=`
-      <div style="display:flex;height:32px;border-radius:8px;overflow:hidden;gap:2px;margin-bottom:14px">
-        <div style="flex:${ss.positive};background:var(--green);font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff">${ss.positive}</div>
-        <div style="flex:${ss.neutral};background:var(--surface-2);font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:700">${ss.neutral}</div>
-        <div style="flex:${ss.negative};background:var(--red);font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff">${ss.negative}</div>
-      </div>
-      <div style="font-size:12px;display:flex;flex-direction:column;gap:6px">
-        <div style="display:flex;justify-content:space-between"><span style="color:var(--green)">● Positive</span><strong>${ss.positive}</strong></div>
-        <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">● Neutral</span><strong>${ss.neutral}</strong></div>
-        <div style="display:flex;justify-content:space-between"><span style="color:var(--red)">● Negative</span><strong>${ss.negative}</strong></div>
-        <div style="display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:6px;margin-top:4px"><span>Total</span><strong>${ss.positive+ss.neutral+ss.negative}</strong></div>
-      </div>`;
-  }catch(e){}
-}
-
-// ENVIRONMENTAL
-async function loadEnv(){
-  try{
-    const d=await(await fetch(A+'/api/deal/environmental')).json();
-    document.getElementById('r-claims').textContent=(d.flood?.total_claims||0).toLocaleString();
-    document.getElementById('r-flclaims').textContent=(d.flood?.florida_claims||0).toLocaleString();
-    document.getElementById('r-paid').textContent='$'+((d.flood?.florida_total_paid||0)/1000000).toFixed(1)+'M';
-    document.getElementById('r-pol').textContent=(d.policies?.total_policies||0).toLocaleString();
-    document.getElementById('r-flpol').textContent=(d.policies?.florida_policies||0).toLocaleString();
-    document.getElementById('r-disasters').innerHTML=(d.disasters||[]).slice(0,5).map(x=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border)"><span>${x.title||'—'}</span><span style="color:var(--muted);font-family:'JetBrains Mono',monospace">${x.date}</span></div>`).join('');
-  }catch(e){}
-}
-
-// COMPS
-async function loadComps(){
-  try{
-    const d=await(await fetch(A+'/api/deal/comps')).json();
-    document.getElementById('comps-list').innerHTML=(d.comparable_properties||[]).slice(0,9).map(p=>`<div class="comp"><div class="ca">${p.address||'—'}</div><div class="cl">${p.borough} · ${p.zone} · ${p.year_built}</div><div class="crow"><span>Area</span><span>${p.building_area_sf.toLocaleString()} SF</span></div><div class="crow"><span>Floors</span><span>${p.floors}</span></div><div class="crow"><span>Assessed</span><span>$${p.assessed_total.toLocaleString()}</span></div><div class="crow"><span>$/SF</span><span style="color:var(--accent)">$${p.price_per_sf.toFixed(0)}</span></div></div>`).join('');
-  }catch(e){}
-  try{
-    const d=await(await fetch(A+'/api/deal/permits')).json();
-    document.getElementById('permits-list').innerHTML=(d.permits||[]).slice(0,8).map(p=>`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);gap:10px"><span class="badge info" style="flex-shrink:0">${p.city}</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);flex-shrink:0">${p.permit_type||'—'}</span><span style="flex:1;color:var(--muted)">${p.address||'—'}</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim)">${(p.issue_date||'').substring(0,10)}</span></div>`).join('');
-  }catch(e){}
-}
-
-// CATEGORIES
-async function loadCats(){
-  try{
-    const d=await(await fetch(A+'/api/stats')).json();
-    const cats=Object.entries(d.by_category).sort((a,b)=>b[1].total-a[1].total);
-    const maxT=Math.max(...cats.map(c=>c[1].total));
-    const cl=['#3b82f6','#22c55e','#8b5cf6','#fbbf24','#ef4444','#06b6d4','#fb923c','#f472b6','#14b8a6','#a78bfa','#6366f1','#84cc16','#f59e0b','#10b981'];
-    document.getElementById('cat-bars').innerHTML=cats.map((c,i)=>`<div style="display:flex;align-items:center;gap:8px;margin-bottom:5px"><div style="width:120px;font-size:10px;color:var(--muted);text-align:right">${c[0].replace('_',' ')}</div><div style="flex:1;background:var(--surface);border-radius:4px;height:18px;overflow:hidden"><div style="height:100%;width:${c[1].total/maxT*100}%;background:${cl[i%14]};border-radius:4px;display:flex;align-items:center;padding:0 6px;font-size:9px;font-weight:700;color:#fff;transition:width 1s">${c[1].scraped}/${c[1].total}</div></div></div>`).join('');
-  }catch(e){}
-  document.getElementById('api-health').innerHTML=['/api/live/ticker','/api/live/market','/api/live/reits','/api/live/property','/api/market/sofr','/api/market/cpi','/api/market/fdic','/api/market/crypto','/api/deal/financing','/api/deal/news','/api/deal/comps','/api/deal/environmental'].map(e=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace"><span style="color:var(--accent)">${e}</span><span style="color:var(--green)">200 ✓</span></div>`).join('');
-}
-
-// TABS
-document.querySelectorAll('.tab').forEach(t=>{
-  t.addEventListener('click',()=>{
-    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
-    t.classList.add('active');
-    document.querySelectorAll('.tab-content').forEach(c=>c.style.display='none');
-    document.getElementById('tab-'+t.dataset.tab).style.display='block';
-  });
+// Suggestions
+document.querySelectorAll('.suggest').forEach(s=>{
+  s.addEventListener('click',()=>{document.getElementById('q').value=s.dataset.q;search();});
 });
 
-// LOAD ALL
-function loadAll(){loadTicker();loadMarket();loadFX();loadFin();loadNews();loadEnv();loadComps();loadCats();}
-buildWall();
-loadAll();
+// Search
+async function search(){
+  const q=document.getElementById('q').value.trim();
+  if(!q)return;
+  document.getElementById('initial-state').style.display='none';
+  document.getElementById('results').classList.remove('show');
+  document.getElementById('loading').classList.add('show');
+  document.getElementById('search-btn').disabled=true;
+
+  const statuses=[
+    'Geocoding via OpenStreetMap Nominatim...',
+    'Querying Walk Score API...',
+    'Fetching weather data...',
+    'Looking up Census demographics...',
+    'Checking FEMA flood zones...',
+    'Searching EPA Envirofacts...',
+    'Finding nearby POIs via Overpass...',
+    'Gathering Wikipedia context...',
+    'Loading FRED macro indicators...'
+  ];
+  let si=0;
+  const sint=setInterval(()=>{document.getElementById('loading-status').textContent=statuses[si%statuses.length];si++;},800);
+
+  try{
+    const d=await(await fetch(`${A}/api/property/search?q=${encodeURIComponent(q)}`)).json();
+    clearInterval(sint);
+    if(d.error){alert('Search failed: '+d.error);document.getElementById('loading').classList.remove('show');document.getElementById('search-btn').disabled=false;document.getElementById('initial-state').style.display='block';return;}
+    renderResults(d);
+  }catch(e){
+    clearInterval(sint);
+    alert('Backend not reachable. Run locally: python3 -m uvicorn api.server.app:app --port 8001');
+    document.getElementById('loading').classList.remove('show');
+    document.getElementById('search-btn').disabled=false;
+    document.getElementById('initial-state').style.display='block';
+  }
+}
+
+function renderResults(d){
+  document.getElementById('loading').classList.remove('show');
+  document.getElementById('search-btn').disabled=false;
+  document.getElementById('results').classList.add('show');
+
+  // Header
+  const addr=d.address||d.query;
+  document.getElementById('r-header').innerHTML=`
+    <div class="result-title">${d.query}</div>
+    <div class="result-loc">📍 ${addr}</div>
+    <div class="result-meta">
+      <span>📌 ${d.lat?.toFixed(4)}, ${d.lng?.toFixed(4)}</span>
+      ${d.place_type?`<span>Type: ${d.place_type}</span>`:''}
+      <span>Fetched: ${d.fetched_at?.substring(0,19)}Z</span>
+    </div>`;
+
+  // Source badges
+  document.getElementById('src-count').textContent=`${d.sources_queried?.length||0} sources`;
+  document.getElementById('src-badges').innerHTML=(d.sources_queried||[]).map(s=>`<span class="src-badge ok">${s}</span>`).join('')+(d.errors||[]).map(e=>`<span class="src-badge" style="color:var(--red)">${e.split(':')[0]}</span>`).join('');
+
+  // Stats
+  const ws=d.walk_score||{};const wx=d.weather||{};const c=d.census||{};const f=d.fema_flood||{};
+  document.getElementById('r-stats').innerHTML=`
+    <div class="glass stat"><div class="lb">Walk Score</div><div class="vl" style="color:var(--green)">${ws.walkscore??'—'}</div><div class="sb">${ws.description||'—'}</div></div>
+    <div class="glass stat"><div class="lb">Temperature</div><div class="vl" style="color:var(--accent3)">${wx.temp_f?wx.temp_f+'°F':'—'}</div><div class="sb">${wx.description||'—'}</div></div>
+    <div class="glass stat"><div class="lb">Pop (Tract)</div><div class="vl" style="color:var(--accent)">${c.population?c.population.toLocaleString():'—'}</div><div class="sb">${c.tract_name?'Census tract':'—'}</div></div>
+    <div class="glass stat"><div class="lb">Flood Zone</div><div class="vl" style="color:${f.high_risk?'var(--red)':'var(--green)'};font-size:18px">${f.zone||'—'}</div><div class="sb">${f.in_floodplain?'In SFHA':'Outside SFHA'}</div></div>`;
+
+  // Map
+  const lng=d.lng,lat=d.lat;
+  document.getElementById('r-map').innerHTML=`<iframe src="https://www.openstreetmap.org/export/embed.html?bbox=${lng-0.008}%2C${lat-0.005}%2C${lng+0.008}%2C${lat+0.005}&layer=mapnik&marker=${lat}%2C${lng}"></iframe>`;
+
+  // Demographics
+  const dh=[
+    ['Population',c.population?.toLocaleString()],
+    ['Median HH Income',c.median_household_income?`$${c.median_household_income.toLocaleString()}`:null],
+    ['Median Home Value',c.median_home_value?`$${c.median_home_value.toLocaleString()}`:null],
+    ['Median Gross Rent',c.median_gross_rent?`$${c.median_gross_rent.toLocaleString()}/mo`:null],
+    ['Housing Units',c.total_housing_units?.toLocaleString()],
+    ['Owner-Occupied',c.owner_occupied?.toLocaleString()],
+    ['Renter-Occupied',c.renter_occupied?.toLocaleString()],
+    ['Bachelors+',c.bachelors_or_higher?.toLocaleString()],
+  ].filter(x=>x[1]);
+  document.getElementById('r-demo').innerHTML=dh.length?dh.map(([k,v])=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px"><span style="color:var(--muted)">${k}</span><span style="font-family:'JetBrains Mono',monospace;font-weight:600">${v}</span></div>`).join(''):'<div style="color:var(--muted);font-size:12px;padding:10px">No Census data available (might be outside US or census error)</div>';
+
+  // Flood
+  document.getElementById('r-flood').innerHTML=`
+    <div style="font-size:30px;font-weight:800;font-family:'JetBrains Mono',monospace;color:${f.high_risk?'var(--red)':'var(--green)'};margin-bottom:6px">Zone ${f.zone||'?'}</div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:10px">${f.in_floodplain?'⚠️ In Special Flood Hazard Area':'✓ Outside flood hazard area'}</div>
+    ${f.base_flood_elevation?`<div style="font-size:11px"><span style="color:var(--muted)">Base Flood Elevation:</span> <strong>${f.base_flood_elevation} ft</strong></div>`:''}
+    ${f.zone_subtype?`<div style="font-size:11px;margin-top:4px"><span style="color:var(--muted)">Subtype:</span> ${f.zone_subtype}</div>`:''}
+    <div style="font-size:9px;color:var(--dim);margin-top:14px">Source: FEMA NFHL · MapServer/28</div>`;
+
+  // EPA
+  const epa=d.epa_facilities||[];
+  document.getElementById('r-epa-count').textContent=`${epa.length} found`;
+  document.getElementById('r-epa').innerHTML=epa.length?epa.slice(0,10).map(e=>`<div class="poi"><div class="name">${e.name||'Unknown'}</div><div class="cat">${e.type||''}</div></div>`).join(''):'<div style="color:var(--muted);font-size:12px;padding:10px">No EPA-regulated facilities within search radius</div>';
+
+  // POIs
+  const pois=d.osm_pois||[];
+  document.getElementById('r-poi-count').textContent=`${pois.length} within 800m`;
+  document.getElementById('r-pois').innerHTML=pois.length?pois.slice(0,12).map(p=>`<div class="poi"><div class="name">${p.name}</div><div class="cat">${p.category}</div></div>`).join(''):'<div style="color:var(--muted);font-size:12px;padding:10px">No POIs found</div>';
+
+  // Images
+  const imgs=d.images||[];
+  document.getElementById('r-images').innerHTML=imgs.length?imgs.filter(i=>!i.embed).map(i=>`
+    <div class="img-tile" style="${i.url?`background-image:url('${i.url}')`:''}"><div class="src">${i.source}${i.type?` · ${i.type}`:''}</div></div>
+  `).join(''):'<div style="color:var(--muted);font-size:12px;padding:20px">No images sourced for this location</div>';
+
+  // Macro
+  const m=d.macro||{};
+  const ml=[
+    ['10Y Treasury',m['10Y_Treasury']?.value+'%',m['10Y_Treasury']?.date,'var(--accent)'],
+    ['30Y Mortgage',m['30Y_Mortgage']?.value+'%',m['30Y_Mortgage']?.date,'var(--accent3)'],
+    ['Fed Funds',m['Fed_Funds']?.value+'%',m['Fed_Funds']?.date,'var(--accent2)'],
+    ['Unemployment',m['Unemployment']?.value+'%',m['Unemployment']?.date,'var(--gold)'],
+    ['Median Home',m['Median_Home_Price']?`$${(parseInt(m['Median_Home_Price'].value)/1000).toFixed(0)}K`:'—',m['Median_Home_Price']?.date,'var(--green)'],
+    ['Case-Shiller',m['Case_Shiller_HPI']?.value,m['Case_Shiller_HPI']?.date,'var(--pink)'],
+    ['CRE Delinquency',m['CRE_Delinquency']?.value+'%',m['CRE_Delinquency']?.date,'var(--red)'],
+    ['Rental Vacancy',m['Rental_Vacancy']?.value+'%',m['Rental_Vacancy']?.date,'var(--orange)'],
+  ];
+  document.getElementById('r-macro').innerHTML=ml.map(([l,v,d,c])=>v?.includes('undefined')||!v?'':`<div class="layer"><div class="lh"><div class="label">${l}</div><div class="src">FRED</div></div><div class="v" style="color:${c}">${v}</div><div class="meta">${d||''}</div></div>`).join('');
+
+  // Scroll to results
+  document.getElementById('r-header').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+document.getElementById('search-btn').addEventListener('click',search);
+document.getElementById('q').addEventListener('keypress',e=>{if(e.key==='Enter')search();});
 </script>
 </body>
 </html>
