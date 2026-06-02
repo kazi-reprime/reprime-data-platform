@@ -1,1 +1,328 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><title>RePrime</title><meta http-equiv="refresh" content="0; url=/site"></head><body><script>window.location.href='/site';</script><p>Redirecting to <a href="/site">RePrime Group →</a></p></body></html>
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RePrime Dashboard — Executive Command Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root[data-theme="dark"]{--bg:#050609;--bg2:#0a0d14;--surface:rgba(14,52,112,0.08);--surface2:rgba(14,52,112,0.14);--border:rgba(188,156,69,0.1);--border2:rgba(188,156,69,0.2);--text:#f0f2f5;--text2:#d1d5db;--muted:#8a919c;--dim:#5a6270;--accent:#BC9C45;--navy:#0E3470;--gold:#BC9C45;--blue:#1D5FB8;--bright:#00A1FF;--teal:#009080;--amber:#FFBC7D;--green:#00A980;--red:#FF7474;--glass:rgba(14,52,112,0.12);--glass-border:rgba(188,156,69,0.12);--glass-hover:rgba(14,52,112,0.2);--mesh-1:#0E3470;--mesh-2:#1D5FB8;--mesh-3:#BC9C45;--mesh-4:#009080;--mesh-opacity:.15;--noise-opacity:.03;--card-bg:rgba(10,13,20,0.8);--nav-bg:rgba(5,6,9,0.85);--shadow:0 8px 32px rgba(0,0,0,.4)}
+:root[data-theme="light"]{--bg:#FAFBFD;--bg2:#FFFFFF;--surface:rgba(14,52,112,0.04);--surface2:rgba(14,52,112,0.07);--border:rgba(14,52,112,0.1);--border2:rgba(14,52,112,0.18);--text:#0E3470;--text2:#1e3a5f;--muted:#5a6f8c;--dim:#8a9bb5;--accent:#BC9C45;--navy:#0E3470;--gold:#BC9C45;--blue:#1D5FB8;--bright:#00A1FF;--teal:#009080;--amber:#FFBC7D;--green:#00A980;--red:#F70000;--glass:rgba(255,255,255,0.7);--glass-border:rgba(14,52,112,0.1);--glass-hover:rgba(255,255,255,0.85);--mesh-1:#1D5FB8;--mesh-2:#00A1FF;--mesh-3:#BC9C45;--mesh-4:#009080;--mesh-opacity:.06;--noise-opacity:.015;--card-bg:rgba(255,255,255,0.85);--nav-bg:rgba(250,251,253,0.9);--shadow:0 8px 32px rgba(14,52,112,.06)}
+:root[data-theme="midnight"]{--bg:#060B1A;--bg2:#0B1228;--surface:rgba(29,95,184,0.08);--surface2:rgba(29,95,184,0.14);--border:rgba(0,161,255,0.1);--border2:rgba(0,161,255,0.2);--text:#D0DEFF;--text2:#A8BEE0;--muted:#7B94C0;--dim:#5570A0;--accent:#00A1FF;--navy:#0E3470;--gold:#BC9C45;--blue:#1D5FB8;--bright:#00A1FF;--teal:#009080;--amber:#FFBC7D;--green:#00A980;--red:#FF7474;--glass:rgba(29,95,184,0.08);--glass-border:rgba(0,161,255,0.1);--glass-hover:rgba(29,95,184,0.15);--mesh-1:#0E3470;--mesh-2:#1D5FB8;--mesh-3:#00A1FF;--mesh-4:#BC9C45;--mesh-opacity:.2;--noise-opacity:.03;--card-bg:rgba(11,18,40,0.85);--nav-bg:rgba(6,11,26,0.9);--shadow:0 8px 32px rgba(0,0,0,.5)}
+:root[data-theme="gold"]{--bg:#0D0A05;--bg2:#151009;--surface:rgba(188,156,69,0.08);--surface2:rgba(188,156,69,0.14);--border:rgba(188,156,69,0.15);--border2:rgba(188,156,69,0.25);--text:#F5EDD8;--text2:#D4C9AA;--muted:#A89B78;--dim:#7A7058;--accent:#BC9C45;--navy:#0E3470;--gold:#BC9C45;--blue:#1D5FB8;--bright:#00A1FF;--teal:#009080;--amber:#FFBC7D;--green:#00A980;--red:#FF7474;--glass:rgba(188,156,69,0.06);--glass-border:rgba(188,156,69,0.15);--glass-hover:rgba(188,156,69,0.12);--mesh-1:#BC9C45;--mesh-2:#FFBC7D;--mesh-3:#1D5FB8;--mesh-4:#009080;--mesh-opacity:.15;--noise-opacity:.04;--card-bg:rgba(21,16,9,0.85);--nav-bg:rgba(13,10,5,0.9);--shadow:0 8px 32px rgba(0,0,0,.4)}
+:root{--grad-brand:linear-gradient(135deg,var(--navy),var(--blue),var(--gold));--grad-gold:linear-gradient(135deg,var(--gold),var(--amber));--grad-blue:linear-gradient(135deg,var(--navy),var(--bright));--t:.35s cubic-bezier(.4,0,.2,1)}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t);line-height:1.3}
+a{text-decoration:none;color:inherit}::selection{background:var(--gold);color:#000}
+.mesh-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:var(--mesh-opacity);background:radial-gradient(ellipse 600px 600px at 20% 30%,var(--mesh-1),transparent 70%),radial-gradient(ellipse 500px 500px at 80% 20%,var(--mesh-2),transparent 70%),radial-gradient(ellipse 400px 400px at 50% 80%,var(--mesh-3),transparent 70%),radial-gradient(ellipse 350px 350px at 10% 70%,var(--mesh-4),transparent 70%);animation:meshDrift 30s ease-in-out infinite alternate;transition:opacity var(--t)}
+@keyframes meshDrift{0%{transform:scale(1) translate(0,0)}50%{transform:scale(1.1) translate(-2%,3%)}100%{transform:scale(1.05) translate(3%,-2%)}}
+.noise{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:var(--noise-opacity);background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid var(--border);transition:background var(--t)}
+.nav-inner{max-width:1440px;margin:0 auto;padding:0 24px;height:52px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px}
+.nav-brand .logo-mark{width:28px;height:28px;background:var(--grad-gold);border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;color:#000}
+.nav-links{display:flex;gap:3px}
+.nav-links a{padding:7px 14px;border-radius:7px;font-size:12px;font-weight:500;color:var(--muted);transition:all .2s}
+.nav-links a:hover{color:var(--text);background:var(--surface)}
+.nav-links a.active{color:var(--gold);background:rgba(188,156,69,0.1)}
+.theme-tog{display:flex;background:var(--surface);border-radius:8px;padding:2px;gap:2px}
+.theme-tog button{background:none;border:none;padding:5px 9px;border-radius:6px;cursor:pointer;font-size:11px;font-family:'Poppins',sans-serif;font-weight:500;color:var(--muted);transition:all .2s}
+.theme-tog button:hover{color:var(--text)}
+.theme-tog button.active{background:var(--grad-gold);color:#000}
+
+/* DASHBOARD LAYOUT */
+.dash{padding:68px 24px 24px;position:relative;z-index:1;max-width:1440px;margin:0 auto}
+.dash-header{margin-bottom:24px}
+.dash-header h1{font-size:22px;font-weight:700;color:var(--text)}
+.dash-header p{font-size:13px;color:var(--muted);font-weight:300;margin-top:2px}
+.dash-time{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);margin-top:4px}
+
+/* KPI ROW */
+.kpi-row{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:20px}
+.kpi{background:var(--card-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:12px;padding:18px;transition:all .3s;position:relative;overflow:hidden}
+.kpi:hover{border-color:var(--gold);transform:translateY(-2px)}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-gold);opacity:0;transition:opacity .3s}
+.kpi:hover::before{opacity:1}
+.kpi-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.kpi-live{display:flex;align-items:center;gap:3px;font-size:8px;color:var(--green)}
+.kpi-live .dot{width:4px;height:4px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:.4;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+.kpi-val{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700;color:var(--text)}
+.kpi-change{font-family:'JetBrains Mono',monospace;font-size:10px;margin-top:4px}
+.kpi-change.up{color:var(--green)}.kpi-change.dn{color:var(--red)}
+.kpi-spark{display:flex;gap:1px;align-items:flex-end;height:24px;margin-top:8px}
+.kpi-spark span{flex:1;border-radius:1px;min-height:2px}
+
+/* MAIN GRID */
+.dash-grid{display:grid;grid-template-columns:1fr 1fr 380px;gap:16px}
+
+/* PANELS */
+.panel{background:var(--card-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .3s}
+.panel:hover{border-color:var(--gold)}
+.panel-header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--border)}
+.panel-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--gold)}
+.panel-badge{font-size:9px;font-weight:600;padding:3px 8px;border-radius:4px;background:var(--surface);color:var(--muted)}
+.panel-body{padding:16px 18px}
+
+/* DEAL PIPELINE */
+.pipeline-stage{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.pipeline-stage:last-child{border:none}
+.ps-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.ps-info{flex:1}
+.ps-name{font-size:13px;font-weight:500;color:var(--text)}
+.ps-meta{font-size:10px;color:var(--muted);margin-top:2px}
+.ps-val{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--gold)}
+
+/* PORTFOLIO TABLE */
+.port-table{width:100%;border-collapse:collapse;font-size:11px}
+.port-table th{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);font-size:9px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.port-table td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text2)}
+.port-table td:nth-child(n+3){font-family:'JetBrains Mono',monospace;font-weight:500}
+.port-table tr:hover td{background:var(--surface)}
+
+/* RATE CHART */
+.rate-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)}
+.rate-row:last-child{border:none}
+.rate-name{font-size:12px;color:var(--text2);font-weight:500}
+.rate-val{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;color:var(--text)}
+.rate-bar{flex:1;margin:0 16px;height:4px;background:var(--surface2);border-radius:2px;overflow:hidden;max-width:120px}
+.rate-bar span{display:block;height:100%;border-radius:2px;background:var(--grad-gold)}
+
+/* ACTIVITY FEED */
+.activity-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+.activity-item:last-child{border:none}
+.act-icon{width:32px;height:32px;border-radius:8px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.act-content{flex:1}
+.act-text{font-size:12px;color:var(--text2);line-height:1.4}
+.act-text strong{color:var(--text);font-weight:600}
+.act-time{font-size:10px;color:var(--dim);margin-top:2px}
+
+/* SOURCE HEALTH */
+.src-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.src-row:last-child{border:none}
+.src-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.src-dot.ok{background:var(--green)}.src-dot.warn{background:var(--gold)}.src-dot.err{background:var(--red)}
+.src-name{flex:1;font-size:11px;color:var(--text2)}
+.src-status{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted)}
+.src-latency{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim)}
+
+/* QUICK ACTIONS */
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.quick-btn{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;cursor:pointer;transition:all .2s;display:block}
+.quick-btn:hover{border-color:var(--gold);background:var(--surface2);transform:translateY(-2px)}
+.quick-btn .qi{font-size:20px;margin-bottom:6px}
+.quick-btn .ql{font-size:11px;font-weight:500;color:var(--text)}
+
+/* RESPONSIVE */
+@media(max-width:1200px){.dash-grid{grid-template-columns:1fr 1fr}.kpi-row{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:768px){.dash-grid{grid-template-columns:1fr}.kpi-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.kpi-row{grid-template-columns:1fr}.nav-links{display:none}}
+</style>
+</head>
+<body>
+<div class="mesh-bg"></div><div class="noise"></div>
+
+<!-- NAV -->
+<nav class="nav">
+<div class="nav-inner">
+  <a href="/site" class="nav-brand"><span class="logo-mark">RP</span>RePrime Dashboard</a>
+  <div class="nav-links">
+    <a href="/site">Platform</a>
+    <a href="/" class="active">Dashboard</a>
+    <a href="/terminal">Terminal</a>
+    <a href="/explore">Explore</a>
+  </div>
+  <div class="theme-tog" id="themeTog">
+    <button data-theme="dark" class="active">Dark</button>
+    <button data-theme="light">Light</button>
+    <button data-theme="midnight">Night</button>
+    <button data-theme="gold">Gold</button>
+  </div>
+</div>
+</nav>
+
+<div class="dash">
+<div class="dash-header">
+  <h1>Executive Command Center</h1>
+  <p>Portfolio overview · Market pulse · Deal pipeline</p>
+  <div class="dash-time" id="dashTime"></div>
+</div>
+
+<!-- KPI ROW -->
+<div class="kpi-row" id="kpiRow">
+  <div class="kpi"><div class="kpi-label">10Y Treasury <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k1">4.45%</div><div class="kpi-change dn">▼ -2bp</div><div class="kpi-spark" id="spark1"></div></div>
+  <div class="kpi"><div class="kpi-label">SOFR <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k2">4.31%</div><div class="kpi-change up">▲ +0bp</div><div class="kpi-spark" id="spark2"></div></div>
+  <div class="kpi"><div class="kpi-label">30Y Mortgage <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k3">6.53%</div><div class="kpi-change dn">▼ -4bp</div><div class="kpi-spark" id="spark3"></div></div>
+  <div class="kpi"><div class="kpi-label">S&P 500 <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k4">$589</div><div class="kpi-change up">▲ +0.4%</div><div class="kpi-spark" id="spark4"></div></div>
+  <div class="kpi"><div class="kpi-label">Bitcoin <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k5">$107K</div><div class="kpi-change up">▲ +2.1%</div><div class="kpi-spark" id="spark5"></div></div>
+  <div class="kpi"><div class="kpi-label">Data Sources <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val">611</div><div class="kpi-change up">14 categories</div><div class="kpi-spark" id="spark6"></div></div>
+</div>
+
+<!-- MAIN GRID -->
+<div class="dash-grid">
+  <!-- Column 1: Deal Pipeline + Portfolio -->
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-title">Deal Pipeline</span><span class="panel-badge">$284M Active</span></div>
+      <div class="panel-body">
+        <div class="pipeline-stage"><div class="ps-dot" style="background:var(--green)"></div><div class="ps-info"><div class="ps-name">The Palms at Doral</div><div class="ps-meta">240 units · Multifamily · Doral, FL</div></div><div class="ps-val">$61.2M</div></div>
+        <div class="pipeline-stage"><div class="ps-dot" style="background:var(--gold)"></div><div class="ps-info"><div class="ps-name">Coral Springs Office</div><div class="ps-meta">145K SF · Office · Coral Springs, FL</div></div><div class="ps-val">$38.5M</div></div>
+        <div class="pipeline-stage"><div class="ps-dot" style="background:var(--bright)"></div><div class="ps-info"><div class="ps-name">Tampa Bay Industrial</div><div class="ps-meta">220K SF · Industrial · Tampa, FL</div></div><div class="ps-val">$52.8M</div></div>
+        <div class="pipeline-stage"><div class="ps-dot" style="background:var(--teal)"></div><div class="ps-info"><div class="ps-name">Orlando Mixed-Use</div><div class="ps-meta">180 units + 25K SF retail · Orlando, FL</div></div><div class="ps-val">$89.3M</div></div>
+        <div class="pipeline-stage"><div class="ps-dot" style="background:var(--amber)"></div><div class="ps-info"><div class="ps-name">Ft Lauderdale Retail</div><div class="ps-meta">65K SF · Retail · Ft Lauderdale, FL</div></div><div class="ps-val">$42.7M</div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-title">Portfolio Summary</span><span class="panel-badge">5 Assets</span></div>
+      <div class="panel-body" style="padding:0">
+        <table class="port-table">
+          <tr><th>Asset</th><th>Type</th><th>NOI</th><th>Cap</th><th>DSCR</th></tr>
+          <tr><td>Palms Doral</td><td>MF</td><td>$3.8M</td><td>6.2%</td><td>1.45x</td></tr>
+          <tr><td>Coral Springs</td><td>Off</td><td>$2.1M</td><td>7.1%</td><td>1.32x</td></tr>
+          <tr><td>Tampa Indust.</td><td>Ind</td><td>$4.2M</td><td>5.8%</td><td>1.62x</td></tr>
+          <tr><td>Orlando Mixed</td><td>Mix</td><td>$6.1M</td><td>5.5%</td><td>1.51x</td></tr>
+          <tr><td>Ft Laud Retail</td><td>Ret</td><td>$2.8M</td><td>6.8%</td><td>1.28x</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Column 2: Market Rates + Financing -->
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-title">Rate Environment</span><span class="panel-badge">FRED + BLS</span></div>
+      <div class="panel-body" id="ratePanel">
+        <div class="rate-row"><span class="rate-name">10Y Treasury</span><div class="rate-bar"><span style="width:65%"></span></div><span class="rate-val" id="r1">4.45%</span></div>
+        <div class="rate-row"><span class="rate-name">SOFR</span><div class="rate-bar"><span style="width:60%"></span></div><span class="rate-val" id="r2">4.31%</span></div>
+        <div class="rate-row"><span class="rate-name">30Y Mortgage</span><div class="rate-bar"><span style="width:90%"></span></div><span class="rate-val" id="r3">6.53%</span></div>
+        <div class="rate-row"><span class="rate-name">Fed Funds</span><div class="rate-bar"><span style="width:60%"></span></div><span class="rate-val" id="r4">4.33%</span></div>
+        <div class="rate-row"><span class="rate-name">CPI (YoY)</span><div class="rate-bar"><span style="width:32%"></span></div><span class="rate-val">2.3%</span></div>
+        <div class="rate-row"><span class="rate-name">Unemployment</span><div class="rate-bar"><span style="width:58%"></span></div><span class="rate-val">4.2%</span></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-title">Financing Landscape</span><span class="panel-badge">6 Products</span></div>
+      <div class="panel-body" style="padding:0">
+        <table class="port-table">
+          <tr><th>Product</th><th>Rate</th><th>LTV</th><th>Term</th></tr>
+          <tr><td>Fannie DUS</td><td>5.45%</td><td>75%</td><td>10yr</td></tr>
+          <tr><td>Freddie Optigo</td><td>5.52%</td><td>75%</td><td>10yr</td></tr>
+          <tr><td>CMBS Conduit</td><td>5.80%</td><td>65%</td><td>10yr</td></tr>
+          <tr><td>Life Co Fixed</td><td>5.25%</td><td>60%</td><td>15yr</td></tr>
+          <tr><td>Bridge Float</td><td>S+350</td><td>80%</td><td>3+1+1</td></tr>
+          <tr><td>HUD 223(f)</td><td>4.95%</td><td>83%</td><td>35yr</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-title">Market Assets</span><span class="panel-badge">Live</span></div>
+      <div class="panel-body" id="marketAssets"></div>
+    </div>
+  </div>
+
+  <!-- Column 3: Sidebar — Activity, Sources, Quick Actions -->
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-title">Quick Actions</span></div>
+      <div class="panel-body">
+        <div class="quick-grid">
+          <a href="/terminal" class="quick-btn"><div class="qi">📊</div><div class="ql">Open Terminal</div></a>
+          <a href="/site" class="quick-btn"><div class="qi">🌐</div><div class="ql">Company Site</div></a>
+          <a href="/explore" class="quick-btn"><div class="qi">🔍</div><div class="ql">Explore Data</div></a>
+          <a href="/terminal" class="quick-btn"><div class="qi">📈</div><div class="ql">Deal Comps</div></a>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-title">Activity Feed</span><span class="panel-badge">Today</span></div>
+      <div class="panel-body">
+        <div class="activity-item"><div class="act-icon">📡</div><div class="act-content"><div class="act-text"><strong>FRED API</strong> updated Treasury yields — 10Y at 4.45%</div><div class="act-time">2 hours ago</div></div></div>
+        <div class="activity-item"><div class="act-icon">🏢</div><div class="act-content"><div class="act-text"><strong>Palms Doral</strong> underwriting model updated — IRR revised to 18.4%</div><div class="act-time">4 hours ago</div></div></div>
+        <div class="activity-item"><div class="act-icon">🌊</div><div class="act-content"><div class="act-text"><strong>FEMA</strong> risk assessment complete — Zone X confirmed for Doral site</div><div class="act-time">6 hours ago</div></div></div>
+        <div class="activity-item"><div class="act-icon">📰</div><div class="act-content"><div class="act-text"><strong>BLS</strong> — South Florida employment +2.3% YoY, multifamily demand signal</div><div class="act-time">8 hours ago</div></div></div>
+        <div class="activity-item"><div class="act-icon">💰</div><div class="act-content"><div class="act-text"><strong>FDIC</strong> — CRE delinquencies at $163.5B, monitoring bank exposure</div><div class="act-time">1 day ago</div></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-title">Source Health</span><span class="panel-badge" id="srcCount">13 APIs</span></div>
+      <div class="panel-body" id="sourceHealth">
+        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">FRED (Federal Reserve)</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">142ms</span></div>
+        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">BLS (Labor Statistics)</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">89ms</span></div>
+        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">FEMA (Risk Data)</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">215ms</span></div>
+        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">Finnhub (Stocks)</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">67ms</span></div>
+        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">CoinGecko (Crypto)</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">183ms</span></div>
+        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">OpenWeather</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">95ms</span></div>
+        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">Walk Score</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">312ms</span></div>
+        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">SEC EDGAR</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">445ms</span></div>
+        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">Census ACS</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">380ms</span></div>
+        <div class="src-row"><span class="src-dot warn"></span><span class="src-name">HUD (Housing)</span><span class="src-status" style="color:var(--gold)">● Slow</span><span class="src-latency">1.2s</span></div>
+        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">FDIC (Banking)</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">198ms</span></div>
+        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">EPA (Environmental)</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">267ms</span></div>
+        <div class="src-row"><span class="src-dot ok"></span><span class="src-name">IRS (Tax Data)</span><span class="src-status" style="color:var(--green)">● OK</span><span class="src-latency">523ms</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+/* THEME */
+const saved=localStorage.getItem('rp-theme')||'dark';
+document.documentElement.setAttribute('data-theme',saved);
+document.querySelectorAll('.theme-tog button').forEach(b=>{
+  b.classList.toggle('active',b.dataset.theme===saved);
+  b.addEventListener('click',()=>{
+    document.documentElement.setAttribute('data-theme',b.dataset.theme);
+    localStorage.setItem('rp-theme',b.dataset.theme);
+    document.querySelectorAll('.theme-tog button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+  });
+});
+
+/* CLOCK */
+function updateTime(){
+  const now=new Date();
+  document.getElementById('dashTime').textContent=now.toLocaleString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit'})+' EST';
+}
+updateTime();setInterval(updateTime,1000);
+
+/* SPARKLINES */
+function sparkline(id,color){
+  const el=document.getElementById(id);if(!el)return;
+  for(let i=0;i<20;i++){const s=document.createElement('span');s.style.height=Math.random()*20+4+'px';s.style.background=color||'var(--gold)';s.style.opacity='.4';el.appendChild(s)}
+}
+sparkline('spark1','var(--blue)');sparkline('spark2','var(--teal)');sparkline('spark3','var(--gold)');
+sparkline('spark4','var(--green)');sparkline('spark5','var(--amber)');sparkline('spark6','var(--bright)');
+
+/* FETCH LIVE DATA */
+fetch('/api/live/ticker').then(r=>r.json()).then(d=>{
+  if(d.treasury_10y){document.getElementById('k1').textContent=d.treasury_10y.value;document.getElementById('r1').textContent=d.treasury_10y.value}
+  if(d.sofr){document.getElementById('k2').textContent=d.sofr.value;document.getElementById('r2').textContent=d.sofr.value}
+  if(d.mortgage_30y){document.getElementById('k3').textContent=d.mortgage_30y.value;document.getElementById('r3').textContent=d.mortgage_30y.value}
+  if(d.fed_funds){document.getElementById('r4').textContent=d.fed_funds.value}
+}).catch(()=>{});
+
+fetch('/api/live/market').then(r=>r.json()).then(d=>{
+  if(d.stocks?.SPY)document.getElementById('k4').textContent='$'+Math.round(parseFloat(d.stocks.SPY.price));
+  if(d.crypto?.bitcoin)document.getElementById('k5').textContent='$'+Math.round(parseFloat(d.crypto.bitcoin.price.replace(/[$,]/g,''))/1000)+'K';
+  // Market assets sidebar
+  const el=document.getElementById('marketAssets');
+  const assets=[
+    {n:'VNQ REITs',v:d.stocks?.VNQ?.price||'$89.42',ch:'+1.2%',dir:'up'},
+    {n:'Gold',v:'$2,345',ch:'+0.8%',dir:'up'},
+    {n:'Ethereum',v:d.crypto?.ethereum?.price||'$2,547',ch:'+1.8%',dir:'up'},
+  ];
+  assets.forEach(a=>{
+    el.innerHTML+=`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)">
+      <span style="font-size:12px;color:var(--text2)">${a.n}</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--text)">${a.v} <span style="font-size:10px;color:var(--${a.dir==='up'?'green':'red'})">${a.ch}</span></span>
+    </div>`;
+  });
+}).catch(()=>{});
+</script>
+</body>
+</html>
