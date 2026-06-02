@@ -4,34 +4,18 @@
   "rewrites": [
     { "source": "/site", "destination": "/site.html" },
     { "source": "/terminal", "destination": "/terminal.html" },
-    { "source": "/api/live/ticker", "destination": "/api/live/ticker.json" },
-    { "source": "/api/live/market", "destination": "/api/live/market.json" },
-    { "source": "/api/live/reits", "destination": "/api/live/reits.json" },
-    { "source": "/api/live/property", "destination": "/api/live/property.json" },
-    { "source": "/api/market/sofr", "destination": "/api/market/sofr.json" },
-    { "source": "/api/market/cpi", "destination": "/api/market/cpi.json" },
-    { "source": "/api/market/treasury", "destination": "/api/market/treasury.json" },
-    { "source": "/api/market/fdic", "destination": "/api/market/fdic.json" },
-    { "source": "/api/market/crypto", "destination": "/api/market/crypto.json" },
-    { "source": "/api/market/exchange-rates", "destination": "/api/market/exchange-rates.json" },
-    { "source": "/api/market/fema", "destination": "/api/market/fema.json" },
-    { "source": "/api/deal/intelligence", "destination": "/api/deal/intelligence.json" },
-    { "source": "/api/deal/comps", "destination": "/api/deal/comps.json" },
-    { "source": "/api/deal/permits", "destination": "/api/deal/permits.json" },
-    { "source": "/api/deal/news", "destination": "/api/deal/news.json" },
-    { "source": "/api/deal/financing", "destination": "/api/deal/financing.json" },
-    { "source": "/api/deal/environmental", "destination": "/api/deal/environmental.json" },
-    { "source": "/api/stats", "destination": "/api/stats.json" },
-    { "source": "/api/categories", "destination": "/api/categories.json" },
-    { "source": "/api/health", "destination": "/api/health.json" },
-    { "source": "/api/sources", "destination": "/api/sources.json" }
+    { "source": "/api/live/:metric", "destination": "/data/live/:metric.json" },
+    { "source": "/api/market/:metric", "destination": "/data/market/:metric.json" },
+    { "source": "/api/deal/:metric", "destination": "/data/deal/:metric.json" },
+    { "source": "/api/:metric", "destination": "/data/:metric.json" }
   ],
   "headers": [
     {
-      "source": "/api/(.*)",
+      "source": "/data/(.*)",
       "headers": [
         { "key": "Content-Type", "value": "application/json" },
-        { "key": "Access-Control-Allow-Origin", "value": "*" }
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Cache-Control", "value": "public, max-age=300" }
       ]
     }
   ]
