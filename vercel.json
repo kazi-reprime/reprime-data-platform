@@ -4,7 +4,8 @@
   "functions": {
     "api/property.py": {
       "maxDuration": 30,
-      "memory": 256
+      "memory": 256,
+      "includeFiles": "api/property.py"
     }
   },
   "rewrites": [
@@ -19,11 +20,5 @@
     { "source": "/api/categories", "destination": "/data/categories.json" },
     { "source": "/api/sources", "destination": "/data/sources.json" },
     { "source": "/api/health", "destination": "/data/health.json" }
-  ],
-  "headers": [
-    { "source": "/data/(.*)", "headers": [
-      { "key": "Content-Type", "value": "application/json" },
-      { "key": "Access-Control-Allow-Origin", "value": "*" }
-    ]}
   ]
 }
