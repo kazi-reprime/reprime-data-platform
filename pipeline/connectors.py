@@ -120,9 +120,15 @@ def fetch(url: str, family: str | None = None, limit: int = 25, timeout: int = 1
                     "sample": _trim(sample), "request_url": req_url}
         except Exception as e:  # noqa: BLE001
             return {"status": "error", "record_count": 0, "error": f"json parse: {e}", "request_url": req_url}
-    if "xml" in ct or body[:5] == "<?xml":
-        return {"status": "ok", "record_count": raw.count("<entry") + raw.count("<item"),
-                "content_type": "xml", "sample": raw[:500], "request_url": req_url}
+    low = body[:400].lower()
+    if "xml" in ct or "rss" in ct or "atom" in ct or any(t in low for t in ("<?xml", "<rss", "<feed", "<rdf")):
+        cnt = raw.count("<item") + raw.count("<item ") + raw.count("<entry>") + raw.count("<entry ")
+        # extract a few item/entry titles for the sample
+        import re as _re
+        titles = _re.findall(r"<title[^>]*>(.*?)</title>", raw, _re.S | _re.I)[1:6]
+        return {"status": "ok" if cnt else "empty", "record_count": cnt,
+                "content_type": "xml/feed", "sample": [t.strip()[:120] for t in titles],
+                "request_url": req_url}
     # HTML or other → the endpoint_url is a doc/landing page, not data
     return {"status": "not_data", "record_count": 0,
             "content_type": ("html" if "<html" in body[:500].lower() else "other"),

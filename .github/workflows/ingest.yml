@@ -36,13 +36,20 @@ jobs:
         env:
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
-        run: python3 pipeline/run_ingest.py --tier live_api --auth api_key --limit 100 || true
+        run: python3 pipeline/run_ingest.py --tier live_api --auth api_key --limit 500 || true
 
-      # When DATABASE_URL (Supabase/Postgres) is configured, load into the DB:
-      # - name: Load to Postgres
-      #   env:
-      #     DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      #   run: python3 pipeline/load_to_db.py   # (added once the DB is provisioned)
+      - name: Ingest — RSS feeds
+        run: python3 pipeline/run_ingest.py --tier rss --limit 50 || true
+
+      - name: Ingest — bulk / dataset downloads
+        run: python3 pipeline/run_ingest.py --tier bulk --limit 500 || true
+
+      - name: Load to Postgres (no-op until DATABASE_URL is set)
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          pip install --quiet psycopg2-binary || true
+          python3 pipeline/load_to_db.py || true
 
       - name: Commit coverage report + cached data
         run: |
