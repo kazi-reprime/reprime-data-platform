@@ -1,74 +1,115 @@
 # RePrime Data Platform
 
-> Commercial real-estate intelligence. Enter any US address and one server-side call fans out to
-> **20 live free data layers** (government + market APIs), backed by a catalog of **630 free API
-> sources** across 14 categories. No paid keys required for the core search.
+> Commercial-real-estate intelligence. A live web platform that (1) searches any US
+> address against ~18 government & market APIs in real time, and (2) continuously
+> ingests data from a catalog of **~611 free sources** into a database and shows it
+> live across every page.
+
+**Live:** https://reprime-data-platform.vercel.app
+**Stack:** static HTML + Python serverless (Vercel) · ingestion pipeline (GitHub Actions) · Postgres (Supabase)
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkazi-reprime%2Freprime-data-platform)
 
 ---
 
+## What it does
+
+1. **Address search** — `/explore`: enter any US address; one server-side call
+   (`/api/search`) geocodes it and fans out to live free APIs (FRED, CoinGecko,
+   FEMA, NWS, USGS, OSM, GDELT, FCC, Open-Meteo, …) returning risk, market,
+   demographic, and location data with per-source status.
+2. **Data warehouse** — a scheduled pipeline ingests the free-source catalog into
+   Supabase; every page shows the live records via a shared data layer (`sb.js`),
+   and `/data` is a full coverage view.
+
 ## Architecture
 
-Single Vercel project — static pages + two Python serverless functions. No separate backend.
-
 ```
-public/
-  index.html        /            Executive command center
-  explore.html      /explore     Address search (the core product)
-  dashboard.html    /dashboard   Data operations console
-  terminal.html     /terminal    Single-property terminal
-  site.html         /site        Company site
-  data/             /api/live/*, /api/sources, /api/stats, /api/categories  (cached JSON)
-api/
-  search.py         /api/search?address=<addr>[&value=<usd>]   live fan-out engine
-  health.py         /api/health                                 liveness + build info
-scripts/build_registry.py   builds the 630-source registry + stats from the master extraction
-scraper/aggregate.py        refreshes cached market/ticker JSON (cached_at + TTL + manifest)
-tests/test_search.py        pytest backend contract tests
-scripts/verify.sh           re-runnable Tier 0 audit (exit 0 = pass)
+Browser
+  ├── public/*.html ............ 5 pages (index, explore, dashboard, terminal, site) + data-coverage
+  │      └── sb.js ............. shared live data layer → reads Supabase via anon key (RLS read-only)
+  ├── /api/search (api/search.py) .. live per-address fan-out (Vercel Python function)
+  └── /api/health, /api/sources, /api/stats, /api/live/* .. JSON endpoints
+
+Ingestion (GitHub Actions, daily cron — non-IP-blocked, no time limit)
+  pipeline/triage.py ....... classify ~696 free sources into tiers (live_api/rss/bulk/scrape/inspect)
+  pipeline/connectors.py ... typed fetch by family (ArcGIS, Socrata, FDSN, OpenFEMA, generic) + true counts
+  pipeline/run_ingest.py ... run connectors, write per-source results + coverage report
+  pipeline/load_to_db.py ... bulk-load results into Postgres
+        │
+        ▼
+Supabase (Postgres)  ── schema in pipeline/schema.sql (sources, source_data, ingest_runs, views, RLS)
+        │
+        ▼
+Vercel pages read it live via the publishable/anon key
 ```
 
-## Verified working
+## Current data (live)
 
-- **Live address search** (`/api/search`): Census-first geocoding, parallel fan-out, per-source
-  status + latency, `degraded` flag, 400 on bad input, CORS + JSON. **17–18 of 20 layers return
-  real data per address** in ~6–15s. Layers: FRED/NY-Fed rates, CoinGecko, ECB FX, Federal Register,
-  FDIC, FEMA disasters, OSM POIs, NWS alerts, USGS elevation, Open-Meteo weather + air quality,
-  FCC census/FIPS, Wikipedia, USGS seismic, GDELT news, plus computed indicative financing and
-  user-value multi-currency valuation.
-- **All five pages run on live data** — no hardcoded market/risk/news literals. Deal-specific data
-  (`featured_deal.json`, `portfolio.json`) is explicitly labeled **SAMPLE**.
-- **`/api/sources`** serves the real 630-source registry; **`/api/health`** is a real function;
-  **`/api/stats`** drives the counters and category coverage.
-- **Real source-health monitors** (dashboard + index) — measured latency, not hardcoded.
+- **696** sources cataloged across **14** categories (`/api/sources`).
+- **~30** sources currently ingesting real data; true totals reach into the
+  millions per source (e.g. Chicago 8.5M rows, EPA 67,610) — populated by the cron.
+- Records are stored in Supabase and displayed on every page via the
+  **Live Data Warehouse** panel; full breakdown at **`/data`**.
 
-Run the proof:
+> Coverage is measured as *sources returning real data*, not catalog size. The
+> registry is mostly landing pages; the machine-ingestible subset (~146 live APIs
+> + 52 bulk + 33 RSS) is the real target, grown sprint by sprint
+> (see `docs/DATA_PIPELINE_PLAN.md`).
+
+## Repo layout
+
+| Path | Purpose |
+|------|---------|
+| `public/` | The 5 pages + `sb.js` + cached JSON (`public/data/**`) |
+| `api/search.py`, `api/health.py` | Vercel Python functions |
+| `pipeline/` | Ingestion: triage, connectors, runner, DB loader, schema |
+| `.github/workflows/ingest.yml` | Daily ingestion cron |
+| `scripts/` | `build_registry.py` (registry/stats), `verify.sh` (audit) |
+| `scraper/aggregate.py` | Cached market/ticker refresh |
+| `docs/` | ADR-001, implementation plan, status report, architecture |
+| `tests/test_search.py` | Backend contract tests |
+
+## Run it
 
 ```bash
-bash scripts/verify.sh          # local engine + artifacts
-LIVE=1 bash scripts/verify.sh   # also probe the deployed URL
-pytest tests/test_search.py -v  # backend contract tests
+# search engine (live APIs)
+python3 api/search.py "350 5th Ave, New York, NY 10118"
+
+# ingestion pipeline
+python3 pipeline/triage.py                                           # tier the sources
+python3 pipeline/run_ingest.py --tier live_api --auth keyless --limit 100
+DATABASE_URL="postgresql://..." python3 pipeline/load_to_db.py       # load into Supabase
+
+# proofs
+bash scripts/verify.sh        # re-runnable audit (exit 0 = pass)
+pytest tests/test_search.py -v
 ```
 
-## Environment variables (set in Vercel, never in the repo)
+## Deployment
 
-Core search works keyless. Optional:
+- **Vercel** auto-deploys on every push to `main` (static pages + Python functions).
+- **GitHub Actions** runs `ingest.yml` daily (manual run via the Actions tab).
 
-| Key | Enables |
-| --- | --- |
-| `CENSUS_API_KEY` | Tract demographics (ACS). Free at census.gov. |
+### Configuration (GitHub repo secrets / Vercel env)
 
-> **Security:** keys live only in Vercel env + local `api/.env` (gitignored). If a key was ever
-> committed, rotate it at the provider.
+| Secret | Used for |
+|--------|----------|
+| `DATABASE_URL` | Postgres connection (Supabase pooler) — lets the cron load data |
+| `CENSUS_API_KEY`, `FRED_API_KEY`, … | optional keyed sources |
+
+The Supabase **publishable (anon) key** is embedded in `sb.js` for read-only
+serving — that is safe by design; row-level security blocks writes.
+
+## Security
+
+- No secrets in the repo. Keys live only in GitHub/Vercel secrets and local `.env`
+  (gitignored). The DB password and service key never go in source.
+- RLS: the anon key can only read; all writes go through the password-protected loader.
 
 ## Known limitations
 
-- `fema_flood` and `epa_facilities` can be blocked by some network egress (incl. CI sandboxes);
-  they degrade gracefully and should be confirmed on the deployed runtime.
-- `census_acs` requires a valid free `CENSUS_API_KEY`.
-- The "611" headline is the curated free-source figure; the extraction yields **630** — they
-  reconcile once a canonical source list is supplied (the count flows everywhere automatically).
-- The team section needs the real RePrime roster + photos.
-- Legacy Render backend (`api/server`, `api/property`) is retired and deploy-excluded; remove with
-  `git rm -r api/server api/property render.yaml`.
+- `fema_flood` / `epa_facilities` are IP-blocked from Vercel's serverless runtime
+  (they work from GitHub's runners); both degrade gracefully.
+- True per-source totals populate from the GitHub cron, not from local runs.
+- See `docs/FEATURE_CHECKLIST.md` and `docs/PHASES_AND_PROGRESS.md` for full status.
