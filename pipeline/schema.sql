@@ -62,3 +62,21 @@ SELECT category,
 FROM sources
 GROUP BY category
 ORDER BY sources DESC;
+
+-- 6. Row-Level Security: the public anon/publishable key may READ (for serving on
+-- Vercel); WRITES happen only via the Postgres DATABASE_URL or the service-role
+-- key used by the GitHub Actions loader. This keeps the published key safe.
+ALTER TABLE sources     ENABLE ROW LEVEL SECURITY;
+ALTER TABLE source_data ENABLE ROW LEVEL SECURITY;
+ALTER TABLE ingest_runs ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS anon_read_sources ON sources;
+DROP POLICY IF EXISTS anon_read_data    ON source_data;
+DROP POLICY IF EXISTS anon_read_runs    ON ingest_runs;
+CREATE POLICY anon_read_sources ON sources     FOR SELECT TO anon USING (true);
+CREATE POLICY anon_read_data    ON source_data FOR SELECT TO anon USING (true);
+CREATE POLICY anon_read_runs    ON ingest_runs FOR SELECT TO anon USING (true);
+
+GRANT USAGE ON SCHEMA public TO anon;
+GRANT SELECT ON sources, source_data, ingest_runs TO anon;
+GRANT SELECT ON v_latest_source_data, v_coverage  TO anon;
