@@ -42,6 +42,9 @@ def _free(r):
 
 
 def _auth(r):
+    url = (r.get("endpoint_url") or "").lower()
+    if "rapidapi" in url:           # RapidAPI marketplace always requires a key
+        return "api_key"
     a = (r.get("auth") or "").lower()
     if not a or "none" in a or "no auth" in a or "no key" in a:
         return "keyless"

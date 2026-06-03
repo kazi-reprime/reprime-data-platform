@@ -10,11 +10,14 @@ from __future__ import annotations
 
 import json
 import ssl
+import time
 import urllib.parse
 import urllib.request
 
 _CTX = ssl.create_default_context()
-UA = {"User-Agent": "RePrime-Ingest/1.0 (data pipeline)"}
+# Descriptive UA with contact — required by SEC EDGAR and good practice elsewhere.
+UA = {"User-Agent": "RePrime-DataPlatform/1.0 (ingest; contact g@floridastatetrust.com)",
+      "Accept": "application/json, text/csv, application/xml;q=0.9, */*;q=0.5"}
 
 
 def detect_family(url: str) -> str:
@@ -35,21 +38,32 @@ def detect_family(url: str) -> str:
 
 
 def build_url(url: str, family: str, limit: int = 25) -> str:
-    sep = "&" if "?" in url else "?"
     if family == "arcgis":
-        base = url
-        if "/query" not in base.lower():
-            base = base.rstrip("/")
-            if "server" in base.lower() and not base.rstrip("/").split("/")[-1].isdigit():
-                base = base + "/0"
-            base = base + "/query"
-        s = "&" if "?" in base else "?"
-        return f"{base}{s}where=1%3D1&outFields=*&resultRecordCount={limit}&f=json"
+        # Strip any existing query; resolve to a layer's /query endpoint.
+        base = url.split("?")[0].rstrip("/")
+        low = base.lower()
+        if not low.endswith("/query"):
+            tail = base.split("/")[-1]
+            if tail.isdigit():                      # .../MapServer/0  -> add /query
+                base = base + "/query"
+            elif low.endswith(("mapserver", "featureserver")):
+                base = base + "/0/query"            # service root -> default layer 0
+            else:
+                base = base + "/0/query"            # best effort (folder roots will 400, reported honestly)
+        return f"{base}?where=1%3D1&outFields=*&resultRecordCount={limit}&f=json"
     if family == "socrata":
-        return f"{url}{sep}$limit={limit}"
+        base = url.split("?")[0]
+        return f"{base}?$limit={limit}"
     if family == "openfema":
-        return f"{url}{sep}$top={limit}"
-    return url
+        # OpenFEMA datasets: drop placeholder/empty $filter, take N records nationally.
+        base = url.split("?")[0]
+        return f"{base}?$top={limit}"
+    if family == "overpass":
+        # Overpass is a POST-with-QL / per-location tool; if the URL already carries
+        # a ?data= query, GET it as-is, otherwise it can't be bulk-ingested here.
+        return url if "data=" in url else url
+    sep = "&" if "?" in url else "?"
+    return url if family in ("fdsn", "fred_csv", "census") else url + ("" if "?" in url else "")
 
 
 def _count_records(payload) -> int:
@@ -66,15 +80,31 @@ def _count_records(payload) -> int:
 
 def fetch(url: str, family: str | None = None, limit: int = 25, timeout: int = 12) -> dict:
     """Returns {status, record_count, content_type, sample, error}."""
+    if not url.lower().startswith(("http://", "https://")):
+        url = "https://" + url.lstrip("/")          # registry sometimes omits scheme
     family = family or detect_family(url)
     req_url = build_url(url, family, limit)
-    try:
-        req = urllib.request.Request(req_url, headers=UA)
-        with urllib.request.urlopen(req, timeout=timeout, context=_CTX) as r:
-            ct = r.headers.get("Content-Type", "")
-            raw = r.read(2_000_000).decode("utf-8", "replace")
-    except Exception as e:  # noqa: BLE001
-        return {"status": "error", "record_count": 0, "error": str(e)[:160], "request_url": req_url}
+    raw = ct = None
+    last_err = None
+    for attempt in range(2):                          # one retry for 429/403/transient
+        try:
+            req = urllib.request.Request(req_url, headers=UA)
+            with urllib.request.urlopen(req, timeout=timeout, context=_CTX) as r:
+                ct = r.headers.get("Content-Type", "")
+                raw = r.read(2_000_000).decode("utf-8", "replace")
+            break
+        except urllib.error.HTTPError as e:
+            last_err = f"HTTP {e.code}"
+            if e.code in (429, 403, 503) and attempt == 0:
+                time.sleep(1.2)
+                continue
+            return {"status": "error", "record_count": 0, "error": last_err, "request_url": req_url}
+        except Exception as e:  # noqa: BLE001
+            last_err = str(e)[:160]
+            if attempt == 0:
+                time.sleep(0.5)
+                continue
+            return {"status": "error", "record_count": 0, "error": last_err, "request_url": req_url}
 
     body = raw.lstrip()
     if family == "fred_csv" or (ct.startswith("text/csv")) or (body[:4] == "DATE"):

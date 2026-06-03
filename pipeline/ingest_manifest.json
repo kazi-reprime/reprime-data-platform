@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-03T18:21:06.222984+00:00",
+  "generated": "2026-06-03T18:30:06.914537+00:00",
   "total_free_sources": 696,
   "by_tier": {
     "bulk": 52,
@@ -10,10 +10,10 @@
   },
   "by_auth": {
     "unknown": 179,
-    "keyless": 444,
-    "api_key": 73
+    "keyless": 431,
+    "api_key": 86
   },
-  "ready_to_ingest_now": 73,
+  "ready_to_ingest_now": 62,
   "sources": [
     {
       "name": "HUD Picture of Subsidized Households — 4.5M+ HUD-assisted units; Section 8, public housing, project-based[^18]",
@@ -247,7 +247,7 @@
       "url": "rapidapi.com/apidojo/api/realty-in-us",
       "type": "UNKNOWN",
       "tier": "live_api",
-      "auth": "keyless"
+      "auth": "api_key"
     },
     {
       "name": "Realtor (s.mahmoud97 / realtor16)",
@@ -256,7 +256,7 @@
       "url": "rapidapi.com/s.mahmoud97/api/realtor16",
       "type": "SCRAPE_TARGET",
       "tier": "scrape",
-      "auth": "keyless"
+      "auth": "api_key"
     },
     {
       "name": "Real Estate USA (com.realtor.api)",
@@ -265,7 +265,7 @@
       "url": "rapidapi.com/com.realtor.api/api/real-estate-usa",
       "type": "UNKNOWN",
       "tier": "live_api",
-      "auth": "keyless"
+      "auth": "api_key"
     },
     {
       "name": "Mashvisor (Airbnb Rates & RE Analysis)",
@@ -274,7 +274,7 @@
       "url": "rapidapi.com/mashvisor-team/api/mashvisor",
       "type": "UNKNOWN",
       "tier": "live_api",
-      "auth": "keyless"
+      "auth": "api_key"
     },
     {
       "name": "Real Estate Valuation Purchase",
@@ -283,7 +283,7 @@
       "url": "rapidapi.com/ehlersanalytics/api/real-estate-valuation-purchase",
       "type": "UNKNOWN",
       "tier": "live_api",
-      "auth": "keyless"
+      "auth": "api_key"
     },
     {
       "name": "APIllow (Zillow-sourced AVM)",
@@ -292,7 +292,7 @@
       "url": "Not on RapidAPI — direct: apillow.co",
       "type": "UNKNOWN",
       "tier": "inspect",
-      "auth": "keyless"
+      "auth": "api_key"
     },
     {
       "name": "IdealSpot GeoData",
@@ -301,7 +301,7 @@
       "url": "rapidapi.com/idealspot-inc/api/idealspot-geodata",
       "type": "UNKNOWN",
       "tier": "live_api",
-      "auth": "keyless"
+      "auth": "api_key"
     },
     {
       "name": "RedLine Zipcode",
@@ -310,7 +310,7 @@
       "url": "rapidapi.com/redline/api/redline-zipcode",
       "type": "UNKNOWN",
       "tier": "live_api",
-      "auth": "keyless"
+      "auth": "api_key"
     },
     {
       "name": "PropStream (direct, not RapidAPI)",
@@ -328,7 +328,7 @@
       "url": "rapidapi.com/theapiguy/api/walk-score",
       "type": "UNKNOWN",
       "tier": "live_api",
-      "auth": "keyless"
+      "auth": "api_key"
     },
     {
       "name": "CrimeScore (YourMapper)",
@@ -337,7 +337,7 @@
       "url": "rapidapi.com/yourmapper/api/crimescore",
       "type": "UNKNOWN",
       "tier": "live_api",
-      "auth": "keyless"
+      "auth": "api_key"
     },
     {
       "name": "Crime Data (jgentes)",
@@ -346,7 +346,7 @@
       "url": "rapidapi.com/jgentes/api/crime-data",
       "type": "UNKNOWN",
       "tier": "live_api",
-      "auth": "keyless"
+      "auth": "api_key"
     },
     {
       "name": "DoorProfit API (direct)",
@@ -364,7 +364,7 @@
       "url": "rapidapi.com/wirefreethought/api/geodb-cities",
       "type": "UNKNOWN",
       "tier": "live_api",
-      "auth": "keyless"
+      "auth": "api_key"
     },
     {
       "name": "Mortgage Payments",
@@ -373,7 +373,7 @@
       "url": "rapidapi.com/shai.sachs/api/mortgage-payments",
       "type": "UNKNOWN",
       "tier": "live_api",
-      "auth": "keyless"
+      "auth": "api_key"
     },
     {
       "name": "Neighborhood Intelligence MCP (Apify)",
