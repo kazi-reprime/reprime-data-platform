@@ -66,6 +66,28 @@ def build_url(url: str, family: str, limit: int = 25) -> str:
     return url if family in ("fdsn", "fred_csv", "census") else url + ("" if "?" in url else "")
 
 
+def total_count(url: str, family: str, timeout: int = 8):
+    """Cheaply ask the source for its TRUE total row count (not just the sample).
+    ArcGIS supports returnCountOnly; Socrata supports select=count(*). Returns int or None."""
+    try:
+        if family == "arcgis":
+            base = url.split("?")[0].rstrip("/")
+            low = base.lower()
+            if not low.endswith("/query"):
+                tail = base.split("/")[-1]
+                base = base + ("/query" if tail.isdigit() else "/0/query")
+            j = _http_json(f"{base}?where=1%3D1&returnCountOnly=true&f=json", timeout=timeout)
+            return j.get("count")
+        if family == "socrata":
+            base = url.split("?")[0]
+            j = _http_json(f"{base}?%24select=count(%2A)", timeout=timeout)  # $select=count(*)
+            if isinstance(j, list) and j:
+                return int(list(j[0].values())[0])
+    except Exception:  # noqa: BLE001
+        return None
+    return None
+
+
 def _count_records(payload) -> int:
     if isinstance(payload, list):
         return len(payload)
@@ -115,9 +137,12 @@ def fetch(url: str, family: str | None = None, limit: int = 25, timeout: int = 1
         try:
             payload = json.loads(raw)
             n = _count_records(payload)
-            sample = payload if isinstance(payload, list) else payload
-            return {"status": "ok" if n else "empty", "record_count": n, "content_type": "json",
-                    "sample": _trim(sample), "request_url": req_url}
+            # for ArcGIS/Socrata, report the TRUE total available (not just the sample size)
+            total = total_count(url, family) if family in ("arcgis", "socrata") else None
+            rc = total if isinstance(total, int) and total >= n else n
+            return {"status": "ok" if rc else "empty", "record_count": rc,
+                    "sample_size": n, "content_type": "json",
+                    "sample": _trim(payload), "request_url": req_url}
         except Exception as e:  # noqa: BLE001
             return {"status": "error", "record_count": 0, "error": f"json parse: {e}", "request_url": req_url}
     low = body[:400].lower()
