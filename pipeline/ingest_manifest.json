@@ -1,0 +1,6283 @@
+{
+  "generated": "2026-06-03T18:21:06.222984+00:00",
+  "total_free_sources": 696,
+  "by_tier": {
+    "bulk": 52,
+    "inspect": 442,
+    "live_api": 146,
+    "scrape": 23,
+    "rss": 33
+  },
+  "by_auth": {
+    "unknown": 179,
+    "keyless": 444,
+    "api_key": 73
+  },
+  "ready_to_ingest_now": 73,
+  "sources": [
+    {
+      "name": "HUD Picture of Subsidized Households — 4.5M+ HUD-assisted units; Section 8, public housing, project-based[^18]",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.huduser.gov/portal/datasets/assthsg.html",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "unknown"
+    },
+    {
+      "name": "LIHTC Database — 54,102 projects, 3.7M units, 1987–2023, geocoded[^27]",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.huduser.gov/lihtc/",
+      "type": "BULK_DOWNLOAD",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "VA REO — VA-acquired homes via vendee financing (listed on hudhomestore.gov and ocwen/vrmco.com servicer)",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://www.hudhomestore.gov",
+      "type": "DATASET_PORTAL",
+      "tier": "bulk",
+      "auth": "unknown"
+    },
+    {
+      "name": "7(a) & 504 FOIA Origination CSVs — complete loan-level data since FY1991, segmented by decade; includes ZIP, NAICS, borrower name, lender, approval amount[^42][^43]",
+      "category": "economic",
+      "provider": "",
+      "url": "https://data.sba.gov/en/dataset/7-a-504-foia",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "USCIS H-1B Employer Data Hub — annual approvals/denials by employer",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.uscis.gov/tools/reports-and-studies/h-1b-employer-data-hub",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "BLS Occupational Employment & Wage Statistics (OEWS)",
+      "category": "economic",
+      "provider": "BLS",
+      "url": "https://api.bls.gov/publicAPI/v2/timeseries/data/",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "Census Quarterly Workforce Indicators (QWI) API",
+      "category": "economic",
+      "provider": "",
+      "url": "https://api.census.gov/data/timeseries/qwi/sa?get=Emp",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "Kansas City Fed Mfg — Master Reference Table Row",
+      "category": "capital_markets",
+      "provider": "St. Louis Fed",
+      "url": "https://api.stlouisfed.org/fred/series/observations?series_id=DRCRELEXFACBS&api_key=YOUR_KEY&sort_order=desc&limit=1&file_type=json",
+      "type": "BULK_DOWNLOAD",
+      "tier": "bulk",
+      "auth": "api_key"
+    },
+    {
+      "name": "BEA Regional Economic Accounts — GDP by County/MSA",
+      "category": "news_sentiment",
+      "provider": "BEA",
+      "url": "https://apps.bea.gov/api/data?UserID=YOUR_KEY&method=GetData&datasetname=RegionalProduct&TableName=MGDP9&LineCode=1&GeoFips=COUNTY&Year=2023&ResultFormat=JSON[^23",
+      "type": "BULK_DOWNLOAD",
+      "tier": "bulk",
+      "auth": "api_key"
+    },
+    {
+      "name": "Census Business Patterns — Establishment Count by NAICS",
+      "category": "economic",
+      "provider": "",
+      "url": "https://api.census.gov/data/2023/cbp?get=NAICS2017",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "HUD-USPS ZIP↔Tract Crosswalk API",
+      "category": "housing_re",
+      "provider": "HUD",
+      "url": "https://www.huduser.gov/hudapi/public/usps?type=3&query=60611&year=2024&quarter=1",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "api_key"
+    },
+    {
+      "name": "Walk Score API — Walkability & Transit",
+      "category": "infrastructure",
+      "provider": "Walk Score",
+      "url": "https://api.walkscore.com/score?format=json&address=1119+8th+Avenue+Seattle+WA+98101&lat=47.6085&lon=-122.3295&transit=1&bike=1&wsapikey=YOUR_KEY",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "OpenStreetMap Overpass API (transit, amenities)",
+      "category": "infrastructure",
+      "provider": "OpenStreetMap",
+      "url": "https://overpass-api.de/api/interpreter?data=[out:json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "EH-01 · OpenFEMA — NFIP Flood Policies",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.fema.gov/api/open/v2/FimaNfipPolicies?$filter=countyCode%20eq%20",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "EH-02 · OpenFEMA — NFIP Claims",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://www.fema.gov/api/open/v2/FimaNfipClaims?$filter=state%20eq%20",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "EH-04 · FEMA National Flood Hazard Layer (NFHL) via ArcGIS REST",
+      "category": "hazard_environmental",
+      "provider": "FEMA",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-77.0369,38.9072&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=FLD_ZONE,ZONE_SUBTY,STATIC_BFE&returnGeometry=false&f=geojson",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "EH-05 · USGS Earthquake Hazards — FDSN Event API",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minmagnitude=3.0&starttime=2015-01-01&endtime=2025-01-01&minlatitude=36&maxlatitude=42&minlongitude=-91&maxlongitude=-87",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "EH-14 · NREL PVWatts API — Solar Energy Production",
+      "category": "infrastructure",
+      "provider": "NREL/NLR",
+      "url": "https://developer.nlr.gov/api/pvwatts/v8.json?api_key=YOUR_KEY&address=233+S+Wacker+Chicago+IL&system_capacity=100&azimuth=180&tilt=20&array_type=1&module_type=0&losses=14",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "NREL OpenEI — Utility Rates by ZIP (lookup utility from ZIP first)",
+      "category": "demographic",
+      "provider": "NREL/NLR",
+      "url": "https://developer.nlr.gov/api/utility_rates/v3.json?api_key=YOUR_KEY&lat=41.8781&lon=-87.6298",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "EU-01 · EIA API v2 — Electricity Retail Sales & Prices",
+      "category": "demographic",
+      "provider": "EIA",
+      "url": "https://api.eia.gov/v2/electricity/retail-sales/data/?api_key=YOUR_KEY&frequency=monthly&data[0]=price&data[1]=revenue&data[2]=sales&facets[stateid][]=CA&facets[sectorid][]=COM&start=2024-01&end=2026-04",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "EU-02 · EIA API v2 — Natural Gas Citygate Prices",
+      "category": "economic",
+      "provider": "EIA",
+      "url": "https://api.eia.gov/v2/natural-gas/pri/sum/data/?api_key=YOUR_KEY&frequency=monthly&data[0]=value&facets[duoarea][]=SAZ&facets[process][]=PCS&start=2024-01",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "EU-05 · EIA API v2 — Electric Power Hourly Demand (RTO)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://api.eia.gov/v2/electricity/rto/fuel-type-data/data/?api_key=YOUR_KEY&frequency=hourly&data=value&facets[respondent",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "EU-07 · NREL National Solar Radiation Database (NSRDB) API",
+      "category": "energy",
+      "provider": "NREL/NLR",
+      "url": "https://developer.nlr.gov/api/solar/solar_resource/v1.json?api_key=YOUR_KEY&lat=41.878&lon=-87.630",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "ZL-04 · National Zoning Atlas — API Access",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.zoningatlas.org",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "IS-15 · Israeli Planning Administration — TABA National Outline Plans",
+      "category": "construction_pipeline",
+      "provider": "data.gov.il",
+      "url": "https://data.gov.il/api/3/action/package_search?q=building+permits&fq=organization:piba&rows=20&start=0",
+      "type": "DATASET_PORTAL",
+      "tier": "bulk",
+      "auth": "api_key"
+    },
+    {
+      "name": "Realty in US (Api Dojo)",
+      "category": "news_sentiment",
+      "provider": "",
+      "url": "rapidapi.com/apidojo/api/realty-in-us",
+      "type": "UNKNOWN",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Realtor (s.mahmoud97 / realtor16)",
+      "category": "demographic",
+      "provider": "",
+      "url": "rapidapi.com/s.mahmoud97/api/realtor16",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "keyless"
+    },
+    {
+      "name": "Real Estate USA (com.realtor.api)",
+      "category": "other",
+      "provider": "",
+      "url": "rapidapi.com/com.realtor.api/api/real-estate-usa",
+      "type": "UNKNOWN",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Mashvisor (Airbnb Rates & RE Analysis)",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "rapidapi.com/mashvisor-team/api/mashvisor",
+      "type": "UNKNOWN",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Real Estate Valuation Purchase",
+      "category": "demographic",
+      "provider": "",
+      "url": "rapidapi.com/ehlersanalytics/api/real-estate-valuation-purchase",
+      "type": "UNKNOWN",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "APIllow (Zillow-sourced AVM)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "Not on RapidAPI — direct: apillow.co",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "IdealSpot GeoData",
+      "category": "economic",
+      "provider": "",
+      "url": "rapidapi.com/idealspot-inc/api/idealspot-geodata",
+      "type": "UNKNOWN",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "RedLine Zipcode",
+      "category": "housing_re",
+      "provider": "",
+      "url": "rapidapi.com/redline/api/redline-zipcode",
+      "type": "UNKNOWN",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "PropStream (direct, not RapidAPI)",
+      "category": "demographic",
+      "provider": "",
+      "url": "propstream.com",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Walk Score",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "rapidapi.com/theapiguy/api/walk-score",
+      "type": "UNKNOWN",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "CrimeScore (YourMapper)",
+      "category": "other",
+      "provider": "",
+      "url": "rapidapi.com/yourmapper/api/crimescore",
+      "type": "UNKNOWN",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Crime Data (jgentes)",
+      "category": "other",
+      "provider": "",
+      "url": "rapidapi.com/jgentes/api/crime-data",
+      "type": "UNKNOWN",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "DoorProfit API (direct)",
+      "category": "other",
+      "provider": "",
+      "url": "api.doorprofit.com",
+      "type": "UNKNOWN",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "GeoDB Cities (Michael Mogley)",
+      "category": "demographic",
+      "provider": "",
+      "url": "rapidapi.com/wirefreethought/api/geodb-cities",
+      "type": "UNKNOWN",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Mortgage Payments",
+      "category": "demographic",
+      "provider": "",
+      "url": "rapidapi.com/shai.sachs/api/mortgage-payments",
+      "type": "UNKNOWN",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Neighborhood Intelligence MCP (Apify)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "apify.com/andrew_avina/neighborhood-intelligence-mcp",
+      "type": "MCP_CONNECTOR",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Mortgage Rate API (API Ninjas)",
+      "category": "demographic",
+      "provider": "",
+      "url": "api-ninjas.com/api/mortgagerate",
+      "type": "UNKNOWN",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Alpha Vantage (direct)",
+      "category": "demographic",
+      "provider": "",
+      "url": "alphavantage.co",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NY Fed SOFR API (direct, free)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.newyorkfed.org/markets/reference-rates/sofr",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Polygon.io (direct)",
+      "category": "economic",
+      "provider": "",
+      "url": "polygon.io",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "US Treasury Yield API (direct via FRED)",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "fred.stlouisfed.org/docs/api/fred",
+      "type": "UNKNOWN",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "CurrencyFreaks / Fixer.io (direct)",
+      "category": "israeli",
+      "provider": "",
+      "url": "currencyfreaks.com",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "RentCast (pre-foreclosure limited)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "rentcast.io/api",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "ATTOM Data",
+      "category": "zoning_parcel",
+      "provider": "",
+      "url": "api.developer.attomdata.com",
+      "type": "UNKNOWN",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Realie",
+      "category": "demographic",
+      "provider": "",
+      "url": "realie.ai/pricing",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "US Census Bureau API (ACS/Decennial)",
+      "category": "demographic",
+      "provider": "",
+      "url": "census.gov/data/developers",
+      "type": "UNKNOWN",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "FEMA NFHL (National Flood Hazard Layer)",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer",
+      "type": "UNKNOWN",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "HUD Opportunity Zones Layer",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.hud.gov/opportunity-zones",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "US Census ACS API",
+      "category": "demographic",
+      "provider": "",
+      "url": "census.gov/data",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "FEMA NFHL",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "hazards.fema.gov",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NY Fed SOFR API",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "newyorkfed.org",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "FRED API",
+      "category": "housing_re",
+      "provider": "",
+      "url": "fred.stlouisfed.org",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Office REIT Quarterly Supplementals (Boston Properties BXP, Vornado VNO, SL Green SLG, Kilroy KRC, Cousins CUZ, Highwoods HIW, Brandywine BDN, Piedmont PDM)",
+      "category": "capital_markets",
+      "provider": "SEC",
+      "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=8-K&dateb=&owner=include&count=40&search_text=&SIC=6552&output=atom",
+      "type": "BULK_DOWNLOAD",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "SEC EDGAR — Form 20-F (Annual Reports, Foreign Private Issuers)",
+      "category": "capital_markets",
+      "provider": "SEC",
+      "url": "https://efts.sec.gov/LATEST/search-index?q=%22CMBS%22+%22commercial+real+estate%22&dateRange=custom&startdt=2024-01-01&enddt=2026-12-31&forms=10-K,10-Q,8-K&hits.hits._source=period_of_report,entity_name,file_date,form_type,biz_location",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "unknown"
+    },
+    {
+      "name": "Bitcoin and Total Crypto Market Cap",
+      "category": "macro_indicator",
+      "provider": "CoinGecko",
+      "url": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "BEA — Foreign Direct Investment in the United States (FDIUS)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.bea.gov/international/di1fdiop",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "IMF — Coordinated Direct Investment Survey (CDIS) / Direct Investment Positions by Counterpart Economy (DIP)",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://data.imf.org/en/datasets/IMF.STA:DIP",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "UNCTAD — FDI Statistics by Country",
+      "category": "israeli",
+      "provider": "",
+      "url": "https://unctadstat.unctad.org/datacentre/dataviewer/US.FDIFlowsStock",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "OECD — International Direct Investment Statistics",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.oecd.org/en/data/indicators/fdi-flows.html",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "SEC EDGAR — Form 13F (Institutional Holdings)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.investor.gov/introduction-investing/investing-basics/glossary/form-13f-reports-filed-institutional-investment",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "SEC EDGAR — Form ADV (Investment Adviser Registration)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://adviserinfo.sec.gov",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "SEC EDGAR — Form PF (Private Fund Reporting)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.sec.gov/search-filings",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "BEA — BE-13 Survey (New Foreign Direct Investment)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.bea.gov/surveys/be13",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "CFIUS Annual Report to Congress",
+      "category": "israeli",
+      "provider": "",
+      "url": "https://home.treasury.gov/policy-issues/international/the-committee-on-foreign-investment-in-the-united-states-cfius",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "USDA AFIDA — Agricultural Foreign Investment Disclosure Act Reports",
+      "category": "energy",
+      "provider": "",
+      "url": "https://www.fsa.usda.gov/programs-and-services/farm-loan-programs/foreign-investment/index",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "ISA MAGNA System — Israeli Public Company Filings",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://magna.isa.gov.il",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Tel Aviv Stock Exchange (TASE) — Company Disclosures and Indices",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.tase.co.il/en",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Israeli Bond Issuances on TASE — US Real Estate Companies Raising in Israel",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.tase.co.il/en/market-data/bonds",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "LoopNet (CoStar) — Free Tier",
+      "category": "infrastructure",
+      "provider": "CoStar Group",
+      "url": "https://www.loopnet.com/",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "keyless"
+    },
+    {
+      "name": "Crexi — Free Tier",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.crexi.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "County Assessor / Recorder Public Records (Free)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://acris.nyc.gov",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "ProPublica Nonprofit Explorer — Form 990 Data",
+      "category": "israeli",
+      "provider": "",
+      "url": "https://projects.propublica.org/nonprofits",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Globes English — Israeli Business News",
+      "category": "news_sentiment",
+      "provider": "",
+      "url": "https://en.globes.co.il",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "JLL Global Investment Report (Annual, Free PDF)",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://www.jll.com/en-us/insights",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NAR International Transactions Report (Annual, Free)",
+      "category": "israeli",
+      "provider": "",
+      "url": "https://www.nar.realtor/research-and-statistics/research-reports/international-transactions-in-u-s-residential-real-estate",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "FinCEN Geographic Targeting Orders (GTOs)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.fincen.gov/news/news-releases/fincen-renews-residential-real-estate-geographic-targeting-orders",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Colliers Cap Rate Report / Market Reports",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.colliers.com/en-us/research",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Trepp Blog — Monthly CMBS Delinquency",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://www.trepp.com/trepptalk",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "CRED iQ Monthly CMBS Distress Reports",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://cred-iq.com/blog/",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "Fitch Ratings CMBS Press Releases",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://www.fitchratings.com/structured-finance/cmbs",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Zillow Research Data (ZHVI and ZORI)",
+      "category": "housing_re",
+      "provider": "Zillow",
+      "url": "https://www.zillow.com/research/data/",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "unknown"
+    },
+    {
+      "name": "RealPage — Apartment Demand & Supply",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.realpage.com/analytics/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "CBRE Hotels Research",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://www.cbre.com/insights",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "ACS Housing Tenure (B25003)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://api.census.gov/data/2023/acs/acs1?get=NAME",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "Census ACS 5-Year API — Exact Table IDs",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://api.census.gov/data/2024/acs/acs5?get=NAME",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "Census Population Estimates Program (PEP) API",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://api.census.gov/data/2023/pep/charv?get=POP",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "Census Decennial 2020 — DHC API",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://api.census.gov/data/2020/dec/dhc?get=NAME",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "Census API — Building Permits Survey (BPS) Monthly National",
+      "category": "demographic",
+      "provider": "Census",
+      "url": "https://api.census.gov/data/timeseries/eits/bps?get=cell_value,time_slot_name,category_code&for=us:*&time=from+2023-01&key=YOUR_KEY",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "Census Business Formation Statistics (BFS) API",
+      "category": "economic",
+      "provider": "",
+      "url": "https://api.census.gov/data/timeseries/bds?key=YOUR_KEY",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "Census Current Population Survey (CPS) via IPUMS-CPS",
+      "category": "economic",
+      "provider": "",
+      "url": "https://cps.ipums.org/cps/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "IRS SOI Migration Data — County-to-County",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.irs.gov/statistics/soi-tax-stats-migration-data",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "IRS County Business Patterns (via Census CBP)",
+      "category": "economic",
+      "provider": "",
+      "url": "See CBP above",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "BLS QCEW — Quarterly Census of Employment & Wages",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.bls.gov/cew/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "api_key"
+    },
+    {
+      "name": "BLS CES — Current Employment Statistics (Metro)",
+      "category": "economic",
+      "provider": "",
+      "url": "BLS JSON API: series format SMU{STATE_FIPS}{AREA_FIPS}{NAICS_SUPER}01 Example: NYC private payroll: SMU3635600000000001",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "BLS OEWS — Occupational Employment & Wage Statistics",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.bls.gov/oes/tables.htm",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "HUD USPS Address Vacancy Data",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.huduser.gov/portal/datasets/usps.html[^31",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "unknown"
+    },
+    {
+      "name": "U-Haul Growth Index",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.uhaul.com/About/Migration/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "United Van Lines / Atlas / North American Movers Annual Study",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.unitedvanlines.com/moving-tips/infographics/national-movers-study",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "MyMove Annual Moving Report",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.mymove.com/moving/statistics/moving-statistics/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Zillow Research — ZHVI & ZORI (ZIP-level)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.zillow.com/research/data/[^35",
+      "type": "BULK_DOWNLOAD",
+      "tier": "bulk",
+      "auth": "unknown"
+    },
+    {
+      "name": "Realtor.com Research Data Library",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.realtor.com/research/data/[^39",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "Apartment List Renter Migration Report",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.apartmentlist.com/research/apartment-list-renter-migration-report-2026[^41",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Indeed Hiring Lab API",
+      "category": "economic",
+      "provider": "",
+      "url": "https://apis.indeed.com/graphql",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "api_key"
+    },
+    {
+      "name": "LinkedIn Workforce Report (Monthly PDF)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://economicgraph.linkedin.com/resources/",
+      "type": "BULK_DOWNLOAD",
+      "tier": "bulk",
+      "auth": "unknown"
+    },
+    {
+      "name": "Glassdoor Research (Local Pay)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.glassdoor.com/Salaries/",
+      "type": "BULK_DOWNLOAD",
+      "tier": "bulk",
+      "auth": "unknown"
+    },
+    {
+      "name": "NY Fed Household Debt & Credit Report",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.newyorkfed.org/microeconomics/hhdc",
+      "type": "DATASET_PORTAL",
+      "tier": "bulk",
+      "auth": "unknown"
+    },
+    {
+      "name": "Federal Reserve Survey of Consumer Finances (SCF)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.federalreserve.gov/econres/scfindex.htm",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "HUD CHAS Data (Comprehensive Housing Affordability Strategy)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.huduser.gov/portal/datasets/cp.html",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "api_key"
+    },
+    {
+      "name": "HUD AHS — American Housing Survey",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.census.gov/programs-surveys/ahs.html",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "api_key"
+    },
+    {
+      "name": "Eviction Lab — Princeton University",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://evictionlab.org",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Opportunity Insights (Raj Chetty) Data Downloads",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://opportunityinsights.org/data/[^56",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "Brookings Metro Monitor",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.brookings.edu/articles/metro-monitor-2026/[^58",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Harvard JCHS State of the Nation's Housing",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.jchs.harvard.edu/state-nations-housing-2025[^61",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "SafeGraph (via Dewey Data — Academic)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.deweydata.io/data-partners/safegraph[^63",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Advan Research (via Dewey Data — Academic)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.deweydata.io/data-partners/advan[^65",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Placer.ai",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.placer.ai[^67",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "State DOE School Enrollment",
+      "category": "economic",
+      "provider": "",
+      "url": "https://nces.ed.gov/ccd/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Voter Registration Data",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://dos.fl.gov/elections/data-statistics/voter-registration-statistics/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Census Bureau (all APIs)",
+      "category": "demographic",
+      "provider": "Census",
+      "url": "https://api.census.gov/data/key_signup.html",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "BEA",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.bea.gov/API/signup/index.cfm",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "FRED (St. Louis Fed)",
+      "category": "macro_indicator",
+      "provider": "",
+      "url": "https://fredaccount.stlouisfed.org/apikeys",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "BLS JSON API",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.bls.gov/developers/home.htm",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "HUD CHAS API",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.huduser.gov/portal/dataset/chas-api.html",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "Opportunity Insights",
+      "category": "demographic",
+      "provider": "",
+      "url": "Direct download at opportunityinsights.org/data/",
+      "type": "UNKNOWN",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "CourtListener RECAP API v4 (Free Law Project)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.courtlistener.com/api/rest/v4/dockets/?courtjurisdiction=FBK&nature_of_suit=11&order_by=-date_filed",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "PACER Case Locator (PCL) API",
+      "category": "economic",
+      "provider": "",
+      "url": "https://pcl.uscourts.gov/pcl/pages/api/search.jsf",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "CourtListener RECAP Search Alerts",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.courtlistener.com/alerts/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "UCLA-LoPucki Bankruptcy Research Database (BRD)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://lopucki.law.ufl.edu/spreadsheet.php",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "BankruptcyData.com",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.bankruptcydata.com",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "ABI (American Bankruptcy Institute) Free Headlines",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.abi.org/feed",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "Epiq AACER Monthly Press Releases",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.epiqglobal.com/en-us/resource-center/news",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "KBRA CMBS Trend Watch (Monthly)",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://www.kbra.com/publications/",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "unknown"
+    },
+    {
+      "name": "S&P Global Ratings Press Release RSS",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.spglobal.com/ratings/en/research-insights/articles/rss",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "Fitch Ratings Research RSS",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://www.fitchratings.com/search/?q=CMBS+REIT&type=research",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "KBRA Press Release RSS",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.kbra.com/feed/publications/rss",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "Retail Dive RSS",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.retaildive.com/feeds/news/",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "Chain Store Age RSS",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://chainstoreage.com/rss.xml",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "Coresight Research US Store Closure Tracker",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://coresight.com/tag/weekly-us-store-openings-and-closures-tracker/",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "unknown"
+    },
+    {
+      "name": "WARN Act — California (EDD)",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://edd.ca.gov/en/jobs_and_training/layoff_services_warn",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "keyless"
+    },
+    {
+      "name": "WARN Act — New York (NYSDOL)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://dol.ny.gov/warn-notices",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "WARN Act — Texas (TWC)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.twc.texas.gov/data-reports/warn-notice",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "WARN Act — Florida (DEO)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://floridajobs.org/office-directory/division-of-workforce-services/workforce-programs/reemployment-and-emergency-assistance-coordination-team-react/warn-notices",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "WARN Act — Illinois (DCEO)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://dceo.illinois.gov/workforcedevelopment/warn.html",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "WARN Act — Pennsylvania (DLI)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.pa.gov/en/agencies/dli/programs-services/workforce-development-home/warn-requirements/warn-notices.html",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "WARN Act — Ohio / Georgia / NC / MI / NJ / VA / WA / AZ / MA",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "Ohio: jfs.ohio.gov; GA: tcsg.edu/warn-public-view[^31]; NC: commerce.nc.gov/data-tools-reports/labor-market-data-tools/workforce-warn-reports[^31]; MA: mass.gov/info-details/worker-adjustment-and-retraining-notification-act-warn-layoff-and-closure-updates[^34]",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "keyless"
+    },
+    {
+      "name": "SEC EDGAR ABS-EE Asset-Level CMBS Data",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://data.sec.gov/submissions/CIK##########.json",
+      "type": "BULK_DOWNLOAD",
+      "tier": "bulk",
+      "auth": "unknown"
+    },
+    {
+      "name": "EDGAR XBRL Frames API (REIT NOI/Tenant Data)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://data.sec.gov/api/xbrl/frames/us-gaap/RevenueFromContractWithCustomerExcludingAssessedTax/USD/CY2024Q3.json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "FDIC BankFind Suite API",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://banks.data.fdic.gov/api/financials?filters=REPDTE%3A20241231%20AND%20CREACR%3A[0.25+TO+*",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "keyless"
+    },
+    {
+      "name": "FFIEC CDR Bulk Call Report Download",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://cdr.ffiec.gov/public/PWS/DownloadBulkData.aspx",
+      "type": "BULK_DOWNLOAD",
+      "tier": "bulk",
+      "auth": "unknown"
+    },
+    {
+      "name": "Federal Reserve H.8 / SLOOS (via FRED)",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://api.stlouisfed.org/fred/release/series?release_id=22&api_key=KEY&file_type=json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "NCUA Credit Union CRE Call Report Data",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://ncua.gov/analysis/credit-union-corporate-call-report-data",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "OCC Semiannual Risk Perspective",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://occ.gov/publications-and-resources/publications/semiannual-risk-perspective/index-semiannual-risk-perspective.html",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "GSA IOLP Dataset (Data.gov)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://catalog.data.gov/dataset/inventory-of-owned-and-leased-properties-iolp",
+      "type": "DATASET_PORTAL",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "GSA Building Utilization Data (2026 Release)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.gsa.gov/tools-overview/buildings-and-real-estate-tools/inventory-of-gsa-owned-and-leased-properties[^58",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Placer.ai Free City/Retail Reports",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.placer.ai/anchor/articles/",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "Advan Research (formerly SafeGraph Patterns)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://advanresearch.com/industry/cre[^61",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "SafeGraph POI Core (via Dewey academic)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.safegraph.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "EDGAR XBRL REIT 10-Q/10-K",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://data.sec.gov/api/xbrl/companyconcept/CIK0000894871/us-gaap/SameStoreNetOperatingIncomeLoss.json",
+      "type": "BULK_DOWNLOAD",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "CMBS Issuer Free Investor Reports",
+      "category": "housing_re",
+      "provider": "",
+      "url": "Varies by issuer. Example: DBRS Morningstar commentary at dbrsmorningstar.com/research; Kroll at kbra.com/publications",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Law360 Bankruptcy RSS",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.law360.com/bankruptcy/rss",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "Reorg Research Free Snippets",
+      "category": "economic",
+      "provider": "",
+      "url": "https://reorg.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Debtwire Free Headlines",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.debtwire.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "FDIC Bank Failure List API",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://banks.data.fdic.gov/api/failures?fields=NAME",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Census Building Permits Survey — New Construction as Future Supply",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.census.gov/permits",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "api_key"
+    },
+    {
+      "name": "Bank CRE Concentration Data",
+      "category": "capital_markets",
+      "provider": "BankRegData",
+      "url": "https://www.bankregdata.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "US Treasury TIC System — Monthly Press + Holdings",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://home.treasury.gov/data/treasury-international-capital-tic-system",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "TIC SHL Annual Survey — Foreign Portfolio Holdings of US Securities",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://home.treasury.gov/data/treasury-international-capital-tic-system/us-liabilities-to-foreigners-from-holdings-of-us-securi…",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "BEA — International Investment Position (IIP)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://apps.bea.gov/iTable/bp_download_modern.cfm?pid=5",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "api_key"
+    },
+    {
+      "name": "BEA Direct Investment by Country and Industry",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.bea.gov/data/intl-trade-investment/direct-investment-country-and-industry[^9",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "OFAC SDN + Consolidated Sanctions List",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.treasury.gov/ofac/downloads/sdn.xml",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "IMF Coordinated Portfolio Investment Survey (CPIS/PIP)",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://data.imf.org/en/datasets/IMF.STA:PIP[^25",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "UNCTAD World Investment Report + FDI Statistics",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://unctad.org/topic/investment/world-investment-report",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NBIM / Norway GPFG — All Investments Database",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.nbim.no/en/investments/all-investments/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "ADIA Annual Review",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://www.adia.ae/en/publications",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "GIC Singapore — Annual Report",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.gic.com.sg/our-portfolio/gic-reports/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Temasek Annual Review",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://www.temasek.com.sg/en/news-and-resources/annual-review",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "SWFI — Free News + Sovereign Wealth Transactions",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.swfinstitute.org",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Qatar Investment Authority (QIA)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.qia.qa/en/portfolio/Pages/Real-Estate.aspx[^47",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "keyless"
+    },
+    {
+      "name": "China Investment Corporation (CIC) Annual Report",
+      "category": "housing_re",
+      "provider": "",
+      "url": "http://www.china-inv.cn/en/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Saudi PIF — Portfolio Transparency",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://pif.gov.sa",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "keyless"
+    },
+    {
+      "name": "Korea Investment Corporation (KIC)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.kic.kr/en/investment/portfolio/management-status[^54",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Japan GPIF",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.gpif.go.jp/en/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "CalPERS — Investment Committee Board Agendas",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.calpers.ca.gov/about/board/board-meetings",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "CalSTRS — Real Estate Program Reports",
+      "category": "demographic",
+      "provider": "",
+      "url": "http://www.calstrs.com/reports[^68",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "New York Common Retirement Fund (NYSCRF)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.osc.ny.gov/common-retirement-fund/resources/financial-reporting-and-asset-allocation[^70",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NYC Pension Funds (NYCERS, TRS, BERS, Police, Fire)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://comptroller.nyc.gov/reports/new-york-city-pension-funds-returns-for-fiscal-year-2025/[^73",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Florida SBA (FRS Pension)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.sbafla.com/reporting/annual-investment-reports/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Washington State Investment Board (WSIB)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.sib.wa.gov/docs/reports/annual/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Oregon PERS (OPERF)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.oregon.gov/ost/pages/performancereports.aspx",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "CPP Investments (CPPIB)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.cppinvestments.com/newsroom/[^83",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "CDPQ / La Caisse (formerly Ivanhoé Cambridge)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.lacaisse.com/en/news/pressreleases/[^88",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "OTPP / Ontario Teachers' (Cadillac Fairview)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.otpp.com/en-ca/about-us/news-and-insights/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "OMERS / Oxford Properties",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.oxfordproperties.com/news/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "PSP Investments",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.investpsp.com/en/investment-performance/reports/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "BCI / QuadReal",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.bci.ca/about/reports/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "AustralianSuper + IFM Investors",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://www.australiansuper.com/-/media/australian-super/files/about-us/annual-reports/2025-annual-report.pdf[^101",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "APG Asset Management (Netherlands)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://apg.nl/en/about-apg/annual-report-2024/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "MSCI Real Capital Analytics (RCA) — US Capital Trends Report",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.msci.com/data-and-analytics/real-estate/us-rca-capital-trends-report[^108",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "CBRE — Global Cross-Border Capital Flows + US Capital Markets",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.cbre.com/insights/reports/h2-2024-global-real-estate-capital-flows[^113",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "JLL — Global Capital Flows Report",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.us.jll.com/en/trends-and-insights/research",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Cushman & Wakefield — Cross-Border Capital",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.cushmanwakefield.com/en/insights/global-outlook",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "AFIRE — Annual International Investor Survey",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.afire.org/survey/h22025report/[^120",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "PERE (Private Equity Real Estate News)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.perenews.com/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "IPE Real Assets",
+      "category": "economic",
+      "provider": "",
+      "url": "https://realassets.ipe.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "INREV / ANREV",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.inrev.org/library",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Preqin — Free Press + Global Report Summary",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.preqin.com/global-report",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "NCREIF NPI (National Property Index)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://user.ncreif.org/data-products/property/[^143",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "IIF Capital Flows Tracker",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.iif.com/Products/Capital-Flows-Tracker[^145",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Bisnow / Commercial Observer — International Capital Coverage",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.bisnow.com/national/news/international",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "CMS Provider Data Catalog — Hospital General Information",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://data.cms.gov/provider-data/dataset/xubh-q36u",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "CMS Physician & Clinician National Downloadable File",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://data.cms.gov/provider-data/dataset/mj5m-pzi6",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "CMS Nursing Home Compare (Care Compare)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://data.cms.gov/provider-data/dataset/4pq5-n9py",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "CMS Open Payments Database",
+      "category": "economic",
+      "provider": "",
+      "url": "https://openpaymentsdata.cms.gov",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "HHS Provider Relief Fund (PRF) Disclosures",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://data.cdc.gov/browse?category=HPOG&tags=Provider+Relief",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "CMS Medicare Cost Reports — Hospitals (HCRIS)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/Cost-Reports",
+      "type": "BULK_DOWNLOAD",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "AHA Annual Survey (public summary)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.aha.org/statistics/fast-facts-us-hospitals",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "MedPAC Reports (Congressional Advisory)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.medpac.gov/reports/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NCSL Certificate of Need (CON) State Tracker",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.ncsl.org/health/certificate-of-need-state-laws",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "Becker's Hospital Review RSS",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://www.beckershospitalreview.com/rss-feeds.html",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "Modern Healthcare RSS",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.modernhealthcare.com/rss",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "Dodge Construction Network (free press releases)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.construction.com/news",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NIC MAP Free Dashboard (NIC Talks / Insights)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.nic.org/nic-map/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NIC Lending Trends Report",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.nic.org/research-reports/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "AHCA / NCAL State Data",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.ahcancal.org/Data-and-Research/Pages/default.aspx",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "CMS Medicare Cost Reports — SNF (HCRIS SNF)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/Cost-Reports/Skilled-Nursing-Facility-Cost-Report-RNCS",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "ASHA Annual Report (American Seniors Housing Association)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.whereyoulivematters.org/resources/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Welltower (WELL) 10-Q XBRL",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000766704.json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Ventas (VTR) R&I Segment 10-Q",
+      "category": "economic",
+      "provider": "",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000740260.json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Brookdale Senior Living (BKD) 10-K",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001332349.json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Sonida Senior Living (SNDA) 10-Q",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001043000.json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "State Medicaid Waiver Enrollment (per state DHS)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://data.chhs.ca.gov/dataset",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "NIH RePORTER API v2",
+      "category": "economic",
+      "provider": "",
+      "url": "https://api.reporter.nih.gov/v2/projects/search",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "NIH ExPORTER Flat Files",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://exporter.nih.gov/ExPORTER_Catalog.aspx",
+      "type": "BULK_DOWNLOAD",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "NSF Award Search API",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.research.gov/awardapi-service/v1/awards.json?keyword=life+sciences&dateStart=01/01/2024&dateEnd=12/31/2025&printFields=id",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "ClinicalTrials.gov API v2",
+      "category": "economic",
+      "provider": "",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=cancer&filter.geo=distance(42.36",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "openFDA Drug Approvals API",
+      "category": "economic",
+      "provider": "",
+      "url": "https://api.fda.gov/drug/drugsfda.json?search=application_type:NDA+action_date:[20240101+TO+20251231",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "BIO State Bioscience Reports",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.bio.org/advocacy/research-and-reports",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "CBRE US Life Sciences Lab Market Report",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.cbre.com/insights/reports/us-life-sciences-real-estate-market-report",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "JLL Life Sciences Outlook (Quarterly + Annual Cluster)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.us.jll.com/en/trends-and-insights/research/life-sciences",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Alexandria Real Estate (ARE) 10-Q XBRL",
+      "category": "economic",
+      "provider": "",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001036020.json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "PhRMA Annual Report",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.phrma.org/resource-center/topics/biopharmaceuticals/2024-phrma-annual-report",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Genetic Engineering & Biotechnology News (GEN) Top Clusters",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.genengnews.com/life-sciences-industry-directory/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Battelle/TEConomy Bioscience Reports",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.battelle.org/insights/publications/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "California DCC License Portal",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://search.cannabis.ca.gov/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Colorado MED License Search",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://sbg.colorado.gov/med-licensed-facilities",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Washington WSLCB Licensees",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://lcb.wa.gov/licensing/licensed-businesses",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Illinois IDFPR Cannabis Licenses",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://idfpr.illinois.gov/LicenseLookup/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Michigan CRA License Search",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://aca.apps.lara.state.mi.us/AccExt/GeneralInformation/Details/MARIHUANA",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Massachusetts CCC License Data",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://masscannabiscontrol.com/open-data/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "New York OCM License Registry",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://cannabis.ny.gov/dispensary-location-verification",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "New Jersey CRC License Search",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://data.nj.gov/browse?q=cannabis+license",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Nevada CCB License Data",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://ccb.nv.gov/licensees/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Florida OMMU Medical Cannabis",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.knowthefactsmmj.com/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "IIPR (Innovative Industrial Properties) 10-Q",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001677576.json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Marijuana Business Daily (MJBizDaily)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://mjbizdaily.com/",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "Green Market Report",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://greenmarketreport.com/",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "SSA (Self Storage Association) Public Data",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.selfstorage.org/SSA/SSA/Research/Industry-Statistics.aspx",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Public Storage (PSA) 10-Q XBRL",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001393311.json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Extra Space (EXR) 10-Q XBRL",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001289490.json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "MHI (Manufactured Housing Institute) Data",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.manufacturedhousing.org/research-data/industry-data/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Sun Communities (SUI) 10-Q XBRL",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000912093.json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "GCCA Cold Chain Annual Report",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.gcca.org/research-resources/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Americold (COLD) 10-Q XBRL",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001455863.json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Realty Income (O) 10-Q XBRL",
+      "category": "economic",
+      "provider": "",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000726854.json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "STAG Industrial 10-Q XBRL",
+      "category": "economic",
+      "provider": "",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001538716.json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Cushman & Wakefield Industrial Snapshot",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.cushmanwakefield.com/en/united-states/insights",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "NAIC SERFF Filing Access (SFA)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://filingaccess.serff.com/sfa/home/",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "keyless"
+    },
+    {
+      "name": "NAIC Annual P&C Market Share Report",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://content.naic.org/sites/default/files/research-actuarial-property-casualty-market-share.pdf",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "NAIC Insurance Industry Snapshots & Analysis Reports",
+      "category": "economic",
+      "provider": "",
+      "url": "https://content.naic.org/industry/insurance-industry-snapshots-analysis-reports",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "keyless"
+    },
+    {
+      "name": "NAIC MCAS Data Dashboard",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://content.naic.org/mcas_data_dashboard.htm",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NAIC Financial Data Repository (FDR)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://content.naic.org/insurance-topics/financial-data-repository",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "NAIC IDRR (Insurance Dept. Resources Report)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://content.naic.org/sites/default/files/publication-sta-bb-volume-one.pdf",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "Florida OIR IRFS Rate Filing Search",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://irfssearch.floir.gov",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Florida OIR iPortal",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://floir.gov/iportal",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Florida Citizens Policy Count & Depopulation",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.citizensfla.com/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "California CDI Rate Filing Search (WARFF)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.insurance.ca.gov/0250-insurers/0800-rate-filings/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "California CDI Market Share Reports",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.insurance.ca.gov/01-consumers/120-company/04-mrktshare/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "California FAIR Plan Key Statistics & Data",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.cfpnet.com/key-statistics-data/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "California CDI Non-Renewal Bulletins & Moratorium Tracker",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://www.insurance.ca.gov/01-consumers/140-catastrophes/MandatoryOneYearMoratoriumNonRenewals.cfm",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Louisiana LDI Rate Filing Search",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.ldi.la.gov/online-services/rate-filing-search",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Louisiana LDI Market Share Reports",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://ldi.la.gov",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Texas TDI SERFF / Rate Filing Search",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.tdi.texas.gov/company/serff/index.html",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "TWIA Exposure Reports & Annual Reports",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://www.twia.org/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Texas FAIR Plan (TFPA) Rate Filings",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.texasfairplan.org/news-and-announcements/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NC NCDOI + NCIUA/Beach Plan",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://www.ncdoi.gov/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "SC SCDOI + SCWHUA",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://doi.sc.gov/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Georgia GDOI (SERFF)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://oci.georgia.gov/regulatory-filings/insurance-product-filings/serff",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Alabama ALDOI + Beach Pool (SERFF)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://aldoi.gov/RatesForms/SERFFsPublicAccess.aspx",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Mississippi MID + Wind Pool",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://www.mid.ms.gov/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "New York DFS + NYPIUA",
+      "category": "insurance_climate",
+      "provider": "",
+      "url": "https://www.dfs.ny.gov/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "New Jersey DOBI + NJPLIGA",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.njdobi.gov/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Virginia SCC Bureau of Insurance",
+      "category": "insurance_climate",
+      "provider": "",
+      "url": "https://scc.virginia.gov/pages/bureauofinsurance",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Massachusetts MDOI + MPIUA",
+      "category": "insurance_climate",
+      "provider": "",
+      "url": "https://www.mass.gov/orgs/division-of-insurance",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Connecticut CID",
+      "category": "insurance_climate",
+      "provider": "",
+      "url": "https://portal.ct.gov/cid",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Colorado DOI + CO FAIR Plan",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://doi.colorado.gov/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Hawaii HDOI",
+      "category": "insurance_climate",
+      "provider": "",
+      "url": "https://cca.hawaii.gov/ins/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Oregon DCBS",
+      "category": "insurance_climate",
+      "provider": "",
+      "url": "https://dfr.oregon.gov/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Washington OIC",
+      "category": "insurance_climate",
+      "provider": "",
+      "url": "https://www.insurance.wa.gov/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Arizona DIFI (SERFF)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://difi.az.gov/sfa",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Nevada DOI",
+      "category": "insurance_climate",
+      "provider": "",
+      "url": "https://doi.nv.gov/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Kentucky KDOI (SERFF)",
+      "category": "insurance_climate",
+      "provider": "",
+      "url": "https://insurance.ky.gov/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "West Virginia OIC",
+      "category": "insurance_climate",
+      "provider": "",
+      "url": "https://www.wvinsurance.gov/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "AM Best News & Rating Actions",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://news.ambest.com",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "Demotech Financial Stability Ratings",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.demotech.com/financial-stability-ratings/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Insurance Information Institute (Triple-I) Research",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.iii.org/research-data",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Wharton Risk Center Publications",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://risk.wharton.upenn.edu/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "FSU Risk Management & Insurance Center",
+      "category": "economic",
+      "provider": "",
+      "url": "https://business.fsu.edu/departments/rmi",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Ceres Climate Risk Reporting (Insurers)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.ceres.org/resources/reports/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "S&P Global / Moody's / Fitch Press Releases",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.spglobal.com/ratings/en/research-insights/",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "NOAA Storm Events Database",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.ncei.noaa.gov/stormevents/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NOAA NCEI Billion-Dollar Disasters",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://www.ncei.noaa.gov/access/billions/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Climate Central Billion-Dollar Disasters",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://www.climatecentral.org/climate-services/billion-dollar-disasters",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NOAA HURDAT2 Hurricane Track Data",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://www.nhc.noaa.gov/data/hurdat/",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "FEMA National Flood Hazard Layer (NFHL)",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://msc.fema.gov/portal/search",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NASA FIRMS Active Fire Feed",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://firms.modaps.eosdis.nasa.gov/api/area/csv/[MAP_KEY",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "api_key"
+    },
+    {
+      "name": "USDA InciWeb Wildfire Incidents (RSS)",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://inciweb.wildfire.gov/",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "OpenFEMA Disaster Declarations API",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.fema.gov/api/open/v2/DisasterDeclarationsSummaries.json?$filter=state%20eq%20",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "OpenFEMA Individual + Public Assistance Grants",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.fema.gov/api/open/v2/IndividualAssistanceHousingRegistrants",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "First Street Risk Factor (Consumer Site)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://riskfactor.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "NOAA Coastal Change Hazards Portal",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://marine.usgs.gov/coastalchangehazardsportal/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "CA FAIR Plan stats",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://www.cfpnet.com/key-statistics-key/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "LA Citizens (LCPIC)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://lcpic.com/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NC Beach Plan (NCIUA)",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://www.ncjua-nciua.org/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "SC Wind Hail (SCWHUA)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.scwind.com/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "TX FAIR Plan (TFPA)",
+      "category": "insurance_climate",
+      "provider": "",
+      "url": "https://www.texasfairplan.org/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "MS Windstorm Underwriting Assoc. (MWUA)",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://www.mwua.net/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "AL Insurance Underwriting Assoc. (AIUA)",
+      "category": "insurance_climate",
+      "provider": "",
+      "url": "https://www.aiua.org/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Verisk (AIR) Extreme Event Commentary",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.verisk.com/company/newsroom/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Moody's RMS (Extreme Event Solutions) Press",
+      "category": "zoning_parcel",
+      "provider": "",
+      "url": "https://www.moodysrms.com/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "CoreLogic / Cotality Hazard HQ",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://hazardhq.corelogic.com/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Karen Clark & Company (KCC) Press",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://www.karenclarkandco.com/news/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "ExchangeRate-API free",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://v6.exchangerate-api.com/v6/{KEY}/latest/USD",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "microsoft/GlobalMLBuildingFootprints",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://github.com/microsoft/GlobalMLBuildingFootprints/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "EIA API v2 — Hourly Grid Operations (RTO/ISO)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://api.eia.gov/v2/electricity/rto/region-data/data/?frequency=hourly&data=value&facets[type",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "EIA API v2 — Electric Power Operations (Capacity)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://api.eia.gov/v2/electricity/electric-power-operational-data/data/?api_key=KEY",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "EIA Form 860 — Generator Inventory",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.eia.gov/electricity/data/eia860/",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "EIA Form 861 — Annual Electric Utility Census",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.eia.gov/electricity/data/eia861/zip/f8612023.zip",
+      "type": "BULK_DOWNLOAD",
+      "tier": "bulk",
+      "auth": "unknown"
+    },
+    {
+      "name": "EIA Form 923 — Generation & Fuel Receipts",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.eia.gov/electricity/data/eia923/",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "EIA Form 860M — Monthly Generator Additions",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.eia.gov/electricity/data/eia860m/",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "FERC eLibrary (document search)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://elibrary.ferc.gov/eLibrary/search",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "unknown"
+    },
+    {
+      "name": "FERC data.ferc.gov",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://data.ferc.gov",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "FERC EQR — Electric Quarterly Reports (Bulk)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.ferc.gov/download-database",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "unknown"
+    },
+    {
+      "name": "FERC Form 1 (via PUDL/OpenEI)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://data.openei.org/submissions/489",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "FERC Generator Interconnection Queue Summary",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.ferc.gov/industries-data/electric/electric-power/generator-interconnection",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "PJM Data Miner 2 — Interconnection Queue",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://dataminer2.pjm.com/feed/ivmkt_intstudy_queue",
+      "type": "RAW_API",
+      "tier": "rss",
+      "auth": "unknown"
+    },
+    {
+      "name": "PJM Data Miner 2 — Real-Time Hourly LMPs",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://dataminer2.pjm.com/feed/rt_hrl_lmps/definition",
+      "type": "RAW_API",
+      "tier": "rss",
+      "auth": "unknown"
+    },
+    {
+      "name": "PJM Queue Scope (new 2025 tool)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.pjm.com/planning/planning-center/queue-scope",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "ERCOT Resource Adequacy (Monthly)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.ercot.com/gridinfo/resource",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "ERCOT Large Load Integration Queue",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.ercot.com/services/rq/large-load-integration",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "ERCOT Real-Time LMP (Settlement Points)",
+      "category": "demographic",
+      "provider": "",
+      "url": "http://mis.nyiso.com/public/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "MISO GI Queue Interactive Map",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://giqueue.misoenergy.org/PublicGiQueueMap/index.html",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "MISO Generator Interconnection Queue (CSV)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.misoenergy.org/planning/resource-utilization/GI_Queue/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "CAISO OASIS API",
+      "category": "economic",
+      "provider": "",
+      "url": "https://oasis.caiso.com/oasisapi/SingleZip?queryname=PRC_LMP&startdatetime=20240101T08:00-0000&enddatetime=20240101T09:00-0000&version=1&market_run_id=RTM&node=TH_NP15_GEN-APND",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "CAISO Interconnection Queue",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.caiso.com/generation-and-storage/generator-interconnection",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "ISO-NE Web Services API",
+      "category": "economic",
+      "provider": "",
+      "url": "https://webservices.iso-ne.com/api/v1.1",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "SPP Marketplace Portal",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://portal.spp.org/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "gridstatus Python library (open source)",
+      "category": "economic",
+      "provider": "",
+      "url": "pip install gridstatus → gridstatus.CAISO().get_lmp(\"today\")",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "GridStatus.io hosted API",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://api.gridstatus.io/v1/",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "LBNL \"Queued Up\" Annual Report + Excel",
+      "category": "economic",
+      "provider": "",
+      "url": "https://emp.lbl.gov/queues",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Interconnection.fyi",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.interconnection.fyi",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "PUDL (Public Utility Data Liberation Project)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://catalyst.coop/pudl/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "CBRE North America Data Center Trends",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.cbre.com/insights/books/north-america-data-center-trends-h2-2025",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "JLL Global Data Center Outlook 2026",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.jll.com/en/trends-and-insights/research/global-data-center-outlook",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Cleanview.co Data Center Map",
+      "category": "economic",
+      "provider": "",
+      "url": "https://cleanview.co/data-centers/us",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Datacentertracker.org",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://datacentertracker.org",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Interconnection.fyi Data Center Records",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://interconnection.fyi/data-center",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Datacentermap.com",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.datacentermap.com/usa/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Business Insider Interactive DC Map (2024)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.businessinsider.com/data-center-locations-us-map-ai-boom-2025-9",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Good Jobs First — Subsidy Tracker",
+      "category": "economic",
+      "provider": "",
+      "url": "https://subsidytracker.goodjobsfirst.org",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "keyless"
+    },
+    {
+      "name": "Novogradac IRA Energy Mapping Tool",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.novoco.com/resource-centers/renewable-energy-tax-credits/inflation-reduction-act-bonus-credits",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "IRA Tracker (CATF)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://iratracker.org/programs/ira-section-13702-clean-electricity-investment-credit/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "NREL Annual Technology Baseline (ATB)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://atb.nrel.gov",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "NREL Renewable Energy Atlas",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://maps.nrel.gov/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "USGS Water Data APIs (new OGC API)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "US Drought Monitor GIS",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://droughtmonitor.unl.edu/DmData/GISData.aspx",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "NERC Long-Term Reliability Assessment",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.nerc.com/globalassets/our-work/assessments/nerc_ltra_2025.pdf",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "WattTime Marginal Emissions (free tier)",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://api.watttime.org/v3/",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "EPA eGRID",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.epa.gov/egrid",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Carbon Monitor / Open Grid Emissions Initiative",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://carbonmonitor.org",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Open Exchange Rates free",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://openexchangerates.org/api/latest.json?app_id={KEY}&symbols=ILS",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "FDIC BankFind",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "banks.data.fdic.gov",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Fed H.8 Data",
+      "category": "demographic",
+      "provider": "",
+      "url": "federalreserve.gov/releases/h8",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "OCC/FFIEC Reports",
+      "category": "demographic",
+      "provider": "",
+      "url": "ffiec.gov",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "County Assessor Feeds",
+      "category": "zoning_parcel",
+      "provider": "",
+      "url": "varies by county",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Placer.ai Free / Freemium",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.placer.ai",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "First Street Foundation Risk Factor",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://firststreet.org",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "FEMA Flood Data",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "msc.fema.gov",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "FBI Crime Data",
+      "category": "demographic",
+      "provider": "",
+      "url": "crime-data-explorer.fr.cloud.gov",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Weather.gov / NWS",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "weather.gov",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Transit Score",
+      "category": "infrastructure",
+      "provider": "walkscore.com",
+      "url": "walkscore.com",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "FRED API (St. Louis Fed)",
+      "category": "macro_indicator",
+      "provider": "",
+      "url": "fred.stlouisfed.org/docs/api",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "BLS (Bureau of Labor Statistics)",
+      "category": "economic",
+      "provider": "",
+      "url": "bls.gov/developers",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Census BPS — Building Permits Survey",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://api.census.gov/data/timeseries/bps/metro?get=PERMIT",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "Census NRC — New Residential Construction (Starts, Under Construction, Completions)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.census.gov/construction/nrc/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Census C-30 Construction Spending (VIP)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.census.gov/construction/c30/c30index.html",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "api_key"
+    },
+    {
+      "name": "BLS ECI — Construction Labor",
+      "category": "economic",
+      "provider": "",
+      "url": "https://api.bls.gov/publicAPI/v2/timeseries/data/ECICONCOM",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "BLS QCEW — Construction Wages by MSA",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.bls.gov/cew/downloadable-data-files.htm",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "unknown"
+    },
+    {
+      "name": "Federal Reserve G.17 — Industrial Production: Construction Supplies",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.federalreserve.gov/releases/g17/current/default.htm",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "api_key"
+    },
+    {
+      "name": "Dodge Momentum Index (DMI)",
+      "category": "news_sentiment",
+      "provider": "",
+      "url": "https://www.construction.com/dodge-momentum-index/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "ABC Construction Backlog Indicator (CBI)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.abc.org/News-Media/News-Releases?Category=construction-backlog-indicator",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "AGC Construction Inflation Alert",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.agc.org/learn/construction-data/agc-construction-inflation-alert",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "ENR Construction Cost Index (CCI) + Building Cost Index (BCI)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.enr.com/economics",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Turner Building Cost Index",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.turnerconstruction.com/cost-index",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Mortenson Construction Cost Index",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.mortenson.com/cost-index",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Rider Levett Bucknall (RLB) Quarterly Cost Report (QCR)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.rlb.com/americas/insights/theme/construction-cost-report/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "RSMeans City Cost Index (CCI)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.rsmeans.com/rsmeans-city-cost-index",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Turner & Townsend / Linesight Global Construction Market Intelligence",
+      "category": "construction_pipeline",
+      "provider": "",
+      "url": "https://publications.turnerandtownsend.com/global-construction-market-intelligence-2025/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Yardi Matrix — Multifamily Pipeline",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://www.yardimatrix.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "CBRE Quarterly Figures / Market Reports",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.cbre.com/insights/us-quarterly-figures",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "CoStar — Free Press Releases",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.costargroup.com/press-room",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Newmark",
+      "category": "construction_pipeline",
+      "provider": "",
+      "url": "https://www.nmrk.com/research",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Avison Young",
+      "category": "construction_pipeline",
+      "provider": "",
+      "url": "https://www.avisonyoung.us/research",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Apartment List Construction Tracker",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.apartmentlist.com/research/construction-tracker",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Multi-Housing News Pipeline Coverage",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.multihousingnews.com/category/construction/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "datacenterHawk (free snippets)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://datacenterhawk.com/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Berkadia HousingPulse",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.berkadia.com/research/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "HUD SOCDS Building Permits Database",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://socds.huduser.gov/permits/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Zoneomics",
+      "category": "zoning_parcel",
+      "provider": "",
+      "url": "https://zoneomics.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "OpenStreetMap / Overpass API",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://overpass-api.de",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "HIFIS / HUD Location Affordability Portal",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://www.hudexchange.info/programs/location-affordability/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Sightline Institute Zoning Atlas",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.sightline.org/zoning-atlas/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Mercatus Center / Furman Center Zoning Reform Tracker",
+      "category": "zoning_parcel",
+      "provider": "",
+      "url": "https://www.mercatus.org/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "UrbanFootprint (Academic/Trial)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://urbanfootprint.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "SignedOff.io",
+      "category": "construction_pipeline",
+      "provider": "",
+      "url": "https://signedoff.io/developers",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "SEC EDGAR CMBS Issuance Stats Download",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.sec.gov/data-research/statistics-data-visualizations/commercial-mortgage-backed-securities-cmbs-issuances",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "SEC EDGAR Company Submissions API",
+      "category": "economic",
+      "provider": "",
+      "url": "https://data.sec.gov/submissions/CIK0001061630.json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "SEC EDGAR XBRL Financial Facts API",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001061630.json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "Federal Reserve Z.1 Financial Accounts",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.federalreserve.gov/datadownload/choose.aspx?rel=z1",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Federal Reserve H.8 — Commercial Bank Assets",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.federalreserve.gov/releases/h8/current/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "api_key"
+    },
+    {
+      "name": "Federal Reserve SLOOS — CRE Questions",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.federalreserve.gov/data/sloos.htm",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "Federal Reserve Beige Book",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.federalreserve.gov/monetarypolicy/publications/beige-book-default.htm",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "KBRA CMBS Loan Performance Trends",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://www.kbra.com/sectors/cmbs/publications[^33",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Morningstar DBRS CMBS Surveillance",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://dbrs.morningstar.com/research/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Moody's CMBS Rating Actions",
+      "category": "economic",
+      "provider": "",
+      "url": "https://ratings.moodys.com/ratings-news",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "S&P Global Ratings CMBS Actions",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.spglobal.com/ratings/en/sectors/structured-finance/commercial-mbs",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "unknown"
+    },
+    {
+      "name": "Fannie Mae Multifamily MBS — DUS Disclose",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://capitalmarkets.fanniemae.com/mortgage-backed-securities/multifamily-mbs",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Freddie Mac Multifamily K-Deal Performance",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://mf.freddiemac.com/investors/securities-crt-products/k-deals[^47",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Ginnie Mae Multifamily MBS Disclosure",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.ginniemae.gov/data_and_reports/disclosure_data/Pages/bulk_data_download_layout.aspx[^51",
+      "type": "BULK_DOWNLOAD",
+      "tier": "bulk",
+      "auth": "unknown"
+    },
+    {
+      "name": "FHFA House Price Index",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.fhfa.gov/data/hpi[^53",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "Federal Reserve CRE Price Index (FRED)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://fred.stlouisfed.org/series/COMREPUSQ159N[^54",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "api_key"
+    },
+    {
+      "name": "ICE BofA CMBS OAS (via FRED)",
+      "category": "demographic",
+      "provider": "",
+      "url": "FRED series BAMLC4A0C710YOAS (AAA CMBS spread), BAMLHYH0A0HYM2 (HY); search fred.stlouisfed.org for \"CMBS option adjusted spread\"[^57]",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "api_key"
+    },
+    {
+      "name": "MBA Quarterly Mortgage Debt Outstanding",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.mba.org/news-and-research/research-and-economics/commercial-multifamily-research/commercial-multifamily-mortgage-debt-outstanding[^59",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "MBA Commercial Delinquency Rate Survey",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.mba.org/news-and-research/research-and-economics/commercial-multifamily-research/commercial-multifamily-mortgage-delinquency-rates[^61",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Fannie Mae Economic & Strategic Research (ESR)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.fanniemae.com/research-and-insights/economic-strategic-research",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Freddie Mac Multifamily AIMI",
+      "category": "economic",
+      "provider": "",
+      "url": "https://mf.freddiemac.com/research/apartment-investment-market-index",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "NAIC Schedule BA / Insurance Data",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://content.naic.org/research/financial-data-and-statistical-information",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Public mREIT / BDC EDGAR XBRL",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK{NUM}.json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "Blackstone Mortgage Trust (BXMT) IR",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://ir.blackstonemortgagetrust.com/financial-disclosures-and-sec-filings[^69",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Starwood Property Trust (STWD) 10-Q",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://ir.starwoodpropertytrust.com/financials/sec-filings[^71",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Preqin — Free Press & Snapshots",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.preqin.com/data/private-credit[^72",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "NCREIF Property Index (NPI) — Press Releases",
+      "category": "economic",
+      "provider": "",
+      "url": "https://ncreif.org/data/index-returns/[^77",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "CREFC Monthly CMBS Loan Performance",
+      "category": "economic",
+      "provider": "",
+      "url": "https://resources.crefc.org/advanced-search",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "OCC Quarterly Report on Bank Trading & Derivatives",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.occ.gov/publications-and-resources/publications/quarterly-report-on-bank-trading-and-derivatives-activities/[^86",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "US Treasury TIC Data — Foreign ABS/MBS Holdings",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://ticdata.treasury.gov/Publish/shlprelim.html[^90",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "FINRA TRACE — Securitized Products",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.finra.org/finra-data/fixed-income[^93",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Federal Reserve Charge-Off and Delinquency Rates",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.federalreserve.gov/releases/chargeoff/[^16",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "FHFA Scorecard & Conservatorship Reports",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.fhfa.gov/data",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "CREFC / Morningstar DBRS Maturity Wall Tracker",
+      "category": "housing_re",
+      "provider": "",
+      "url": "Cross-reference: Trepp Hard Maturity Playbook (trepp.com/trepptalk/cmbs-hard-maturity-playbook)[^4] + KBRA/DBRS commentary",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Blackstone / KKR / Ares / Apollo Investor Relations",
+      "category": "housing_re",
+      "provider": "",
+      "url": "BX: ir.blackstone.com[^97]; Ares: aresmgmt.com/investors; Apollo: apollo.com/ir; KKR: ir.kkr.com",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Morningstar DBRS 2026 CRE Outlook",
+      "category": "economic",
+      "provider": "",
+      "url": "https://dbrs.morningstar.com/research/471472[^38",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "IPE Real Assets / PERE Free Snippets",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.ipereaassets.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Green Street CPPI (Monthly Free Summary)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.greenstreet.com/resources/pricing-index/[^99",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "USDA Rural Development REO",
+      "category": "other",
+      "provider": "",
+      "url": "https://properties.sc.egov.usda.gov/resales/public/home",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "VA Vendee REO",
+      "category": "other",
+      "provider": "",
+      "url": "https://listings.vrmco.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Fannie Mae HomePath REO",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://homepath.fanniemae.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Freddie Mac HomeSteps REO",
+      "category": "other",
+      "provider": "",
+      "url": "https://www.homesteps.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "FDIC Failed Banks + Asset Inventory",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://api.fdic.gov/banks/",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Trepp CMBS Delinquency Report",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://www.trepp.com/hubfs/Trepp%20CMBS%20Delinquency%20Report%20[Month",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "DBRS Morningstar (Morningstar Credit) CMBS",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://dbrs.morningstar.com/research/cmbs",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Moody's Analytics CMBS",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://www.moodys.com/web/en/us/commercial-real-estate.html",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "US Bankruptcy Court PACER",
+      "category": "other",
+      "provider": "",
+      "url": "https://pacer.uscourts.gov",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "CourtListener RECAP Archive",
+      "category": "news_sentiment",
+      "provider": "",
+      "url": "https://www.courtlistener.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "State Court Foreclosure Dashboards",
+      "category": "other",
+      "provider": "",
+      "url": "https://flhousingdata.shimberg.ufl.edu/eviction-foreclosure/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "ATTOM Foreclosure Press Releases",
+      "category": "zoning_parcel",
+      "provider": "",
+      "url": "https://www.attomdata.com/news/market-trends/foreclosures/",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "US Marshals Seized Property",
+      "category": "news_sentiment",
+      "provider": "",
+      "url": "https://www.usmarshals.gov/what-we-do/asset-forfeiture",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Tax-Deed / County Auctions",
+      "category": "zoning_parcel",
+      "provider": "",
+      "url": "https://www.myfloridalegal.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "GSA Auctions (Federal Surplus Real Estate)",
+      "category": "other",
+      "provider": "",
+      "url": "https://gsaauctions.gov",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "FEMA OpenFEMA — NFIP Claims & Policies",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://www.fema.gov/openfema-data-page/fima-nfip-redacted-claims-v2",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NOAA Climate at a Glance API",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "api_key"
+    },
+    {
+      "name": "FEMA Hazus",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://www.fema.gov/flood-maps/tools-resources/hazus",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "NIFC Fire Perimeters (WFIGS)",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://data-nifc.opendata.arcgis.com/datasets/nifc::wfigs-current-interagency-fire-perimeters/about",
+      "type": "DATASET_PORTAL",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "NOAA HMS Smoke",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://www.ospo.noaa.gov/Products/land/hms.html",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "USGS NSHM Seismic Hazard",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://earthquake.usgs.gov/nshmp/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "EPA Toxic Release Inventory (TRI)",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://enviro.epa.gov/enviro/tri_formr_v2.fac_list?",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "EPA Superfund NPL",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://hub.arcgis.com/datasets/EPA::superfund-national-priorities-list-npl-sites-with-status-information/about",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "EPA RCRA Hazardous Waste",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://enviro.epa.gov/enviro/efservice/RCRA_HANDLER_BASIC/",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "EPA UST (Underground Storage Tanks)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://echo.epa.gov/facilities/facility-search?regulation_type=UST",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "FBI Crime Data Explorer API",
+      "category": "other",
+      "provider": "",
+      "url": "https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/home",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "api_key"
+    },
+    {
+      "name": "NYC Open Data (Crime/311)",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://data.cityofnewyork.us/resource/qgea-i56i.json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Chicago Data Portal",
+      "category": "other",
+      "provider": "",
+      "url": "https://data.cityofchicago.org/resource/ijzp-q8t2.json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "LA Open Data",
+      "category": "other",
+      "provider": "",
+      "url": "https://data.lacity.org/resource/2nrs-mtv8.json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Houston Open Data",
+      "category": "other",
+      "provider": "",
+      "url": "https://www.houstontx.gov/police/cs/crime-stats.htm",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Phoenix Open Data",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://www.phoenixopendata.com/dataset/crime-stats",
+      "type": "DATASET_PORTAL",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "CA CDI (Dept of Insurance)",
+      "category": "insurance_climate",
+      "provider": "",
+      "url": "https://interactive.web.insurance.ca.gov/apex_extprd/f?p=102:1",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "California FAIR Plan",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://www.cfpca.org",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NC Joint Underwriting Assoc. / Beach Plan",
+      "category": "insurance_climate",
+      "provider": "",
+      "url": "https://www.ncjua.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NYC ZoLa (ArcGIS REST)",
+      "category": "zoning_parcel",
+      "provider": "",
+      "url": "https://zola.planning.nyc.gov",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "LA City Planning",
+      "category": "zoning_parcel",
+      "provider": "",
+      "url": "https://gis.lacity.org/arcgis/rest/services/ZONING/",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "SF Planning",
+      "category": "zoning_parcel",
+      "provider": "",
+      "url": "https://data.sfgov.org/Housing-and-Buildings/Zoning-Districts/kkvh-xhqp",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Chicago Zoning",
+      "category": "zoning_parcel",
+      "provider": "",
+      "url": "https://data.cityofchicago.org/Community-Economic-Development/Boundaries-Zoning-Districts/p8va-airx",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Boston Zoning",
+      "category": "zoning_parcel",
+      "provider": "",
+      "url": "https://bostonopendata-boston.opendata.arcgis.com/datasets/zoning-districts",
+      "type": "DATASET_PORTAL",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "Seattle Zoning",
+      "category": "zoning_parcel",
+      "provider": "",
+      "url": "https://data-seattlecitygis.opendata.arcgis.com/datasets/SeattleCityGIS::zoning",
+      "type": "DATASET_PORTAL",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "Austin Zoning",
+      "category": "zoning_parcel",
+      "provider": "",
+      "url": "https://data.austintexas.gov/Locations-and-Maps/Zoning/5rzy-nm5e",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Portland Zoning",
+      "category": "zoning_parcel",
+      "provider": "",
+      "url": "https://gis-pdx.opendata.arcgis.com/datasets/zoning-",
+      "type": "DATASET_PORTAL",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "Census TIGER/Line Shapefiles",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.census.gov/cgi-bin/geo/shapefiles/index.php",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "FCC Broadband Data Collection (BDC)",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://broadbandmap.fcc.gov/data-download",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "FCC Form 477 (Legacy)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.fcc.gov/general/broadband-deployment-data-fcc-form-477",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Ookla Speedtest Open Data",
+      "category": "other",
+      "provider": "",
+      "url": "https://ookla-open-data.s3.amazonaws.com/shapefiles/performance/type=fixed/year=2024/quarter=4/2024-10-01_performance_fixed_tiles.zip",
+      "type": "BULK_DOWNLOAD",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "FinCEN Residential Real Estate GTO / RRE Rule",
+      "category": "other",
+      "provider": "",
+      "url": "https://www.fincen.gov/news/news-releases/fincen-renews-residential-real-estate-geographic-targeting-orders-0",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "TSA Checkpoint Passenger Throughput",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://www.tsa.gov/coronavirus/passenger-throughput",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "keyless"
+    },
+    {
+      "name": "STR / CoStar Hotel Weekly Snapshot",
+      "category": "news_sentiment",
+      "provider": "",
+      "url": "https://str.com/press-releases",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "AHLA State of the Hotel Industry (Annual)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.ahla.com/resource/2025-state-industry-report[^7",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "CBRE Hotels Americas Research",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.cbre.com/services/property-types/hotels/trends",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Lodging Econometrics — Global Pipeline Free Summaries",
+      "category": "construction_pipeline",
+      "provider": "",
+      "url": "https://lodgingeconometrics.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "US Travel Association Weekly Forecast",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://www.ustravel.org/research",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "BTS TranStats — T-100 Domestic & International Segment",
+      "category": "insurance_climate",
+      "provider": "",
+      "url": "https://www.transtats.bts.gov/Tables.asp?QO_VQ=EEE",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "keyless"
+    },
+    {
+      "name": "ATL (Hartsfield-Jackson)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.atl.com/about-atl/statistics/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "LAX",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.lawa.org/lax/statistics",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "ORD (O'Hare)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.flychicago.com/ohare/aboutohare/statistics/pages/default.aspx",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "DFW",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.dfwairport.com/business/about/stats/[^20",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "JFK / LGA",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.panynj.gov/airports/en/statistics-general-info.html",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "MIA",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.miami-airport.com/statistics.asp",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "SFO",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.flysfo.com/about/media/facts-statistics/air-traffic-statistics[^21",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "SEA",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.portseattle.org/page/airport-statistics",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "DEN",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.flydenver.com/about/financials_stats/air_service_stats",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "LAS",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.harreyfield.com/en/airport-business/statistics.aspx",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "MCO",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.orlandoairports.net/media/3/statistics",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Census MARTS (Advance Monthly Retail Trade Survey)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://api.census.gov/data/timeseries/eits/marts?get=cell_value",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "FRED MARTS series",
+      "category": "macro_indicator",
+      "provider": "",
+      "url": "https://fred.stlouisfed.org/release?rid=9[^26",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "api_key"
+    },
+    {
+      "name": "Conference Board Consumer Confidence Index",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.conference-board.org/topics/consumer-confidence/[^27",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "University of Michigan Consumer Sentiment (UMCSENT)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.sca.isr.umich.edu",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "OpenTable State of the Restaurant Industry",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.opentable.com/c/state-of-industry/[^33",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Yelp Local Economic Impact Report",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://trends.yelp.com[^35",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Foursquare OS Places (POI baseline)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://location.foursquare.com/places-portal",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "api_key"
+    },
+    {
+      "name": "SafeGraph (now via Advan on Dewey)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.deweydata.io",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Adobe Digital Economy Index",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://business.adobe.com/resources/digital-economy-index.html[^46",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Mastercard SpendingPulse",
+      "category": "news_sentiment",
+      "provider": "",
+      "url": "https://www.mastercard.com/us/en/business/insights-intelligence/economic-market-insights/solutions/spendingpulse.html[^48",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "BEA Personal Consumption Expenditures (PCE)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.bea.gov/data/consumer-spending/main",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "JPMorgan Chase Institute / BofA Institute Consumer Checkpoint",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.jpmorganchase.com/institute",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Apartment List Rent Estimates",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.apartmentlist.com/research/category/data-rent-estimates[^54",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Realtor.com Economic Research",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.realtor.com/research/data/",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "RealPage Market Analytics Monthly Data Update",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.realpage.com/analytics/[^63",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "CoStar Multifamily National Report",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.costar.com/about/costar-news/research",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "NMHC Quarterly Apartment Survey",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.nmhc.org/research-insight/quarterly-survey/[^68",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Census Building Permits Survey (BPS) — Multifamily",
+      "category": "demographic",
+      "provider": "Census Bureau",
+      "url": "https://www.census.gov/construction/bps/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Yardi Matrix National Multifamily Report",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.yardimatrix.com/Publications[^73",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Kastle Systems Back to Work Barometer",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.kastle.com/safety-wellness/getting-america-back-to-work/[^77",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Stanford WFH Research (SWAA)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://wfhresearch.com/data/[^81",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "LinkedIn Workforce Reports / Economic Graph",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://economicgraph.linkedin.com/research",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "JLL US Office Market Dynamics",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.jll.com/en-us/insights/market-dynamics/us-office[^83",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "CBRE Office Figures",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.cbre.com/insights/reports",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Cushman & Wakefield Office MarketBeat",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.cushmanwakefield.com/en/united-states/insights/us-marketbeat-reports",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "CMS Provider of Services (POS) File",
+      "category": "economic",
+      "provider": "",
+      "url": "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/provider-of-services-file-hospital-non-hospital-facilities[^88",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NIC MAP Free Tier / Press Releases",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.nicmap.com/news/[^92",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Healthcare REIT Quarterly Supplementals (Welltower WELL, Ventas VTR, Healthpeak DOC, Omega OHI, Sabra SBRA, NHI)",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://welltower.com/investors/sec-filings/[^95",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "USCIS / DOL OFLC LCA Quarterly Disclosure (H-1B, H-1B1, E-3)",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://www.dol.gov/agencies/eta/foreign-labor/performance[^98",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "IPEDS University Enrollment",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://nces.ed.gov/ipeds/use-the-data[^102",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Census ACS 5-Year Migration Flows",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://api.census.gov/data/2022/acs/flows[^107",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "IRS SOI County-to-County Migration",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.irs.gov/statistics/soi-tax-stats-migration-data[^110",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "EB-5 Visa / USCIS Immigrant Investor Data",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://www.uscis.gov/tools/reports-and-studies/immigration-and-citizenship-data",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Good Jobs First — Tax Break Tracker (GASB 77)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://taxbreaktracker.goodjobsfirst.org",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NCSL State Tax Incentive Evaluations Database (Pew-supported)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.ncsl.org/fiscal/state-tax-incentive-evaluations-database",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Pew Charitable Trusts — State Tax Incentive Evaluation",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.pewtrusts.org/en/research-and-analysis/collections/state-incentive-evaluation",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "HUD Opportunity Zones GIS Layer (data.gov)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://hudgis-hud.opendata.arcgis.com/datasets/ef143299845841f8abb95969c01f88b5",
+      "type": "DATASET_PORTAL",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "IRS Form 8996 / QOF Self-Certification",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.irs.gov/credits-deductions/businesses/certify-and-maintain-a-qualified-opportunity-fund",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "CDFI Fund NMTC Allocatee Awards Database",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.cdfifund.gov/awards/nmtc",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "CDFI CIMS — NMTC Tract Eligibility + QOZ Eligibility",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.cdfifund.gov/cims",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "NPS Historic Tax Credit (HTC) — Certified Rehab Database",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.nps.gov/subjects/taxincentives/check-project-status.htm",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "HUD CDBG / HOME / HTF Awards (HUD Exchange)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.hudexchange.info/GRANTEES/ALLOCATIONS-AWARDS/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "USDA Rural Development — Rural Data Gateway + Award Search",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.rd.usda.gov/rural-data-gateway",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "State Comptroller / Transparency Portals (Top-6)",
+      "category": "news_sentiment",
+      "provider": "",
+      "url": "https://data.texas.gov",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Lincoln Institute — Significant Features of the Property Tax",
+      "category": "capital_markets",
+      "provider": "",
+      "url": "https://www.lincolninst.edu/data/significant-features-property-tax/",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Census Annual Survey of State/Local Government Finances",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.census.gov/topics/public-sector/government-finances.html",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "C2ER State Business Incentives Database",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.stateincentives.org",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "CoStar / STR Weekly Hotel Performance (via LodgingMagazine digest)",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://lodgingmagazine.com/tag/costar/",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "keyless"
+    },
+    {
+      "name": "STR Weekly Insights via HospitalityNet",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.hospitalitynet.org/search/q-STR+weekly+insights",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "HotelNewsNow.com (CoStar STR editorial)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.hotelnewsnow.com",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "keyless"
+    },
+    {
+      "name": "CoStar News — Hotels Section",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.costar.com/news/hotels",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "unknown"
+    },
+    {
+      "name": "Actabl HotelData.com — Free Benchmarks",
+      "category": "economic",
+      "provider": "",
+      "url": "https://hoteldata.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "PwC US Hospitality Directions",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.pwc.com/us/en/industries/consumer-markets/hospitality-leisure/us-hospitality-directions.html",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "AHLA Resource Center — Monthly Outlook & Surveys",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.ahla.com/resource-center",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "JLL Hotels & Hospitality — Investment Outlook",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.jll.com/en-us/insights/market-outlook/global-hotel-investment",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "HVS Hotel Cost Estimating Guide (Free)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.hotelcostestimatingguide.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Lodging Econometrics — Quarterly Pipeline Press Releases",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://lodgingeconometrics.com/tag/construction-pipeline-trend-report/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "AirDNA — Free City Dashboards",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.airdna.co/vacation-rental-data",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Inside Airbnb — Open Source CSV Downloads",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://data.insideairbnb.com/{country}/{state}/{city}/{date}/data/listings.csv.gz",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "keyless"
+    },
+    {
+      "name": "NTTO / ITA — I-94 International Visitor Arrivals",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.trade.gov/i-94-arrivals-program",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "US Customs and Border Protection (CBP) Border Crossing Data",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://data.bts.gov/stories/s/jswi-2e7b",
+      "type": "DATASET_PORTAL",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "US Travel Association — Travel Forecasts & TTI",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.ustravel.org/research/travel-forecasts",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "GBTA Business Travel Index (BTI) — Free Excerpts",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://gbta.org/research-and-advocacy/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Hotel REIT 10-Q / 10-K — EDGAR XBRL API (No Auth)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://data.sec.gov/submissions/CIK0000001061937.json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "NPS Visitor Use Statistics — Monthly Park Visitation",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.nps.gov/subjects/socialscience/visitor-use-statistics-dashboard.htm",
+      "type": "DATASET_PORTAL",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "Nevada Gaming Control Board — Monthly Strip/Statewide Revenue",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://www.gaming.nv.gov/about-us/gaming-revenue-information-gri/",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "keyless"
+    },
+    {
+      "name": "NJ Division of Gaming Enforcement — Atlantic City Monthly",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.njoag.gov/about/divisions-and-offices/division-of-gaming-enforcement-home/financial-and-statistical-information/monthly-gross-revenue-reports/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "AGA State of the States — Annual Commercial Gaming Report",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.americangaming.org/resources/state-of-the-states-2025/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NTTO / Trade.gov — International Air Travel Statistics (I-92)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.trade.gov/us-international-air-travel-statistics-i-92-data",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "US Travel Association — Travel Price Index (TPI)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.ustravel.org/research/travel-price-index",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "CLIA — State of the Cruise Industry Annual Report",
+      "category": "economic",
+      "provider": "",
+      "url": "https://cruising.org/resources/state-cruise-industry-report-2025",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "MMGY Global — Portrait of American Travelers (Annual)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.mmgyglobal.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Knowland (by Cendyn) — Meeting & Events Free Snippets",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.knowland.com",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "PwC Emerging Trends in Real Estate — Hospitality Section",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.pwc.com/us/en/industries/financial-services/asset-wealth-management/real-estate/emerging-trends-in-real-estate-pwc-us.html",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "NY Fed Survey of Consumer Expectations (SCE)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.newyorkfed.org/microeconomics/sce",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Kastle Systems Back-to-Work Barometer",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.kastle.com/safety-wellness/getting-america-back-to-work/",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "keyless"
+    },
+    {
+      "name": "Placer.ai Office Index",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.placer.ai/anchor/articles/placer-ai-office-index-[month",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "JLL Office Outlook",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.jll.com/en/trends-and-insights/research/office-statistics",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "SafeGraph Global Places & Geometry (Free POI)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.deweydata.io/doi/10-82551-smxb-1k04",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Advan Research Monthly Patterns (via Dewey)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.deweydata.io/doi/10-82551-beb1-2831",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Foursquare Movement (Press/Blog)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://foursquare.com/resources/blog/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "StreetLight Data InSight",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.streetlightdata.com/insight/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Veraset / Spectus / Cuebiq (Press snippets)",
+      "category": "economic",
+      "provider": "",
+      "url": "Various press/blog",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Bank of America Institute Consumer Checkpoint",
+      "category": "economic",
+      "provider": "",
+      "url": "https://institute.bankofamerica.com/consumer-checkpoint.html",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Visa Business and Economic Insights (VBEI)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://usa.visa.com/partner-with-us/visa-consulting-analytics/economic-insights/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "JPMorgan Chase Institute (JPMCI)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.jpmorganchase.com/institute/all-topics/community-development/local-commerce-data-series",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Earnest Analytics (Free Press Insights)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.earnestanalytics.com/insights/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Second Measure / Bloomberg Second Measure (Press)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://secondmeasure.com/press/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Opportunity Insights Economic Tracker",
+      "category": "economic",
+      "provider": "",
+      "url": "https://github.com/opportunityinsights/economictracker",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "American Express Trendex / Trended Data",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.americanexpress.com/en-us/business/trends-and-insights/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Affirm Consumer Credit Trends (Press)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://investors.affirm.com/news-releases/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Census Monthly Retail Trade Survey (MRTS)",
+      "category": "demographic",
+      "provider": "Census",
+      "url": "https://api.census.gov/data/timeseries/eits/mrts?get=cell_value,time_slot_name,category_code&for=us:*&time=from+2024-01&key=YOUR_KEY",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "Census Quarterly E-Commerce Sales",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.census.gov/retail/ecommerce.html",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Conference Board Consumer Confidence Index (CCI)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.conference-board.org/topics/consumer-confidence/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "STR Weekly Hotel Performance (Press)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.costar.com/products/str-benchmark/resources/press-releases",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "AirDNA Free City Snippets",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.airdna.co/blog/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Box Office Mojo / The Numbers",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://www.boxofficemojo.com/weekly/",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "keyless"
+    },
+    {
+      "name": "AAR Weekly Rail Traffic",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.aar.org/data-center/",
+      "type": "DATASET_PORTAL",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "Cass Freight Index",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://www.cassinfo.com/freight-audit-payment/cass-transportation-indexes/cass-freight-index",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "keyless"
+    },
+    {
+      "name": "Port of Los Angeles — Monthly TEU Counts",
+      "category": "economic",
+      "provider": "",
+      "url": "https://data.lacity.org/api/views/tsuv-4rgh/rows.csv?accessType=DOWNLOAD",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "keyless"
+    },
+    {
+      "name": "Google Community Mobility Reports (Archive)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.google.com/covid19/mobility/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Apple Maps Mobility Trends (Archive)",
+      "category": "infrastructure",
+      "provider": "",
+      "url": "https://covid19.apple.com/mobility",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Yelp Places API",
+      "category": "economic",
+      "provider": "",
+      "url": "https://api.yelp.com/v3/businesses/search?location=Chicago&categories=restaurants&limit=50",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "Regrid Parcel API v2",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://app.regrid.com/api/v2/us/parcels/point?lat={LAT}&lon={LON}&token={TOKEN}",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "Regrid ESRI Living Atlas Tile Layer",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.arcgis.com/home/item.html?id={REGRID_PARCEL_ITEM_ID}",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Zoneomics API",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://api.zoneomics.com/v2/zoneDetail?lat={LAT}&lon={LON}&key={KEY}",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "NYC Zoning API (NYC Planning)",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://ae-zoning-api.nyc.gov",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "NYC MapPLUTO / PLUTO",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://data.cityofnewyork.us/City-Government/Primary-Land-Use-Tax-Lot-Output-PLUTO-/64uk-42ks",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "api_key"
+    },
+    {
+      "name": "Census TIGERweb GeoServices REST",
+      "category": "economic",
+      "provider": "",
+      "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/MapServer/{layer}/query?where=...&outFields=*&f=json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "MRLC NLCD Land Cover",
+      "category": "economic",
+      "provider": "",
+      "url": "https://www.mrlc.gov/data",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "USDA Cropland Data Layer (CDL)",
+      "category": "economic",
+      "provider": "",
+      "url": "https://nassgeodata.gmu.edu/CropScape/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "USGS National Map (TNM)",
+      "category": "hazard_environmental",
+      "provider": "",
+      "url": "https://apps.nationalmap.gov/downloader/",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "unknown"
+    },
+    {
+      "name": "NOAA Sea Level Rise Viewer + WMS",
+      "category": "economic",
+      "provider": "",
+      "url": "https://coast.noaa.gov/slr/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "EPA EJScreen (archived)",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://screening-tools.com/epa-ejscreen",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "NYU Furman Center Land Use Reform Tracker",
+      "category": "housing_re",
+      "provider": "",
+      "url": "https://www.furmancenter.org/data-tool/land-use-reform-tracker/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Terner Center UC Berkeley",
+      "category": "demographic",
+      "provider": "",
+      "url": "https://ternercenter.berkeley.edu",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "BLS LAUS (unemployment by county/MSA)",
+      "category": "economic",
+      "provider": "U.S. Bureau of Labor Statistics",
+      "url": "POST https://api.bls.gov/publicAPI/v2/timeseries/data/",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "BLS QCEW (employment by NAICS by county)",
+      "category": "economic",
+      "provider": "BLS",
+      "url": "https://data.bls.gov/cew/data/api/2024/a/area/04013.csv",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "Census ACS — Median Household Income (B19013) by tract",
+      "category": "demographic",
+      "provider": "U.S. Census Bureau",
+      "url": "https://api.census.gov/data/2023/acs/acs5?get=NAME,B25003_001E,B25003_002E,B25003_003E&for=metropolitan+statistical+area/micropolitan+statistical+area:*&key=YOUR_KEY",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "Census ACS — Poverty Rate (S1701 / B17001) by tract",
+      "category": "demographic",
+      "provider": "Census Bureau",
+      "url": "https://api.census.gov/data/2023/acs/acs5/subject?get=NAME,S1701_C03_001E&for=tract:*&in=state:04+county:013&key=YOUR_KEY",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "Census County Business Patterns (CBP) — establishments by ZIP",
+      "category": "demographic",
+      "provider": "Census Bureau",
+      "url": "https://api.census.gov/data/2022/zbp?get=NAME,ESTAB,EMP,PAYANN&for=zipcode:85016&key=YOUR_KEY",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "Census Geocoder (resolve street address → tract/county FIPS)",
+      "category": "demographic",
+      "provider": "Census Bureau",
+      "url": "https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?address=1600+Pennsylvania+Ave+NW,+Washington,+DC&benchmark=Public_AR_Current&vintage=Current_Current&format=json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "EPA Envirofacts — Superfund/SEMS",
+      "category": "hazard_environmental",
+      "provider": "EPA",
+      "url": "https://data.epa.gov/efservice/sems.envirofacts_site/zip_code/equals/85016/JSON",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "EPA TRI (Toxics Release Inventory)",
+      "category": "hazard_environmental",
+      "provider": "EPA",
+      "url": "https://data.epa.gov/efservice/tri_facility/zip_code/equals/85016/JSON",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "EPA Cleanups in My Community (CIMC) — Brownfields",
+      "category": "hazard_environmental",
+      "provider": "EPA",
+      "url": "https://map22.epa.gov/arcgis/rest/services/cimc/Cleanups/MapServer/0/query?where=PROGRAM%3D%27BROWNFIELDS%27&geometry=-77.05,38.88,-76.95,38.95&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&f=json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "USGS Seismic Design Web Services (NSHM)",
+      "category": "economic",
+      "provider": "USGS",
+      "url": "https://earthquake.usgs.gov/ws/designmaps/asce7-22.json?latitude=34.05&longitude=-118.25&riskCategory=II&siteClass=D&title=LA-Test",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "CDC PLACES (health by tract)",
+      "category": "economic",
+      "provider": "CDC",
+      "url": "https://data.cdc.gov/resource/cwsq-ngmh.json?$where=StateAbbr='AZ' AND CountyFIPS='04013' AND TractFIPS='04013610200'",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "EPA Radon Zones (county map)",
+      "category": "hazard_environmental",
+      "provider": "EPA",
+      "url": "https://www.epa.gov/radon/find-information-about-local-radon-zones-and-state-contact-information",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "USFWS National Wetlands Inventory",
+      "category": "hazard_environmental",
+      "provider": "USFWS",
+      "url": "https://fwspublicservices.wim.usgs.gov/wetlandsmapservice/rest/services/Wetlands/MapServer/0/query?geometry=-77.0369,38.9072&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=ATTRIBUTE,WETLAND_TYPE&returnGeometry=true&f=geojson",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "EPA AirNow (current AQI)",
+      "category": "hazard_environmental",
+      "provider": "EPA",
+      "url": "https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=85016&distance=25&API_KEY=YOUR_KEY",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "EPA AQS (historical air quality)",
+      "category": "hazard_environmental",
+      "provider": "EPA",
+      "url": "https://aqs.epa.gov/data/api/dailyData/byCounty?email=YOU@example.com&key=YOUR_KEY&param=88101&bdate=20240101&edate=20241231&state=04&county=013",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "USDA NRCS Soil Data Access (SDA)",
+      "category": "economic",
+      "provider": "USDA NRCS",
+      "url": "https://SDMDataAccess.sc.egov.usda.gov/Tabular/post.rest",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "FAA Airport Noise Contours",
+      "category": "insurance_climate",
+      "provider": "FAA",
+      "url": "https://www.faa.gov/airports/environmental/airport_noise/noise_exposure_maps",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Open Charge Map (EV chargers)",
+      "category": "other",
+      "provider": "Open Charge Map",
+      "url": "https://api.openchargemap.io/v3/poi/?output=json&latitude=37.7749&longitude=-122.4194&distance=10&distanceunit=KM&maxresults=25&compact=true&key=YOUR_API_KEY",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "FCC National Broadband Map (BDC) Public Data API",
+      "category": "infrastructure",
+      "provider": "FCC",
+      "url": "https://broadbandmap.fcc.gov/nbm/map/api/published/filing",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "DOT FHWA — AADT (state DOT layers)",
+      "category": "demographic",
+      "provider": "DOT FHWA / state DOTs",
+      "url": "https://gis.data.ca.gov/datasets/...",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "HUD Fair Market Rents API",
+      "category": "housing_re",
+      "provider": "HUD",
+      "url": "https://www.huduser.gov/hudapi/public/fmr/data/0801499999?year=2026",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "HUD Income Limits API",
+      "category": "demographic",
+      "provider": "HUD",
+      "url": "https://www.huduser.gov/hudapi/public/il/data/0801499999?year=2025",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "HUD Opportunity Zones (designated QOZ tracts)",
+      "category": "housing_re",
+      "provider": "HUD",
+      "url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Opportunity_Zones/FeatureServer/0/query?geometry=-87.6298,41.8781&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=GEOID10,STATE,COUNTY&returnGeometry=false&f=json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "HUD LIHTC Properties",
+      "category": "housing_re",
+      "provider": "HUD",
+      "url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/LIHTC/FeatureServer/0/query?geometry=...&geometryType=esriGeometryEnvelope&...&f=geojson",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "HUD Qualified Census Tracts (QCT)",
+      "category": "demographic",
+      "provider": "HUD",
+      "url": "https://services1.arcgis.com/FCaUeJ5SOVtImake/arcgis/rest/services/QCT_2025/FeatureServer/0/query?geometry=...&f=json",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "HUD Difficult Development Areas (DDA)",
+      "category": "housing_re",
+      "provider": "HUD",
+      "url": "https://www.huduser.gov/portal/datasets/qct.html",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "NREL OpenEI URDB — Utility Rate Database (detailed tariffs)",
+      "category": "energy",
+      "provider": "NREL/NLR",
+      "url": "https://api.openei.org/utility_rates?version=latest&format=json&detail=full&address=85016&api_key=YOUR_KEY",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "NYC ZoLa / NYC DCP Zoning",
+      "category": "zoning_parcel",
+      "provider": "NYC DCP",
+      "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/nyzd/FeatureServer/0/query?geometry=-73.9855,40.7580&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=ZONEDIST,ZONEDIST_SIMPLE&returnGeometry=false&f=geojson",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "LA City / LA County Zoning",
+      "category": "zoning_parcel",
+      "provider": "LA City / LA County",
+      "url": "https://geohub.lacity.org/datasets/lahub::zoning/about",
+      "type": "RAW_API",
+      "tier": "bulk",
+      "auth": "keyless"
+    },
+    {
+      "name": "Houston permitting (no zoning — but permits available)",
+      "category": "zoning_parcel",
+      "provider": "City of Houston",
+      "url": "https://data.houstontx.gov/resource/...",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "NLCD / MRLC — National Land Cover",
+      "category": "housing_re",
+      "provider": "MRLC",
+      "url": "https://www.mrlc.gov/geoserver/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Bank of Israel — Representative USD/ILS rate (SDMX EDGE)",
+      "category": "israeli",
+      "provider": "Bank of Israel",
+      "url": "https://edge.boi.org.il/FusionEdgeServer/sdmx/v2/data/dataflow/BOI.STATISTICS/EXR/1.0/RER_USD_ILS?format=sdmx-json&lastNObservations=1",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Bank of Israel — Policy Interest Rate (SDMX EDGE)",
+      "category": "demographic",
+      "provider": "Bank of Israel",
+      "url": "https://edge.boi.org.il/FusionEdgeServer/sdmx/v2/data/dataflow/BOI.STATISTICS/IR/1.0/IR_BOI_RATE?format=sdmx-json&lastNObservations=24",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "CBS (Central Bureau of Statistics, Lamas) — Housing Price Index, CPI, Construction",
+      "category": "housing_re",
+      "provider": "CBS Lamas",
+      "url": "https://apis.cbs.gov.il/SDMX/DATA/IMF/ECOFIN_CBS/1",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "keyless"
+    },
+    {
+      "name": "Tel Aviv Stock Exchange (TASE) Open API",
+      "category": "capital_markets",
+      "provider": "TASE",
+      "url": "https://openapi.tase.co.il/tase/prod/",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "unknown"
+    },
+    {
+      "name": "Israeli mortgage rates",
+      "category": "demographic",
+      "provider": "Bank of Israel",
+      "url": "https://www.boi.org.il/en/economic-roles/statistics/banking-statistics/",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Bright Data CAPTCHA Proxies",
+      "category": "infrastructure",
+      "provider": "Bright Data",
+      "url": "https://brightdata.com/solutions/captcha-proxy",
+      "type": "RAW_API",
+      "tier": "inspect",
+      "auth": "keyless"
+    },
+    {
+      "name": "Fivetran",
+      "category": "infrastructure",
+      "provider": "Fivetran",
+      "url": "https://www.fivetran.com/pricing",
+      "type": "SCRAPE_TARGET",
+      "tier": "scrape",
+      "auth": "keyless"
+    },
+    {
+      "name": "Parallel Fan-Out Python — Regulations.gov FHFA Rulemaking Endpoint",
+      "category": "news_sentiment",
+      "provider": "Regulations.gov",
+      "url": "https://api.regulations.gov/v4/documents?filter[agencyId]=HUD&filter[documentType]=Proposed Rule&filter[postedDate][ge]=2024-01-01&page[size]=25&page[number]=1&api_key=YOUR_KEY",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "Regulations.gov v4 — Docket Details Endpoint",
+      "category": "israeli",
+      "provider": "Regulations.gov",
+      "url": "https://api.regulations.gov/v4/dockets/{docketId}?api_key=YOUR_KEY",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "NewsAPI.org — CRE Keyword Call",
+      "category": "news_sentiment",
+      "provider": "NewsAPI.org",
+      "url": "https://newsapi.org/v2/everything?q=CMBS+%22commercial+real+estate%22&language=en&sortBy=publishedAt&apiKey=YOUR_KEY",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "NewsData.io — Master Reference Table Row",
+      "category": "news_sentiment",
+      "provider": "NewsData.io",
+      "url": "https://newsdata.io/api/1/news?apikey=KEY&q=CMBS+%22commercial+real+estate%22&language=en&country=us",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "Mediastack — Master Reference Table Row",
+      "category": "news_sentiment",
+      "provider": "Mediastack",
+      "url": "http://api.mediastack.com/v1/news?access_key=YOUR_KEY&keywords=CMBS,commercial+real+estate,office+vacancy&countries=us&languages=en",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "MarketAux — CRE REIT Tickers Query",
+      "category": "demographic",
+      "provider": "MarketAux",
+      "url": "https://api.marketaux.com/v1/news/all?symbols=VNO,SPG,ARE&filter_entities=true&language=en&api_token=YOUR_KEY",
+      "type": "RAW_API",
+      "tier": "live_api",
+      "auth": "api_key"
+    },
+    {
+      "name": "Common Crawl CC-NEWS — S3 Path",
+      "category": "infrastructure",
+      "provider": "Common Crawl",
+      "url": "s3://commoncrawl/crawl-data/CC-NEWS/",
+      "type": "UNKNOWN",
+      "tier": "inspect",
+      "auth": "unknown"
+    },
+    {
+      "name": "Bloomberg — RSS Markets Feed",
+      "category": "news_sentiment",
+      "provider": "Bloomberg",
+      "url": "https://feeds.bloomberg.com/markets/news.rss",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "api_key"
+    },
+    {
+      "name": "Bloomberg — RSS Economics Feed",
+      "category": "news_sentiment",
+      "provider": "Bloomberg",
+      "url": "https://feeds.bloomberg.com/economics/news.rss",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "api_key"
+    },
+    {
+      "name": "Bloomberg RSS — Master Reference Table Row",
+      "category": "news_sentiment",
+      "provider": "Bloomberg",
+      "url": "https://feeds.bloomberg.com/industries/news.rss",
+      "type": "RSS_FEED",
+      "tier": "rss",
+      "auth": "api_key"
+    }
+  ]
+}

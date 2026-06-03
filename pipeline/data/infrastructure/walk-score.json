@@ -1,0 +1,1 @@
+{"source": {"name": "Walk Score", "category": "infrastructure", "provider": "", "url": "rapidapi.com/theapiguy/api/walk-score", "type": "UNKNOWN", "tier": "live_api", "auth": "keyless"}, "result": {"status": "error", "record_count": 0, "error": "unknown url type: 'rapidapi.com/theapiguy/api/walk-score'", "request_url": "rapidapi.com/theapiguy/api/walk-score", "latency_ms": 0}}

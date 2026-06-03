@@ -1,0 +1,53 @@
+name: Data Ingestion Pipeline
+
+# Runs the 611-source ingestion on a schedule. GitHub's runners are NOT
+# IP-blocked like Vercel's serverless runtime and have no 13s limit, so this is
+# where the heavy data gathering happens (Option A).
+
+on:
+  schedule:
+    - cron: "0 6 * * *"   # daily 06:00 UTC
+  workflow_dispatch: {}    # allow manual runs
+
+permissions:
+  contents: write          # to commit the coverage report back
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Refresh source triage
+        run: python3 pipeline/triage.py
+
+      - name: Refresh cached market data
+        run: python3 scraper/aggregate.py || true
+
+      - name: Ingest — keyless live APIs (full)
+        run: python3 pipeline/run_ingest.py --tier live_api --auth keyless --limit 100
+
+      - name: Ingest — keyed live APIs (uses repo secrets)
+        env:
+          CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: python3 pipeline/run_ingest.py --tier live_api --auth api_key --limit 100 || true
+
+      # When DATABASE_URL (Supabase/Postgres) is configured, load into the DB:
+      # - name: Load to Postgres
+      #   env:
+      #     DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      #   run: python3 pipeline/load_to_db.py   # (added once the DB is provisioned)
+
+      - name: Commit coverage report + cached data
+        run: |
+          git config user.name "reprime-ingest"
+          git config user.email "ingest@reprime.com"
+          git add pipeline/ingest_report.json pipeline/ingest_manifest.json public/data/ || true
+          git commit -m "chore(ingest): scheduled run $(date -u +%Y-%m-%dT%H:%MZ)" || echo "no changes"
+          git push || echo "push skipped"
