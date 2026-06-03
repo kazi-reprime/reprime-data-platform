@@ -475,8 +475,60 @@ def src_epa_facilities(ctx: dict) -> dict:
     return {"count_nearby": len(rows), "facilities": facs, "source": "EPA Envirofacts FRS"}
 
 
+def src_property_images(ctx: dict) -> dict:
+    """REAL photos of the location — no AI, no placeholders.
+    Tier A (free, no key): Wikimedia Commons geotagged photos near the point.
+    Tier B (free token): Mapillary crowdsourced street-level (set MAPILLARY_TOKEN).
+    Returns honest empty state when no public photo exists for the address.
+    NOTE: MLS/listing interior galleries (Zillow/Redfin/Realtor) are copyrighted and
+    gated behind paid APIs / anti-bot scraping — see docs, not included here."""
+    lat, lon = ctx["lat"], ctx["lon"]
+    images = []
+    # 1) Wikimedia Commons — geotagged real photos within ~300m
+    try:
+        u = ("https://commons.wikimedia.org/w/api.php?action=query&list=geosearch"
+             f"&gscoord={lat}%7C{lon}&gsradius=300&gsnamespace=6&gslimit=15&format=json&origin=*")
+        gs = _http_json(u, timeout=6).get("query", {}).get("geosearch", [])
+        titles = [g["title"] for g in gs
+                  if g.get("title", "").lower().endswith((".jpg", ".jpeg", ".png", ".webp"))][:10]
+        if titles:
+            q = ("https://commons.wikimedia.org/w/api.php?action=query&titles="
+                 + urllib.parse.quote("|".join(titles))
+                 + "&prop=imageinfo&iiprop=url&iiurlwidth=800&format=json&origin=*")
+            pages = _http_json(q, timeout=6).get("query", {}).get("pages", {})
+            for p in pages.values():
+                ii = (p.get("imageinfo") or [{}])[0]
+                if ii.get("thumburl"):
+                    images.append({"url": ii["thumburl"], "full": ii.get("url"),
+                                   "source": "Wikimedia Commons",
+                                   "title": p.get("title", "").replace("File:", "")})
+    except Exception:  # noqa: BLE001
+        pass
+    # 2) Mapillary street-level (free token) — real exterior photos of the street
+    tok = os.environ.get("MAPILLARY_TOKEN", "")
+    if tok:
+        try:
+            d = 0.0016
+            u = (f"https://graph.mapillary.com/images?access_token={tok}"
+                 f"&fields=thumb_1024_url&bbox={lon-d},{lat-d},{lon+d},{lat+d}&limit=8")
+            for im in _http_json(u, timeout=6).get("data", []):
+                if im.get("thumb_1024_url"):
+                    images.append({"url": im["thumb_1024_url"], "source": "Mapillary (street-level)",
+                                   "title": "Street-level capture"})
+        except Exception:  # noqa: BLE001
+            pass
+    if not images:
+        return {"count": 0, "images": [],
+                "status": "no_photos",
+                "note": "No public photos found for this exact location. Street-level coverage "
+                        "requires a free Mapillary token or a Google Street View key.",
+                "source": "Wikimedia Commons / Mapillary"}
+    return {"count": len(images), "images": images[:16], "source": "Wikimedia Commons + Mapillary"}
+
+
 # Registry: name -> fetcher.  All entries are FREE, API-type sources from the 611 set.
 SOURCES = {
+    "property_images": src_property_images,
     # macro / market (national context)
     "fred_rates": src_fred_rates,
     "crypto": src_crypto,

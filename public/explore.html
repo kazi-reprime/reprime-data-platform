@@ -223,7 +223,7 @@ nav{position:sticky;top:0;z-index:199;background:var(--glass-bg);backdrop-filter
 
   <!-- Imagery -->
   <div class="glass mb">
-    <div class="ch"><div class="ct">📸 Multi-Source Imagery</div><span class="badge" id="img-count">—</span></div>
+    <div class="ch"><div class="ct">📸 Property Photos <span class="badge info" style="font-weight:500">real · Wikimedia + Mapillary</span></div><span class="badge" id="img-count">—</span></div>
     <div class="img-grid" id="r-images"></div>
   </div>
 
@@ -512,9 +512,20 @@ function renderAll(doc) {
     `<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px"><span style="color:var(--muted)">${k}</span><span style="font-family:'JetBrains Mono',monospace;font-weight:600;text-align:right">${v}</span></div>`).join('');
 
   // imagery — real OSM static tiles around the point
-  const imgs = buildImagery(m.lat, m.lon);
-  $('img-count').textContent = `${imgs.length} layers`;
-  $('r-images').innerHTML = imgs.map(i => `<div class="img-tile" style="background-image:url('${i.url}')"><div class="src">${i.source}</div></div>`).join('');
+  // Property photos — REAL images (Wikimedia Commons + Mapillary), map/aerial as fallback
+  const pi = ok('property_images') ? S.property_images : null;
+  if (pi && pi.images && pi.images.length) {
+    $('img-count').textContent = `${pi.images.length} real photos`;
+    $('r-images').innerHTML = pi.images.map(i =>
+      `<a href="${i.full || i.url}" target="_blank" rel="noopener"><div class="img-tile" style="background-image:url('${i.url}')" title="${(i.title || '').replace(/"/g, '')} · ${i.source}"><div class="src">${i.source}</div></div></a>`).join('');
+  } else {
+    const imgs = buildImagery(m.lat, m.lon);
+    $('img-count').textContent = 'map / aerial';
+    const note = (pi && pi.note) || 'No public photos found for this exact address — showing map & aerial view.';
+    $('r-images').innerHTML =
+      `<div style="grid-column:1/-1;font-size:11px;color:var(--gold);padding:4px 0 8px">${note}</div>` +
+      imgs.map(i => `<div class="img-tile" style="background-image:url('${i.url}')"><div class="src">${i.source}</div></div>`).join('');
+  }
 
   // flood panel
   $('r-flood').innerHTML = ok('fema_flood') ? `
