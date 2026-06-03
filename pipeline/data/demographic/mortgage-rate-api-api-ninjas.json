@@ -1,1 +1,0 @@
-{"source": {"name": "Mortgage Rate API (API Ninjas)", "category": "demographic", "provider": "", "url": "api-ninjas.com/api/mortgagerate", "type": "UNKNOWN", "tier": "live_api", "auth": "keyless"}, "result": {"status": "error", "record_count": 0, "error": "unknown url type: 'api-ninjas.com/api/mortgagerate'", "request_url": "api-ninjas.com/api/mortgagerate", "latency_ms": 0}}

@@ -21,3 +21,7 @@ api/data/scraped_raw/
 node_modules/
 .vercel
 *.swp
+
+# pipeline sample output (regenerated each run)
+pipeline/data/
+pipeline/ingest_report.json
