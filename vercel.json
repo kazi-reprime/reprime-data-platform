@@ -10,6 +10,7 @@
     { "source": "/explore", "destination": "/explore.html" },
     { "source": "/terminal", "destination": "/terminal.html" },
     { "source": "/dashboard", "destination": "/dashboard.html" },
+    { "source": "/data", "destination": "/data-coverage.html" },
     { "source": "/api/live/:metric", "destination": "/data/live/:metric.json" },
     { "source": "/api/market/:metric", "destination": "/data/market/:metric.json" },
     { "source": "/api/deal/:metric", "destination": "/data/deal/:metric.json" },
