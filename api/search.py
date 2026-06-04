@@ -484,6 +484,15 @@ def src_property_images(ctx: dict) -> dict:
     gated behind paid APIs / anti-bot scraping — see docs, not included here."""
     lat, lon = ctx["lat"], ctx["lon"]
     images = []
+    # 0) Real satellite/aerial of the EXACT property (Esri World Imagery, free, no key) —
+    #    works for any address; these are genuine overhead photos of the lot/rooftop.
+    def _esri(dd, label):
+        bbox = f"{lon - dd},{lat - dd},{lon + dd},{lat + dd}"
+        return {"url": ("https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/"
+                        f"MapServer/export?bbox={bbox}&bboxSR=4326&size=720,470&format=jpg&f=image"),
+                "source": "Esri Satellite", "title": label}
+    images.append(_esri(0.0011, "Aerial · close"))
+    images.append(_esri(0.0042, "Aerial · area"))
     # 1) Wikimedia Commons — geotagged real photos within ~300m
     try:
         u = ("https://commons.wikimedia.org/w/api.php?action=query&list=geosearch"
