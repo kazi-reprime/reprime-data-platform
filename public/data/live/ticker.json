@@ -1,30 +1,14 @@
 {
-  "treasury_10y": {
-    "value": "4.45%",
-    "date": "2026-05-29",
-    "source": "FRED"
-  },
-  "mortgage_30y": {
-    "value": "6.53%",
-    "date": "2026-05-28",
-    "source": "FRED"
-  },
-  "fed_funds": {
-    "value": "3.63%",
-    "date": "2026-05-01",
-    "source": "FRED"
-  },
-  "unemployment": {
-    "value": "4.3%",
-    "date": "2026-04-01",
-    "source": "FRED/BLS"
-  },
   "bitcoin": {
-    "value": "$67,217",
+    "value": "$63,050",
     "source": "CoinGecko"
   },
   "ethereum": {
-    "value": "$1,910",
+    "value": "$1,760",
     "source": "CoinGecko"
+  },
+  "_meta": {
+    "cached_at": "2026-06-04T17:33:54.584545Z",
+    "ttl_seconds": 3600
   }
 }

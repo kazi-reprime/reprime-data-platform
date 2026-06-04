@@ -1,4 +1,8 @@
 {
+  "_meta": {
+    "cached_at": "2026-06-04T17:33:54.584545Z",
+    "ttl_seconds": 3600
+  },
   "fema_disasters": {
     "count": 0,
     "latest": [
@@ -158,6 +162,21 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Notice of Determination and Request for Comments Concerning Action Pursuant to Section 301: Brazil's Acts, Policies, and Practices Related to Digital Trade and Electronic Payment Services; Unfair, Preferential Tariffs; Anti-Corruption Enforcement; Intellectual Property Protection; Ethanol Market Access; and Illegal Deforestation",
+        "date": "2026-06-04",
+        "type": "Notice"
+      },
+      {
+        "title": "Proposed Exemption Involving the International Brotherhood of Electrical Workers Local Union No. 99 Joint Apprenticeship Training Committee Fund (the Fund) Located in Cranston, Rhode Island",
+        "date": "2026-06-03",
+        "type": "Notice"
+      },
+      {
+        "title": "Rescission of Climate-Related Disclosure Rules",
+        "date": "2026-06-03",
+        "type": "Proposed Rule"
+      },
+      {
         "title": "Scotts Valley Band of Pomo Indians of California; Liquor Control Ordinance",
         "date": "2026-06-01",
         "type": "Notice"
@@ -166,21 +185,6 @@
         "title": "Registered Offering Reform",
         "date": "2026-05-26",
         "type": "Proposed Rule"
-      },
-      {
-        "title": "Enhancement of Emerging Growth Company Accommodations and Simplification of Filer Status for Reporting Companies",
-        "date": "2026-05-21",
-        "type": "Proposed Rule"
-      },
-      {
-        "title": "Agency Information Collection Activities: Announcement of Board Approval Under Delegated Authority and Submission to OMB",
-        "date": "2026-05-20",
-        "type": "Notice"
-      },
-      {
-        "title": "Preemption Determination: State Interest-on-Escrow Laws",
-        "date": "2026-05-19",
-        "type": "Rule"
       }
     ],
     "source": "Federal Register"
@@ -382,7 +386,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 4,
+    "count": 5,
     "source": "USGS"
   },
   "bls_cpi": {
