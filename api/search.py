@@ -102,7 +102,24 @@ def geocode(address: str) -> dict:
             }
     except Exception as e:  # noqa: BLE001
         _log("geocode_census", "error", 0, e)
-    # 2) Nominatim fallback (coords only, no FIPS)
+    # 2) Photon (komoot) — forgiving free text: city, state, landmark, POI, partial address.
+    #    This is what makes any input geocode instead of erroring.
+    try:
+        u = f"https://photon.komoot.io/api/?q={enc}&limit=1&lang=en"
+        j = _http_json(u, timeout=7, headers={"User-Agent": "RePrime-DataPlatform/4.0"})
+        feats = j.get("features", [])
+        if feats:
+            p = feats[0]
+            c = p["geometry"]["coordinates"]  # [lon, lat]
+            pr = p.get("properties", {})
+            label = ", ".join([x for x in (pr.get("name"), pr.get("city"), pr.get("state"),
+                                            pr.get("country")) if x]) or address
+            return {"lat": float(c[1]), "lon": float(c[0]), "matched": label,
+                    "state_abbr": pr.get("state", ""),
+                    "fips_state": "", "fips_county": "", "fips_tract": "", "source": "Photon"}
+    except Exception as e:  # noqa: BLE001
+        _log("geocode_photon", "error", 0, e)
+    # 3) Nominatim fallback (coords only, no FIPS)
     try:
         u = f"https://nominatim.openstreetmap.org/search?q={enc}&format=json&limit=1&addressdetails=1"
         j = _http_json(u, timeout=8, headers={"User-Agent": "RePrime-DataPlatform/4.0 (geocode)"})
