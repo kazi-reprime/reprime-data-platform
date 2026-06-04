@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RePrime — Data Wall</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#05060d;--surface:rgba(255,255,255,.04);--surface2:rgba(255,255,255,.07);--border:rgba(255,255,255,.09);--text:#f8fafc;--muted:#94a3b8;--dim:#64748b;--accent:#3b82f6;--green:#22c55e;--gold:#fbbf24}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);padding:0 0 60px}
+nav{position:sticky;top:0;z-index:50;background:rgba(5,6,13,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:14px 28px;display:flex;gap:18px;align-items:center;font-size:13px}
+nav .brand{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:16px;margin-right:10px}
+nav a{color:var(--muted);text-decoration:none}nav a.active,nav a:hover{color:var(--text)}
+.head{padding:28px;max-width:1600px;margin:0 auto}
+h1{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800}
+.grad{background:linear-gradient(135deg,#3b82f6,#8b5cf6,#ec4899);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.sub{color:var(--muted);font-size:13px;margin:6px 0 14px}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.controls input,.controls select{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 12px;color:var(--text);font-size:13px;font-family:inherit}
+.controls input{flex:1;min-width:220px}
+.count{color:var(--gold);font-family:'JetBrains Mono',monospace;font-weight:700}
+.wall{max-width:1600px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:9px}
+.box{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 11px;font-size:11px;min-height:74px;overflow:hidden;transition:.15s;border-left:3px solid var(--accent)}
+.box:hover{background:var(--surface2);transform:translateY(-2px)}
+.box .t{font-weight:700;color:var(--text);font-size:11.5px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.box .m{color:var(--muted);font-size:10px;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.box .tag{display:inline-block;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--dim);margin-top:5px}
+.box.rec{border-left-color:var(--green)}
+.box .num{font-family:'JetBrains Mono',monospace;color:var(--green);font-weight:700}
+.sentinel{grid-column:1/-1;text-align:center;color:var(--dim);font-size:12px;padding:14px}
+</style>
+</head>
+<body>
+<nav><span class="brand grad">RePrime</span><a href="/">Dashboard</a><a href="/explore">Explore</a><a href="/terminal">Terminal</a><a href="/site">Site</a><a href="/data">Data</a><a href="/wall" class="active">Data Wall</a></nav>
+<div class="head">
+  <h1>The <span class="grad">Data Wall</span></h1>
+  <div class="sub">Every cataloged source and every ingested record, live from Supabase. <span class="count" id="total">…</span> boxes.</div>
+  <div class="controls">
+    <input id="q" placeholder="🔍 Filter boxes — source, category, record text…">
+    <select id="kind"><option value="">All boxes</option><option value="source">Sources</option><option value="record">Records</option></select>
+  </div>
+</div>
+<div class="wall" id="wall"></div>
+<script>
+const SB="https://gugcmsqrscqqqltdtgkz.supabase.co",K="sb_publishable_J5zIiHNf1VqpQ7r14SevFw__MbvlEpm";
+const H={apikey:K,Authorization:"Bearer "+K};
+const cl=['#3b82f6','#22c55e','#8b5cf6','#fbbf24','#ef4444','#06b6d4','#fb923c','#f472b6','#14b8a6','#a78bfa','#6366f1','#84cc16','#f59e0b','#10b981'];
+let BOXES=[], shown=0, PAGE=300;
+const esc=s=>String(s==null?'':s).replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
+function flat(p){if(!p)return[];if(Array.isArray(p))return p.map(r=>r&&r.attributes?r.attributes:r).filter(x=>x&&typeof x==='object');if(typeof p==='object')for(const k of['features','results','data','items','records'])if(Array.isArray(p[k]))return p[k].map(r=>r&&r.attributes?r.attributes:r).filter(x=>x&&typeof x==='object');return[];}
+function recLabel(r){const ks=Object.keys(r).filter(k=>!k.startsWith('_')).slice(0,3);return ks.map(k=>esc(r[k]).slice(0,28)).filter(Boolean).join(' · ');}
+
+async function build(){
+  // 1) source boxes (full catalog)
+  let cats={};
+  try{
+    const reg=await (await fetch('/data/sources_all.json')).json();
+    const srcs=reg.sources||[];
+    srcs.forEach((s,i)=>{ const ci=Object.keys(cats).indexOf(s.category); if(ci<0)cats[s.category]=Object.keys(cats).length;
+      BOXES.push({kind:'source',color:cl[cats[s.category]%14],t:s.name,m:(s.provider||s.category||''),tag:s.category,search:(s.name+' '+s.category+' '+(s.provider||'')).toLowerCase()});});
+  }catch(e){}
+  // 2) record boxes (every stored sample row across datasets)
+  try{
+    const ds=await (await fetch(SB+'/rest/v1/v_latest_source_data?select=name,category,record_count,payload&status=eq.ok&limit=80',{headers:H})).json();
+    ds.forEach(d=>{ flat(d.payload).forEach(r=>{ const lbl=recLabel(r); if(lbl) BOXES.push({kind:'record',color:'#22c55e',t:lbl,m:d.name,tag:d.category||'record',search:(lbl+' '+d.name).toLowerCase()}); }); });
+  }catch(e){}
+  document.getElementById('total').textContent=BOXES.length.toLocaleString();
+  render(true);
+}
+function filtered(){const q=document.getElementById('q').value.toLowerCase(),k=document.getElementById('kind').value;
+  return BOXES.filter(b=>(!k||b.kind===k)&&(!q||b.search.includes(q)));}
+function render(reset){
+  const wall=document.getElementById('wall'); const list=filtered();
+  if(reset){wall.innerHTML='';shown=0;}
+  const slice=list.slice(shown,shown+PAGE);
+  wall.insertAdjacentHTML('beforeend',slice.map(b=>`<div class="box ${b.kind==='record'?'rec':''}" style="border-left-color:${b.color}"><div class="t">${esc(b.t)}</div>${b.m?`<div class="m">${esc(b.m)}</div>`:''}<div class="tag">${esc(b.tag)}</div></div>`).join(''));
+  shown+=slice.length;
+  let s=document.getElementById('sentinel'); if(!s){s=document.createElement('div');s.id='sentinel';s.className='sentinel';wall.appendChild(s);} else wall.appendChild(s);
+  s.textContent= shown<list.length ? `Showing ${shown.toLocaleString()} of ${list.length.toLocaleString()} — scroll for more` : `${list.length.toLocaleString()} boxes`;
+}
+// infinite scroll
+addEventListener('scroll',()=>{ if(window.innerHeight+scrollY>=document.body.offsetHeight-600) render(false); });
+['q','kind'].forEach(id=>document.getElementById(id).addEventListener('input',()=>render(true)));
+build();
+</script>
+</body>
+</html>
