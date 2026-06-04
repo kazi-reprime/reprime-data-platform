@@ -513,8 +513,9 @@ def src_property_images(ctx: dict) -> dict:
                                    "title": p.get("title", "").replace("File:", "")})
     except Exception:  # noqa: BLE001
         pass
-    # 2) Mapillary street-level (free token) — real exterior photos of the street
-    tok = os.environ.get("MAPILLARY_TOKEN", "")
+    # 2) Mapillary street-level — real exterior photos. Public client read-token
+    #    (embeddable like an anon key; override via MAPILLARY_TOKEN env).
+    tok = os.environ.get("MAPILLARY_TOKEN", "MLY|36082926118018705|28ca0f1162c76684aeb2f9999713c44c")
     if tok:
         try:
             d = 0.0016
