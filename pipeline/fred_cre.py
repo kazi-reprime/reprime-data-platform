@@ -38,7 +38,7 @@ SERIES = [
 
 def latest(series_id):
     try:
-        u = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}"
+        u = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}&cosd=2026-02-04"
         txt = urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=10, context=CTX).read().decode()
         rows = [r for r in txt.strip().splitlines() if r and not r.startswith("DATE") and "observation_date" not in r]
         for line in reversed(rows):
