@@ -17,7 +17,13 @@ UA = {"User-Agent": "RePrime-DataPlatform/1.0"}
 CTX = ssl.create_default_context()
 DOMAINS = ["data.cityofnewyork.us", "data.cityofchicago.org", "data.lacity.org",
            "data.sfgov.org", "data.seattle.gov", "data.austintexas.gov",
-           "data.boston.gov", "data.kingcounty.gov"]
+           "data.boston.gov", "data.kingcounty.gov",
+           # states + more metros (all Socrata-hosted open-data portals)
+           "data.ny.gov", "data.ct.gov", "data.wa.gov", "data.colorado.gov",
+           "data.texas.gov", "data.oregon.gov", "opendata.maryland.gov",
+           "data.nashville.gov", "data.baltimorecity.gov", "data.montgomerycountymd.gov",
+           "data.cincinnati-oh.gov", "data.kcmo.org", "data.sandiego.gov",
+           "data.providenceri.gov", "data.cambridgema.gov", "performance.smcgov.org"]
 PER_DOMAIN = int(sys.argv[1]) if len(sys.argv) > 1 else 8
 ROWS = int(sys.argv[2]) if len(sys.argv) > 2 else 300
 
