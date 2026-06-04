@@ -161,15 +161,15 @@ def fetch(url: str, family: str | None = None, limit: int = 25, timeout: int = 1
             "request_url": req_url}
 
 
-def _trim(payload):
-    """Keep a small sample for storage/inspection."""
+def _trim(payload, n=25):
+    """Keep a sample of rows for storage/display (richer than before for the viewer)."""
     if isinstance(payload, list):
-        return payload[:5]
+        return payload[:n]
     if isinstance(payload, dict):
         for k in ("features", "results", "data", "items", "observations", "records"):
             if isinstance(payload.get(k), list):
                 out = dict(payload)
-                out[k] = payload[k][:5]
+                out[k] = payload[k][:n]
                 return out
         return payload
     return payload

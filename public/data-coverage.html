@@ -86,16 +86,48 @@ async function sb(path){ const r = await fetch(SB + "/rest/v1/" + path, { header
   } catch(e){ document.getElementById("cov-bars").innerHTML = '<div class="dim" style="color:var(--red)">Coverage unavailable ('+e.message+')</div>'; }
 
   try {
-    const ds = await sb("v_latest_source_data?select=name,category,status,record_count,fetched_at&status=eq.ok&order=record_count.desc&limit=60");
+    const ds = await sb("v_latest_source_data?select=name,category,status,record_count,fetched_at,payload&status=eq.ok&order=record_count.desc&limit=60");
     const totalRec = ds.reduce((a,d)=>a+(+d.record_count||0),0);
     document.getElementById("k-records").textContent = fmt(totalRec);
     document.getElementById("k-ingesting").textContent = ds.length;
     if (ds.length) document.getElementById("ds-asof").textContent = "as of " + new Date(ds[0].fetched_at).toLocaleString();
-    document.getElementById("ds-body").innerHTML = ds.map(d=>
-      `<tr><td>${d.name}</td><td class="dim">${(d.category||'').replace(/_/g,' ')}</td><td><span style="color:var(--green)">● ok</span></td><td class="num">${fmt(d.record_count)}</td><td class="dim">${d.fetched_at?new Date(d.fetched_at).toLocaleDateString():''}</td></tr>`
-    ).join("");
+    window._DS = ds;
+    document.getElementById("ds-body").innerHTML = ds.map((d,i)=>{
+      const rows = flattenRows(d.payload);
+      const can = rows.length ? `<a href="#" onclick="toggleRows(${i});return false" style="color:var(--accent);font-size:11px">▸ ${rows.length} records</a>` : '<span class="dim" style="font-size:11px">—</span>';
+      return `<tr><td>${d.name}</td><td class="dim">${(d.category||'').replace(/_/g,' ')}</td><td>${can}</td><td class="num">${fmt(d.record_count)}</td><td class="dim">${d.fetched_at?new Date(d.fetched_at).toLocaleDateString():''}</td></tr>
+              <tr id="rows-${i}" style="display:none"><td colspan="5" style="padding:0 10px 12px"><div id="rowsbox-${i}"></div></td></tr>`;
+    }).join("");
   } catch(e){ document.getElementById("ds-body").innerHTML = '<tr><td colspan="5" class="dim" style="color:var(--red)">Datasets unavailable ('+e.message+')</td></tr>'; }
 })();
+
+// extract an array of record objects from any payload shape
+function flattenRows(p){
+  if (!p) return [];
+  if (Array.isArray(p)) return p.map(r => r && r.attributes ? r.attributes : r).filter(x=>x&&typeof x==='object');
+  if (typeof p==='object'){
+    for (const k of ['features','results','data','items','records']){
+      if (Array.isArray(p[k])) return p[k].map(r => r && r.attributes ? r.attributes : r).filter(x=>x&&typeof x==='object');
+    }
+  }
+  return [];
+}
+function toggleRows(i){
+  const tr = document.getElementById('rows-'+i); if (!tr) return;
+  if (tr.style.display!=='none'){ tr.style.display='none'; return; }
+  tr.style.display='';
+  const box = document.getElementById('rowsbox-'+i);
+  if (box.dataset.done) return;
+  const rows = flattenRows((window._DS[i]||{}).payload).slice(0,25);
+  if (!rows.length){ box.innerHTML='<div class="dim">No sample rows</div>'; return; }
+  const cols = [...new Set(rows.flatMap(r=>Object.keys(r)))].filter(c=>!String(c).startsWith('_')).slice(0,7);
+  const esc = v => { v = v==null?'':String(typeof v==='object'?JSON.stringify(v):v); return v.length>40?v.slice(0,40)+'…':v; };
+  box.innerHTML = `<div style="overflow-x:auto;border:1px solid var(--border);border-radius:8px"><table style="width:100%;font-size:11px;border-collapse:collapse">
+    <thead><tr>${cols.map(c=>`<th style="text-align:left;padding:6px 8px;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap">${c}</th>`).join('')}</tr></thead>
+    <tbody>${rows.map(r=>`<tr>${cols.map(c=>`<td style="padding:5px 8px;border-bottom:1px solid var(--border)">${esc(r[c])}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+    <div class="dim" style="font-size:10px;margin-top:4px">Live sample of ${rows.length} real records from the source.</div>`;
+  box.dataset.done='1';
+}
 </script>
 </body>
 </html>
