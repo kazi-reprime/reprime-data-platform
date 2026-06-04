@@ -386,5 +386,35 @@ setInterval(loadEndpoints, 60000);
 
 </script>
 <script src="/sb.js"></script>
+<script>
+/* Live institutional-data panels (Treasury curve + REIT financials) from Supabase */
+(async function(){
+  const SB="https://gugcmsqrscqqqltdtgkz.supabase.co", K="sb_publishable_J5zIiHNf1VqpQ7r14SevFw__MbvlEpm";
+  const H={apikey:K,Authorization:"Bearer "+K};
+  const get=async(name)=>{try{const r=await fetch(SB+"/rest/v1/v_latest_source_data?select=payload&status=eq.ok&name=eq."+encodeURIComponent(name)+"&limit=1",{headers:H});const d=await r.json();return (d[0]||{}).payload;}catch(e){return null;}};
+  const fmtB=v=>v?("$"+(v/1e9).toFixed(1)+"B"):"—";
+  const card=document.createElement('div'); card.className='glass'; card.style.margin='18px 0';
+  card.innerHTML='<div class="ch"><div class="ct">\uD83D\uDCC9 U.S. Treasury Yield Curve</div><span class="badge live">live · FRED</span></div>'
+    +'<div style="height:240px"><canvas id="yc-canvas"></canvas></div>'
+    +'<div id="reit-wrap" style="margin-top:20px"></div>';
+  (document.querySelector('.container')||document.body).appendChild(card);
+  const curve=await get('U.S. Treasury Yield Curve');
+  if(curve && curve.length && window.Chart){
+    const css=getComputedStyle(document.documentElement);
+    new Chart(document.getElementById('yc-canvas'),{type:'line',
+      data:{labels:curve.map(p=>p.tenor),datasets:[{label:'Yield %',data:curve.map(p=>p.yield_pct),borderColor:'#3b82f6',backgroundColor:'rgba(59,130,246,.12)',fill:true,tension:.35,pointRadius:3}]},
+      options:{plugins:{legend:{display:false}},scales:{y:{ticks:{color:css.getPropertyValue('--muted'),callback:v=>v+'%'}},x:{ticks:{color:css.getPropertyValue('--muted')}}}}});
+  }
+  const reits=await get('REIT Financials (SEC EDGAR)');
+  if(reits && reits.length){
+    const top=[...reits].sort((a,b)=>(b.total_assets_usd||0)-(a.total_assets_usd||0));
+    document.getElementById('reit-wrap').innerHTML='<div class="ct" style="margin-bottom:10px">\uD83C\uDFE2 REIT Financials \u00B7 SEC EDGAR</div>'
+      +'<div style="overflow-x:auto"><table style="width:100%;font-size:12px;border-collapse:collapse">'
+      +'<thead><tr><th style="text-align:left;padding:6px 8px;color:var(--muted);border-bottom:1px solid var(--border)">Ticker</th><th style="text-align:left;padding:6px 8px;color:var(--muted);border-bottom:1px solid var(--border)">Company</th><th style="text-align:right;padding:6px 8px;color:var(--muted);border-bottom:1px solid var(--border)">Total Assets</th><th style="text-align:right;padding:6px 8px;color:var(--muted);border-bottom:1px solid var(--border)">Revenues</th></tr></thead><tbody>'
+      +top.map(r=>'<tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);font-weight:700">'+r.ticker+'</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);color:var(--muted)">'+(r.company||'').slice(0,30)+'</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);text-align:right;font-family:monospace">'+fmtB(r.total_assets_usd)+'</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);text-align:right;font-family:monospace">'+fmtB(r.revenues_usd)+'</td></tr>').join('')
+      +'</tbody></table></div>';
+  }
+})();
+</script>
 </body>
 </html>
