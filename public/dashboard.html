@@ -4,47 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RePrime Dashboard — Data Operations Console</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/rp-shell.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root[data-theme="dark"]{--bg:#05060d;--bg-elev:#0a0e1a;--surface:rgba(255,255,255,0.04);--surface-2:rgba(255,255,255,0.08);--border:rgba(255,255,255,0.08);--border-2:rgba(255,255,255,0.15);--text:#f8fafc;--muted:#94a3b8;--dim:#64748b;--accent:#3b82f6;--accent2:#8b5cf6;--accent3:#06b6d4;--green:#22c55e;--red:#ef4444;--gold:#fbbf24;--orange:#fb923c;--pink:#f472b6;--glass-bg:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);--shadow:rgba(0,0,0,.5);--mesh-opacity:.18}
-:root[data-theme="light"]{--bg:#fafbfc;--bg-elev:#fff;--surface:rgba(15,23,42,0.03);--surface-2:rgba(15,23,42,0.06);--border:rgba(15,23,42,0.08);--border-2:rgba(15,23,42,0.15);--text:#0f172a;--muted:#475569;--dim:#64748b;--accent:#3b82f6;--accent2:#8b5cf6;--accent3:#0891b2;--green:#16a34a;--red:#dc2626;--gold:#ca8a04;--orange:#ea580c;--pink:#db2777;--glass-bg:rgba(255,255,255,0.6);--glass-border:rgba(15,23,42,0.08);--shadow:rgba(15,23,42,.08);--mesh-opacity:.05}
-:root[data-theme="midnight"]{--bg:#0b1220;--bg-elev:#111a2e;--surface:rgba(99,102,241,0.06);--surface-2:rgba(99,102,241,0.1);--border:rgba(99,102,241,0.12);--border-2:rgba(99,102,241,0.2);--text:#e0e7ff;--muted:#a5b4fc;--dim:#818cf8;--accent:#818cf8;--accent2:#c084fc;--accent3:#22d3ee;--green:#34d399;--red:#f87171;--gold:#fcd34d;--orange:#fb923c;--pink:#f9a8d4;--glass-bg:rgba(99,102,241,0.04);--glass-border:rgba(99,102,241,0.12);--shadow:rgba(0,0,0,.5);--mesh-opacity:.25}
-:root{--grad-1:linear-gradient(135deg,#3b82f6 0%,#8b5cf6 50%,#ec4899 100%);--grad-mesh:radial-gradient(at 27% 37%,#3b82f6 0px,transparent 50%),radial-gradient(at 97% 21%,#8b5cf6 0px,transparent 50%),radial-gradient(at 52% 99%,#06b6d4 0px,transparent 50%);--t:.4s cubic-bezier(.4,0,.2,1)}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);transition:background var(--t);min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{text-decoration:none;color:inherit}
-.mesh-bg{position:fixed;inset:0;z-index:-1;background:var(--grad-mesh);filter:blur(120px);opacity:var(--mesh-opacity)}
+/* Page-specific styles only. Chrome (tokens, nav, ticker, footer, themes,
+   background) lives in rp-shell.css / rp-shell.js — single source of truth. */
+h1,h2,h3{font-family:'Poppins',Arial,sans-serif}
+[style*="Grotesk"]{font-family:'Poppins',Arial,sans-serif!important}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-.theme-switcher{position:fixed;bottom:24px;right:24px;z-index:300;display:flex;background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:14px;padding:4px;gap:2px}
-.theme-switcher button{background:transparent;border:none;padding:8px 12px;color:var(--muted);cursor:pointer;border-radius:10px;font-size:14px;font-family:inherit}
-.theme-switcher button.active{background:var(--grad-1);color:#fff}
-
-/* TICKER */
-.ticker{position:sticky;top:0;z-index:200;background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);overflow:hidden;height:38px}
-.ticker::before,.ticker::after{content:'';position:absolute;top:0;width:80px;height:100%;z-index:2;pointer-events:none}
-.ticker::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
-.ticker::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
-.ticker-track{display:flex;animation:scroll 70s linear infinite;white-space:nowrap;height:100%;align-items:center}
-@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.ti{display:inline-flex;align-items:center;gap:6px;padding:0 20px;font-size:11px;color:var(--muted);border-right:1px solid var(--border)}
-.ti strong{color:var(--text);font-family:'JetBrains Mono',monospace;font-weight:600}
-.ti .up{color:var(--green)}.ti .dn{color:var(--red)}
-.ti .pulse{width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:pulse 2s infinite}
-
-nav{position:sticky;top:38px;z-index:199;background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 36px;display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;letter-spacing:-1px;font-family:'Space Grotesk',sans-serif}
-.logo-icon{width:30px;height:30px;border-radius:8px;background:var(--grad-1);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:14px}
-.logo span{background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.pills{display:flex;gap:4px;padding:4px;background:var(--surface);border-radius:10px;border:1px solid var(--border)}
-.pills a{padding:6px 14px;font-size:12px;font-weight:600;color:var(--muted);border-radius:8px;transition:.2s}
-.pills a:hover{color:var(--text);background:var(--surface-2)}
-.pills a.active{background:var(--grad-1);color:#fff}
-.btn{padding:8px 16px;border-radius:8px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:6px;cursor:pointer;border:none;font-family:inherit;transition:.2s}
-.btn-p{background:var(--grad-1);color:#fff}
-.btn-glass{background:var(--surface);border:1px solid var(--border-2);color:var(--text)}
 
 .container{max-width:1500px;margin:0 auto;padding:24px 36px}
 .glass{background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:16px;padding:22px;transition:.3s}
@@ -128,28 +98,8 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:800;letter-
 @media(max-width:768px){.g3,.g4,.g6{grid-template-columns:1fr}.container,nav{padding:0 14px}.pills{display:none}}
 </style>
 </head>
-<body>
-
-<div class="mesh-bg"></div>
-
-<div class="theme-switcher" id="theme-switcher">
-  <button data-theme="dark" class="active">🌙</button>
-  <button data-theme="midnight">🌌</button>
-  <button data-theme="light">☀️</button>
-</div>
-
-<div class="ticker"><div class="ticker-track" id="ticker"></div></div>
-
-<nav>
-  <div class="logo"><div class="logo-icon">R</div><span>Re</span>Prime Dashboard</div>
-  <div class="pills">
-    <a href="/site">🌐 Site</a>
-    <a href="/explore">🔍 Explore</a><a href="/data">🗄️ Data</a><a href="/wall">🗄️ Wall</a>
-    <a href="/terminal">📊 Terminal</a>
-    <a href="/dashboard" class="active">🗂️ Dashboard</a>
-  </div>
-  <a href="https://github.com/kazi-reprime/reprime-data-platform" target="_blank" class="btn btn-glass">⭐ GitHub</a>
-</nav>
+<body class="rp-has-ticker">
+<!-- Header (nav), topper (ticker) and footer are injected by /rp-shell.js -->
 
 <div class="container">
   <h1>Data Operations Console</h1>
@@ -214,20 +164,11 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:800;letter-
   </div>
 </div>
 
+<script src="/rp-shell.js"></script>
 <script>
 // ============================================================================
 // RePrime Dashboard — live data layer (v4.0). No hardcoded literals.
 // ============================================================================
-const saved = localStorage.getItem('theme') || 'dark';
-document.documentElement.dataset.theme = saved;
-document.querySelectorAll('.theme-switcher button').forEach(b => {
-  if (b.dataset.theme === saved) b.classList.add('active'); else b.classList.remove('active');
-  b.addEventListener('click', () => {
-    document.documentElement.dataset.theme = b.dataset.theme;
-    localStorage.setItem('theme', b.dataset.theme);
-    document.querySelectorAll('.theme-switcher button').forEach(x => x.classList.toggle('active', x === b));
-  });
-});
 const $ = id => document.getElementById(id);
 const num = v => { const n = parseFloat(String(v).replace(/[^\d.\-]/g, '')); return isNaN(n) ? null : n; };
 const ago = ts => { const s = (Date.now() - new Date(ts).getTime()) / 1000; if (isNaN(s)) return ''; if (s < 60) return Math.round(s) + 's ago'; if (s < 3600) return Math.round(s / 60) + ' min ago'; if (s < 86400) return Math.round(s / 3600) + ' hr ago'; return Math.round(s / 86400) + ' d ago'; };

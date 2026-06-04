@@ -4,38 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RePrime Explore — Search Any Property</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<link rel="stylesheet" href="/rp-shell.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root[data-theme="dark"]{--bg:#05060d;--surface:rgba(255,255,255,0.04);--surface-2:rgba(255,255,255,0.08);--border:rgba(255,255,255,0.08);--border-2:rgba(255,255,255,0.15);--text:#f8fafc;--muted:#94a3b8;--dim:#64748b;--accent:#3b82f6;--accent2:#8b5cf6;--accent3:#06b6d4;--green:#22c55e;--red:#ef4444;--gold:#fbbf24;--orange:#fb923c;--pink:#f472b6;--glass-bg:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);--shadow:rgba(0,0,0,.5);--mesh-opacity:.22}
-:root[data-theme="light"]{--bg:#fafbfc;--surface:rgba(15,23,42,0.03);--surface-2:rgba(15,23,42,0.06);--border:rgba(15,23,42,0.08);--border-2:rgba(15,23,42,0.15);--text:#0f172a;--muted:#475569;--dim:#64748b;--accent:#3b82f6;--accent2:#8b5cf6;--accent3:#0891b2;--green:#16a34a;--red:#dc2626;--gold:#ca8a04;--glass-bg:rgba(255,255,255,0.6);--glass-border:rgba(15,23,42,0.08);--shadow:rgba(15,23,42,.08);--mesh-opacity:.05}
-:root[data-theme="midnight"]{--bg:#0b1220;--surface:rgba(99,102,241,0.06);--surface-2:rgba(99,102,241,0.1);--border:rgba(99,102,241,0.12);--border-2:rgba(99,102,241,0.2);--text:#e0e7ff;--muted:#a5b4fc;--dim:#818cf8;--accent:#818cf8;--accent2:#c084fc;--accent3:#22d3ee;--green:#34d399;--red:#f87171;--gold:#fcd34d;--orange:#fb923c;--glass-bg:rgba(99,102,241,0.04);--glass-border:rgba(99,102,241,0.12);--shadow:rgba(0,0,0,.5);--mesh-opacity:.3}
-:root{--grad-1:linear-gradient(135deg,#3b82f6 0%,#8b5cf6 50%,#ec4899 100%);--grad-mesh:radial-gradient(at 27% 37%,#3b82f6 0px,transparent 50%),radial-gradient(at 97% 21%,#8b5cf6 0px,transparent 50%),radial-gradient(at 52% 99%,#06b6d4 0px,transparent 50%);--t:.4s cubic-bezier(.4,0,.2,1)}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);transition:background var(--t),color var(--t);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{text-decoration:none;color:inherit}
-.mesh-bg{position:fixed;inset:0;z-index:-1;background:var(--grad-mesh);filter:blur(120px);opacity:var(--mesh-opacity);animation:drift 20s ease-in-out infinite}
+/* Page-specific styles only. Chrome (tokens, nav, ticker, footer, themes,
+   background) lives in rp-shell.css / rp-shell.js — single source of truth. */
+h1,h2,h3{font-family:'Poppins',Arial,sans-serif}
+[style*="Grotesk"]{font-family:'Poppins',Arial,sans-serif!important}
 @keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(-3%,2%)}}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-.theme-switcher{position:fixed;bottom:24px;right:24px;z-index:300;display:flex;background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:14px;padding:4px;gap:2px}
-.theme-switcher button{background:transparent;border:none;padding:8px 12px;color:var(--muted);cursor:pointer;border-radius:10px;font-size:14px;font-family:inherit}
-.theme-switcher button.active{background:var(--grad-1);color:#fff}
-
-nav{position:sticky;top:0;z-index:199;background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 36px;display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;letter-spacing:-1px;font-family:'Space Grotesk',sans-serif}
-.logo-icon{width:30px;height:30px;border-radius:8px;background:var(--grad-1);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:14px}
-.logo span{background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.pills{display:flex;gap:4px;padding:4px;background:var(--surface);border-radius:10px;border:1px solid var(--border)}
-.pills a{padding:6px 14px;font-size:12px;font-weight:600;color:var(--muted);border-radius:8px;transition:.2s}
-.pills a:hover{color:var(--text);background:var(--surface-2)}
-.pills a.active{background:var(--grad-1);color:#fff}
-.btn{padding:8px 16px;border-radius:8px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:6px;cursor:pointer;border:none;font-family:inherit;transition:.2s}
-.btn-p{background:var(--grad-1);color:#fff}
-.btn-glass{background:var(--surface);border:1px solid var(--border-2);color:var(--text)}
 
 .hero{padding:60px 36px 30px;position:relative;text-align:center}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);border-radius:99px;font-size:11px;font-weight:600;color:var(--green);margin-bottom:20px}
@@ -45,7 +26,7 @@ nav{position:sticky;top:0;z-index:199;background:var(--glass-bg);backdrop-filter
 .hero p{font-size:15px;color:var(--muted);max-width:680px;margin:0 auto 28px;line-height:1.6}
 
 .search-wrap{max-width:780px;margin:0 auto;position:relative}
-.search-bar{display:flex;background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:2px solid var(--glass-border);border-radius:18px;padding:10px;gap:10px;box-shadow:0 20px 60px var(--shadow);transition:.3s}
+.search-bar{display:flex;background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:2px solid var(--glass-border);border-radius:18px;padding:10px;gap:10px;box-shadow:var(--shadow);transition:.3s}
 .search-bar:focus-within{border-color:var(--accent);box-shadow:0 20px 60px rgba(59,130,246,.2)}
 .search-bar input{flex:1;background:transparent;border:none;outline:none;padding:14px 18px;font-size:15px;color:var(--text);font-family:inherit}
 .search-bar input::placeholder{color:var(--muted)}
@@ -137,26 +118,8 @@ nav{position:sticky;top:0;z-index:199;background:var(--glass-bg);backdrop-filter
 @media(max-width:768px){.g2,.g3,.g4{grid-template-columns:1fr}.container,nav{padding:0 14px}.hero{padding:30px 14px 20px}.hero h1{font-size:30px}.pills{display:none}}
 </style>
 </head>
-<body>
-
-<div class="mesh-bg"></div>
-
-<div class="theme-switcher" id="theme-switcher">
-  <button data-theme="dark" class="active">🌙</button>
-  <button data-theme="midnight">🌌</button>
-  <button data-theme="light">☀️</button>
-</div>
-
-<nav>
-  <div class="logo"><div class="logo-icon">R</div><span>Re</span>Prime Explore</div>
-  <div class="pills">
-    <a href="/site">🌐 Site</a>
-    <a href="/explore" class="active">🔍 Explore</a>
-    <a href="/terminal">📊 Terminal</a>
-    <a href="/dashboard">🗂️ Dashboard</a><a href="/data">🗄️ Data</a><a href="/wall">🗄️ Wall</a>
-  </div>
-  <a href="https://github.com/kazi-reprime/reprime-data-platform" target="_blank" class="btn btn-glass">⭐ GitHub</a>
-</nav>
+<body class="rp-has-ticker">
+<!-- Header (nav), topper (ticker) and footer are injected by /rp-shell.js -->
 
 <section class="hero">
   <div class="hero-eyebrow"><span class="dot"></span>611 SOURCES · LIVE API FAN-OUT · ONE SEARCH ENDPOINT</div>
@@ -300,24 +263,12 @@ nav{position:sticky;top:0;z-index:199;background:var(--glass-bg);backdrop-filter
 
 </div>
 
+<script src="/rp-shell.js"></script>
 <script>
 // ============================================================================
 // RePrime Explore — consolidated /api/search client (v4.0)
 // One server-side call. Progressive render. Real per-source status.
 // ============================================================================
-
-// THEME ----------------------------------------------------------------------
-const saved = localStorage.getItem('theme') || 'dark';
-document.documentElement.dataset.theme = saved;
-document.querySelectorAll('.theme-switcher button').forEach(b => {
-  if (b.dataset.theme === saved) b.classList.add('active'); else b.classList.remove('active');
-  b.addEventListener('click', () => {
-    document.documentElement.dataset.theme = b.dataset.theme;
-    localStorage.setItem('theme', b.dataset.theme);
-    document.querySelectorAll('.theme-switcher button').forEach(x => x.classList.toggle('active', x === b));
-  });
-});
-
 const $ = id => document.getElementById(id);
 $('backend-info').innerHTML = `Live endpoint <code>/api/search</code> · server-side fan-out · <span class="badge live">real per-source status</span>`;
 
@@ -759,7 +710,7 @@ function hideAutocomplete() { if (_acBox) _acBox.style.display = 'none'; }
 function setupAutocomplete() {
   const wrap = document.querySelector('.search-wrap'); const inp = $('q');
   _acBox = document.createElement('div'); _acBox.id = 'ac-box';
-  _acBox.style.cssText = 'position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:60;background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border-2);border-radius:14px;overflow:hidden;display:none;box-shadow:0 20px 60px var(--shadow);text-align:left';
+  _acBox.style.cssText = 'position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:60;background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border-2);border-radius:14px;overflow:hidden;display:none;box-shadow:var(--shadow);text-align:left';
   wrap.appendChild(_acBox);
   inp.addEventListener('input', () => {
     clearTimeout(_acTimer); const q = inp.value.trim();
