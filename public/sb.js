@@ -44,30 +44,30 @@
     const max = Math.max(...d.coverage.map((c) => +c.sources || 0), 1);
     const bars = [...d.coverage].sort((a, b) => b.sources - a.sources).slice(0, 8).map((c, i) =>
       `<div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
-         <div style="width:150px;text-align:right;color:#94a3b8;font-size:11px">${(c.category || "").replace(/_/g, " ")}</div>
-         <div style="flex:1;background:rgba(255,255,255,.05);border-radius:5px;height:18px;overflow:hidden">
+         <div style="width:150px;text-align:right;color:var(--muted,#94a3b8);font-size:11px">${(c.category || "").replace(/_/g, " ")}</div>
+         <div style="flex:1;background:var(--surface,rgba(255,255,255,.08));border-radius:5px;height:18px;overflow:hidden">
            <div style="height:100%;width:${Math.round((+c.sources / max) * 100)}%;background:${cl[i % 14]};border-radius:5px;display:flex;align-items:center;padding:0 7px;font-size:9px;font-weight:700;color:#fff">${c.sources}</div>
          </div></div>`).join("");
     const rows = d.datasets.slice(0, 12).map((x) =>
-      `<div style="display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12px">
-         <span style="flex:1;color:#e2e8f0">${x.name}</span>
-         <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:#22c55e">${fmt(x.record_count)}</span></div>`).join("");
+      `<div style="display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid var(--border,rgba(255,255,255,.12));font-size:12px">
+         <span style="flex:1;color:var(--text,#e2e8f0)">${x.name}</span>
+         <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green,#22c55e)">${fmt(x.record_count)}</span></div>`).join("");
     return `
-    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:22px;margin:18px auto;max-width:1100px;font-family:'Inter',system-ui,sans-serif;color:#f8fafc">
+    <div style="background:var(--glass-bg,rgba(255,255,255,.04));border:1px solid var(--glass-border,rgba(255,255,255,.12));border-radius:16px;padding:22px;margin:18px auto;max-width:1100px;font-family:'Inter',system-ui,sans-serif;color:var(--text,#f8fafc)">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
         <div style="font-family:'Space Grotesk','Inter',sans-serif;font-size:15px;font-weight:700">🗄️ Live Data Warehouse</div>
-        <span style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px;background:rgba(34,197,94,.12);color:#22c55e;border:1px solid rgba(34,197,94,.25)">LIVE · Supabase</span>
+        <span style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px;background:rgba(34,197,94,.12);color:var(--green,#22c55e);border:1px solid rgba(34,197,94,.25)">LIVE · Supabase</span>
       </div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px">
-        <div style="text-align:center"><div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:800;color:#3b82f6">${fmt(d.records)}</div><div style="font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px">Records Stored</div></div>
-        <div style="text-align:center"><div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:800;color:#22c55e">${d.ingesting}</div><div style="font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px">Sources w/ Data</div></div>
-        <div style="text-align:center"><div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:800;color:#fbbf24">${fmt(d.sources)}</div><div style="font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px">Cataloged</div></div>
+        <div style="text-align:center"><div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:800;color:var(--accent,#3b82f6)">${fmt(d.records)}</div><div style="font-size:10px;color:var(--muted,#94a3b8);text-transform:uppercase;letter-spacing:1px">Records Stored</div></div>
+        <div style="text-align:center"><div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:800;color:var(--green,#22c55e)">${d.ingesting}</div><div style="font-size:10px;color:var(--muted,#94a3b8);text-transform:uppercase;letter-spacing:1px">Sources w/ Data</div></div>
+        <div style="text-align:center"><div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:800;color:var(--gold,#fbbf24)">${fmt(d.sources)}</div><div style="font-size:10px;color:var(--muted,#94a3b8);text-transform:uppercase;letter-spacing:1px">Cataloged</div></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-        <div><div style="font-size:11px;color:#94a3b8;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px">Coverage by category</div>${bars}</div>
-        <div><div style="font-size:11px;color:#94a3b8;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px">Top ingested datasets</div>${rows}</div>
+        <div><div style="font-size:11px;color:var(--muted,#94a3b8);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px">Coverage by category</div>${bars}</div>
+        <div><div style="font-size:11px;color:var(--muted,#94a3b8);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px">Top ingested datasets</div>${rows}</div>
       </div>
-      <div style="text-align:right;margin-top:10px"><a href="/data" style="color:#3b82f6;font-size:12px;text-decoration:none">View full coverage →</a></div>
+      <div style="text-align:right;margin-top:10px"><a href="/data" style="color:var(--accent,#3b82f6);font-size:12px;text-decoration:none">View full coverage →</a></div>
     </div>`;
   }
 
