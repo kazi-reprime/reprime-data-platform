@@ -51,6 +51,7 @@ jobs:
           pip install --quiet psycopg2-binary || true
           python3 pipeline/load_to_db.py || true
           python3 pipeline/enrich_counts.py || true
+          python3 pipeline/sec_reits.py || true
 
       - name: Commit coverage report + cached data
         run: |
