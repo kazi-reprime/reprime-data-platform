@@ -57,6 +57,7 @@ jobs:
           python3 pipeline/credit_spreads.py || true
           python3 pipeline/flatten_records.py || true
           python3 pipeline/deep_records.py 1000 || true
+          python3 pipeline/socrata_discover.py 8 250 || true
 
       - name: Commit coverage report + cached data
         run: |
