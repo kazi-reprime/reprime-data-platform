@@ -70,7 +70,7 @@
   };
 
   function cardHTML(d) {
-    const cl = ["#3b82f6", "#22c55e", "#8b5cf6", "#fbbf24", "#ef4444", "#06b6d4", "#fb923c", "#f472b6", "#14b8a6", "#a78bfa", "#6366f1", "#84cc16", "#f59e0b", "#10b981"];
+    const cl = ["#BC9C45", "#1D5FB8", "#00A1FF", "#009080", "#FFBC7D", "#0E3470", "#00A980", "#BC9C45", "#1D5FB8", "#00A1FF", "#009080", "#FFBC7D", "#0E3470", "#00A980"];
     const max = Math.max(...d.coverage.map((c) => +c.sources || 0), 1);
     const bars = [...d.coverage].sort((a, b) => b.sources - a.sources).slice(0, 8).map((c, i) =>
       `<div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
@@ -87,9 +87,9 @@
         <div id="rpdet-${i}" style="display:none;padding-bottom:6px"></div></div>`;
     }).join("");
     return `
-    <div style="background:var(--glass-bg,rgba(255,255,255,.04));border:1px solid var(--glass-border,rgba(255,255,255,.12));border-radius:16px;padding:22px;margin:18px auto;max-width:1100px;font-family:'Inter',system-ui,sans-serif;color:var(--text,#f8fafc)">
+    <div style="background:var(--card-bg,var(--glass-bg,rgba(255,255,255,.04)));border:1px solid var(--border,var(--glass-border,rgba(255,255,255,.12)));border-radius:16px;padding:22px;margin:18px auto;max-width:1280px;font-family:'Poppins',Arial,sans-serif;color:var(--text,#f8fafc)">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
-        <div style="font-family:'Space Grotesk','Inter',sans-serif;font-size:15px;font-weight:700">🗄️ Live Data Warehouse</div>
+        <div style="font-family:'Poppins',Arial,sans-serif;font-size:15px;font-weight:700">🗄️ Live Data Warehouse</div>
         <span style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px;background:rgba(34,197,94,.12);color:var(--green,#22c55e);border:1px solid rgba(34,197,94,.25)">LIVE · Supabase</span>
       </div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px">
@@ -117,8 +117,9 @@
     let anchor = document.getElementById("reprime-live-data");
     if (!anchor) {
       anchor = document.createElement("div");
-      const host = document.querySelector(".container, .wrap, main, .term-content") || document.body;
-      host.appendChild(anchor);
+      const foot = document.querySelector("footer.rp-footer");
+      if (foot && foot.parentNode === document.body) document.body.insertBefore(anchor, foot);
+      else (document.querySelector(".container, .wrap, main, .term-content, .dash, .head") || document.body).appendChild(anchor);
     }
     anchor.innerHTML = cardHTML(d);
   }

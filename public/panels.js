@@ -32,9 +32,14 @@
     if (!curve && !reits && !macro) return;
     await loadChart();
 
-    const muted = css("--muted", "#94a3b8"), text = css("--text", "#e2e8f0"), border = css("--border", "rgba(255,255,255,.12)");
+    const muted = css("--muted", "#94a3b8"), text = css("--text", "#e2e8f0"), border = css("--border", "rgba(255,255,255,.12)"), accent = css("--gold", "#BC9C45");
     let anchor = document.getElementById("reprime-panels");
-    if (!anchor) { anchor = document.createElement("div"); (document.querySelector(".container, .wrap, main, .term-content") || document.body).appendChild(anchor); }
+    if (!anchor) {
+      anchor = document.createElement("div");
+      const foot = document.querySelector("footer.rp-footer");
+      if (foot && foot.parentNode === document.body) document.body.insertBefore(anchor, foot);
+      else (document.querySelector(".container, .wrap, main, .term-content, .dash, .head") || document.body).appendChild(anchor);
+    }
 
     const macroGrid = macro && macro.length
       ? '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:8px">'
@@ -47,9 +52,9 @@
         + "</tbody></table></div>" : "";
 
     anchor.innerHTML = `
-    <div style="background:var(--glass-bg,rgba(255,255,255,.04));border:1px solid var(--glass-border,${border});border-radius:16px;padding:22px;margin:18px auto;max-width:1100px;color:${text};font-family:'Inter',system-ui,sans-serif">
+    <div style="background:var(--card-bg,var(--glass-bg,rgba(255,255,255,.04)));border:1px solid var(--border,${border});border-radius:16px;padding:22px;margin:18px auto;max-width:1280px;color:${text};font-family:'Poppins',Arial,sans-serif">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
-        <div style="font-family:'Space Grotesk','Inter',sans-serif;font-size:15px;font-weight:700">📊 Capital Markets Intelligence</div>
+        <div style="font-family:'Poppins',Arial,sans-serif;font-size:15px;font-weight:700">📊 Capital Markets Intelligence</div>
         <span style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px;background:rgba(34,197,94,.12);color:var(--green,#22c55e);border:1px solid rgba(34,197,94,.25)">LIVE · FRED · SEC EDGAR</span>
       </div>
       ${curve && curve.length ? `<div style="font-size:11px;color:${muted};text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">U.S. Treasury Yield Curve</div><div style="height:220px;margin-bottom:18px"><canvas id="rp-yc"></canvas></div>` : ""}
@@ -61,7 +66,7 @@
     if (curve && curve.length && window.Chart) {
       new window.Chart(document.getElementById("rp-yc"), {
         type: "line",
-        data: { labels: curve.map((p) => p.tenor), datasets: [{ label: "Yield %", data: curve.map((p) => p.yield_pct), borderColor: "#3b82f6", backgroundColor: "rgba(59,130,246,.12)", fill: true, tension: 0.35, pointRadius: 3 }] },
+        data: { labels: curve.map((p) => p.tenor), datasets: [{ label: "Yield %", data: curve.map((p) => p.yield_pct), borderColor: accent, backgroundColor: "rgba(188,156,69,.14)", fill: true, tension: 0.35, pointRadius: 3 }] },
         options: { plugins: { legend: { display: false } }, scales: { y: { ticks: { color: muted, callback: (v) => v + "%" } }, x: { ticks: { color: muted } } } },
       });
     }

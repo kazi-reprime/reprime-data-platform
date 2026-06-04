@@ -15,7 +15,7 @@ permissions:
 jobs:
   ingest:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 55
     steps:
       - uses: actions/checkout@v4
 
@@ -30,19 +30,19 @@ jobs:
         run: python3 scraper/aggregate.py || true
 
       - name: Ingest — keyless live APIs (full)
-        run: python3 pipeline/run_ingest.py --tier live_api --auth keyless --limit 100
+        run: python3 pipeline/run_ingest.py --tier live_api --auth keyless --limit 250
 
       - name: Ingest — keyed live APIs (uses repo secrets)
         env:
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
-        run: python3 pipeline/run_ingest.py --tier live_api --auth api_key --limit 500 || true
+        run: python3 pipeline/run_ingest.py --tier live_api --auth api_key --limit 800 || true
 
       - name: Ingest — RSS feeds
-        run: python3 pipeline/run_ingest.py --tier rss --limit 50 || true
+        run: python3 pipeline/run_ingest.py --tier rss --limit 150 || true
 
       - name: Ingest — bulk / dataset downloads
-        run: python3 pipeline/run_ingest.py --tier bulk --limit 500 || true
+        run: python3 pipeline/run_ingest.py --tier bulk --limit 1000 || true
 
       - name: Load to Postgres (no-op until DATABASE_URL is set)
         env:
@@ -56,8 +56,8 @@ jobs:
           python3 pipeline/treasury_curve.py || true
           python3 pipeline/credit_spreads.py || true
           python3 pipeline/flatten_records.py || true
-          python3 pipeline/deep_records.py 1000 || true
-          python3 pipeline/socrata_discover.py 8 250 || true
+          python3 pipeline/deep_records.py 5000 || true
+          python3 pipeline/socrata_discover.py 16 500 || true
 
       - name: Commit coverage report + cached data
         run: |
