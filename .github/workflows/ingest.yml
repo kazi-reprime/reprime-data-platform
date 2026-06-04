@@ -52,6 +52,7 @@ jobs:
           python3 pipeline/load_to_db.py || true
           python3 pipeline/enrich_counts.py || true
           python3 pipeline/sec_reits.py || true
+          python3 pipeline/fred_cre.py || true
 
       - name: Commit coverage report + cached data
         run: |
