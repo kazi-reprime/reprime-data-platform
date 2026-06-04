@@ -161,7 +161,7 @@ def fetch(url: str, family: str | None = None, limit: int = 25, timeout: int = 1
             "request_url": req_url}
 
 
-def _trim(payload, n=100):
+def _trim(payload, n=500):
     """Keep a sample of rows for storage/display (richer than before for the viewer)."""
     if isinstance(payload, list):
         return payload[:n]

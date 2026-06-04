@@ -55,6 +55,7 @@ jobs:
           python3 pipeline/fred_cre.py || true
           python3 pipeline/treasury_curve.py || true
           python3 pipeline/credit_spreads.py || true
+          python3 pipeline/flatten_records.py || true
 
       - name: Commit coverage report + cached data
         run: |

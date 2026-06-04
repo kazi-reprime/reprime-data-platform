@@ -60,10 +60,15 @@ async function build(){
     srcs.forEach((s,i)=>{ const ci=Object.keys(cats).indexOf(s.category); if(ci<0)cats[s.category]=Object.keys(cats).length;
       BOXES.push({kind:'source',color:cl[cats[s.category]%14],t:s.name,m:(s.provider||s.category||''),tag:s.category,search:(s.name+' '+s.category+' '+(s.provider||'')).toLowerCase()});});
   }catch(e){}
-  // 2) record boxes (every stored sample row across datasets)
+  // 2) record boxes — page through the flattened data_records table (scales to thousands)
   try{
-    const ds=await (await fetch(SB+'/rest/v1/v_latest_source_data?select=name,category,record_count,payload&status=eq.ok&limit=80',{headers:H})).json();
-    ds.forEach(d=>{ flat(d.payload).forEach(r=>{ const lbl=recLabel(r); if(lbl) BOXES.push({kind:'record',color:'#22c55e',t:lbl,m:d.name,tag:d.category||'record',search:(lbl+' '+d.name).toLowerCase()}); }); });
+    for(let off=0; off<20000; off+=1000){
+      const page=await (await fetch(SB+'/rest/v1/data_records?select=source_name,category,fields&limit=1000&offset='+off,{headers:H})).json();
+      if(!page.length) break;
+      page.forEach(r=>{ const lbl=recLabel(r.fields||{}); if(lbl) BOXES.push({kind:'record',color:'#22c55e',t:lbl,m:r.source_name,tag:r.category||'record',search:(lbl+' '+r.source_name).toLowerCase()}); });
+      document.getElementById('total').textContent=BOXES.length.toLocaleString();
+      if(page.length<1000) break;
+    }
   }catch(e){}
   document.getElementById('total').textContent=BOXES.length.toLocaleString();
   render(true);
