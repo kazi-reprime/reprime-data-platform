@@ -36,6 +36,67 @@
       {"label": "Apply for Membership", "url": "https://www.reprimeterminal.com/en/join"}
     ],
     "disclaimer": "Membership is by invitation only and restricted to accredited investors and qualified purchasers. All investments involve risk.",
+    "pitch": {
+      "eyebrow": "The Terminal · Live Pipeline · Nationwide",
+      "headline": "Full-Transparency Commercial Real Estate Investing, Powered by AI",
+      "sub": "Every deal. Every document. Every metric. From sourcing to close — see exactly what we see. The Terminal gives investors direct access to our entire acquisition pipeline with complete transparency, so you can make informed decisions on your own timeline."
+    },
+    "what_is": "The Terminal is not a product. It is the entire technology and operations ecosystem of RePrime Group — every system, workflow, AI tool, data pipeline, and investor-facing interface, unified under one institutional platform. Behind what investors see is a machine running 24/7: multi-model AI pipelines analyzing every deal through Claude, OpenAI, Gemini, and Perplexity in parallel; hundreds of automated workflows; a nationwide property-monitoring network covering 3,100+ counties; a tenant-risk intelligence engine; and lending partnerships returning debt quotes in minutes.",
+    "value_props": [
+      {"t": "What You See", "d": "The Marketplace and official Terminal — live deal pipeline, full documentation, AI-generated analysis, investment options, and real-time updates. Complete transparency into every active deal."},
+      {"t": "What Powers It", "d": "Multi-model AI (Claude, OpenAI, Gemini, Perplexity) in parallel. Hundreds of automated workflows. Nationwide property scraping. Tenant-risk scoring. 50-page lease analysis in minutes. Lending quotes in 10 minutes."},
+      {"t": "What It Means For You", "d": "Faster decisions. Better data. Full transparency. Deals analyzed and underwritten before most buyers have opened the email. Five closing methods — the ability to move at the speed this market demands."}
+    ],
+    "tech_layers": [
+      {"layer": "Infrastructure", "items": ["n8n", "Supabase", "APIs", "Scraping", "Vercel", "PostgreSQL"]},
+      {"layer": "Intelligence", "items": ["Tenant Risk", "Market Data", "Lease Score", "Foot Traffic"]},
+      {"layer": "AI Models", "items": ["Claude", "OpenAI", "Gemini", "Perplexity", "Mistral", "LangChain"]}
+    ],
+    "opportunity": {
+      "title": "The $2.2 Trillion Maturity Wall",
+      "intro": "Between 2024 and 2027, $2.2 trillion in commercial real estate loans are contractually set to mature — the largest refinancing challenge in history. January 1, 2026 marks the end of “extend and pretend”: mandatory mark-to-market, quarterly reappraisals, and the elimination of interest-only modifications will force banks to recognize losses they’ve deferred for years.",
+      "stats": [
+        {"v": "$2.2T", "l": "Total Maturities 2024–2027"},
+        {"v": "$891B", "l": "2026 Peak Year"},
+        {"v": "$300B+", "l": "Institutional Dry Powder"},
+        {"v": "70%", "l": "CRE Debt at Regional Banks"}
+      ],
+      "distressed": [
+        {"p": "311 S. Wacker, Chicago, IL", "d": "−85%", "note": "Sold $45M · Peak $302M"},
+        {"p": "Market Center, San Francisco, CA", "d": "−76%", "note": "Sold $177M · Peak $722M"},
+        {"p": "One Financial Center, Boston, MA", "d": "−64%", "note": "Sold $396M · Peak $1.1B"},
+        {"p": "1221 Ave of Americas, New York, NY", "d": "−60%", "note": "Sold $880M · Peak $2.2B"},
+        {"p": "600 W. Chicago, Chicago, IL", "d": "−82%", "note": "Sold $88.7M · Peak $510M"}
+      ],
+      "source": "Mortgage Bankers Association; public transaction records."
+    },
+    "process": [
+      {"n": "01", "t": "Deal Sourcing", "d": "Decades of direct broker, owner, and operator relationships plus AI scanning every major listing platform and 3,100+ counties every 24 hours for auctions, foreclosures, bank REOs, and tax-deed sales."},
+      {"n": "02", "t": "Initial Diligence", "d": "First-pass underwriting: rent roll, T-12, comps, condition. AI analyzes every offering memo on arrival and 50-page leases in 3–5 minutes, with tenant intelligence and foot-traffic analytics. ~90% of deals are eliminated here."},
+      {"n": "03", "t": "Negotiation", "d": "RePrime personally leads negotiation to lock pricing below market — leveraging timing, certainty of close, and 30 years of reputation. Agreed deals enter the Marketplace for early investor visibility."},
+      {"n": "04", "t": "Under Contract", "d": "The moment a deal goes under contract it appears in the Terminal — purchase agreement, financial models, market reports, tenant analysis, all visible to qualified investors in real-time."},
+      {"n": "05", "t": "Deep Diligence", "d": "Physical inspection, environmental review, lease audit, tenant interviews, market validation, and final underwriting — every finding uploaded to the Terminal as it's discovered."},
+      {"n": "06", "t": "Close", "d": "Investors fund commitments, the deal closes, title transfers. Whether a direct acquisition or a GP/LP partnership, every detail is documented and retained in the Terminal."},
+      {"n": "07", "t": "Asset Management", "d": "After close the Terminal becomes the investor's window into the asset — monthly financials, occupancy, leasing, capital improvements, and distributions posted as they occur. No quarterly surprises."}
+    ],
+    "paths": [
+      {"name": "Direct Acquisition", "tag": "Path One", "d": "You purchase the property outright through an assignment structure. RePrime sources, negotiates, and underwrites; once under contract we assign the purchase agreement to you. You take title, you own the asset, you control the outcome.", "facts": ["Structure: Direct Assignment", "Acquisition fee: 3% at close", "Ownership: 100% yours", "Management: your responsibility"]},
+      {"name": "GP / LP Partnership", "tag": "Path Two · Most Common", "d": "RePrime serves as sole General Partner and manages every aspect — acquisition, financing, asset management, disposition. You invest alongside other qualified investors, receive quarterly distributions, and retain full Terminal transparency without the operational burden.", "facts": ["Structure: GP/LP Partnership", "Acquisition fee: 1%", "Asset management: 2% annual", "Promote: 20% above 8% pref", "Minimum commitment: $250,000"]}
+    ],
+    "track_record": [
+      {"v": "$3B+", "l": "In Distressed CRE Transactions"},
+      {"v": "30 yrs", "l": "Of Real Estate Experience"},
+      {"v": "1,000+", "l": "Properties Acquired at Auction"},
+      {"v": "30+", "l": "Signed Bank & Brokerage Reference Letters"}
+    ],
+    "criteria": [
+      {"k": "Asset Classes", "v": "Multifamily · Retail · Office · Industrial · Specialty"},
+      {"k": "Geography", "v": "Nationwide — primary, secondary, tertiary markets"},
+      {"k": "Minimum Deal Size", "v": "$5,000,000+"},
+      {"k": "Return Targets", "v": "8%+ Cap Rate · 12%+ Cash-on-Cash"},
+      {"k": "Deal Types", "v": "Distressed · REO · Note · Tax Deed · Auction · Off-Market · Motivated Seller"}
+    ],
+    "contact_terminal": {"phone": "+1 (917) 703-0365", "email": "terminal@reprimeterminal.com"},
     "tiers": [
       {"name": "Standard", "price": "$30,000/year", "comp": "Complimentary for Founding Members", "lane": "Standard Lane — access to all published deals", "popular": false, "features": ["Access to all published deals", "Full due diligence data room", "Financial modeling tools", "Meeting scheduling with team", "Market intelligence dashboard"]},
       {"name": "Accelerated", "price": "$75,000/year", "comp": "Complimentary for Founding Members", "lane": "Accelerated Lane — priority access + non-refundable deposit deals", "popular": true, "features": ["Everything in Standard", "Priority deal access (48hr head start)", "Non-refundable deposit deals", "Direct line to acquisition team", "Custom financial modeling", "Quarterly portfolio reviews"]},
