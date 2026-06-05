@@ -129,6 +129,34 @@
       pill("Submit a Deal →", esc(c.submit_deal)) + '</div>';
   };
 
+  R.terminal = function (el, d) {
+    var t = d.terminal; if (!t) return;
+    el.innerHTML = section("RePrime Terminal — Investor Access", t.headline, t.subhead) +
+      '<div style="max-width:1000px;margin:0 auto;text-align:center">' +
+        '<div style="display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:99px;background:var(--surface);border:1px solid var(--border);font-size:11px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:18px">' + esc(t.status) + '</div>' +
+        '<div style="font-size:14px;color:var(--muted);font-weight:300;line-height:1.7;max-width:700px;margin:0 auto 20px">' + esc(t.founding_note) + '</div>' +
+        '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">' +
+          t.ctas.map(function (c, i) { return '<a href="' + esc(c.url) + '" target="_blank" rel="noopener" class="btn ' + (i === 0 ? "btn-gold" : "btn-glass") + '">' + esc(c.label) + ' →</a>'; }).join("") +
+        '</div>' +
+        '<div style="font-size:11px;color:var(--dim);margin-top:16px">' + esc(t.disclaimer) + '</div></div>';
+  };
+
+  R.membership = function (el, d) {
+    var t = d.terminal; if (!t) return;
+    el.innerHTML = section("Membership", "Three lanes. One terminal.", t.tagline) +
+      '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;max-width:1280px;margin:0 auto;align-items:start">' +
+      t.tiers.map(function (tier) {
+        return '<div style="background:var(--card-bg);border:1px solid ' + (tier.popular ? "var(--gold)" : "var(--border)") + ';border-radius:16px;padding:26px;position:relative">' +
+          (tier.popular ? '<div style="position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--grad-gold);color:#000;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:4px 12px;border-radius:99px">Most Popular</div>' : "") +
+          '<div style="font-size:16px;font-weight:700;color:var(--text)">' + esc(tier.name) + '</div>' +
+          '<div style="font-family:\'JetBrains Mono\',monospace;font-size:26px;font-weight:800;color:var(--gold);margin:6px 0 2px">' + esc(tier.price) + '</div>' +
+          '<div style="font-size:11px;color:var(--green);font-weight:600;margin-bottom:6px">' + esc(tier.comp) + '</div>' +
+          '<div style="font-size:12px;color:var(--muted);font-weight:300;line-height:1.5;margin-bottom:14px">' + esc(tier.lane) + '</div>' +
+          '<div>' + tier.features.map(function (f) { return '<div style="display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--text2,var(--text));font-weight:300;margin-bottom:7px"><span style="color:var(--gold)">✓</span><span>' + esc(f) + '</span></div>'; }).join("") + '</div></div>';
+      }).join("") + '</div>' +
+      '<div style="max-width:700px;margin:18px auto 0;text-align:center;font-size:11px;color:var(--dim)">' + esc(t.disclaimer) + '</div>';
+  };
+
   /* ---- helpers ---- */
   function section(label, title, desc) {
     return '<div style="max-width:1280px;margin:0 auto 28px;text-align:center">' +
@@ -150,7 +178,7 @@
   window.__rpFaq = function (i) { var e = $("rpfaq-" + i), ic = $("rpfaqi-" + i); if (e) { var open = e.style.display === "none"; e.style.display = open ? "block" : "none"; if (ic) ic.textContent = open ? "–" : "+"; } };
 
   function render(d) {
-    var map = { "rp-stats": R.stats, "rp-portals": R.portals, "rp-services": R.services, "rp-operate": R.operate, "rp-close": R.close, "rp-market": R.market, "rp-partners": R.partners, "rp-testimonials": R.testimonials, "rp-team": R.team, "rp-faq": R.faq, "rp-contact": R.contact };
+    var map = { "rp-stats": R.stats, "rp-portals": R.portals, "rp-services": R.services, "rp-operate": R.operate, "rp-close": R.close, "rp-market": R.market, "rp-partners": R.partners, "rp-testimonials": R.testimonials, "rp-team": R.team, "rp-faq": R.faq, "rp-contact": R.contact, "rp-terminal": R.terminal, "rp-membership": R.membership };
     Object.keys(map).forEach(function (id) {
       var el = $(id);
       if (el) { try { map[id](el, d); el.style.margin = el.style.margin || "64px 0"; } catch (e) { /* leave anchor empty on error */ } }

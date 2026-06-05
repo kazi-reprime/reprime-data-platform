@@ -22,6 +22,26 @@
     "address": "123 North Lawler St, Postville, IA 52162",
     "submit_deal": "http://broker.reprimeterminal.com"
   },
+  "terminal": {
+    "name": "RePrime Terminal",
+    "badge": "Beta",
+    "status": "Founding Members — Limited Positions",
+    "headline": "Institutional CRE Access",
+    "subhead": "RePrime Terminal Beta connects qualified investors with off-market commercial real estate opportunities backed by 30+ years of institutional diligence.",
+    "founding_note": "Founding members receive complimentary access through December 2027. All founding members receive our highest membership level, valued at $100,000 annually — no membership fees apply during the founding period.",
+    "tagline": "Experience the future of commercial real estate investment. Exclusive access.",
+    "logo": "https://www.reprimeterminal.com/terminal-logo-gold.svg",
+    "ctas": [
+      {"label": "Investor Login", "url": "https://www.reprimeterminal.com/en/login"},
+      {"label": "Apply for Membership", "url": "https://www.reprimeterminal.com/en/join"}
+    ],
+    "disclaimer": "Membership is by invitation only and restricted to accredited investors and qualified purchasers. All investments involve risk.",
+    "tiers": [
+      {"name": "Standard", "price": "$30,000/year", "comp": "Complimentary for Founding Members", "lane": "Standard Lane — access to all published deals", "popular": false, "features": ["Access to all published deals", "Full due diligence data room", "Financial modeling tools", "Meeting scheduling with team", "Market intelligence dashboard"]},
+      {"name": "Accelerated", "price": "$75,000/year", "comp": "Complimentary for Founding Members", "lane": "Accelerated Lane — priority access + non-refundable deposit deals", "popular": true, "features": ["Everything in Standard", "Priority deal access (48hr head start)", "Non-refundable deposit deals", "Direct line to acquisition team", "Custom financial modeling", "Quarterly portfolio reviews"]},
+      {"name": "Institutional", "price": "$100,000/year", "comp": "Complimentary for Founding Members", "lane": "Rapid Lane — 14–21 day rapid close + co-investment", "popular": false, "features": ["Everything in Accelerated", "14–21 day rapid close deals", "Co-investment opportunities", "Board-level market briefings", "White-glove concierge service", "First look at all acquisitions", "Custom deal sourcing"]}
+    ]
+  },
   "portals": [
     {"audience": "Investors", "title": "Investor Portal", "desc": "Vetted deals under executed PSA. Real-time countdowns. Full data rooms.", "cta": "Access Deals", "url": "https://info.reprimeterminal.com/"},
     {"audience": "Brokers", "title": "Submit a Deal", "desc": "One submission. Multiple offers. Commissions preserved. Under 3 minutes.", "cta": "Submit Now", "url": "http://broker.reprimeterminal.com"},
