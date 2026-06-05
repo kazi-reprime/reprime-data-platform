@@ -35,6 +35,26 @@
       "destination": "/wall.html"
     },
     {
+      "source": "/about",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/team",
+      "destination": "/team.html"
+    },
+    {
+      "source": "/partners",
+      "destination": "/partners.html"
+    },
+    {
+      "source": "/faq",
+      "destination": "/faq.html"
+    },
+    {
+      "source": "/help",
+      "destination": "/help.html"
+    },
+    {
       "source": "/api/live/:metric",
       "destination": "/data/live/:metric.json"
     },

@@ -464,20 +464,29 @@ footer a:hover{color:var(--gold)}
 <style>@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}</style>
 </section>
 
-<!-- TEAM -->
-<section class="reveal">
-<div class="container">
-  <div class="section-label">Leadership</div>
-  <div class="section-title">Built by operators, for operators</div>
-  <div class="section-desc">30 years of institutional CRE experience. We've sat on your side of the table.</div>
-  <div class="team-grid">
-    <div class="team-card"><div class="team-avatar">GK</div><div class="team-name">Gideon Kazi</div><div class="team-role">Founder & CEO</div></div>
-    <div class="team-card"><div class="team-avatar">DS</div><div class="team-name">David Stern</div><div class="team-role">Head of Acquisitions</div></div>
-    <div class="team-card"><div class="team-avatar">RM</div><div class="team-name">Rachel Mizrahi</div><div class="team-role">VP, Capital Markets</div></div>
-    <div class="team-card"><div class="team-avatar">AT</div><div class="team-name">Alex Torres</div><div class="team-role">CTO</div></div>
-  </div>
-</div>
-</section>
+<!-- WHO WE SERVE / PORTALS (real, reprime.com) -->
+<section class="reveal"><div class="container"><div id="rp-portals"></div></div></section>
+
+<!-- WHAT WE DO (real services) -->
+<section class="reveal"><div class="container"><div id="rp-services"></div></div></section>
+
+<!-- FIVE WAYS TO CLOSE (real) -->
+<section class="reveal"><div class="container"><div id="rp-close"></div></div></section>
+
+<!-- PARTNERS & LENDER NETWORK (real) -->
+<section class="reveal"><div class="container"><div id="rp-partners"></div></div></section>
+
+<!-- TESTIMONIALS (real) -->
+<section class="reveal"><div class="container"><div id="rp-testimonials"></div></div></section>
+
+<!-- TEAM (real RePrime Group leadership) -->
+<section class="reveal"><div class="container"><div id="rp-team"></div></div></section>
+
+<!-- FAQ (real) -->
+<section class="reveal"><div class="container"><div id="rp-faq"></div></div></section>
+
+<!-- CONTACT (real) -->
+<section class="reveal"><div class="container"><div id="rp-contact"></div></div></section>
 
 <!-- CTA -->
 <section class="reveal">
@@ -665,6 +674,7 @@ fetch('/api/sources').then(r => r.json()).then(d => {
 }).catch(() => {});
 
 </script>
+<script src="/reprime.js"></script>
 <script src="/sb.js"></script>
 <script src="/panels.js"></script>
 </body>

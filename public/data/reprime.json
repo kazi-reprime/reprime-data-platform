@@ -1,0 +1,112 @@
+{
+  "_source": "https://reprime.com",
+  "_note": "Real RePrime Group content. Refreshed by pipeline/scrape_reprime.py on the daily cron.",
+  "company": {
+    "name": "RePrime Group",
+    "tagline": "Institutional Capital. Immediate Execution.",
+    "intro": "RePrime Group acquires commercial real estate across all asset classes and market conditions, with capital deployed across 800+ transactions and 21M+ square feet of commercial property nationwide. Our investor base includes high-net-worth individuals, family offices, and institutional partners actively allocating capital throughout the United States.",
+    "mastery": "For over two decades, RePrime Group has identified overlooked commercial real estate opportunities across U.S. markets. Through disciplined execution and investor-focused strategy, we transform underappreciated assets into long-term value.",
+    "disclaimer": "RePrime Group provides strategic real estate investment and long-term value across U.S. markets. This site is for informational purposes only and does not constitute an offer or investment advice. All investments carry risk. Access to certain resources is by invitation only.",
+    "logo": "https://reprime.com/wp-content/uploads/2026/04/duotone-1-Photoroom.webp"
+  },
+  "stats": [
+    {"value": "800+", "label": "Transactions"},
+    {"value": "21M+", "label": "Square Feet Nationwide"},
+    {"value": "20+", "label": "Years of Experience"},
+    {"value": "1,000+", "label": "Properties Acquired at Auction"}
+  ],
+  "contact": {
+    "email": "info@reprime.com",
+    "phone": "888-770-8770",
+    "phone_link": "tel:+18887708770",
+    "address": "123 North Lawler St, Postville, IA 52162",
+    "submit_deal": "http://broker.reprimeterminal.com"
+  },
+  "portals": [
+    {"audience": "Investors", "title": "Investor Portal", "desc": "Vetted deals under executed PSA. Real-time countdowns. Full data rooms.", "cta": "Access Deals", "url": "https://info.reprimeterminal.com/"},
+    {"audience": "Brokers", "title": "Submit a Deal", "desc": "One submission. Multiple offers. Commissions preserved. Under 3 minutes.", "cta": "Submit Now", "url": "http://broker.reprimeterminal.com"},
+    {"audience": "Israeli Investors", "title": "RePrime Pro", "desc": "Qualified Israeli investors. Proven U.S. methodology. Herzog, BDO, CLA, KPMG.", "cta": "reprimepro.co.il", "url": "https://reprimepro.co.il"}
+  ],
+  "services": [
+    {"title": "Commercial Acquisitions", "desc": "We identify undervalued mid-market commercial properties with strong upside potential through disciplined underwriting and strategic sourcing."},
+    {"title": "Development Strategy", "desc": "Structured redevelopment plans transform overlooked assets into stabilized, performance-driven commercial investments."},
+    {"title": "Construction Oversight", "desc": "In-house construction management ensures cost control, quality execution, and project timeline discipline."},
+    {"title": "Asset Management", "desc": "Active operational oversight enhances tenant performance, efficiency, and long-term portfolio stability."},
+    {"title": "Capital Structuring", "desc": "Investor-aligned capital deployment designed to balance risk management and long-term growth."},
+    {"title": "Portfolio Optimization", "desc": "Strategic asset repositioning strengthens cash flow, valuation growth, and market competitiveness."}
+  ],
+  "operate": [
+    {"title": "Research-Driven", "desc": "Institutional-grade analysis on every deal before an offer is made. Every claim sourced. Every number verified."},
+    {"title": "Execution Speed", "desc": "Five closing speeds from seven days to full institutional terms. Deposits held at First American Title. We do not waste time."},
+    {"title": "Certainty of Close", "desc": "Not subject to financing. Non-refundable deposits as standard. No retrades. No renegotiation."},
+    {"title": "Broker-First", "desc": "Full commission protection on every transaction. Free institutional-grade market intelligence on every submission."}
+  ],
+  "close_options": [
+    {"name": "7-Day Close", "tag": "Fastest", "timeline": "Close in 7 days", "desc": "Hard deposit, no DD. For sellers who need immediate certainty.", "size": "$2M–$10M", "pricing": "1–3 cap pts from market"},
+    {"name": "Non-Refundable Day One", "tag": "Certainty", "timeline": "Close in 14–21 days", "desc": "Non-refundable deposit at signing. Strongest commitment short of cash.", "size": "$5M–$15M", "pricing": "1–2 cap pts from market"},
+    {"name": "Standard Institutional", "tag": "Most Active", "timeline": "Close in 30–45 days", "desc": "DD and closing on standard institutional timeline. Subject to financing.", "size": "$5M–$100M", "pricing": "Market cap rate"},
+    {"name": "No Financing Contingency", "tag": "Strongest $", "timeline": "Close in 30–60 days", "desc": "Standard DD timeline. Not subject to financing. Strongest capital commitment.", "size": "$5M–$50M", "pricing": "0.5–1 cap pt from market"},
+    {"name": "Full Institutional", "tag": "Highest Price", "timeline": "Close in 60–90+ days", "desc": "Extended DD and close for maximum price recovery.", "size": "$30M–$1B+", "pricing": "At or above market"}
+  ],
+  "market": [
+    {"label": "2026 CRE Debt Maturities", "value": "$875B", "source": "MBA"},
+    {"label": "Q1 Investment Sales", "value": "$112.6B ▲18% YoY", "source": "Avison Young"},
+    {"label": "Office Vacancy", "value": "18.6%", "source": "CBRE"},
+    {"label": "Q1 2026 Multifamily Vacancy", "value": "4.8% ▼20bps QoQ", "source": "CBRE"},
+    {"label": "Industrial Vacancy", "value": "7.5%", "source": "CoStar"},
+    {"label": "Retail Vacancy", "value": "4.4%", "source": "CoStar"},
+    {"label": "10-Yr Treasury", "value": "4.67%", "source": "U.S. Treasury"},
+    {"label": "CMBS Delinquency", "value": "7.55% ▲41bps", "source": "Trepp"},
+    {"label": "Office CMBS Default", "value": "11.71% — Record High", "source": "Trepp"},
+    {"label": "Avg CRE Cap Rate", "value": "6.44%", "source": "Avison Young"},
+    {"label": "Outstanding CRE Debt", "value": "$5.0T", "source": "MBA"},
+    {"label": "2026 Investment Forecast", "value": "$562B ▲16%", "source": "CBRE"},
+    {"label": "Retail Asking Rents", "value": "$24.59/SF ▲2.4% YoY", "source": "CBRE"},
+    {"label": "Multifamily Cap Rate", "value": "5.8%", "source": "CBRE"}
+  ],
+  "team": [
+    {"name": "Shirel Ben Harroush", "role": "CEO", "blurb": "Strategic partnerships and capital markets. Cross-border investment structuring.", "photo": "https://reprime.com/wp-content/uploads/2026/04/t3-modified.png", "bio": "Shirel Ben Harroush is a visionary real estate investor and seasoned professional with expertise spanning advanced property acquisitions, strategic portfolio management, and luxury vacation rentals. As an active investor, Shirel combines hands-on experience with sharp business acumen, making her an indispensable figure in the real estate industry. With deep expertise in auctions, bank REOs, courthouse sales, bankruptcy proceedings, tax deeds, and tax certificates, Shirel is a master at sourcing high-value opportunities and navigating complex acquisition processes."},
+    {"name": "Gideon Gratsiani", "role": "Founder", "blurb": "30+ years in U.S. commercial real estate. Institutional acquisitions across all major asset classes.", "photo": "https://reprime.com/wp-content/uploads/2026/04/t2-modified.png", "bio": "Gideon Menachem Gratsiani is a highly accomplished business leader, visionary technology investor, and nationally recognized real estate auctioneer with over 30 years of experience in commercial and residential real estate. His expertise spans auctions, distressed properties, vacation rentals, tax deeds, and tax certificates. Gideon has successfully acquired and managed over a thousand properties through auctions. As the CEO and Founder of RePrime Group and Overnight Technologies, Gideon has spearheaded transformative initiatives that revolutionize industries."},
+    {"name": "Chaim Abrahams", "role": "COO", "blurb": "Operational leadership across fund management and institutional joint ventures.", "photo": "https://reprime.com/wp-content/uploads/2026/04/t1-modified.png", "bio": "Chaim Abrahams is a visionary leader with over 35 years of experience transforming innovative ideas into successful business ventures. In early 2024, Chaim co-founded RePrime Group with Gideon Gratsiani. RePrime oversees a diverse portfolio, including commercial and multi-family properties, short-term rentals, Heartland Builders, and Overnights. His expertise in strategic project management, operational efficiency, identifying high-margin opportunities, and stakeholder engagement ensures sustainable growth and innovation."},
+    {"name": "Steve Philipp", "role": "AVP, Acquisitions & Technology Strategy", "blurb": "Leading national acquisitions and AI-powered deal operations at RePrime Group.", "photo": "https://reprime.com/wp-content/uploads/2026/04/35cdba7587d4e58cb6021e67f623dfb40c2bfdfb-modified.png", "bio": "Stephen Philipp serves as AVP of Acquisitions and Head of Technology at RePrime Group, with dual responsibility for the firm's national acquisition strategy and its entire technology ecosystem. He is the architect and builder of the RePrime Terminal — the firm's proprietary operating platform encompassing the investor portal, broker submission portal, deal analysis engine, financial modeling infrastructure, and automated communications systems, integrating AI-powered tools across every stage of the investment lifecycle."},
+    {"name": "Colonel Yaron Sitbon", "role": "Israel Operations", "blurb": "Israel-based operations and international investor coordination.", "photo": "https://reprime.com/wp-content/uploads/2026/04/1762073627032-modified.png", "bio": "Yaron is a former senior IDF officer with over two decades of experience commanding special units and managing complex systems under pressure and uncertainty. He developed deep expertise in strategy building, data-driven decision-making, and leading teams toward precise execution. In his role at RePrime Pro, he leads the fund's activities in Israel, strengthening relationships with accredited investors and aligning the company's investment strategies with the Israeli market."},
+    {"name": "Adir Yonasi", "role": "VP, Investor Relations", "blurb": "Investor onboarding, capital coordination, and relationship management.", "photo": "https://reprime.com/wp-content/uploads/2026/04/ChatGPT-Image-Dec-10-2025-11_37_23-AM-modified.png", "bio": "A real estate and finance expert with a decade of experience in acquisitions, deal structuring, equity raising, and debt financing. He has led significant real estate investment activity in Israel, closing transactions totaling hundreds of millions of shekels with private investors, accredited investors, family offices, and institutional partners. His expertise includes investor relations leadership and value-add processes that optimize asset performance."},
+    {"name": "Nikoloz Samkharadze", "role": "Developer", "blurb": "Construction developer leading large-scale commercial and industrial project delivery worldwide.", "photo": "https://reprime.com/wp-content/uploads/2026/04/Nika-1200x900-min.png-modified.png", "bio": "Nikoloz Samkharadze is a highly skilled Developer with over a decade of experience in the construction industry, specializing in large- and mid-scale projects such as multifamily complexes, shopping centers, warehouses, and factories. His company stands as a trusted, all-in-one solution for a wide range of construction needs, with safety, innovation, and top-tier craftsmanship at the forefront of every project."},
+    {"name": "Abhisar Laza", "role": "Creative Director", "blurb": "Creative Director blending global design, marketing, and strategic leadership expertise.", "photo": "https://reprime.com/wp-content/uploads/2026/04/66e7c3b7cbb4dfe4594d2607627ba585412a5de7-modified.png", "bio": "Abhisar Laza is an experienced and versatile Creative Director with over 10 years of expertise in graphic design, specializing in digital and print media. He has worked globally with clients from the U.S., Europe, and Australia, managing end-to-end design processes that produce impactful, visually compelling, purpose-driven marketing materials."},
+    {"name": "Hunter Schultz", "role": "Analyst", "blurb": "Investment and data analyst supporting underwriting, research, and market insights.", "photo": "https://reprime.com/wp-content/uploads/2026/04/7daa451ed7eda4c1313e78724201d5eff44f4429-1024x1024.jpg", "bio": "Hunter Schultz is an investment and data analyst at RePrime Group, supporting underwriting, research, and market insights across the firm's national acquisition pipeline."}
+  ],
+  "partners": [
+    "Midland States Bank", "Archway Capital", "Silver Arch Capital Partners", "Progress Capital", "FM Capital", "Bolour Associates", "Bank of Sun Prairie", "Cedar William Commercial Real Estate", "Encore Real Estate Investment Services", "Brenner Real Estate Group", "Waller Group", "Mid-America Real Estate", "NAI Koella RM Moore", "1st United Bank", "First National Bank", "Franklin Savings Bank", "CV Capital Funding", "Atlantic Investments", "Occam Real Estate", "TD Bank", "SunTrust", "Stearns Bank", "CBRE", "Marcus & Millichap"
+  ],
+  "testimonials": [
+    {"org": "FM Capital", "property": "Trails Edge Apartments, IN", "quote": "Fantastic job sourcing and executing on this transaction.", "by": "Daniel K., SVP Originations"},
+    {"org": "SunTrust Bank", "property": "Cypress Pointe, FL", "quote": "Successful conclusion with cooperation and diligence.", "by": "Christyne A., First Vice President"},
+    {"org": "Stearns Bank", "property": "Ulmerton Road Plaza, FL", "quote": "We value our relationship with you and your staff.", "by": "Catherine B., VP OREO Manager"},
+    {"org": "TD Bank", "property": "CVS Vineland, NJ", "quote": "Met all closing requirements of the Bank.", "by": "Daniel G., Relationship Manager"},
+    {"org": "Gibraltar Private", "property": "Ulmerton Road Plaza, FL", "quote": "We value our relationship and look forward to working with you in the future.", "by": "Raquel Ramirez, Special Assets Dept"},
+    {"org": "Landmark", "property": "Glenville Towne Center, OH", "quote": "Your support team was excellent — a pleasure working with everyone.", "by": "Peyton LaCaria, Vice President"},
+    {"org": "1st United Bank", "property": "Cypress Rd Plaza, FL", "quote": "Appreciate your effort and expertise — a successful conclusion.", "by": "Dan S., REO Asset Manager"},
+    {"org": "Waller Group", "property": "Trails Edge, IN", "quote": "Appreciative of your diligence throughout the transaction process.", "by": "Logan W., Owner/Broker"},
+    {"org": "Archway Capital", "property": "Pirate's Plaza, MI", "quote": "We could not have asked for a smoother closing.", "by": "Marissa W., VP Originations"},
+    {"org": "Cedar William CRE", "property": "Glenville Towne Center, OH", "quote": "Stood by their word and met their terms without difficulty.", "by": "Steven K., President"},
+    {"org": "Midland States Bank", "property": "Retail Shopping Center", "quote": "Good financial standing and of high business integrity.", "by": "Jennifer P., Sr. Commercial RM"},
+    {"org": "Bank of Sun Prairie", "property": "Ulmerton Road Plaza, FL", "quote": "Throughout the underwriting and closing process, I valued your team's professionalism, expertise, and support.", "by": "Nick Hodel, Business Banker"}
+  ],
+  "faq": [
+    {"q": "What does RePrime Group do?", "a": "RePrime Group acquires commercial real estate across all asset classes and market conditions, with capital deployed across 800+ transactions and 21M+ square feet nationwide. The firm runs a vertically integrated platform spanning acquisitions, development, construction oversight, asset management, capital structuring, and portfolio optimization."},
+    {"q": "Who are your investors?", "a": "Our investor base includes high-net-worth individuals, family offices, and institutional partners actively allocating capital throughout the United States. Qualified Israeli investors are served through RePrime Pro using a proven U.S. methodology."},
+    {"q": "How fast can you close?", "a": "Five closing speeds, from a 7-day hard-deposit close to full institutional terms over 60–90+ days. Deposits are held at First American Title. Every broker submission is evaluated by all five buyer groups independently."},
+    {"q": "How do brokers submit a deal?", "a": "One submission at broker.reprimeterminal.com takes under three minutes and is evaluated by multiple buyer groups. Commissions are protected on every transaction, and brokers receive free institutional-grade market intelligence on every submission."},
+    {"q": "What is the RePrime Terminal?", "a": "A proprietary operating platform built in-house — the investor portal, broker submission portal, deal analysis engine, financial modeling infrastructure, and automated communications, with AI-powered tools across every stage of the investment lifecycle."},
+    {"q": "Are deposits refundable?", "a": "Non-refundable deposits are standard where applicable. RePrime closings are not subject to financing, with no retrades and no renegotiation — certainty of close is a core principle."},
+    {"q": "How can Israeli investors participate?", "a": "Through RePrime Pro (reprimepro.co.il) — qualified Israeli investors gain access to the firm's proven U.S. methodology, supported by Herzog, BDO, CLA, and KPMG."},
+    {"q": "How do I get in touch?", "a": "Email info@reprime.com or call 888-770-8770. Offices at 123 North Lawler St, Postville, IA 52162."}
+  ],
+  "legal": [
+    {"label": "Privacy Policy", "url": "https://reprime.com/privacy-policy/"},
+    {"label": "Terms of Use", "url": "https://reprime.com/terms-of-use/"},
+    {"label": "Cookie Policy", "url": "https://reprime.com/cookie-policy/"},
+    {"label": "Accessibility Statement", "url": "https://reprime.com/accessibility-statement/"}
+  ],
+  "trademark_disclaimer": "Counterparties and tenant brands shown represent institutions and organizations involved in completed transactions. Inclusion does not imply a current partnership, endorsement, sponsorship, or ongoing business relationship with RePrime. All trademarks, service marks, and company names are the property of their respective owners."
+}

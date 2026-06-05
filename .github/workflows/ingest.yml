@@ -29,6 +29,9 @@ jobs:
       - name: Refresh cached market data
         run: python3 scraper/aggregate.py || true
 
+      - name: Refresh RePrime.com company content
+        run: python3 pipeline/scrape_reprime.py || true
+
       - name: Ingest — keyless live APIs (full)
         run: python3 pipeline/run_ingest.py --tier live_api --auth keyless --limit 250
 

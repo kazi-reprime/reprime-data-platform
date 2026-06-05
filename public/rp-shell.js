@@ -60,19 +60,26 @@
     '<footer class="rp-footer"><div class="f-inner">' +
       '<div>' +
         '<h4 style="display:flex;align-items:center;gap:8px"><span class="logo-mark" style="width:24px;height:24px;font-size:10px;border-radius:6px;background:var(--grad-gold);color:#000;display:inline-flex;align-items:center;justify-content:center;font-weight:800">RP</span> RePrime Group</h4>' +
-        '<p style="max-width:300px;line-height:1.6;margin-top:8px">Data-driven commercial real estate intelligence. Institutional precision meets mid-market opportunity.</p>' +
+        '<p style="max-width:300px;line-height:1.6;margin-top:8px">Institutional Capital. Immediate Execution. Commercial real estate across all asset classes — 800+ transactions, 21M+ sq ft nationwide.</p>' +
       '</div>' +
-      '<div><h4>Platform</h4>' +
-        '<a href="/site">Company</a><a href="/">Dashboard</a><a href="/terminal">Terminal</a><a href="/explore">Explore</a>' +
+      '<div><h4>Company</h4>' +
+        '<a href="/about">About</a><a href="/team">Team</a><a href="/partners">Partners</a><a href="/faq">FAQ</a><a href="/help">Help</a>' +
       '</div>' +
-      '<div><h4>Data Sources</h4>' +
-        '<a href="#">FRED API</a><a href="#">BLS Statistics</a><a href="#">FEMA Risk</a><a href="#">SEC EDGAR</a><a href="#">Census ACS</a>' +
+      '<div><h4>Portals</h4>' +
+        '<a href="https://info.reprimeterminal.com/" target="_blank" rel="noopener">For Investors</a>' +
+        '<a href="http://broker.reprimeterminal.com" target="_blank" rel="noopener">For Brokers — Submit a Deal</a>' +
+        '<a href="https://reprimepro.co.il" target="_blank" rel="noopener">Israeli Investors — RePrime Pro</a>' +
+        '<a href="/terminal">RePrime Terminal</a>' +
       '</div>' +
       '<div><h4>Contact</h4>' +
-        '<a href="mailto:g@floridastatetrust.com">g@floridastatetrust.com</a><a href="#">Miami, FL</a><a href="#">LinkedIn</a>' +
+        '<a href="mailto:info@reprime.com">info@reprime.com</a>' +
+        '<a href="tel:+18887708770">888-770-8770</a>' +
+        '<a href="#">123 North Lawler St, Postville, IA 52162</a>' +
+        '<a href="https://reprime.com/privacy-policy/" target="_blank" rel="noopener">Privacy</a>' +
+        '<a href="https://reprime.com/terms-of-use/" target="_blank" rel="noopener">Terms</a>' +
       '</div>' +
     '</div>' +
-    '<div class="f-legal"><span>© 2026 RePrime Group. All rights reserved.</span><span>Institutional Use Only</span></div>' +
+    '<div class="f-legal"><span>© 2026 RePrime Group. All rights reserved.</span><span>Institutional Use Only · reprime.com</span></div>' +
     '</footer>';
 
   document.body.insertAdjacentHTML('beforeend', footerHTML);
