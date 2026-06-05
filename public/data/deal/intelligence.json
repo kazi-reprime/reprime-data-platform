@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-06-04T23:46:23.220225Z",
+    "cached_at": "2026-06-05T16:16:14.236574Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -162,6 +162,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Reforming the High-Cost Program for an All-IP Future, Connect America Fund: A National Broadband Plan for Our Future High-Cost Universal Support",
+        "date": "2026-06-05",
+        "type": "Proposed Rule"
+      },
+      {
         "title": "Notice of Determination and Request for Comments Concerning Action Pursuant to Section 301: Brazil's Acts, Policies, and Practices Related to Digital Trade and Electronic Payment Services; Unfair, Preferential Tariffs; Anti-Corruption Enforcement; Intellectual Property Protection; Ethanol Market Access; and Illegal Deforestation",
         "date": "2026-06-04",
         "type": "Notice"
@@ -180,11 +185,6 @@
         "title": "Scotts Valley Band of Pomo Indians of California; Liquor Control Ordinance",
         "date": "2026-06-01",
         "type": "Notice"
-      },
-      {
-        "title": "Registered Offering Reform",
-        "date": "2026-05-26",
-        "type": "Proposed Rule"
       }
     ],
     "source": "Federal Register"
