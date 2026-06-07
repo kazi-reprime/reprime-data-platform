@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-06-07T12:09:01.087873Z",
+    "cached_at": "2026-06-07T16:24:51.678919Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -159,36 +159,7 @@
     ],
     "source": "FEMA"
   },
-  "fed_register": {
-    "documents": [
-      {
-        "title": "Reforming the High-Cost Program for an All-IP Future, Connect America Fund: A National Broadband Plan for Our Future High-Cost Universal Support",
-        "date": "2026-06-05",
-        "type": "Proposed Rule"
-      },
-      {
-        "title": "Notice of Determination and Request for Comments Concerning Action Pursuant to Section 301: Brazil's Acts, Policies, and Practices Related to Digital Trade and Electronic Payment Services; Unfair, Preferential Tariffs; Anti-Corruption Enforcement; Intellectual Property Protection; Ethanol Market Access; and Illegal Deforestation",
-        "date": "2026-06-04",
-        "type": "Notice"
-      },
-      {
-        "title": "Proposed Exemption Involving the International Brotherhood of Electrical Workers Local Union No. 99 Joint Apprenticeship Training Committee Fund (the Fund) Located in Cranston, Rhode Island",
-        "date": "2026-06-03",
-        "type": "Notice"
-      },
-      {
-        "title": "Rescission of Climate-Related Disclosure Rules",
-        "date": "2026-06-03",
-        "type": "Proposed Rule"
-      },
-      {
-        "title": "Scotts Valley Band of Pomo Indians of California; Liquor Control Ordinance",
-        "date": "2026-06-01",
-        "type": "Notice"
-      }
-    ],
-    "source": "Federal Register"
-  },
+  "fed_register": {},
   "weather_alerts": {},
   "fdic_failures": {
     "data": [
