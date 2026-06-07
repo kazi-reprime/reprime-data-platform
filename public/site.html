@@ -488,6 +488,14 @@ footer a:hover{color:var(--gold)}
 <!-- CONTACT (real) -->
 <section class="reveal"><div class="container"><div id="rp-contact"></div></div></section>
 
+<!-- LIVE DATA (viz.js) -->
+<section><div class="container">
+  <div id="viz-counters"></div>
+  <div id="viz-kpis"></div>
+  <div id="viz-heatmap"></div>
+  <div id="viz-catbubble"></div>
+</div></section>
+
 <!-- CTA -->
 <section class="reveal">
 <div class="container">
@@ -674,6 +682,7 @@ fetch('/api/sources').then(r => r.json()).then(d => {
 }).catch(() => {});
 
 </script>
+<script src="/viz.js"></script>
 <script src="/reprime.js"></script>
 <script src="/sb.js"></script>
 <script src="/panels.js"></script>

@@ -35,12 +35,18 @@
   /* ---------- shared card chrome ---------- */
   function block(el, label, title, bodyHTML, h) {
     el.innerHTML =
-      '<div style="max-width:1280px;margin:64px auto 0">' +
+      '<div style="max-width:1280px;margin:56px auto 0">' +
       '<div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px">' + label + '</div>' +
       '<div style="font-size:clamp(22px,3vw,30px);font-weight:700;color:var(--text);line-height:1.15;margin-bottom:18px">' + title + '</div>' +
-      '<div style="background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:20px' + (h ? ';min-height:' + h + 'px' : "") + '">' + bodyHTML + '</div></div>';
+      '<div class="rp-glass rp-rise" style="padding:20px' + (h ? ';min-height:' + h + 'px' : "") + '">' + bodyHTML + '</div></div>';
+    reveal();
   }
   function chartCanvas(id, height) { return '<div style="position:relative;height:' + (height || 320) + 'px"><canvas id="' + id + '"></canvas></div>'; }
+  var _obs;
+  function reveal() {
+    if (!_obs) _obs = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); _obs.unobserve(e.target); } }); }, { threshold: .08, rootMargin: "0px 0px -40px 0px" });
+    document.querySelectorAll(".rp-rise:not(.in)").forEach(function (el) { _obs.observe(el); });
+  }
 
   function chartDefaults() {
     if (!window.Chart) return;
@@ -74,7 +80,7 @@
     }).join('<div style="width:1px;background:var(--border);align-self:stretch"></div>');
     el.innerHTML =
       '<style>@keyframes vizpulse{0%,100%{opacity:.4;transform:scale(.85)}50%{opacity:1;transform:scale(1.25)}}</style>' +
-      '<div style="max-width:1280px;margin:64px auto 0;background:var(--card-bg);border:1px solid var(--border);border-radius:16px;overflow:hidden">' +
+      '<div class="rp-glass rp-rise" style="max-width:1280px;margin:56px auto 0;overflow:hidden">' +
       '<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border)">' +
       '<div style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)">⚡ Live Data Warehouse</div>' +
       '<span style="display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.06em"><span style="width:5px;height:5px;border-radius:50%;background:var(--green);animation:vizpulse 2s infinite"></span>Live · Supabase</span></div>' +
@@ -82,6 +88,7 @@
     animateCount($("vc-records"), d.records); animateCount($("vc-sources"), d.sources);
     animateCount($("vc-datasets"), d.datasets); animateCount($("vc-categories"), d.categories);
     animateCount($("vc-layers"), d.layers);
+    reveal();
   }
 
   /* ---------- TRADINGVIEW-style treemap heatmap (D3) ---------- */
@@ -189,11 +196,79 @@
     block(el, "Live Feed", "Most recent ingested datasets", rows || '<div style="color:var(--muted);font-size:12px">Feed unavailable.</div>');
   }
 
+  /* ---------- stacked bar: sources vs live API ---------- */
+  function renderStacked(el, cov) {
+    block(el, "Coverage Depth", "Total sources vs. live APIs", chartCanvas("viz-stacked-c", 340));
+    var top = cov.slice().sort(function (a, b) { return b.sources - a.sources; }).slice(0, 12);
+    new window.Chart($("viz-stacked-c"), {
+      type: "bar",
+      data: { labels: top.map(function (c) { return lab(c.category); }), datasets: [
+        { label: "Live API", data: top.map(function (c) { return c.live_api; }), backgroundColor: css("--green", "#00A980"), borderRadius: 4 },
+        { label: "Other sources", data: top.map(function (c) { return Math.max(0, c.sources - c.live_api); }), backgroundColor: css("--blue", "#1D5FB8"), borderRadius: 4 }
+      ] },
+      options: { responsive: true, maintainAspectRatio: false, scales: { x: { stacked: true, grid: { display: false }, ticks: { font: { size: 10 } } }, y: { stacked: true, grid: { color: css("--border", "rgba(255,255,255,.08)") } } }, plugins: { legend: { position: "bottom", labels: { boxWidth: 12, font: { size: 11 } } } } }
+    });
+  }
+
+  /* ---------- polar area: category mix ---------- */
+  function renderPolar(el, entries) {
+    block(el, "Category Mix", "Source distribution (polar)", chartCanvas("viz-polar-c", 340));
+    var top = entries.slice(0, 8), pal = palette();
+    new window.Chart($("viz-polar-c"), {
+      type: "polarArea",
+      data: { labels: top.map(function (e) { return lab(e[0]); }), datasets: [{ data: top.map(function (e) { return e[1]; }), backgroundColor: top.map(function (_, i) { return pal[i % pal.length] + "cc"; }) }] },
+      options: { responsive: true, maintainAspectRatio: false, scales: { r: { grid: { color: css("--border", "rgba(255,255,255,.1)") }, ticks: { display: false } } }, plugins: { legend: { position: "right", labels: { boxWidth: 12, font: { size: 10 } } } } }
+    });
+  }
+
+  /* ---------- category landscape (bubble) ---------- */
+  function renderCatBubble(el, cov) {
+    block(el, "Landscape", "Categories — scale × live coverage", chartCanvas("viz-catbubble-c", 360));
+    var pal = palette();
+    var pts = cov.slice(0, 14).map(function (c, i) { return { label: lab(c.category), x: c.sources, y: c.sources ? Math.round(c.live_api / c.sources * 100) : 0, r: Math.max(6, Math.min(46, c.sources / 5)), _c: pal[i % pal.length] }; });
+    new window.Chart($("viz-catbubble-c"), {
+      type: "bubble",
+      data: { datasets: pts.map(function (p) { return { label: p.label, data: [p], backgroundColor: p._c + "cc", borderColor: p._c }; }) },
+      options: { responsive: true, maintainAspectRatio: false, scales: { x: { title: { display: true, text: "Total sources" }, grid: { color: css("--border", "rgba(255,255,255,.08)") } }, y: { title: { display: true, text: "% live API" }, grid: { color: css("--border", "rgba(255,255,255,.08)") } } }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: function (c) { return c.dataset.label + " · " + c.raw.x + " src · " + c.raw.y + "% live"; } } } } }
+    });
+  }
+
+  /* ---------- treasury yields ---------- */
+  function renderYields(el, t) {
+    var y = t && t.yields; if (!y) return;
+    var keys = Object.keys(y);
+    block(el, "Rates", "U.S. Treasury average yields", chartCanvas("viz-yields-c", 300));
+    new window.Chart($("viz-yields-c"), {
+      type: "bar",
+      data: { labels: keys.map(function (k) { return k.replace("Treasury ", "").replace("Inflation-Indexed ", "TIPS "); }), datasets: [{ data: keys.map(function (k) { return y[k]; }), backgroundColor: css("--gold", "#BC9C45"), borderRadius: 6 }] },
+      options: { indexAxis: "y", responsive: true, maintainAspectRatio: false, scales: { x: { grid: { color: css("--border", "rgba(255,255,255,.08)") }, ticks: { callback: function (v) { return v + "%"; } } }, y: { grid: { display: false }, ticks: { font: { size: 10 } } } }, plugins: { legend: { display: false } } }
+    });
+  }
+
+  /* ---------- benchmark rates (SOFR/EFFR) ---------- */
+  function renderRates(el, s) {
+    if (!s) return;
+    var items = [["SOFR 30D", s.sofr_30d_avg], ["SOFR 90D", s.sofr_90d_avg], ["SOFR 180D", s.sofr_180d_avg], ["EFFR", s.effr], ["OBFR", s.obfr]];
+    var cards = items.filter(function (i) { return i[1] != null; }).map(function (i) {
+      return '<div class="rp-glass" style="flex:1;min-width:120px;padding:16px;text-align:center"><div style="font-family:\'JetBrains Mono\',monospace;font-size:26px;font-weight:800;color:var(--gold)">' + Number(i[1]).toFixed(2) + '%</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:4px">' + i[0] + '</div></div>';
+    }).join("");
+    block(el, "Benchmark Rates", "SOFR & federal funds", '<div style="display:flex;gap:12px;flex-wrap:wrap">' + cards + '</div>');
+  }
+
+  /* ---------- KPI metric strip ---------- */
+  function renderKpis(el, kpis) {
+    if (!kpis.length) return;
+    var cards = kpis.map(function (k) {
+      return '<div class="rp-glass" style="flex:1;min-width:150px;padding:20px;text-align:center"><div style="font-family:\'JetBrains Mono\',monospace;font-size:clamp(24px,3vw,34px);font-weight:800;color:var(--gold)">' + k.v + '</div><div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:6px">' + k.l + '</div></div>';
+    }).join("");
+    block(el, "At a Glance", "Platform metrics", '<div style="display:flex;gap:12px;flex-wrap:wrap">' + cards + '</div>');
+  }
+
   /* ---------- orchestration ---------- */
+  var ALL = ["viz-counters", "viz-heatmap", "viz-donut", "viz-radar", "viz-ranked", "viz-bubble", "viz-gauge", "viz-activity", "viz-stacked", "viz-polar", "viz-catbubble", "viz-yields", "viz-rates", "viz-kpis"];
   function init() {
-    var need = ["viz-counters", "viz-heatmap", "viz-donut", "viz-radar", "viz-ranked", "viz-bubble", "viz-gauge", "viz-activity"].some(has);
-    if (!need) return;
-    var needChart = ["viz-donut", "viz-radar", "viz-bubble", "viz-gauge"].some(has);
+    if (!ALL.some(has)) return;
+    var needChart = ["viz-donut", "viz-radar", "viz-bubble", "viz-gauge", "viz-stacked", "viz-polar", "viz-catbubble", "viz-yields"].some(has);
     var needD3 = has("viz-heatmap");
     var libs = [];
     if (needChart && !window.Chart) libs.push(load("https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"));
@@ -204,11 +279,14 @@
       cov: sb("v_coverage?select=category,sources,live_api"),
       ds: sb("v_latest_source_data?select=name,category,record_count,fetched_at&status=eq.ok&order=record_count.desc&limit=40"),
       recs: fetch(SB + "/rest/v1/data_records?select=count", { headers: Object.assign({ Prefer: "count=exact" }, H) }).then(function (r) { return r.json(); }).then(function (j) { return (j && j[0] && j[0].count) || 0; }).catch(function () { return 0; }),
-      port: getJSON("/data/portfolio.json")
+      port: getJSON("/data/portfolio.json"),
+      treasury: getJSON("/data/market/treasury.json"),
+      sofr: getJSON("/data/market/sofr.json"),
+      rep: getJSON("/data/reprime.json")
     };
 
-    Promise.all([Promise.all(libs), P.stats, P.cov, P.ds, P.recs, P.port]).then(function (r) {
-      var stats = r[1] || {}, cov = r[2] || [], ds = r[3] || [], recs = r[4] || 0, port = r[5] || {};
+    Promise.all([Promise.all(libs), P.stats, P.cov, P.ds, P.recs, P.port, P.treasury, P.sofr, P.rep]).then(function (r) {
+      var stats = r[1] || {}, cov = r[2] || [], ds = r[3] || [], recs = r[4] || 0, port = r[5] || {}, treasury = r[6] || {}, sofr = r[7] || {}, rep = r[8] || {};
       chartDefaults();
       var byCat = stats.by_category || {};
       var entries = Object.keys(byCat).map(function (k) { return [k, byCat[k]]; }).sort(function (a, b) { return b[1] - a[1]; });
@@ -244,6 +322,28 @@
         }).filter(function (d) { return d.cap && d.dscr; });
         if (deals.length) renderBubble($("viz-bubble"), deals);
       });
+      safe("viz-stacked", function () { if (window.Chart && cov.length) renderStacked($("viz-stacked"), cov); });
+      safe("viz-polar", function () { if (window.Chart) renderPolar($("viz-polar"), entries); });
+      safe("viz-catbubble", function () { if (window.Chart && cov.length) renderCatBubble($("viz-catbubble"), cov); });
+      safe("viz-yields", function () { if (window.Chart) renderYields($("viz-yields"), treasury); });
+      safe("viz-rates", function () { renderRates($("viz-rates"), sofr); });
+      safe("viz-kpis", function () {
+        var k = [];
+        (((rep.terminal || {}).track_record) || (rep.stats) || []).forEach(function (s) { k.push({ v: s.v || s.value, l: s.l || s.label }); });
+        if (recs) k.unshift({ v: fmt(recs), l: "Records Ingested" });
+        if (stats.cataloged_sources) k.push({ v: fmt(stats.cataloged_sources), l: "Sources Cataloged" });
+        renderKpis($("viz-kpis"), k.slice(0, 6));
+      });
+
+      // live, moving: refresh the counters periodically
+      if (has("viz-counters")) setInterval(function () {
+        Promise.all([getJSON("/api/stats"), P.recs && fetch(SB + "/rest/v1/data_records?select=count", { headers: Object.assign({ Prefer: "count=exact" }, H) }).then(function (x) { return x.json(); }).then(function (j) { return (j && j[0] && j[0].count) || recs; }).catch(function () { return recs; })]).then(function (rr) {
+          var st = rr[0] || stats, rc = rr[1] || recs;
+          try {
+            renderCounters($("viz-counters"), { records: rc, sources: st.cataloged_sources || 630, datasets: ds.length, categories: st.category_count || entries.length, layers: st.live_search_layers || 20 });
+          } catch (e) { }
+        });
+      }, 60000);
     });
   }
 
