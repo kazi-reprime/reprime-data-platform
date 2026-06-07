@@ -282,20 +282,23 @@
       port: getJSON("/data/portfolio.json"),
       treasury: getJSON("/data/market/treasury.json"),
       sofr: getJSON("/data/market/sofr.json"),
-      rep: getJSON("/data/reprime.json")
+      rep: getJSON("/data/reprime.json"),
+      cat: getJSON("/data/sources_all.json")
     };
 
-    Promise.all([Promise.all(libs), P.stats, P.cov, P.ds, P.recs, P.port, P.treasury, P.sofr, P.rep]).then(function (r) {
-      var stats = r[1] || {}, cov = r[2] || [], ds = r[3] || [], recs = r[4] || 0, port = r[5] || {}, treasury = r[6] || {}, sofr = r[7] || {}, rep = r[8] || {};
+    Promise.all([Promise.all(libs), P.stats, P.cov, P.ds, P.recs, P.port, P.treasury, P.sofr, P.rep, P.cat]).then(function (r) {
+      var stats = r[1] || {}, cov = r[2] || [], ds = r[3] || [], recs = r[4] || 0, port = r[5] || {}, treasury = r[6] || {}, sofr = r[7] || {}, rep = r[8] || {}, catData = r[9] || {};
       chartDefaults();
       var byCat = stats.by_category || {};
       var entries = Object.keys(byCat).map(function (k) { return [k, byCat[k]]; }).sort(function (a, b) { return b[1] - a[1]; });
+      // Full catalog total (1,900+) from the static registry — the source of truth shown site-wide
+      var catalog = ((catData && (catData.sources || catData)) || []).length || stats.cataloged_sources || 630;
       function safe(id, fn) { if (!has(id)) return; try { fn(); } catch (e) { /* one component failing never kills the others */ } }
 
       safe("viz-counters", function () {
         renderCounters($("viz-counters"), {
           records: recs || ds.reduce(function (a, x) { return a + (+x.record_count || 0); }, 0),
-          sources: stats.cataloged_sources || cov.reduce(function (a, c) { return a + (+c.sources || 0); }, 0),
+          sources: catalog,
           datasets: ds.length, categories: stats.category_count || entries.length, layers: stats.live_search_layers || 20
         });
       });
@@ -331,7 +334,7 @@
         var k = [];
         (((rep.terminal || {}).track_record) || (rep.stats) || []).forEach(function (s) { k.push({ v: s.v || s.value, l: s.l || s.label }); });
         if (recs) k.unshift({ v: fmt(recs), l: "Records Ingested" });
-        if (stats.cataloged_sources) k.push({ v: fmt(stats.cataloged_sources), l: "Sources Cataloged" });
+        k.push({ v: fmt(catalog), l: "Sources Cataloged" });
         renderKpis($("viz-kpis"), k.slice(0, 6));
       });
 
@@ -340,7 +343,7 @@
         Promise.all([getJSON("/api/stats"), P.recs && fetch(SB + "/rest/v1/data_records?select=count", { headers: Object.assign({ Prefer: "count=exact" }, H) }).then(function (x) { return x.json(); }).then(function (j) { return (j && j[0] && j[0].count) || recs; }).catch(function () { return recs; })]).then(function (rr) {
           var st = rr[0] || stats, rc = rr[1] || recs;
           try {
-            renderCounters($("viz-counters"), { records: rc, sources: st.cataloged_sources || 630, datasets: ds.length, categories: st.category_count || entries.length, layers: st.live_search_layers || 20 });
+            renderCounters($("viz-counters"), { records: rc, sources: catalog, datasets: ds.length, categories: st.category_count || entries.length, layers: st.live_search_layers || 20 });
           } catch (e) { }
         });
       }, 60000);

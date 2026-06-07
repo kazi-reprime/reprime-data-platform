@@ -189,7 +189,7 @@ const ago = ts => { const s = (Date.now() - new Date(ts).getTime()) / 1000; if (
 async function loadStats() {
   try {
     const d = await (await fetch('/api/stats')).json();
-    $('s-total').textContent = (d.cataloged_sources || 0).toLocaleString();
+    fetch('/data/sources_all.json').then(r => r.json()).then(c => { const n = (c.sources || c).length; if ($('s-total')) $('s-total').textContent = n.toLocaleString(); if ($('data-fresh')) $('data-fresh').textContent = 'data sources tracked'; }).catch(() => { if ($('s-total')) $('s-total').textContent = (d.cataloged_sources || 0).toLocaleString(); });
     $('s-scraped').textContent = d.live_search_layers || 0;
     $('s-records').textContent = d.category_count || 0;
     $('s-rate').textContent = '100%';

@@ -21,12 +21,13 @@
 
   async function load() {
     if (_cache) return _cache;
-    const [coverage, datasets] = await Promise.all([
+    const [coverage, datasets, catalog] = await Promise.all([
       sb("v_coverage?select=category,sources,live_api,keyless"),
       sb("v_latest_source_data?select=name,category,status,record_count,fetched_at&status=eq.ok&order=record_count.desc&limit=60"),
+      fetch("/data/sources_all.json").then((r) => r.json()).then((d) => (d.sources || d).length).catch(() => 0),
     ]);
     const records = datasets.reduce((a, d) => a + (+d.record_count || 0), 0);
-    const sources = coverage.reduce((a, c) => a + (+c.sources || 0), 0);
+    const sources = catalog || coverage.reduce((a, c) => a + (+c.sources || 0), 0);
     _cache = { coverage, datasets, records, sources, categories: coverage.length, ingesting: datasets.length };
     return _cache;
   }
