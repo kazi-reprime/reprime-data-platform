@@ -163,6 +163,10 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:800;letter-
     </div>
   </div>
   <div id="rp-stats" style="margin-top:18px"></div>
+  <div id="viz-counters"></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px"><div id="viz-donut"></div><div id="viz-radar"></div></div>
+  <div id="viz-ranked"></div>
+  <div id="viz-activity"></div>
   <div id="rp-portals"></div>
 </div>
 
@@ -328,6 +332,7 @@ setInterval(loadTicker, 60000);
 setInterval(loadEndpoints, 60000);
 
 </script>
+<script src="/viz.js"></script>
 <script src="/reprime.js"></script>
 <script src="/sb.js"></script>
 <script>

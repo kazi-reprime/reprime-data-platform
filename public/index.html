@@ -206,6 +206,8 @@
     </div>
   </div>
 </div>
+<div id="viz-counters"></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px"><div id="viz-donut"></div><div id="viz-ranked"></div></div>
 </div>
 
 <script src="/rp-shell.js"></script>
@@ -300,6 +302,7 @@ fetch('/data/portfolio.json').then(r => r.json()).then(p => {
 })();
 
 </script>
+<script src="/viz.js"></script>
 <script src="/sb.js"></script>
 <script src="/panels.js"></script>
 </body>
