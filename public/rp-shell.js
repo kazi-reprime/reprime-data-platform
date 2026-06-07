@@ -15,6 +15,7 @@
     { href: '/terminal', label: 'Terminal' },
     { href: '/explore',  label: 'Explore' },
     { href: '/data',     label: 'Data' },
+    { href: '/sources',  label: 'Sources' },
     { href: '/wall',     label: 'Wall' }
   ];
 

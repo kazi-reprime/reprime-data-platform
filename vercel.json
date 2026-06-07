@@ -35,6 +35,10 @@
       "destination": "/wall.html"
     },
     {
+      "source": "/sources",
+      "destination": "/sources.html"
+    },
+    {
       "source": "/about",
       "destination": "/about.html"
     },
