@@ -194,9 +194,11 @@ footer.rp-footer .f-legal{max-width:1280px;margin:24px auto 0;padding-top:24px;b
 @keyframes rpSheen{0%,72%{left:-60%}88%{left:130%}100%{left:130%}}
 .rp-glass:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 16px 48px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.08)}
 
-/* scroll-reveal entrance (added by viz.js) */
-.rp-rise{opacity:0;transform:translateY(24px) scale(.99);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
-.rp-rise.in{opacity:1;transform:none}
+/* scroll-reveal entrance — visible by default; .in plays a one-shot rise so
+   content is NEVER hidden even if the observer doesn't fire. */
+.rp-rise{opacity:1}
+.rp-rise.in{animation:rpRise .7s cubic-bezier(.4,0,.2,1) both}
+@keyframes rpRise{from{opacity:0;transform:translateY(24px) scale(.99)}to{opacity:1;transform:none}}
 
 /* live pulse dot + animated value */
 @keyframes rpPulse{0%,100%{opacity:.4;transform:scale(.8)}50%{opacity:1;transform:scale(1.25)}}
