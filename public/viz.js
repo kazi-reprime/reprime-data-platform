@@ -266,8 +266,14 @@
 
   /* ---------- orchestration ---------- */
   var ALL = ["viz-counters", "viz-heatmap", "viz-donut", "viz-radar", "viz-ranked", "viz-bubble", "viz-gauge", "viz-activity", "viz-stacked", "viz-polar", "viz-catbubble", "viz-yields", "viz-rates", "viz-kpis"];
+  function skel(id) {
+    var e = $(id); if (!e || e.children.length) return;
+    var h = (id === "viz-counters" || id === "viz-kpis" || id === "viz-rates") ? 110 : 320;
+    e.innerHTML = '<div style="max-width:1280px;margin:56px auto 0"><div class="rp-skel" style="height:' + h + 'px"></div></div>';
+  }
   function init() {
     if (!ALL.some(has)) return;
+    ALL.forEach(skel);
     var needChart = ["viz-donut", "viz-radar", "viz-bubble", "viz-gauge", "viz-stacked", "viz-polar", "viz-catbubble", "viz-yields"].some(has);
     var needD3 = has("viz-heatmap");
     var libs = [];

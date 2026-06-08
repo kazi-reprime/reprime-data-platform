@@ -205,3 +205,8 @@ footer.rp-footer .f-legal{max-width:1280px;margin:24px auto 0;padding-top:24px;b
 .rp-live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:rpPulse 2s infinite;display:inline-block}
 @keyframes rpFade{from{opacity:0}to{opacity:1}}
 .rp-flash{animation:rpFade .5s ease-out}
+
+/* Cloudflare-style skeleton loaders (shown by viz.js before data arrives) */
+.rp-skel{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--border);border-radius:18px}
+.rp-skel::after{content:'';position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg,transparent,rgba(255,255,255,.07),transparent);animation:rpSkel 1.5s infinite}
+@keyframes rpSkel{100%{transform:translateX(100%)}}
