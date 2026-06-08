@@ -377,14 +377,29 @@
       });
 
       // live, moving: refresh the counters periodically
-      if (has("viz-counters")) setInterval(function () {
-        Promise.all([getJSON("/api/stats"), P.recs && fetch(SB + "/rest/v1/data_records?select=count", { headers: Object.assign({ Prefer: "count=exact" }, H) }).then(function (x) { return x.json(); }).then(function (j) { return (j && j[0] && j[0].count) || recs; }).catch(function () { return recs; })]).then(function (rr) {
-          var st = rr[0] || stats, rc = rr[1] || recs;
-          try {
-            renderCounters($("viz-counters"), { records: rc, sources: catalog, datasets: ds.length, categories: st.category_count || entries.length, layers: st.live_search_layers || 20 });
-          } catch (e) { }
-        });
-      }, 60000);
+      // Phase 3 (audit P3 task) — visibility-gated polling. Skip the poll when
+      // the tab is hidden so background tabs don't burn Supabase quota or device
+      // battery. Resumes on visibilitychange.
+      if (has("viz-counters")) {
+        var pollOnce = function () {
+          if (typeof document !== 'undefined' && document.visibilityState === 'hidden') return;
+          Promise.all([
+            getJSON("/api/stats"),
+            P.recs && fetch(SB + "/rest/v1/data_records?select=count", { headers: Object.assign({ Prefer: "count=exact" }, H) })
+              .then(function (x) { return x.json(); })
+              .then(function (j) { return (j && j[0] && j[0].count) || recs; })
+              .catch(function () { return recs; })
+          ]).then(function (rr) {
+            var st = rr[0] || stats, rc = rr[1] || recs;
+            try {
+              renderCounters($("viz-counters"), { records: rc, sources: catalog, datasets: ds.length, categories: st.category_count || entries.length, layers: st.live_search_layers || 20 });
+            } catch (e) { }
+          });
+        };
+        setInterval(pollOnce, 60000);
+        // Refresh immediately when tab becomes visible again after being hidden.
+        document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') pollOnce(); });
+      }
     });
   }
 

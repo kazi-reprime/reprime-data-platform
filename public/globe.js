@@ -7,6 +7,15 @@
   "use strict";
   var el = document.getElementById("viz-globe");
   if (!el) return;
+  // Phase 3 — honor prefers-reduced-motion: skip the heavy Three.js download
+  // and animation entirely, render a static text card instead. Saves ~600KB
+  // and ~16ms/frame for users who explicitly opted out of motion.
+  try {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;min-height:240px;color:var(--muted,#94a3b8);font-size:13px;text-align:center;padding:24px">3D data globe disabled (your system requests reduced motion).<br/><a href="/data" style="color:var(--accent,#3b82f6);text-decoration:none">View the data warehouse →</a></div>';
+      return;
+    }
+  } catch (e) { /* matchMedia unavailable — proceed with globe */ }
   var THREE_SRC = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";
   // Phase 2.10 — SRI hash for Three.js r128 (verified sha384 of CDN bundle).
   var THREE_SRI = "sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu";
