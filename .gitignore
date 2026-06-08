@@ -25,3 +25,6 @@ node_modules/
 # pipeline sample output (regenerated each run)
 pipeline/data/
 pipeline/ingest_report.json
+
+# Quarantined rotated-secret backups — must not be committed
+api/.env.*

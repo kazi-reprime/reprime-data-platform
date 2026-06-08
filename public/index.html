@@ -113,12 +113,13 @@
 
 <!-- KPI ROW -->
 <div class="kpi-row" id="kpiRow">
-  <div class="kpi"><div class="kpi-label">10Y Treasury <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k1">4.45%</div><div class="kpi-change dn">▼ -2bp</div><div class="kpi-spark" id="spark1"></div></div>
-  <div class="kpi"><div class="kpi-label">SOFR <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k2">4.31%</div><div class="kpi-change up">▲ +0bp</div><div class="kpi-spark" id="spark2"></div></div>
-  <div class="kpi"><div class="kpi-label">30Y Mortgage <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k3">6.53%</div><div class="kpi-change dn">▼ -4bp</div><div class="kpi-spark" id="spark3"></div></div>
+  <!-- KPI fallbacks: '—' until /api/live/ticker + /api/stats resolve (audit Phase 1 tasks 1.1, 1.7) -->
+  <div class="kpi"><div class="kpi-label">10Y Treasury <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k1">—</div><div class="kpi-change" style="color:var(--dim)">FRED</div><div class="kpi-spark" id="spark1"></div></div>
+  <div class="kpi"><div class="kpi-label">SOFR <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k2">—</div><div class="kpi-change" style="color:var(--dim)">FRED</div><div class="kpi-spark" id="spark2"></div></div>
+  <div class="kpi"><div class="kpi-label">30Y Mortgage <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k3">—</div><div class="kpi-change" style="color:var(--dim)">FRED</div><div class="kpi-spark" id="spark3"></div></div>
   <div class="kpi"><div class="kpi-label">Fed Funds <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k4">—</div><div class="kpi-change" style="color:var(--dim)">FRED</div><div class="kpi-spark" id="spark4"></div></div>
-  <div class="kpi"><div class="kpi-label">Bitcoin <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k5">$107K</div><div class="kpi-change up">▲ +2.1%</div><div class="kpi-spark" id="spark5"></div></div>
-  <div class="kpi"><div class="kpi-label">Data Sources <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="kSources">611</div><div class="kpi-change up">14 categories</div><div class="kpi-spark" id="spark6"></div></div>
+  <div class="kpi"><div class="kpi-label">Bitcoin <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k5">—</div><div class="kpi-change" style="color:var(--dim)">CoinGecko</div><div class="kpi-spark" id="spark5"></div></div>
+  <div class="kpi"><div class="kpi-label">Data Sources <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="kSources">—</div><div class="kpi-change" style="color:var(--dim)" id="kCategories">— categories</div><div class="kpi-spark" id="spark6"></div></div>
 </div>
 
 <!-- MAIN GRID -->
@@ -153,18 +154,20 @@
   <!-- Column 2: Market Rates + Financing -->
   <div style="display:flex;flex-direction:column;gap:16px">
     <div class="panel">
-      <div class="panel-header"><span class="panel-title">Rate Environment</span><span class="panel-badge">FRED + BLS</span></div>
+      <!-- Badge changed from "FRED + BLS" to "Sample" (audit Phase 1 task 1.2): page does not actually fetch from FRED/BLS yet -->
+      <div class="panel-header"><span class="panel-title">Rate Environment</span><span class="panel-badge">Sample</span></div>
       <div class="panel-body" id="ratePanel">
-        <div class="rate-row"><span class="rate-name">10Y Treasury</span><div class="rate-bar"><span style="width:65%"></span></div><span class="rate-val" id="r1">4.45%</span></div>
-        <div class="rate-row"><span class="rate-name">SOFR</span><div class="rate-bar"><span style="width:60%"></span></div><span class="rate-val" id="r2">4.31%</span></div>
-        <div class="rate-row"><span class="rate-name">30Y Mortgage</span><div class="rate-bar"><span style="width:90%"></span></div><span class="rate-val" id="r3">6.53%</span></div>
-        <div class="rate-row"><span class="rate-name">Fed Funds</span><div class="rate-bar"><span style="width:60%"></span></div><span class="rate-val" id="r4">4.33%</span></div>
-        <div class="rate-row"><span class="rate-name">CPI (YoY)</span><div class="rate-bar"><span style="width:32%"></span></div><span class="rate-val">2.3%</span></div>
-        <div class="rate-row"><span class="rate-name">Unemployment</span><div class="rate-bar"><span style="width:58%"></span></div><span class="rate-val" id="rUnemp">4.2%</span></div>
+        <div class="rate-row"><span class="rate-name">10Y Treasury</span><div class="rate-bar"><span style="width:65%"></span></div><span class="rate-val" id="r1">—</span></div>
+        <div class="rate-row"><span class="rate-name">SOFR</span><div class="rate-bar"><span style="width:60%"></span></div><span class="rate-val" id="r2">—</span></div>
+        <div class="rate-row"><span class="rate-name">30Y Mortgage</span><div class="rate-bar"><span style="width:90%"></span></div><span class="rate-val" id="r3">—</span></div>
+        <div class="rate-row"><span class="rate-name">Fed Funds</span><div class="rate-bar"><span style="width:60%"></span></div><span class="rate-val" id="r4">—</span></div>
+        <div class="rate-row"><span class="rate-name">CPI (YoY)</span><div class="rate-bar"><span style="width:32%"></span></div><span class="rate-val" id="rCPI">—</span></div>
+        <div class="rate-row"><span class="rate-name">Unemployment</span><div class="rate-bar"><span style="width:58%"></span></div><span class="rate-val" id="rUnemp">—</span></div>
       </div>
     </div>
     <div class="panel">
-      <div class="panel-header"><span class="panel-title">Financing Landscape</span><span class="panel-badge">6 Products</span></div>
+      <!-- Badge clarifies hardcoded sample data (audit Phase 1 task 1.2) -->
+      <div class="panel-header"><span class="panel-title">Financing Landscape</span><span class="panel-badge">Sample · 6 Products</span></div>
       <div class="panel-body" style="padding:0">
         <table class="port-table">
           <tr><th>Product</th><th>Rate</th><th>LTV</th><th>Term</th></tr>

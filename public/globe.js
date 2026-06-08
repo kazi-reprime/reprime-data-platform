@@ -120,11 +120,15 @@
       fetch(SB + "/rest/v1/v_latest_source_data?select=name&status=eq.ok&limit=200", { headers: H }).then(function (r) { return r.json(); }).then(function (j) { return (j || []).length; }).catch(function () { return 0; })
     ]).then(function (r) {
       var cat = r[0] || {}, stats = r[1] || {}, recs = r[2] || 0, ds = r[3] || 0;
+      // Honest fallback (audit Phase 1 task 1.6): when fetches fail, show 0 — not fabricated values.
+      // Previously fell back to 1932/16063/14/32 which made failure indistinguishable from success.
+      var sourcesCount = ((cat.sources || cat) || []).length || stats.cataloged_sources || 0;
       var data = {
-        sources: ((cat.sources || cat) || []).length || stats.cataloged_sources || 1932,
-        records: recs || 16063,
-        categories: stats.category_count || 14,
-        datasets: ds || 32
+        sources: sourcesCount,
+        records: recs,
+        categories: stats.category_count || 0,
+        datasets: ds,
+        unavailable: (sourcesCount === 0 && recs === 0 && ds === 0)
       };
       shell(data);
       if (!webglOK()) { var c = document.getElementById("rp-globe-c"); if (c) c.outerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:13px">3D globe needs WebGL — your browser has it disabled.</div>'; return; }
