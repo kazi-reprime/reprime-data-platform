@@ -85,8 +85,10 @@
 
   document.body.insertAdjacentHTML('beforeend', footerHTML);
 
-  /* ─── Theme system (4 themes, persisted) ─── */
-  var saved = localStorage.getItem('rp-theme') || 'dark';
+  /* ─── Theme system (4 themes, persisted + shareable via URL hash) ─── */
+  function hashParams() { var o = {}; location.hash.replace(/^#/, "").split("&").forEach(function (kv) { var p = kv.split("="); if (p[0]) o[p[0]] = decodeURIComponent(p[1] || ""); }); return o; }
+  function setHashParam(k, v) { var o = hashParams(); o[k] = v; location.hash = Object.keys(o).map(function (key) { return key + "=" + encodeURIComponent(o[key]); }).join("&"); }
+  var saved = hashParams().theme || localStorage.getItem('rp-theme') || 'dark';
   document.documentElement.setAttribute('data-theme', saved);
   var togBtns = document.querySelectorAll('#rpThemeTog button');
   togBtns.forEach(function (b) {
@@ -94,6 +96,7 @@
     b.addEventListener('click', function () {
       document.documentElement.setAttribute('data-theme', b.dataset.theme);
       localStorage.setItem('rp-theme', b.dataset.theme);
+      setHashParam('theme', b.dataset.theme);
       togBtns.forEach(function (x) { x.classList.remove('active'); });
       b.classList.add('active');
     });

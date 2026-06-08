@@ -33,14 +33,30 @@
   var lab = function (k) { return CAT_LABEL[k] || String(k).replace(/_/g, " "); };
 
   /* ---------- shared card chrome ---------- */
+  function tools() {
+    var b = 'background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:inherit;font-size:11px;font-weight:600;padding:6px 10px;cursor:pointer;transition:.2s';
+    return '<div style="display:flex;gap:6px;flex-shrink:0">' +
+      '<button onclick="__rpExport(this)" title="Download as image" style="' + b + '">⤓ Export</button>' +
+      '<button onclick="__rpShare(this)" title="Copy shareable link" style="' + b + '">⎘ Share</button></div>';
+  }
   function block(el, label, title, bodyHTML, h) {
     el.innerHTML =
       '<div style="max-width:1280px;margin:56px auto 0">' +
-      '<div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px">' + label + '</div>' +
-      '<div style="font-size:clamp(22px,3vw,30px);font-weight:700;color:var(--text);line-height:1.15;margin-bottom:18px">' + title + '</div>' +
+      '<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:18px;flex-wrap:wrap">' +
+      '<div><div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px">' + label + '</div>' +
+      '<div style="font-size:clamp(22px,3vw,30px);font-weight:700;color:var(--text);line-height:1.15">' + title + '</div></div>' +
+      tools() + '</div>' +
       '<div class="rp-glass rp-rise" style="padding:20px' + (h ? ';min-height:' + h + 'px' : "") + '">' + bodyHTML + '</div></div>';
     reveal();
   }
+  window.__rpExport = function (btn) {
+    var box = btn.parentNode.parentNode.parentNode; // toolbar -> header row -> container
+    var cv = box.querySelector("canvas"), svg = box.querySelector("svg"), a = document.createElement("a");
+    if (cv) { try { a.download = "reprime-chart.png"; a.href = cv.toDataURL("image/png"); a.click(); } catch (e) { } }
+    else if (svg) { var xml = new XMLSerializer().serializeToString(svg); var url = URL.createObjectURL(new Blob([xml], { type: "image/svg+xml" })); a.download = "reprime-chart.svg"; a.href = url; a.click(); setTimeout(function () { URL.revokeObjectURL(url); }, 1000); }
+    else { __rpShare(btn); }
+  };
+  window.__rpShare = function (btn) { var t = btn.textContent; try { navigator.clipboard.writeText(location.href); btn.textContent = "✓ Copied"; setTimeout(function () { btn.textContent = t; }, 1500); } catch (e) { } };
   function chartCanvas(id, height) { return '<div style="position:relative;height:' + (height || 320) + 'px"><canvas id="' + id + '"></canvas></div>'; }
   var _obs;
   function reveal() {

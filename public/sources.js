@@ -42,13 +42,26 @@
     document.getElementById("src-cat").addEventListener("change", apply);
     document.getElementById("src-type").addEventListener("change", apply);
     document.getElementById("src-more").addEventListener("click", function () { shown += PAGE; paint(); });
+    // restore filters from URL hash (shareable view)
+    var hp = {}; location.hash.replace(/^#/, "").split("&").forEach(function (kv) { var p = kv.split("="); if (p[0]) hp[p[0]] = decodeURIComponent(p[1] || ""); });
+    if (hp.q) document.getElementById("src-q").value = hp.q;
+    if (hp.cat) document.getElementById("src-cat").value = hp.cat;
+    if (hp.type) document.getElementById("src-type").value = hp.type;
     apply();
   }
 
   function apply() {
-    var q = (document.getElementById("src-q").value || "").toLowerCase();
+    var qraw = document.getElementById("src-q").value || "";
+    var q = qraw.toLowerCase();
     var c = document.getElementById("src-cat").value;
     var t = document.getElementById("src-type").value;
+    // reflect filters in URL hash, preserving other params (e.g. theme)
+    try {
+      var o = {}; location.hash.replace(/^#/, "").split("&").forEach(function (kv) { var p = kv.split("="); if (p[0]) o[p[0]] = decodeURIComponent(p[1] || ""); });
+      delete o.q; delete o.cat; delete o.type;
+      if (qraw) o.q = qraw; if (c) o.cat = c; if (t) o.type = t;
+      history.replaceState(null, "", "#" + Object.keys(o).map(function (k) { return k + "=" + encodeURIComponent(o[k]); }).join("&"));
+    } catch (e) { }
     FILT = ALL.filter(function (s) {
       if (c && s.category !== c) return false;
       if (t && s.type !== t) return false;
