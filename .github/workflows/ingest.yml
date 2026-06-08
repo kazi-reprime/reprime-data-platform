@@ -48,6 +48,12 @@ jobs:
       - name: Refresh RePrime.com company content
         run: python3 pipeline/scrape_reprime.py || true
 
+      - name: Load source catalog to Supabase (REST · service key, no DB password needed)
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: python3 pipeline/rest_load_catalog.py || true
+
       - name: Ingest — keyless live APIs (full)
         run: python3 pipeline/run_ingest.py --tier live_api --auth keyless --limit 250
 
