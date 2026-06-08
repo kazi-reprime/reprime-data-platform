@@ -1,23 +1,25 @@
 /**
- * RePrime Data Platform — Edge Middleware
+ * RePrime Data Platform — Routing Middleware
  *
  * Phase 2 task 2.7: per-IP rate limit on /api/search.
+ *
+ * Framework-agnostic: uses only standard Web Platform types (Request,
+ * Response, URL) — no `next/server` dependency. Vercel's Routing
+ * Middleware product picks this up automatically.
  *
  * Strategy:
  *   - 30 requests per 60 seconds per IP for /api/search.
  *   - Edge-isolate-local Map as first-line defense (per region/isolate).
- *     When Upstash Redis is wired (UPSTASH_REDIS_REST_URL + _TOKEN env), swap
- *     in cross-region state — see TODO below.
+ *     When Upstash Redis is wired (UPSTASH_REDIS_REST_URL + _TOKEN env),
+ *     swap in cross-region state — see TODO below.
  *
- * Headers on 429:
- *   - Retry-After, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
- * Headers on 200:
- *   - X-RateLimit-Limit, X-RateLimit-Remaining
+ * Returns:
+ *   - undefined (let request through) for allowed requests.
+ *   - 429 Response with Retry-After + rate-limit headers for blocked.
  */
-import { NextRequest, NextResponse } from 'next/server';
 
 export const config = {
-  matcher: ['/api/search'],
+  matcher: '/api/search',
 };
 
 const WINDOW_SECONDS = 60;
@@ -32,7 +34,7 @@ interface BucketEntry {
 // TODO: replace with Upstash Redis call for global cross-region limits.
 const BUCKETS: Map<string, BucketEntry> = new Map();
 
-function ipFromRequest(req: NextRequest): string {
+function ipFromRequest(req: Request): string {
   const xff = req.headers.get('x-forwarded-for') || '';
   const xri = req.headers.get('x-real-ip') || '';
   const ip = (xff.split(',')[0] || xri || '').trim();
@@ -53,7 +55,7 @@ function check(key: string): { allowed: boolean; remaining: number; reset: numbe
   return { allowed: true, remaining: LIMIT - entry.count, reset: entry.windowStart + WINDOW_SECONDS };
 }
 
-function maybeGc() {
+function maybeGc(): void {
   if (Math.random() < 0.001) {
     const now = Math.floor(Date.now() / 1000);
     for (const [key, entry] of BUCKETS) {
@@ -62,21 +64,18 @@ function maybeGc() {
   }
 }
 
-export default function middleware(req: NextRequest) {
-  if (!req.nextUrl.pathname.startsWith('/api/search')) return NextResponse.next();
+export default function middleware(req: Request): Response | undefined {
+  const url = new URL(req.url);
+  if (!url.pathname.startsWith('/api/search')) return undefined;
+
   maybeGc();
 
   const ip = ipFromRequest(req);
   const { allowed, remaining, reset } = check(ip);
-  const limitHeaders = {
-    'X-RateLimit-Limit': String(LIMIT),
-    'X-RateLimit-Remaining': String(Math.max(0, remaining)),
-    'X-RateLimit-Reset': String(reset),
-  };
 
   if (!allowed) {
     const retryAfter = Math.max(1, reset - Math.floor(Date.now() / 1000));
-    return new NextResponse(
+    return new Response(
       JSON.stringify({
         error: 'rate_limited',
         message: `Too many requests. Limit: ${LIMIT} per ${WINDOW_SECONDS} seconds.`,
@@ -87,13 +86,17 @@ export default function middleware(req: NextRequest) {
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
           'Retry-After': String(retryAfter),
-          ...limitHeaders,
+          'X-RateLimit-Limit': String(LIMIT),
+          'X-RateLimit-Remaining': '0',
+          'X-RateLimit-Reset': String(reset),
         },
       }
     );
   }
 
-  const res = NextResponse.next();
-  Object.entries(limitHeaders).forEach(([k, v]) => res.headers.set(k, v));
-  return res;
+  // Allowed — let the request pass through to the upstream handler.
+  // (Framework-agnostic Routing Middleware can't mutate downstream response
+  // headers when returning undefined, so X-RateLimit-* are only set on 429.
+  // Remaining/Reset can be inspected via /api/search itself if needed.)
+  return undefined;
 }
