@@ -26,8 +26,24 @@ jobs:
       - name: Refresh source triage
         run: python3 pipeline/triage.py
 
-      - name: Refresh cached market data
-        run: python3 scraper/aggregate.py || true
+      - name: Refresh cached market data (+ keyed live sources)
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+          BLS_API_KEY: ${{ secrets.BLS_API_KEY }}
+          BEA_API_KEY: ${{ secrets.BEA_API_KEY }}
+          EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+          ALPHA_VANTAGE_API_KEY: ${{ secrets.ALPHA_VANTAGE_API_KEY }}
+          TWELVE_DATA_API_KEY: ${{ secrets.TWELVE_DATA_API_KEY }}
+          COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
+          MASSIVE_API_KEY: ${{ secrets.MASSIVE_API_KEY }}
+          WALK_SCORE_API_KEY: ${{ secrets.WALK_SCORE_API_KEY }}
+          OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
+          DATA_GOV_API_KEY: ${{ secrets.DATA_GOV_API_KEY }}
+        run: |
+          python3 scraper/aggregate.py || true
+          python3 pipeline/keyed_sources.py || true   # EIA energy, BEA GDP, REIT quotes → public/data/market/*.json (no DB needed)
 
       - name: Refresh RePrime.com company content
         run: python3 pipeline/scrape_reprime.py || true
@@ -39,6 +55,17 @@ jobs:
         env:
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          BLS_API_KEY: ${{ secrets.BLS_API_KEY }}
+          BEA_API_KEY: ${{ secrets.BEA_API_KEY }}
+          EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+          ALPHA_VANTAGE_API_KEY: ${{ secrets.ALPHA_VANTAGE_API_KEY }}
+          TWELVE_DATA_API_KEY: ${{ secrets.TWELVE_DATA_API_KEY }}
+          COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
+          MASSIVE_API_KEY: ${{ secrets.MASSIVE_API_KEY }}
+          WALK_SCORE_API_KEY: ${{ secrets.WALK_SCORE_API_KEY }}
+          OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
+          DATA_GOV_API_KEY: ${{ secrets.DATA_GOV_API_KEY }}
         run: python3 pipeline/run_ingest.py --tier live_api --auth api_key --limit 800 || true
 
       - name: Ingest — RSS feeds
