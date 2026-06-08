@@ -85,6 +85,32 @@
 
   document.body.insertAdjacentHTML('beforeend', footerHTML);
 
+  /* ─── VIZ HERO: surface the globe + data warehouse + every chart at the TOP
+     of EVERY page, visible on open. Relocates all existing viz anchors into a
+     hero block under the nav, creates the globe/counters if a page lacks them,
+     removes the emptied wrappers, and auto-loads viz.js + globe.js everywhere. ─── */
+  (function vizHero() {
+    var nav = document.querySelector('nav.nav'); if (!nav) return;
+    if (document.getElementById('rp-viz-hero')) return;
+    var mountAfter = document.querySelector('.ticker') || nav;
+    var hero = document.createElement('section');
+    hero.id = 'rp-viz-hero';
+    hero.style.cssText = 'max-width:1320px;margin:0 auto;padding:6px 24px 0;position:relative;z-index:1';
+    mountAfter.insertAdjacentElement('afterend', hero);
+    ['viz-counters', 'viz-globe'].forEach(function (id) { if (!document.getElementById(id)) { var d = document.createElement('div'); d.id = id; document.body.appendChild(d); } });
+    var order = ['viz-counters', 'viz-globe', 'rp-sources', 'viz-kpis', 'viz-heatmap', 'viz-stacked', 'viz-polar', 'viz-donut', 'viz-radar', 'viz-catbubble', 'viz-bubble', 'viz-gauge', 'viz-yields', 'viz-rates', 'viz-ranked', 'viz-activity'];
+    order.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el && el.parentNode !== hero) {
+        var p = el.parentNode;
+        hero.appendChild(el);
+        if (p && p !== document.body && p.id !== 'rp-viz-hero' && !p.children.length && !p.textContent.trim()) { try { p.remove(); } catch (e) { } }
+      }
+    });
+    function loadOnce(src) { if (!document.querySelector('script[src="' + src + '"]')) { var s = document.createElement('script'); s.src = src; document.body.appendChild(s); } }
+    loadOnce('/viz.js'); loadOnce('/globe.js');
+  })();
+
   /* ─── Theme system (4 themes, persisted + shareable via URL hash) ─── */
   function hashParams() { var o = {}; location.hash.replace(/^#/, "").split("&").forEach(function (kv) { var p = kv.split("="); if (p[0]) o[p[0]] = decodeURIComponent(p[1] || ""); }); return o; }
   function setHashParam(k, v) { var o = hashParams(); o[k] = v; location.hash = Object.keys(o).map(function (key) { return key + "=" + encodeURIComponent(o[key]); }).join("&"); }
