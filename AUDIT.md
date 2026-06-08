@@ -1,3 +1,5 @@
+> ⚠️ **Stale — snapshot at commit `8c0800a` (2026-06-03).** Current source of truth is `AUDIT-2026-06-08.md` + the live `README.md`. Compare before relying on anything in this file.
+
 # RePrime Data Platform — Hardening Audit
 
 **Date:** 2026-06-03 · **Method:** local execution against live free APIs + static analysis.

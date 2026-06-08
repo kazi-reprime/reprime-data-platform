@@ -383,15 +383,18 @@ footer a:hover{color:var(--gold)}
 </div>
 </section>
 
-<!-- FEATURED DEAL -->
+<!-- FEATURED DEAL — audit Phase 1 task 1.4: Sample · Underwriting badge + JSON binding -->
 <section class="reveal">
 <div class="container">
   <div class="section-label">Featured Analysis</div>
-  <div class="section-title">Deal Intelligence Preview</div>
+  <div class="section-title" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+    <span>Deal Intelligence Preview</span>
+    <span class="panel-badge" id="dealBadge" style="font-size:11px;padding:4px 10px;border-radius:12px;background:rgba(212,175,55,.12);color:var(--gold,#d4af37);font-weight:500">Sample · Underwriting</span>
+  </div>
   <div class="deal-section">
     <div class="deal-grid">
       <div>
-        <div class="deal-gallery">
+        <div class="deal-gallery" id="dealGallery">
           <img src="/images/om_p1_img1.jpeg" alt="Property exterior" loading="lazy">
           <img src="/images/om_p5_img1.jpeg" alt="Interior" loading="lazy">
           <img src="/images/om_p7_img1.jpeg" alt="Amenities" loading="lazy">
@@ -399,22 +402,46 @@ footer a:hover{color:var(--gold)}
         </div>
       </div>
       <div>
-        <div class="section-label">Multifamily — South Florida</div>
-        <h3 style="font-size:24px;font-weight:700;margin:8px 0 16px;color:var(--text)">The Palms at Doral</h3>
-        <p style="font-size:13px;color:var(--muted);font-weight:300;line-height:1.6;margin-bottom:24px">240-unit Class B+ multifamily asset in Doral, FL. Value-add opportunity with 92% occupancy, below-market rents, and $4.2M renovation budget identified. FEMA Zone X — minimal flood risk.</p>
-        <div class="deal-metrics">
-          <div class="dm"><div class="dm-val">6.2%</div><div class="dm-label">Cap Rate</div></div>
-          <div class="dm"><div class="dm-val">$3.8M</div><div class="dm-label">NOI</div></div>
-          <div class="dm"><div class="dm-val">18.4%</div><div class="dm-label">IRR (5yr)</div></div>
-          <div class="dm"><div class="dm-val">1.45x</div><div class="dm-label">DSCR</div></div>
-          <div class="dm"><div class="dm-val">$61.2M</div><div class="dm-label">Valuation</div></div>
-          <div class="dm"><div class="dm-val">92%</div><div class="dm-label">Occupancy</div></div>
+        <div class="section-label" id="dealSummary">Multifamily — South Florida</div>
+        <h3 id="dealName" style="font-size:24px;font-weight:700;margin:8px 0 16px;color:var(--text)">The Palms at Doral</h3>
+        <p id="dealDescription" style="font-size:13px;color:var(--muted);font-weight:300;line-height:1.6;margin-bottom:24px">240-unit Class B+ multifamily asset in Doral, FL. Value-add opportunity with 92% occupancy, below-market rents, and $4.2M renovation budget identified. FEMA Zone X — minimal flood risk.</p>
+        <div class="deal-metrics" id="dealMetrics">
+          <div class="dm"><div class="dm-val">—</div><div class="dm-label">Cap Rate</div></div>
+          <div class="dm"><div class="dm-val">—</div><div class="dm-label">NOI</div></div>
+          <div class="dm"><div class="dm-val">—</div><div class="dm-label">IRR (5yr)</div></div>
+          <div class="dm"><div class="dm-val">—</div><div class="dm-label">DSCR</div></div>
+          <div class="dm"><div class="dm-val">—</div><div class="dm-label">Valuation</div></div>
+          <div class="dm"><div class="dm-val">—</div><div class="dm-label">Occupancy</div></div>
         </div>
         <a href="/terminal" class="btn btn-gold" style="margin-top:24px">Full Analysis →</a>
       </div>
     </div>
   </div>
 </div>
+<script>
+// Bind Featured Deal to /data/featured_deal.json (audit Phase 1 task 1.4)
+(function () {
+  fetch('/data/featured_deal.json').then(function (r) { return r.json(); }).then(function (d) {
+    if (!d) return;
+    var setText = function (id, v) { var el = document.getElementById(id); if (el && v != null) el.textContent = v; };
+    setText('dealName', d.name);
+    setText('dealSummary', d.summary);
+    if (Array.isArray(d.metrics)) {
+      var grid = document.getElementById('dealMetrics');
+      if (grid) {
+        // DOM construction (no innerHTML with user-influenced strings — XSS-safe, audit Phase 2 task 2.9)
+        grid.textContent = '';
+        d.metrics.forEach(function (m) {
+          var dm = document.createElement('div'); dm.className = 'dm';
+          var val = document.createElement('div'); val.className = 'dm-val'; val.textContent = m.value || '—';
+          var lab = document.createElement('div'); lab.className = 'dm-label'; lab.textContent = m.label || '';
+          dm.appendChild(val); dm.appendChild(lab); grid.appendChild(dm);
+        });
+      }
+    }
+  }).catch(function () { /* graceful: leave em-dashes */ });
+})();
+</script>
 </section>
 
 <!-- CATEGORIES COVERAGE -->

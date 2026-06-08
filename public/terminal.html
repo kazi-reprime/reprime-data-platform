@@ -159,10 +159,9 @@
   <div class="panel">
     <div class="panel-header"><span class="panel-title">Capital Stack</span><span class="panel-badge" id="capTotal">Sample</span></div>
     <div class="panel-body">
+      <!-- audit Phase 1 task 1.5: removed orphan cap-segs and fixed double-closed body.
+           capStack is populated by reprime.js — no static placeholders needed. -->
       <div class="cap-stack" id="capStack"></div>
-        <div class="cap-seg mezz">Mezz 15%</div>
-        <div class="cap-seg equity">Eq 10%</div>
-      </div>
       <div class="cap-legend" id="capLegend"></div>
     </div>
   </div>
@@ -206,8 +205,8 @@
   <div class="panel">
     <div class="panel-header"><span class="panel-title">Environmental Risk</span><span class="panel-badge">FEMA + EPA</span></div>
     <div class="panel-body">
-      <div class="risk-cards"><div style="color:var(--muted);font-size:11px;padding:8px">Loading risk data…</div></div></div>
-      </div>
+      <!-- audit Phase 1 task 1.5: removed stray closing div -->
+      <div class="risk-cards"><div style="color:var(--muted);font-size:11px;padding:8px">Loading risk data…</div></div>
     </div>
   </div>
 

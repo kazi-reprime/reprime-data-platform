@@ -269,17 +269,77 @@ async function loadEndpoints() {
   if (badge) { badge.textContent = `${okCount}/${eps.length} OK`; badge.className = 'badge ' + (okCount === eps.length ? 'ok' : ''); }
 }
 
-// LIVE SEARCH LAYERS (replaces leaked-key API grid) --------------------------
+// LIVE SEARCH LAYERS — audit Phase 1 task 1.3: real per-source probe via /api/search
+// Cards render in 'probing' state, then update once /api/search returns its per-source status.
+// Falls back to 'cataloged' (neutral) if probe fails, never to fake 'live'.
 function loadLiveLayers() {
   const layers = [
-    ['Census Geocoder', 'geocode'], ['FRED / NY Fed', 'rates'], ['CoinGecko', 'crypto'], ['ECB / Frankfurter', 'fx'],
-    ['Federal Register', 'regulatory'], ['FDIC', 'banking'], ['FEMA NFHL', 'flood'], ['FEMA OpenFEMA', 'disasters'],
-    ['OSM Overpass', 'POIs'], ['NWS', 'weather alerts'], ['Census ACS', 'demographics'], ['USGS 3DEP', 'elevation'],
-    ['Open-Meteo', 'weather'], ['Open-Meteo AQ', 'air quality'], ['FCC', 'census/FIPS'], ['Wikipedia', 'context'],
-    ['USGS Quakes', 'seismic'], ['EPA Envirofacts', 'environmental'], ['GDELT', 'news/sentiment'], ['RePrime', 'financing+FX valuation'],
+    ['Census Geocoder', 'geocode', 'census_geocoder'],
+    ['FRED / NY Fed', 'rates', 'fred_rates'],
+    ['CoinGecko', 'crypto', 'coingecko'],
+    ['ECB / Frankfurter', 'fx', 'ecb_fx'],
+    ['Federal Register', 'regulatory', 'federal_register'],
+    ['FDIC', 'banking', 'fdic'],
+    ['FEMA NFHL', 'flood', 'fema_flood'],
+    ['FEMA OpenFEMA', 'disasters', 'fema_disasters'],
+    ['OSM Overpass', 'POIs', 'osm_overpass'],
+    ['NWS', 'weather alerts', 'nws_alerts'],
+    ['Census ACS', 'demographics', 'census_acs'],
+    ['USGS 3DEP', 'elevation', 'usgs_3dep'],
+    ['Open-Meteo', 'weather', 'open_meteo'],
+    ['Open-Meteo AQ', 'air quality', 'open_meteo_aq'],
+    ['FCC', 'census/FIPS', 'fcc'],
+    ['Wikipedia', 'context', 'wikipedia'],
+    ['USGS Quakes', 'seismic', 'usgs_quakes'],
+    ['EPA Envirofacts', 'environmental', 'epa_envirofacts'],
+    ['GDELT', 'news/sentiment', 'gdelt'],
+    ['RePrime', 'financing+FX valuation', 'reprime_derived'],
   ];
-  $('api-grid').innerHTML = layers.map(([n, d]) =>
-    `<div class="api-card"><div class="name">${n}</div><div class="desc">${d}</div><div class="meta"><span style="color:var(--green)">● live</span><span>free</span></div></div>`).join('');
+  const STATUS = {
+    probing:   ['var(--muted)', '● probing…'],
+    ok:        ['var(--green)', '● live'],
+    partial:   ['var(--gold,#d4af37)', '● degraded'],
+    error:     ['var(--red)', '● offline'],
+    cataloged: ['var(--muted)', '○ cataloged']
+  };
+  const grid = $('api-grid');
+  // Render skeleton with probing state (DOM construction = XSS-safe, audit Phase 2 task 2.9)
+  grid.textContent = '';
+  layers.forEach(([name, desc, key]) => {
+    const card = document.createElement('div'); card.className = 'api-card'; card.dataset.layerKey = key;
+    const nameEl = document.createElement('div'); nameEl.className = 'name'; nameEl.textContent = name;
+    const descEl = document.createElement('div'); descEl.className = 'desc'; descEl.textContent = desc;
+    const meta = document.createElement('div'); meta.className = 'meta';
+    const statusEl = document.createElement('span'); statusEl.className = 'status';
+    const [color, label] = STATUS.probing;
+    statusEl.style.color = color; statusEl.textContent = label;
+    const cost = document.createElement('span'); cost.textContent = 'free';
+    meta.appendChild(statusEl); meta.appendChild(cost);
+    card.appendChild(nameEl); card.appendChild(descEl); card.appendChild(meta);
+    grid.appendChild(card);
+  });
+  // Fire a real probe — single /api/search call against a known-geocodable address.
+  // Per-source status from the response updates each card.
+  const PROBE_ADDR = '1600 Pennsylvania Ave NW, Washington, DC';
+  fetch('/api/search?address=' + encodeURIComponent(PROBE_ADDR), { headers: { Accept: 'application/json' } })
+    .then(r => r.ok ? r.json() : Promise.reject(new Error('probe failed: ' + r.status)))
+    .then(resp => {
+      const sources = (resp && resp.sources) || {};
+      layers.forEach(([name, desc, key]) => {
+        const card = grid.querySelector('[data-layer-key="' + key + '"]'); if (!card) return;
+        const s = sources[key];
+        const statusKey = (s && s.status && STATUS[s.status]) ? s.status : 'cataloged';
+        const [color, label] = STATUS[statusKey];
+        const el = card.querySelector('.status'); if (el) { el.style.color = color; el.textContent = label; }
+      });
+    })
+    .catch(() => {
+      // Probe failed — mark every card as 'cataloged' (honest neutral), never 'live'
+      grid.querySelectorAll('.api-card .status').forEach(el => {
+        const [color, label] = STATUS.cataloged;
+        el.style.color = color; el.textContent = label;
+      });
+    });
 }
 
 // REAL ACTIVITY (from search history + data freshness) ------------------------
