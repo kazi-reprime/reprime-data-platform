@@ -120,14 +120,20 @@ Removed as unused after audit (no Python references): `COINGECKO_API_KEY`, `MASS
 
 ## Active in-flight work (audit roadmap)
 
-| Phase | Status | Source |
+| Phase | Status | Commit |
 |---|---|---|
-| 0 — secret rotation | ✅ Rotated; on-disk hygiene cleaned up 2026-06-09 | this session |
-| 1 — honest UI + doc reconciliation | 🟡 In progress — globe + index.html done, terminal/site/dashboard/docs remaining | AUDIT-2026-06-08.md §17 |
-| 2 — security & data hardening | ⏸ Queued | AUDIT-2026-06-08.md §17 |
-| 3 — performance + observability | ⏸ Queued | AUDIT-2026-06-08.md §17 |
-| 4 — AI surface round 1 | ⏸ Queued | AUDIT-2026-06-08.md §17 |
-| 5 — framework migration + AI round 2 | ⏸ Open decision | AUDIT-2026-06-08.md §17 |
+| 0 — secret rotation + on-disk hygiene | ✅ Done 2026-06-09 | `2fcee94` |
+| 1 — honest UI + doc reconciliation | ✅ Done 2026-06-09 (14/14 tasks) | `2fcee94`, `2cef847` |
+| 2 — security & data hardening | ✅ Done 2026-06-09 (13/13 tasks) | `0b28758` |
+| 3 — performance + observability | ✅ Done 2026-06-09 (visibility polling, reduced-motion, ADR for chunking) | `1a2aeed` |
+| 4 — AI surface: NL source discovery via pgvector | ✅ Code done; needs schema apply + env vars to activate | `d458202` |
+| 5 — framework migration + AI round 2 | ⏸ Deferred — multi-week project, needs separate scoping | — |
+
+### Phase 4 activation (manual, ~10 min)
+1. Apply schema: `psql "$DATABASE_URL" -f pipeline/schema.sql` (creates `vector` extension, `embedding` column on `sources`, ivfflat index, `match_sources` RPC).
+2. Add to Vercel env + GitHub repo secrets: `AI_GATEWAY_API_KEY` (preferred) or `OPENAI_API_KEY`.
+3. Trigger the ingest workflow once manually (Actions tab → Run workflow) to backfill embeddings — ~$0.02 for 1,932 sources.
+4. Visit `/sources`, scroll to "AI Source Discovery", type a natural-language query.
 
 ## When working in this repo
 
@@ -135,3 +141,14 @@ Removed as unused after audit (no Python references): `COINGECKO_API_KEY`, `MASS
 2. Check section 15 of the audit (Bug/Risk Register) for the prioritized P0–P3 list before picking up work.
 3. Check section 17 (Upgrade Roadmap) for the canonical Phase 1–5 task list.
 4. The audit's findings beat docs in `docs/` — most of those are frozen at commit `8c0800a` (2026-06-03).
+
+## UI/UX & Design Guidelines (MANDATORY SKILL USAGE)
+
+Whenever you are working on any designing project, UI/UX improvements, website visual adjustments, or 3D/animation tasks, **you MUST leverage and strictly follow the instructions defined in the installed Claude Skills**:
+
+1. **Anthropic Frontend Design (`frontend-design`)**: Prioritize bold, distinctive, non-generic typography, custom color systems, spatial layout breaks, glassmorphism meshes, noise textures, and clean CSS transitions. Avoid default Inter/Roboto "AI slop" aesthetics.
+2. **Vercel Guidelines (`web-design-guidelines`, `react-best-practices`, `composition-patterns`, `react-native-skills`)**: Ensure WCAG compliance, keyboard focus rings, touch targets, and proper contrast. Eliminate sequential waterfalls, avoid barrel imports, and use proper compound component composition rather than boolean props.
+3. **UI/UX Pro Max (`ui-ux-pro-max`)**: Use the design system database to extract contextual palettes, typography scales, spacing tokens, and visual configurations. Avoid emojis for icons, support light/dark modes defensively, and preserve custom design parameters via overrides.
+4. **Bencium UX Reference (`bencium-controlled-ux-designer`, `bencium-innovative-ux-designer`)**: Adhere to simplification-by-reduction, direct manipulation, feedback within 100ms, progressive disclosure, and robust responsive breakpoints.
+5. **3D Modeling & Animation (`blender-3d-modeling`, `blender-automation`, `cad-agent`, `3d-modeling`, `shader-techniques`)**: Optimize geometry and topology, ensure scale normalization (1.0 for Unity, 0.01 for Unreal) before export, avoid N-gons, use GPU-optimized shader math, and automate headless command-line cycles rendering.
+6. **AccessLint (`audit`, `diff`, `scan`)**: Audit color contrast ratios and link purpose for accessibility during verification phases.
