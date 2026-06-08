@@ -11,15 +11,31 @@
    component renders independently and degrades gracefully. */
 (function () {
   "use strict";
-  var SB = "https://gugcmsqrscqqqltdtgkz.supabase.co";
-  var KEY = "sb_publishable_J5zIiHNf1VqpQ7r14SevFw__MbvlEpm";
+  // Phase 2.3 — use centralized config; defensive fallback if not loaded.
+  var CFG = window.RP_SB || { URL: "https://gugcmsqrscqqqltdtgkz.supabase.co", KEY: "sb_publishable_J5zIiHNf1VqpQ7r14SevFw__MbvlEpm" };
+  var SB = CFG.URL;
+  var KEY = CFG.KEY;
   var H = { apikey: KEY, Authorization: "Bearer " + KEY };
   var $ = function (id) { return document.getElementById(id); };
   var has = function (id) { return !!$(id); };
   var fmt = function (n) { return Number(n || 0).toLocaleString(); };
   function css(v, f) { return (getComputedStyle(document.documentElement).getPropertyValue(v) || f).trim() || f; }
   function palette() { return [css("--gold", "#BC9C45"), css("--blue", "#1D5FB8"), css("--bright", "#00A1FF"), css("--teal", "#009080"), css("--amber", "#FFBC7D"), css("--navy", "#0E3470"), css("--green", "#00A980"), css("--red", "#FF7474")]; }
-  function load(src) { return new Promise(function (res) { var s = document.createElement("script"); s.src = src; s.onload = res; s.onerror = res; document.head.appendChild(s); }); }
+  // Phase 2.10 — SRI map for known CDN scripts; dynamic loads of OTHER urls
+  // pass without integrity (the map gates which scripts get verified).
+  var SRI = {
+    "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js":
+      "sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD",
+    "https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js":
+      "sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i"
+  };
+  function load(src) {
+    return new Promise(function (res) {
+      var s = document.createElement("script"); s.src = src;
+      if (SRI[src]) { s.integrity = SRI[src]; s.crossOrigin = "anonymous"; s.referrerPolicy = "no-referrer"; }
+      s.onload = res; s.onerror = res; document.head.appendChild(s);
+    });
+  }
   function getJSON(u, opts) { return fetch(u, opts).then(function (r) { return r.json(); }).catch(function () { return null; }); }
   function sb(path) { return getJSON(SB + "/rest/v1/" + path, { headers: H }); }
 

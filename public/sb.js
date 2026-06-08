@@ -7,8 +7,11 @@
    - Exposes window.RP for the Explore page to query stored data on search.
 */
 (function () {
-  const SB = "https://gugcmsqrscqqqltdtgkz.supabase.co";
-  const KEY = "sb_publishable_J5zIiHNf1VqpQ7r14SevFw__MbvlEpm"; // publishable/anon — safe, read-only via RLS
+  // Phase 2.3 — use centralized config (window.RP_SB from /supabase-config.js).
+  // Fallback to inline values if config not yet loaded (defensive).
+  var CFG = window.RP_SB || { URL: "https://gugcmsqrscqqqltdtgkz.supabase.co", KEY: "sb_publishable_J5zIiHNf1VqpQ7r14SevFw__MbvlEpm" };
+  const SB = CFG.URL;
+  const KEY = CFG.KEY;
   const H = { apikey: KEY, Authorization: "Bearer " + KEY };
   const fmt = (n) => Number(n || 0).toLocaleString();
   let _cache = null;
@@ -61,11 +64,39 @@
       if (!rows.length) { det.innerHTML = '<div style="color:var(--muted,#94a3b8);font-size:11px;padding:6px">No sample rows stored.</div>'; det.dataset.done = "1"; return; }
       const cols = [...new Set(rows.flatMap((x) => Object.keys(x)))].filter((c) => !String(c).startsWith("_")).slice(0, 6);
       const esc = (v) => { v = v == null ? "" : String(typeof v === "object" ? JSON.stringify(v) : v); return v.length > 36 ? v.slice(0, 36) + "…" : v; };
-      det.innerHTML =
-        '<div style="overflow-x:auto;border:1px solid var(--border,rgba(255,255,255,.12));border-radius:8px;margin-top:6px"><table style="width:100%;font-size:11px;border-collapse:collapse">' +
-        "<thead><tr>" + cols.map((c) => `<th style="text-align:left;padding:5px 8px;color:var(--muted,#94a3b8);border-bottom:1px solid var(--border,rgba(255,255,255,.12));white-space:nowrap">${c}</th>`).join("") + "</tr></thead><tbody>" +
-        rows.map((x) => "<tr>" + cols.map((c) => `<td style="padding:4px 8px;border-bottom:1px solid var(--border,rgba(255,255,255,.08))">${esc(x[c])}</td>`).join("") + "</tr>").join("") +
-        "</tbody></table></div><div style=\"color:var(--muted,#94a3b8);font-size:10px;margin-top:3px\">Live sample of " + rows.length + " real records.</div>";
+      // Phase 2.9 — DOM construction (no string-interpolated innerHTML for user-influenced data).
+      // `cols` and `rows[*]` come from Supabase payload — adversarial Socrata data could carry
+      // crafted strings. textContent prevents any script execution in either column names or cell values.
+      det.textContent = '';
+      var wrap = document.createElement('div');
+      wrap.style.cssText = 'overflow-x:auto;border:1px solid var(--border,rgba(255,255,255,.12));border-radius:8px;margin-top:6px';
+      var table = document.createElement('table');
+      table.style.cssText = 'width:100%;font-size:11px;border-collapse:collapse';
+      var thead = document.createElement('thead'); var trh = document.createElement('tr');
+      cols.forEach(function (c) {
+        var th = document.createElement('th');
+        th.style.cssText = 'text-align:left;padding:5px 8px;color:var(--muted,#94a3b8);border-bottom:1px solid var(--border,rgba(255,255,255,.12));white-space:nowrap';
+        th.textContent = String(c);
+        trh.appendChild(th);
+      });
+      thead.appendChild(trh); table.appendChild(thead);
+      var tbody = document.createElement('tbody');
+      rows.forEach(function (x) {
+        var tr = document.createElement('tr');
+        cols.forEach(function (c) {
+          var td = document.createElement('td');
+          td.style.cssText = 'padding:4px 8px;border-bottom:1px solid var(--border,rgba(255,255,255,.08))';
+          // esc() already converts to short string; use textContent for final defense.
+          td.textContent = String(esc(x[c]));
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody); wrap.appendChild(table);
+      var footer = document.createElement('div');
+      footer.style.cssText = 'color:var(--muted,#94a3b8);font-size:10px;margin-top:3px';
+      footer.textContent = 'Live sample of ' + rows.length + ' real records.';
+      det.appendChild(wrap); det.appendChild(footer);
       det.dataset.done = "1";
     } catch (e) { det.innerHTML = '<div style="color:var(--red,#ef4444);font-size:11px;padding:6px">Records unavailable.</div>'; }
   };

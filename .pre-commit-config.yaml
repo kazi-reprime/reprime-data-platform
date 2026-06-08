@@ -1,0 +1,19 @@
+# Phase 2 task 2.13 — pre-commit hooks. Run `pre-commit install` once after
+# `pip install pre-commit`. Hooks run on every `git commit` and block leaks.
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.4
+    hooks:
+      - id: gitleaks
+        name: gitleaks — secret-scan staged changes
+        description: Detect hardcoded secrets like passwords, api keys, and tokens.
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: detect-private-key
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: [--maxkb=2000]

@@ -530,9 +530,10 @@ def src_property_images(ctx: dict) -> dict:
                                    "title": p.get("title", "").replace("File:", "")})
     except Exception:  # noqa: BLE001
         pass
-    # 2) Mapillary street-level — real exterior photos. Public client read-token
-    #    (embeddable like an anon key; override via MAPILLARY_TOKEN env).
-    tok = os.environ.get("MAPILLARY_TOKEN", "MLY|36082926118018705|28ca0f1162c76684aeb2f9999713c44c")
+    # 2) Mapillary street-level — real exterior photos.
+    # Phase 2.2: token is env-ONLY. No hardcoded fallback. Feature degrades
+    # cleanly (no street imagery returned) if MAPILLARY_TOKEN is unset.
+    tok = (os.environ.get("MAPILLARY_TOKEN", "") or "").strip() or None
     if tok:
         try:
             d = 0.0016
@@ -717,13 +718,55 @@ def _state_to_abbr(name: str) -> str:
 # Vercel handler
 # --------------------------------------------------------------------------- #
 class handler(BaseHTTPRequestHandler):
+    # Phase 2.8 — CORS tightening. Allow only the production origin + Vercel
+    # preview deployments (*.vercel.app under the project's namespace) + localhost
+    # for dev. Origin check is dynamic (per-request) since allowed includes a glob.
+    _ALLOWED_ORIGINS_EXACT = (
+        "https://reprime-data-platform.vercel.app",
+        "https://www.reprimeterminal.com",
+        "https://reprimeterminal.com",
+        "http://localhost:3000",
+        "http://localhost:8000",
+        "http://127.0.0.1:3000",
+        "http://127.0.0.1:8000",
+    )
+    _ALLOWED_ORIGIN_SUFFIXES = (
+        "-kazi-reprimes-projects.vercel.app",   # preview deploys
+        ".vercel.app",
+    )
+
+    def _allowed_origin(self) -> str | None:
+        """Return the request's Origin header if it matches the allow-list, else None."""
+        origin = self.headers.get("Origin", "").strip()
+        if not origin:
+            return None
+        if origin in self._ALLOWED_ORIGINS_EXACT:
+            return origin
+        try:
+            # parse host out of origin to suffix-match safely (no substring trick)
+            parsed = urllib.parse.urlparse(origin)
+            host = (parsed.hostname or "").lower()
+            for suf in self._ALLOWED_ORIGIN_SUFFIXES:
+                if host.endswith(suf):
+                    return origin
+        except Exception:
+            pass
+        return None
+
+    def _cors_headers(self) -> None:
+        origin = self._allowed_origin()
+        if origin:
+            self.send_header("Access-Control-Allow-Origin", origin)
+            self.send_header("Vary", "Origin")
+            self.send_header("Access-Control-Allow-Methods", "GET, OPTIONS")
+            self.send_header("Access-Control-Allow-Headers", "Content-Type")
+            self.send_header("Access-Control-Max-Age", "600")
+
     def _send(self, status: int, payload: dict) -> None:
         body = json.dumps(payload, default=str).encode("utf-8")
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")
-        self.send_header("Access-Control-Allow-Origin", "*")
-        self.send_header("Access-Control-Allow-Methods", "GET, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self._cors_headers()
         self.send_header("Cache-Control", "public, max-age=300")
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
@@ -731,9 +774,7 @@ class handler(BaseHTTPRequestHandler):
 
     def do_OPTIONS(self):  # noqa: N802
         self.send_response(204)
-        self.send_header("Access-Control-Allow-Origin", "*")
-        self.send_header("Access-Control-Allow-Methods", "GET, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self._cors_headers()
         self.end_headers()
 
     def do_GET(self):  # noqa: N802

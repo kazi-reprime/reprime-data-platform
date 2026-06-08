@@ -6,7 +6,7 @@
 <title>RePrime Dashboard — Data Operations Console</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/rp-shell.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style>
 /* Page-specific styles only. Chrome (tokens, nav, ticker, footer, themes,
    background) lives in rp-shell.css / rp-shell.js — single source of truth. */
@@ -407,8 +407,10 @@ setInterval(loadEndpoints, 60000);
 <script>
 /* Live institutional-data panels (Treasury curve + REIT financials) from Supabase */
 (async function(){
-  const SB="https://gugcmsqrscqqqltdtgkz.supabase.co", K="sb_publishable_J5zIiHNf1VqpQ7r14SevFw__MbvlEpm";
-  const H={apikey:K,Authorization:"Bearer "+K};
+  // Phase 2.3 — use centralized config; defensive fallback if not loaded.
+  const CFG = window.RP_SB || { URL: "https://gugcmsqrscqqqltdtgkz.supabase.co", KEY: "sb_publishable_J5zIiHNf1VqpQ7r14SevFw__MbvlEpm" };
+  const SB = CFG.URL, K = CFG.KEY;
+  const H = { apikey: K, Authorization: "Bearer " + K };
   const get=async(name)=>{try{const r=await fetch(SB+"/rest/v1/v_latest_source_data?select=payload&status=eq.ok&name=eq."+encodeURIComponent(name)+"&limit=1",{headers:H});const d=await r.json();return (d[0]||{}).payload;}catch(e){return null;}};
   const fmtB=v=>v?("$"+(v/1e9).toFixed(1)+"B"):"—";
   const card=document.createElement('div'); card.className='glass'; card.style.margin='18px 0';

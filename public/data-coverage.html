@@ -74,11 +74,14 @@ a{color:var(--accent);text-decoration:none}
 </div>
 
 <script src="/rp-shell.js"></script>
+<script src="/supabase-config.js"></script>
 <script src="/viz.js"></script>
 <script src="/sources.js"></script>
 <script>
-const SB = "https://gugcmsqrscqqqltdtgkz.supabase.co";
-const KEY = "sb_publishable_J5zIiHNf1VqpQ7r14SevFw__MbvlEpm";  // publishable (anon) key — safe to expose, RLS read-only
+// Phase 2.3 — use centralized config (window.RP_SB); defensive fallback if not loaded.
+const CFG = window.RP_SB || { URL: "https://gugcmsqrscqqqltdtgkz.supabase.co", KEY: "sb_publishable_J5zIiHNf1VqpQ7r14SevFw__MbvlEpm" };
+const SB = CFG.URL;
+const KEY = CFG.KEY;
 const H = { apikey: KEY, Authorization: "Bearer " + KEY };
 const fmt = n => Number(n||0).toLocaleString();
 

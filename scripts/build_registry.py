@@ -79,7 +79,9 @@ def main() -> None:
 
     # real stats.json + categories.json (replace fabricated 611/8223/549)
     base = os.path.join(ROOT, "public", "data")
-    with open(os.path.join(base, "stats.json"), "w") as f:
+    # Phase 2.12: stats.json ownership consolidated to pipeline/import_catalog.py — write disabled here.
+
+    # with open(os.path.join(base, "stats.json"), "w") as f:
         json.dump({
             "cataloged_sources": len(sources),
             "category_count": len(cats),

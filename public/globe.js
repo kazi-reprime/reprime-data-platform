@@ -8,14 +8,27 @@
   var el = document.getElementById("viz-globe");
   if (!el) return;
   var THREE_SRC = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";
+  // Phase 2.10 — SRI hash for Three.js r128 (verified sha384 of CDN bundle).
+  var THREE_SRI = "sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu";
   function css(v, f) { return (getComputedStyle(document.documentElement).getPropertyValue(v) || f).trim() || f; }
-  function load(src) { return new Promise(function (res) { if (window.THREE) return res(); var s = document.createElement("script"); s.src = src; s.onload = res; s.onerror = res; document.head.appendChild(s); }); }
+  function load(src) {
+    return new Promise(function (res) {
+      if (window.THREE) return res();
+      var s = document.createElement("script");
+      s.src = src;
+      // Apply SRI only to the known Three.js URL — other dynamic loads pass without integrity.
+      if (src === THREE_SRC) { s.integrity = THREE_SRI; s.crossOrigin = "anonymous"; s.referrerPolicy = "no-referrer"; }
+      s.onload = res; s.onerror = res; document.head.appendChild(s);
+    });
+  }
   function getJSON(u, o) { return fetch(u, o).then(function (r) { return r.json(); }).catch(function () { return null; }); }
   function webglOK() { try { var c = document.createElement("canvas"); return !!(window.WebGLRenderingContext && (c.getContext("webgl") || c.getContext("experimental-webgl"))); } catch (e) { return false; } }
   var fmt = function (n) { return Number(n || 0).toLocaleString(); };
 
-  var SB = "https://gugcmsqrscqqqltdtgkz.supabase.co";
-  var H = { apikey: "sb_publishable_J5zIiHNf1VqpQ7r14SevFw__MbvlEpm", Authorization: "Bearer sb_publishable_J5zIiHNf1VqpQ7r14SevFw__MbvlEpm" };
+  // Phase 2.3 — use centralized config; defensive fallback if not loaded.
+  var CFG = window.RP_SB || { URL: "https://gugcmsqrscqqqltdtgkz.supabase.co", KEY: "sb_publishable_J5zIiHNf1VqpQ7r14SevFw__MbvlEpm" };
+  var SB = CFG.URL;
+  var H = { apikey: CFG.KEY, Authorization: "Bearer " + CFG.KEY };
 
   function shell(data) {
     el.innerHTML =

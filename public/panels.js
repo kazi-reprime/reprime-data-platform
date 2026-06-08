@@ -4,8 +4,10 @@
    container. Loaded by Terminal / Site / Homepage (Dashboard has its own inline).
 */
 (function () {
-  const SB = "https://gugcmsqrscqqqltdtgkz.supabase.co";
-  const KEY = "sb_publishable_J5zIiHNf1VqpQ7r14SevFw__MbvlEpm";
+  // Phase 2.3 — use centralized config; defensive fallback if not loaded.
+  var CFG = window.RP_SB || { URL: "https://gugcmsqrscqqqltdtgkz.supabase.co", KEY: "sb_publishable_J5zIiHNf1VqpQ7r14SevFw__MbvlEpm" };
+  const SB = CFG.URL;
+  const KEY = CFG.KEY;
   const H = { apikey: KEY, Authorization: "Bearer " + KEY };
   const css = (v, f) => (getComputedStyle(document.documentElement).getPropertyValue(v) || f).trim();
   const fmtB = (v) => (v ? "$" + (v / 1e9).toFixed(1) + "B" : "—");
@@ -15,6 +17,10 @@
       if (window.Chart) return res();
       const s = document.createElement("script");
       s.src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js";
+      // Phase 2.10 — SRI hash for Chart.js 4.4.1 (verified sha384 of CDN bundle).
+      s.integrity = "sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD";
+      s.crossOrigin = "anonymous";
+      s.referrerPolicy = "no-referrer";
       s.onload = res; s.onerror = res; document.head.appendChild(s);
     });
   }

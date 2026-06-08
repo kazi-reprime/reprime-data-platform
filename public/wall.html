@@ -42,10 +42,13 @@ h1{font-family:'Poppins',Arial,sans-serif;font-size:28px;font-weight:800}
 <div style="padding:0 28px"><div id="viz-counters"></div><div id="viz-kpis"></div><div id="viz-catbubble"></div></div>
 <div class="wall" id="wall"></div>
 <script src="/rp-shell.js"></script>
+<script src="/supabase-config.js"></script>
 <script src="/viz.js"></script>
 <script>
-const SB="https://gugcmsqrscqqqltdtgkz.supabase.co",K="sb_publishable_J5zIiHNf1VqpQ7r14SevFw__MbvlEpm";
-const H={apikey:K,Authorization:"Bearer "+K};
+// Phase 2.3 — use centralized config (window.RP_SB); defensive fallback if not loaded.
+const CFG = window.RP_SB || { URL: "https://gugcmsqrscqqqltdtgkz.supabase.co", KEY: "sb_publishable_J5zIiHNf1VqpQ7r14SevFw__MbvlEpm" };
+const SB = CFG.URL, K = CFG.KEY;
+const H = { apikey: K, Authorization: "Bearer " + K };
 const cl=['#BC9C45','#1D5FB8','#00A1FF','#009080','#FFBC7D','#0E3470','#00A980','#BC9C45','#1D5FB8','#00A1FF','#009080','#FFBC7D','#0E3470','#00A980'];
 let BOXES=[], shown=0, PAGE=300;
 const esc=s=>String(s==null?'':s).replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
