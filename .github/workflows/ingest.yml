@@ -103,6 +103,19 @@ jobs:
           python3 pipeline/deep_records.py 5000 || true
           python3 pipeline/socrata_discover.py 16 500 || true
 
+      # Phase 4 (ADR-002) — NL source discovery: embed any newly-loaded sources.
+      # Idempotent: only embeds rows where embedded_at IS NULL.
+      # No-ops cleanly if AI_GATEWAY_API_KEY / OPENAI_API_KEY isn't set yet.
+      - name: Embed sources for NL discovery
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          AI_GATEWAY_API_KEY: ${{ secrets.AI_GATEWAY_API_KEY }}
+          AI_GATEWAY_URL: ${{ secrets.AI_GATEWAY_URL }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          EMBEDDING_MODEL: ${{ secrets.EMBEDDING_MODEL }}
+        run: python3 pipeline/embed_sources.py || true
+
       - name: Commit coverage report + cached data
         run: |
           git config user.name "reprime-ingest"
