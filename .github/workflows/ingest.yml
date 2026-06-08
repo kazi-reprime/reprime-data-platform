@@ -80,6 +80,13 @@ jobs:
       - name: Ingest — bulk / dataset downloads
         run: python3 pipeline/run_ingest.py --tier bulk --limit 1000 || true
 
+      - name: Load fetched records to Supabase (REST · service key, no DB password needed)
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          RP_TIME_BUDGET: "1500"
+        run: python3 pipeline/rest_load_records.py 0 9999 1000 || true
+
       - name: Load to Postgres (no-op until DATABASE_URL is set)
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
