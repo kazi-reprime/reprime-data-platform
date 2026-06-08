@@ -128,6 +128,18 @@ Removed as unused after audit (no Python references): `COINGECKO_API_KEY`, `MASS
 | 3 — performance + observability | ✅ Done 2026-06-09 (visibility polling, reduced-motion, ADR for chunking) | `1a2aeed` |
 | 4 — AI surface: NL source discovery via pgvector | ✅ Code done; needs schema apply + env vars to activate | `d458202` |
 | 5 — framework migration + AI round 2 | ⏸ Deferred — multi-week project, needs separate scoping | — |
+| 6 — Visual + data-density upgrade (Bloomberg-feel UI) | ✅ Done 2026-06-09 — see `docs/design-brief-phase-6.md` | this commit |
+
+### Phase 6 — what's new on the live site after this push
+
+- `/dashboard`, `/terminal`, `/wall` — three new visual surfaces:
+  - **Deal-Flow Globe** (`public/deal-flow-globe.js`) — 2nd 3D scene complementing the data globe. 12 markets · 20 capital-flow arcs · animated gold/green pulses · prefers-reduced-motion safe.
+  - **U.S. Market Heatmap** (`public/property-heatmap.js`) — 25-market canvas heatmap with tabs for Volume / Cap Rate / Vacancy. Hover tooltips per market. No external topojson dep.
+  - **Live Deal Feed** (`public/deal-feed.js`) — Bloomberg-Terminal-style floating ticker. Streams from Supabase `v_latest_source_data` with SEED_DEALS fallback. Reviewed / Sourced / Advised labels (matches confidentiality language).
+- `/terminal` — **tab navigation** (`public/terminal-tabs.js`): Overview / Pipeline / Capital / Market / Risk. State persists in URL hash (`#t=capital`) for shareable links. Auto-classifies existing panels by title.
+- `rp-shell.css` — Phase 6 motion tokens (`--ease-data`, `--ease-glass`, `--gold-glow`), tier-2 glassmorphism (`.rp-glass-2`), sheen animation, live-pulse dot, KPI flip animation. All gated by `prefers-reduced-motion`.
+
+Reference: `docs/design-brief-phase-6.md` — competitive analysis (Bloomberg / CoStar / TradingView / Reonomy / Cloudflare Radar / Linear / Yardi) + 3D playbook + sequencing for Phase 7+.
 
 ### Phase 4 activation (manual, ~10 min)
 1. Apply schema: `psql "$DATABASE_URL" -f pipeline/schema.sql` (creates `vector` extension, `embedding` column on `sources`, ivfflat index, `match_sources` RPC).
@@ -146,6 +158,7 @@ Removed as unused after audit (no Python references): `COINGECKO_API_KEY`, `MASS
 
 Whenever you are working on any designing project, UI/UX improvements, website visual adjustments, or 3D/animation tasks, **you MUST leverage and strictly follow the instructions defined in the installed Claude Skills**:
 
+0. **Elite Web Builder (`elite-web-builder`)**: Orchestrate the site design workflow through the 7 Levels framework—aligning scope (L1), design presets (L2), visual references (L3), site teardown code extraction (L4), custom assets (L5), micro-animations/loading states (L6), and custom visual frontiers (L7).
 1. **Anthropic Frontend Design (`frontend-design`)**: Prioritize bold, distinctive, non-generic typography, custom color systems, spatial layout breaks, glassmorphism meshes, noise textures, and clean CSS transitions. Avoid default Inter/Roboto "AI slop" aesthetics.
 2. **Vercel Guidelines (`web-design-guidelines`, `react-best-practices`, `composition-patterns`, `react-native-skills`)**: Ensure WCAG compliance, keyboard focus rings, touch targets, and proper contrast. Eliminate sequential waterfalls, avoid barrel imports, and use proper compound component composition rather than boolean props.
 3. **UI/UX Pro Max (`ui-ux-pro-max`)**: Use the design system database to extract contextual palettes, typography scales, spacing tokens, and visual configurations. Avoid emojis for icons, support light/dark modes defensively, and preserve custom design parameters via overrides.

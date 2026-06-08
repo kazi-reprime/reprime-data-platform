@@ -210,3 +210,323 @@ footer.rp-footer .f-legal{max-width:1280px;margin:24px auto 0;padding-top:24px;b
 .rp-skel{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--border);border-radius:18px}
 .rp-skel::after{content:'';position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg,transparent,rgba(255,255,255,.07),transparent);animation:rpSkel 1.5s infinite}
 @keyframes rpSkel{100%{transform:translateX(100%)}}
+
+/* ═══════════════════════════════════════════════════════════════
+   3D COMMAND CONSOLE UPGRADE — Layout, Cards, viewports and sandbox
+   ═══════════════════════════════════════════════════════════════ */
+#rp-3d-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+}
+.console-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+  overflow-x: auto;
+  position: relative;
+  z-index: 2;
+}
+.console-tab-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--t);
+  white-space: nowrap;
+}
+.console-tab-btn:hover {
+  color: var(--text);
+  border-color: var(--border2);
+  background: var(--surface2);
+}
+.console-tab-btn.active {
+  background: var(--grad-gold);
+  color: #000;
+  border-color: var(--gold);
+  box-shadow: 0 4px 12px rgba(188,156,69,0.25);
+}
+.console-panel {
+  display: none;
+  position: relative;
+  z-index: 2;
+}
+.console-panel.active {
+  display: block;
+  animation: rpFlash 0.4s ease-out;
+}
+.tilt-container {
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.15s ease-out;
+}
+.tilt-container:hover {
+  box-shadow: 0 16px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+  border-color: var(--gold);
+}
+.tilt-inner {
+  transform: translateZ(24px);
+}
+.mini-globe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+.mini-globe-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  background: linear-gradient(135deg, var(--glass), var(--surface));
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.mini-globe-card:hover {
+  border-color: var(--gold);
+  background: linear-gradient(135deg, var(--glass-hover), var(--surface2));
+}
+.mini-globe-card .viewport-wrap {
+  width: 100%;
+  height: 140px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.02);
+}
+.mini-globe-viewport {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.mini-globe-card .title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+}
+.mini-globe-card .meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+.mini-globe-card .meta span {
+  color: var(--gold);
+  font-weight: 700;
+}
+.simulator-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 24px;
+}
+.simulator-canvas-wrap {
+  width: 100%;
+  height: 500px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.simulator-viewport {
+  width: 100%;
+  height: 100%;
+}
+.slider-group {
+  margin-bottom: 18px;
+}
+.slider-group label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text2);
+  margin-bottom: 6px;
+}
+.slider-group label span {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--gold);
+}
+.sandbox-slider {
+  width: 100%;
+  -webkit-appearance: none;
+  background: var(--surface2);
+  height: 6px;
+  border-radius: 3px;
+  outline: none;
+  border: 1px solid var(--border);
+  transition: border-color var(--t);
+}
+.sandbox-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--gold);
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(188, 156, 69, 0.6);
+  transition: transform 0.1s ease;
+}
+.sandbox-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+}
+.underwriting-sheet {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  font-size: 12px;
+}
+.underwriting-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.underwriting-row:last-child {
+  border-bottom: none;
+}
+.underwriting-row .label {
+  color: var(--muted);
+}
+.underwriting-row .value {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--text);
+}
+.underwriting-row .value.highlight {
+  color: var(--gold);
+  font-size: 13px;
+}
+@media(max-width:1100px){
+  .simulator-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================================
+   Phase 6 — motion tokens, tier-2 glassmorphism, data numerals
+   Additive only. Existing rules unchanged.
+   ============================================================================ */
+:root {
+  --ease-data:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-glass: cubic-bezier(0.4, 0, 0.2, 1);
+  --gold-glow:  radial-gradient(circle at 50% 50%, rgba(188,156,69,.18) 0%, transparent 70%);
+  --dur-fast:   .18s;
+  --dur-base:   .28s;
+  --dur-slow:   .6s;
+}
+
+/* Tabular numerals on all monospace data — slashed-zero for readability */
+[class*="kpi-val"], [class*="dm-val"], [class*="rate-val"],
+.cap-stack, .fin-table, .port-table {
+  font-variant-numeric: tabular-nums slashed-zero;
+}
+
+/* Tier-2 glass — used on Phase 6 panels (deal-flow, heatmap, deal-feed) */
+.rp-glass-2 {
+  position: relative;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(15,23,42,.7), rgba(2,6,23,.92)),
+    var(--gold-glow);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.06) inset,
+    0 24px 60px -32px rgba(0,0,0,.7);
+  transition: transform var(--dur-base) var(--ease-glass), border-color var(--dur-base) var(--ease-glass);
+}
+.rp-glass-2:hover {
+  border-color: rgba(188,156,69,.35);
+  transform: translateY(-1px);
+}
+
+/* Subtle sheen on hero panels (respects reduced motion) */
+@keyframes rp-sheen {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.rp-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.rp-sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.04) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: rp-sheen 6s var(--ease-glass) infinite;
+  pointer-events: none;
+}
+
+/* Live pulse dot (used by Phase 6.4 deal-feed and any "LIVE" badge) */
+@keyframes rp-livepulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,.5); }
+  50%      { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+}
+.rp-live-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green, #22c55e);
+  animation: rp-livepulse 2s var(--ease-data) infinite;
+}
+
+/* KPI flip animation — used when a number tickers update */
+@keyframes rp-flip {
+  0%   { transform: translateY(0); opacity: 1; }
+  50%  { transform: translateY(-6px); opacity: 0; }
+  51%  { transform: translateY(6px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.rp-flip { animation: rp-flip var(--dur-slow) var(--ease-data); }
+
+/* Mass reduced-motion gate — overrides all Phase 6 motion */
+@media (prefers-reduced-motion: reduce) {
+  .rp-sheen::after,
+  .rp-live-dot,
+  .rp-flip {
+    animation: none !important;
+  }
+  .rp-glass-2:hover { transform: none; }
+}
+
+/* Phase 6 tab-bar hover affordance */
+#rp-terminal-tabs button:hover {
+  border-color: var(--gold, #BC9C45) !important;
+  color: var(--text, #e2e8f0) !important;
+}
+#rp-terminal-tabs button[data-active="true"]:hover {
+  filter: brightness(1.08);
+}
+
+/* Heatmap legend tweak — tighter on mobile */
+@media (max-width: 720px) {
+  #rp-heatmap-controls { flex-wrap: wrap; }
+  #rp-heatmap-controls button { padding: 3px 8px; font-size: 9px; }
+}
+

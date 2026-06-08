@@ -3,24 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RePrime Dashboard — Data Operations Console</title>
+<title>RePrime Dashboard — Institutional Command Console</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/rp-shell.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style>
-/* Page-specific styles only. Chrome (tokens, nav, ticker, footer, themes,
-   background) lives in rp-shell.css / rp-shell.js — single source of truth. */
+/* Page-specific overrides */
 h1,h2,h3{font-family:'Poppins',Arial,sans-serif}
 [style*="Grotesk"]{font-family:'Poppins',Arial,sans-serif!important}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-
 .container{max-width:1500px;margin:0 auto;padding:24px 36px}
 .glass{background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:16px;padding:22px;transition:.3s}
 .glass:hover{border-color:var(--border-2)}
 
-h1{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:800;letter-spacing:-1px;margin-bottom:6px}
+h1{font-family:'Poppins',sans-serif;font-size:36px;font-weight:800;letter-spacing:-1px;margin-bottom:6px}
 .sub{font-size:14px;color:var(--muted);margin-bottom:24px}
 
 .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px}
@@ -35,7 +33,7 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:800;letter-
 .stat .sb{font-size:10px;color:var(--dim);margin-top:4px}
 
 .ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.ct{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px}
+.ct{font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px}
 .badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:.3px;background:var(--surface);border:1px solid var(--border)}
 .badge.ok{background:rgba(34,197,94,.12);color:var(--green);border-color:rgba(34,197,94,.2)}
 .badge.warn{background:rgba(251,191,36,.12);color:var(--gold);border-color:rgba(251,191,36,.2)}
@@ -99,73 +97,321 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:800;letter-
 </style>
 </head>
 <body class="rp-has-ticker">
-<!-- Header (nav), topper (ticker) and footer are injected by /rp-shell.js -->
 
 <div class="container">
-  <h1>Data Operations Console</h1>
-  <p class="sub">Real-time scrape status, source coverage, API endpoint health, and live market intelligence for the RePrime data platform.</p>
-
-  <!-- TOP STATS -->
-  <div class="g4">
-    <div class="glass stat"><div class="lb">Cataloged Sources</div><div class="vl" style="background:var(--grad-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent" id="s-total">—</div><div class="sb" id="data-fresh">free API sources</div></div>
-    <div class="glass stat"><div class="lb">Live Search Layers</div><div class="vl" style="color:var(--green)" id="s-scraped">—</div><div class="sb">queried per address</div></div>
-    <div class="glass stat"><div class="lb">Categories</div><div class="vl" style="color:var(--accent)" id="s-records">—</div><div class="sb">coverage areas</div></div>
-    <div class="glass stat"><div class="lb">Cost</div><div class="vl" style="color:var(--gold)" id="s-rate">—</div><div class="sb">free / no paid keys</div></div>
+  <div style="display:flex;justify-content:between;align-items:flex-end;margin-bottom:6px;flex-wrap:wrap">
+    <div>
+      <h1 style="background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">RePrime Command Console</h1>
+      <p class="sub" style="margin-bottom:0">Institutional-grade 3D operations deck, live market intelligence, and interactive deal underwriting simulator.</p>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);margin-left:auto" id="dashTime"></div>
   </div>
 
-  <!-- LIVE MARKET STATS -->
-  <h3 style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;margin:24px 0 14px;display:flex;align-items:center;gap:8px">📈 Live Market Intelligence <span class="badge live">FRED · NY Fed · CoinGecko · BoI</span></h3>
-  <div class="g4" id="market-grid"></div>
-  <div class="glass" style="margin-top:14px">
-    <div class="ch"><div class="ct">📊 Rate Environment</div><span class="badge info">live · FRED</span></div>
-    <div style="height:240px"><canvas id="rate-chart"></canvas></div>
+  <!-- CONSOLE TABS -->
+  <div class="console-tabs">
+    <button class="console-tab-btn active" onclick="switchConsoleTab(event, 'tab-3d')">🛸 3D Command Deck</button>
+    <button class="console-tab-btn" onclick="switchConsoleTab(event, 'tab-market')">📊 Market Intelligence</button>
+    <button class="console-tab-btn" onclick="switchConsoleTab(event, 'tab-registry')">🗃️ Data Registry & Health</button>
+    <button class="console-tab-btn" onclick="switchConsoleTab(event, 'tab-simulator')">🏗️ Property Deal Simulator</button>
   </div>
 
-  <!-- CAT COVERAGE + ENDPOINTS -->
-  <div class="g23">
+  <!-- TAB 1: 3D COMMAND DECK -->
+  <div id="tab-3d" class="console-panel active">
+    <!-- CENTER GLOBE -->
+    <div class="tilt-container">
+      <div id="viz-globe"></div>
+    </div>
+
+    <!-- 14 CATEGORY CONSTELLATIONS -->
+    <h3 style="font-family:'Poppins',sans-serif;font-size:16px;font-weight:700;margin:32px 0 16px;display:flex;align-items:center;gap:8px">📂 Global Data Constellations</h3>
+    <div class="mini-globe-grid">
+      <!-- 1. Economic -->
+      <div class="mini-globe-card tilt-container" data-category="economic" onclick="filterByCat('economic')">
+        <div class="viewport-wrap">
+          <div class="mini-globe-viewport" data-category="economic"></div>
+        </div>
+        <div class="tilt-inner">
+          <div class="title">Economic Indicators</div>
+          <div class="meta">Sources: <span id="cat-cnt-economic">—</span></div>
+        </div>
+      </div>
+      <!-- 2. Demographics -->
+      <div class="mini-globe-card tilt-container" data-category="demographic" onclick="filterByCat('demographic')">
+        <div class="viewport-wrap">
+          <div class="mini-globe-viewport" data-category="demographic"></div>
+        </div>
+        <div class="tilt-inner">
+          <div class="title">Demographics</div>
+          <div class="meta">Sources: <span id="cat-cnt-demographic">—</span></div>
+        </div>
+      </div>
+      <!-- 3. Housing -->
+      <div class="mini-globe-card tilt-container" data-category="housing_re" onclick="filterByCat('housing_re')">
+        <div class="viewport-wrap">
+          <div class="mini-globe-viewport" data-category="housing_re"></div>
+        </div>
+        <div class="tilt-inner">
+          <div class="title">Housing & RE</div>
+          <div class="meta">Sources: <span id="cat-cnt-housing_re">—</span></div>
+        </div>
+      </div>
+      <!-- 4. Hazard -->
+      <div class="mini-globe-card tilt-container" data-category="hazard_environmental" onclick="filterByCat('hazard_environmental')">
+        <div class="viewport-wrap">
+          <div class="mini-globe-viewport" data-category="hazard_environmental"></div>
+        </div>
+        <div class="tilt-inner">
+          <div class="title">Hazard & Environmental</div>
+          <div class="meta">Sources: <span id="cat-cnt-hazard_environmental">—</span></div>
+        </div>
+      </div>
+      <!-- 5. Infrastructure -->
+      <div class="mini-globe-card tilt-container" data-category="infrastructure" onclick="filterByCat('infrastructure')">
+        <div class="viewport-wrap">
+          <div class="mini-globe-viewport" data-category="infrastructure"></div>
+        </div>
+        <div class="tilt-inner">
+          <div class="title">Infrastructure</div>
+          <div class="meta">Sources: <span id="cat-cnt-infrastructure">—</span></div>
+        </div>
+      </div>
+      <!-- 6. Capital Markets -->
+      <div class="mini-globe-card tilt-container" data-category="capital_markets" onclick="filterByCat('capital_markets')">
+        <div class="viewport-wrap">
+          <div class="mini-globe-viewport" data-category="capital_markets"></div>
+        </div>
+        <div class="tilt-inner">
+          <div class="title">Capital Markets</div>
+          <div class="meta">Sources: <span id="cat-cnt-capital_markets">—</span></div>
+        </div>
+      </div>
+      <!-- 7. Insurance -->
+      <div class="mini-globe-card tilt-container" data-category="insurance_climate" onclick="filterByCat('insurance_climate')">
+        <div class="viewport-wrap">
+          <div class="mini-globe-viewport" data-category="insurance_climate"></div>
+        </div>
+        <div class="tilt-inner">
+          <div class="title">Insurance & Climate</div>
+          <div class="meta">Sources: <span id="cat-cnt-insurance_climate">—</span></div>
+        </div>
+      </div>
+      <!-- 8. Zoning -->
+      <div class="mini-globe-card tilt-container" data-category="zoning_parcel" onclick="filterByCat('zoning_parcel')">
+        <div class="viewport-wrap">
+          <div class="mini-globe-viewport" data-category="zoning_parcel"></div>
+        </div>
+        <div class="tilt-inner">
+          <div class="title">Zoning & Parcel</div>
+          <div class="meta">Sources: <span id="cat-cnt-zoning_parcel">—</span></div>
+        </div>
+      </div>
+      <!-- 9. News -->
+      <div class="mini-globe-card tilt-container" data-category="news_sentiment" onclick="filterByCat('news_sentiment')">
+        <div class="viewport-wrap">
+          <div class="mini-globe-viewport" data-category="news_sentiment"></div>
+        </div>
+        <div class="tilt-inner">
+          <div class="title">News & Sentiment</div>
+          <div class="meta">Sources: <span id="cat-cnt-news_sentiment">—</span></div>
+        </div>
+      </div>
+      <!-- 10. Israeli -->
+      <div class="mini-globe-card tilt-container" data-category="israeli" onclick="filterByCat('israeli')">
+        <div class="viewport-wrap">
+          <div class="mini-globe-viewport" data-category="israeli"></div>
+        </div>
+        <div class="tilt-inner">
+          <div class="title">Israeli Datasets</div>
+          <div class="meta">Sources: <span id="cat-cnt-israeli">—</span></div>
+        </div>
+      </div>
+      <!-- 11. Construction -->
+      <div class="mini-globe-card tilt-container" data-category="construction_pipeline" onclick="filterByCat('construction_pipeline')">
+        <div class="viewport-wrap">
+          <div class="mini-globe-viewport" data-category="construction_pipeline"></div>
+        </div>
+        <div class="tilt-inner">
+          <div class="title">Construction Pipeline</div>
+          <div class="meta">Sources: <span id="cat-cnt-construction_pipeline">—</span></div>
+        </div>
+      </div>
+      <!-- 12. Macro -->
+      <div class="mini-globe-card tilt-container" data-category="macro_indicator" onclick="filterByCat('macro_indicator')">
+        <div class="viewport-wrap">
+          <div class="mini-globe-viewport" data-category="macro_indicator"></div>
+        </div>
+        <div class="tilt-inner">
+          <div class="title">Macro Indicators</div>
+          <div class="meta">Sources: <span id="cat-cnt-macro_indicator">—</span></div>
+        </div>
+      </div>
+      <!-- 13. Energy -->
+      <div class="mini-globe-card tilt-container" data-category="energy" onclick="filterByCat('energy')">
+        <div class="viewport-wrap">
+          <div class="mini-globe-viewport" data-category="energy"></div>
+        </div>
+        <div class="tilt-inner">
+          <div class="title">Energy & Utilities</div>
+          <div class="meta">Sources: <span id="cat-cnt-energy">—</span></div>
+        </div>
+      </div>
+      <!-- 14. Other -->
+      <div class="mini-globe-card tilt-container" data-category="other" onclick="filterByCat('other')">
+        <div class="viewport-wrap">
+          <div class="mini-globe-viewport" data-category="other"></div>
+        </div>
+        <div class="tilt-inner">
+          <div class="title">Other Cataloged</div>
+          <div class="meta">Sources: <span id="cat-cnt-other">—</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: MARKET INTELLIGENCE -->
+  <div id="tab-market" class="console-panel">
+    <!-- TOP STATS -->
+    <div class="g4">
+      <div class="glass stat"><div class="lb">Cataloged Sources</div><div class="vl" style="background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent" id="s-total">—</div><div class="sb" id="data-fresh">data sources tracked</div></div>
+      <div class="glass stat"><div class="lb">Live Search Layers</div><div class="vl" style="color:var(--green)" id="s-scraped">—</div><div class="sb">queried per address</div></div>
+      <div class="glass stat"><div class="lb">Categories</div><div class="vl" style="color:var(--accent)" id="s-records">—</div><div class="sb">coverage areas</div></div>
+      <div class="glass stat"><div class="lb">Cost</div><div class="vl" style="color:var(--gold)" id="s-rate">—</div><div class="sb">free / no paid keys</div></div>
+    </div>
+
+    <h3 style="font-family:'Poppins',sans-serif;font-size:16px;font-weight:700;margin:24px 0 14px;display:flex;align-items:center;gap:8px">📈 Live Market Intelligence <span class="badge live">FRED · NY Fed · CoinGecko</span></h3>
+    <div class="g4" id="market-grid"></div>
+    
+    <div class="glass" style="margin-top:14px">
+      <div class="ch"><div class="ct">📊 Rate Environment</div><span class="badge info">live · FRED</span></div>
+      <div style="height:240px"><canvas id="rate-chart"></canvas></div>
+    </div>
+
+    <!-- REITS + TREASURY CURVE -->
+    <div class="g23" style="margin-top:18px" id="additional-market-layers"></div>
+  </div>
+
+  <!-- TAB 3: DATA REGISTRY & HEALTH -->
+  <div id="tab-registry" class="console-panel">
+    <!-- CAT COVERAGE + ENDPOINTS -->
+    <div class="g23">
+      <div class="glass">
+        <div class="ch"><div class="ct">📊 Category Coverage</div><span class="badge">14 categories</span></div>
+        <div id="cat-list"></div>
+      </div>
+      <div class="glass">
+        <div class="ch"><div class="ct">🔌 API Endpoint Health</div><span class="badge ok">All operational</span></div>
+        <div class="endpoint-list" id="endpoint-list"></div>
+      </div>
+    </div>
+
+    <!-- LIVE APIs + RECENT ACTIVITY -->
+    <div class="g23">
+      <div class="glass">
+        <div class="ch"><div class="ct">⚡ Live Search Layers</div><span class="badge live">all free · live</span></div>
+        <div class="g3" style="margin-bottom:0" id="api-grid"></div>
+      </div>
+      <div class="glass">
+        <div class="ch"><div class="ct">📋 Recent Activity</div><span class="badge">Live</span></div>
+        <div id="activity-feed" style="max-height:400px;overflow-y:auto"></div>
+      </div>
+    </div>
+
+    <!-- SOURCE DIRECTORY -->
     <div class="glass">
-      <div class="ch"><div class="ct">📊 Category Coverage</div><span class="badge">14 categories</span></div>
-      <div id="cat-list"></div>
-    </div>
-    <div class="glass">
-      <div class="ch"><div class="ct">🔌 API Endpoint Health</div><span class="badge ok">All operational</span></div>
-      <div class="endpoint-list" id="endpoint-list"></div>
-    </div>
-  </div>
-
-  <!-- LIVE APIs + RECENT ACTIVITY -->
-  <div class="g23">
-    <div class="glass">
-      <div class="ch"><div class="ct">⚡ Live Search Layers</div><span class="badge live">all free · live</span></div>
-      <div class="g3" style="margin-bottom:0" id="api-grid"></div>
-    </div>
-    <div class="glass">
-      <div class="ch"><div class="ct">📋 Recent Activity</div><span class="badge">Live</span></div>
-      <div id="activity-feed" style="max-height:400px;overflow-y:auto"></div>
+      <div class="ch"><div class="ct">🗃️ Source Directory · Searchable</div><span class="badge" id="src-count">— sources</span></div>
+      <div class="controls">
+        <input id="src-search" placeholder="🔍 Search by name, provider, category, ID..." />
+        <select id="cat-filter"><option value="">All categories</option></select>
+        <select id="provider-filter"><option value="">All providers</option></select>
+        <select id="status-filter"><option value="">All status</option><option value="scraped">Scraped</option><option value="missing">Missing</option></select>
+        <select id="auth-filter"><option value="">All auth</option><option value="no">No auth</option><option value="key">API key</option></select>
+      </div>
+      <div class="scroll-y">
+        <table class="src-table" id="src-table">
+          <thead><tr><th>ID</th><th>Name</th><th>Provider</th><th>Category</th><th>Type</th><th>Auth</th><th>Status</th></tr></thead>
+          <tbody id="src-body"></tbody>
+        </table>
+      </div>
     </div>
   </div>
 
-  <!-- SOURCE DIRECTORY -->
-  <div class="glass">
-    <div class="ch"><div class="ct">🗃️ Source Directory · Searchable</div><span class="badge" id="src-count">— sources</span></div>
-    <div class="controls">
-      <input id="src-search" placeholder="🔍 Search by name, provider, category, ID..." />
-      <select id="cat-filter"><option value="">All categories</option></select>
-      <select id="provider-filter"><option value="">All providers</option></select>
-      <select id="status-filter"><option value="">All status</option><option value="scraped">Scraped</option><option value="missing">Missing</option></select>
-      <select id="auth-filter"><option value="">All auth</option><option value="no">No auth</option><option value="key">API key</option></select>
-    </div>
-    <div class="scroll-y">
-      <table class="src-table" id="src-table">
-        <thead><tr><th>ID</th><th>Name</th><th>Provider</th><th>Category</th><th>Type</th><th>Auth</th><th>Status</th></tr></thead>
-        <tbody id="src-body"></tbody>
-      </table>
+  <!-- TAB 4: PROPERTY DEAL SIMULATOR -->
+  <div id="tab-simulator" class="console-panel">
+    <div class="simulator-layout">
+      <!-- 3D Skyscraper Visualizer -->
+      <div class="simulator-canvas-wrap tilt-container">
+        <div id="simulator-viewport" class="simulator-viewport"></div>
+        <div style="position:absolute;bottom:14px;right:18px;pointer-events:none;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim)">3D Sandbox · drag to rotate viewport</div>
+      </div>
+
+      <!-- Controls & Underwriting Sheet -->
+      <div class="glass" style="display:flex; flex-direction:column; gap:18px;">
+        <div style="font-family:'Poppins',sans-serif;font-size:14px; font-weight:700; color:var(--gold)">Deal Underwriting Simulator</div>
+        
+        <div class="slider-group">
+          <label>Purchase Price <span id="val-price">$60.0M</span></label>
+          <input type="range" class="sandbox-slider" id="slide-price" min="5" max="300" value="60">
+        </div>
+        
+        <div class="slider-group">
+          <label>Net Operating Income (NOI) <span id="val-noi">$3.6M</span></label>
+          <input type="range" class="sandbox-slider" id="slide-noi" min="0.1" max="25" step="0.1" value="3.6">
+        </div>
+        
+        <div class="slider-group">
+          <label>Occupancy Rate <span id="val-occ">92%</span></label>
+          <input type="range" class="sandbox-slider" id="slide-occ" min="20" max="100" value="92">
+        </div>
+        
+        <div class="slider-group">
+          <label>Loan-to-Value (LTV) <span id="val-ltv">70%</span></label>
+          <input type="range" class="sandbox-slider" id="slide-ltv" min="40" max="85" value="70">
+        </div>
+        
+        <div class="slider-group">
+          <label>Interest Rate <span id="val-rate">5.50%</span></label>
+          <input type="range" class="sandbox-slider" id="slide-rate" min="2.0" max="9.0" step="0.05" value="5.5">
+        </div>
+        
+        <div class="underwriting-sheet">
+          <div class="underwriting-row">
+            <span class="label">Cap Rate</span>
+            <span class="value highlight" id="calc-cap">—</span>
+          </div>
+          <div class="underwriting-row">
+            <span class="label">Loan Amount</span>
+            <span class="value" id="calc-loan">—</span>
+          </div>
+          <div class="underwriting-row">
+            <span class="label">Debt Service Coverage (DSCR)</span>
+            <span class="value highlight" id="calc-dscr">—</span>
+          </div>
+          <div class="underwriting-row">
+            <span class="label">Debt Yield</span>
+            <span class="value" id="calc-debt-yield">—</span>
+          </div>
+          <div class="underwriting-row">
+            <span class="label">Cash-on-Cash Return</span>
+            <span class="value highlight" id="calc-coc">—</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
   <div id="rp-stats" style="margin-top:18px"></div>
   <div id="viz-counters"></div>
   <div id="viz-kpis"></div>
-  <div id="viz-globe"></div>
+
+  <!-- Phase 6.4: Bloomberg-style live deal feed -->
+  <div id="rp-deal-feed"></div>
+
+  <!-- Phase 6.2: Second 3D scene — capital arcs between markets -->
+  <div id="viz-deal-flow-globe"></div>
+
+  <!-- Phase 6.3: U.S. property heatmap (vol/cap/vacancy tabs) -->
+  <div id="viz-heatmap-us"></div>
+
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px"><div id="viz-donut"></div><div id="viz-radar"></div></div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px"><div id="viz-stacked"></div><div id="viz-polar"></div></div>
   <div id="viz-catbubble"></div>
@@ -178,46 +424,100 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:800;letter-
 </div>
 
 <script src="/rp-shell.js"></script>
+<script src="/supabase-config.js"></script>
+<!-- Phase 6 components -->
+<script src="/deal-flow-globe.js"></script>
+<script src="/property-heatmap.js"></script>
+<script src="/deal-feed.js"></script>
 <script>
 // ============================================================================
-// RePrime Dashboard — live data layer (v4.0). No hardcoded literals.
+// RePrime Dashboard — Live binding & controller logic.
 // ============================================================================
 const $ = id => document.getElementById(id);
 const num = v => { const n = parseFloat(String(v).replace(/[^\d.\-]/g, '')); return isNaN(n) ? null : n; };
 const ago = ts => { const s = (Date.now() - new Date(ts).getTime()) / 1000; if (isNaN(s)) return ''; if (s < 60) return Math.round(s) + 's ago'; if (s < 3600) return Math.round(s / 60) + ' min ago'; if (s < 86400) return Math.round(s / 3600) + ' hr ago'; return Math.round(s / 86400) + ' d ago'; };
 
-// STATS + CATEGORY COVERAGE (real registry) ----------------------------------
+/* CLOCK */
+function updateTime() {
+  $('dashTime').textContent = new Date().toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' }) + ' EST';
+}
+updateTime(); setInterval(updateTime, 1000);
+
+/* TAB CONTROLLERS */
+function switchConsoleTab(e, tabId) {
+  document.querySelectorAll('.console-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.console-tab-btn').forEach(b => b.classList.remove('active'));
+  
+  var panel = $(tabId);
+  if (panel) panel.classList.add('active');
+  e.currentTarget.classList.add('active');
+}
+
+/* TILT SYSTEM (CSS variables) */
+function initTilt() {
+  document.querySelectorAll('.tilt-container').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      var rect = card.getBoundingClientRect();
+      var x = e.clientX - rect.left;
+      var y = e.clientY - rect.top;
+      var xc = rect.width / 2;
+      var yc = rect.height / 2;
+      var rx = -(y - yc) / yc * 7;
+      var ry = (x - xc) / xc * 7;
+      card.style.setProperty('--rx', rx + 'deg');
+      card.style.setProperty('--ry', ry + 'deg');
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.setProperty('--rx', '0deg');
+      card.style.setProperty('--ry', '0deg');
+    });
+  });
+}
+initTilt();
+
+/* STATS + CATEGORY COVERAGE (live database registry) */
 async function loadStats() {
   try {
     const d = await (await fetch('/api/stats')).json();
-    fetch('/data/sources_all.json').then(r => r.json()).then(c => { const n = (c.sources || c).length; if ($('s-total')) $('s-total').textContent = n.toLocaleString(); if ($('data-fresh')) $('data-fresh').textContent = 'data sources tracked'; }).catch(() => { if ($('s-total')) $('s-total').textContent = (d.cataloged_sources || 0).toLocaleString(); });
+    fetch('/data/sources_all.json').then(r => r.json()).then(c => {
+      const n = (c.sources || c).length;
+      if ($('s-total')) $('s-total').textContent = n.toLocaleString();
+      if ($('data-fresh')) $('data-fresh').textContent = 'Registry loaded';
+    }).catch(() => {
+      if ($('s-total')) $('s-total').textContent = (d.cataloged_sources || 0).toLocaleString();
+    });
     $('s-scraped').textContent = d.live_search_layers || 0;
     $('s-records').textContent = d.category_count || 0;
     $('s-rate').textContent = '100%';
-    const fresh = $('data-fresh'); if (fresh) fresh.textContent = 'Registry updated ' + ago(d.last_updated);
+    const fresh = $('data-fresh');
+    if (fresh && d.last_updated) fresh.textContent = 'Registry updated ' + ago(d.last_updated);
+    
     const cats = Object.entries(d.by_category || {}).sort((a, b) => b[1] - a[1]);
+    
+    // Bind data counts directly to our 3D category cards
+    cats.forEach(([catName, count]) => {
+      var cntEl = $('cat-cnt-' + catName);
+      if (cntEl) cntEl.textContent = count.toLocaleString();
+    });
+
     const maxT = Math.max(...cats.map(c => c[1]), 1);
     const cl = ['#3b82f6', '#22c55e', '#8b5cf6', '#fbbf24', '#ef4444', '#06b6d4', '#fb923c', '#f472b6', '#14b8a6', '#a78bfa', '#6366f1', '#84cc16', '#f59e0b', '#10b981'];
     $('cat-list').innerHTML = cats.map((c, i) =>
       `<div class="cat-row" onclick="filterByCat('${c[0]}')"><div class="cat-name">${c[0].replace(/_/g, ' ')}</div><div class="cat-bar-wrap"><div class="cat-bar-fill" style="background:${cl[i % 14]}" data-w="${c[1] / maxT * 100}">${c[1]}</div></div><div class="cat-records">${c[1]} src</div></div>`).join('');
     setTimeout(() => document.querySelectorAll('.cat-bar-fill').forEach(el => el.style.width = el.dataset.w + '%'), 200);
+    
     const sel = $('cat-filter');
-    cats.forEach(c => { const o = document.createElement('option'); o.value = c[0]; o.textContent = `${c[0]} (${c[1]})`; sel.appendChild(o); });
-  } catch (e) { $('cat-list').innerHTML = '<div style="color:var(--muted);font-size:12px">Stats unavailable</div>'; }
+    cats.forEach(c => {
+      const o = document.createElement('option');
+      o.value = c[0]; o.textContent = `${c[0]} (${c[1]})`;
+      sel.appendChild(o);
+    });
+  } catch (e) {
+    $('cat-list').innerHTML = '<div style="color:var(--muted);font-size:12px">Stats unavailable</div>';
+  }
 }
 
-// TICKER (dict shape) --------------------------------------------------------
-async function loadTicker() {
-  try {
-    const d = await (await fetch('/api/live/ticker')).json();
-    const labels = { treasury_10y: '10Y Treasury', mortgage_30y: '30Y Mortgage', fed_funds: 'Fed Funds', unemployment: 'Unemployment', sofr: 'SOFR', bitcoin: 'BTC', ethereum: 'ETH' };
-    const items = Object.entries(d).filter(([k, v]) => v && v.value).map(([k, v]) =>
-      `<div class="ti"><span class="pulse"></span><span>${labels[k] || k}</span> <strong>${v.value}</strong> <span style="color:var(--dim)">${v.source || ''}</span></div>`).join('');
-    $('ticker').innerHTML = items + items;
-  } catch (e) {}
-}
-
-// MARKET GRID + RATE CHART ---------------------------------------------------
+/* MARKET GRID + RATE CHART */
 let rateChart = null;
 async function loadMarket() {
   try {
@@ -231,25 +531,27 @@ async function loadMarket() {
     add('Bitcoin', cr.bitcoin?.price, 'live', 'CoinGecko');
     add('Ethereum', cr.ethereum?.price, 'live', 'CoinGecko');
     if (boi.rate) add('USD/ILS', Number(boi.rate).toFixed(3), 'live', 'Bank of Israel');
+    
     $('market-grid').innerHTML = cards.map(c =>
       `<div class="metric-card"><div class="label">${c.l}</div><div class="v" ${c.red ? 'style="color:var(--red)"' : ''}>${c.v}</div><div class="delta" style="color:var(--dim)">${c.d || ''}</div><div class="src">${c.s}</div></div>`).join('') || '<div style="color:var(--muted)">Market cache unavailable</div>';
 
-    // rate chart from real values
     const series = [['10Y Treasury', fr.treasury_10y?.value], ['30Y Mortgage', fr.mortgage_30y?.value], ['Fed Funds', fr.fed_funds?.value]].map(([l, v]) => [l, num(v)]).filter(x => x[1] != null);
     const cv = $('rate-chart');
     if (cv && typeof Chart !== 'undefined' && series.length) {
       if (rateChart) rateChart.destroy();
-      const css = getComputedStyle(document.documentElement);
+      const cssStyle = getComputedStyle(document.documentElement);
       rateChart = new Chart(cv, {
         type: 'bar',
         data: { labels: series.map(s => s[0]), datasets: [{ label: 'Rate %', data: series.map(s => s[1]), backgroundColor: ['#3b82f6', '#06b6d4', '#fbbf24'] }] },
-        options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { color: css.getPropertyValue('--muted') } }, x: { ticks: { color: css.getPropertyValue('--muted') } } } }
+        options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { color: cssStyle.getPropertyValue('--muted') } }, x: { ticks: { color: cssStyle.getPropertyValue('--muted') } } } }
       });
     }
-  } catch (e) { $('market-grid').innerHTML = '<div style="color:var(--muted)">Market cache unavailable</div>'; }
+  } catch (e) {
+    $('market-grid').innerHTML = '<div style="color:var(--muted)">Market cache unavailable</div>';
+  }
 }
 
-// REAL ENDPOINT HEALTH -------------------------------------------------------
+/* API ENDPOINT PINGS */
 async function loadEndpoints() {
   const eps = ['/api/health', '/api/sources', '/api/stats', '/api/categories', '/api/live/ticker', '/api/live/market'];
   $('endpoint-list').innerHTML = eps.map(e => `<div class="endpoint-row" id="ep-${btoa(e)}"><span class="e">${e}</span><span class="s" style="color:var(--muted)">checking…</span></div>`).join('');
@@ -269,9 +571,7 @@ async function loadEndpoints() {
   if (badge) { badge.textContent = `${okCount}/${eps.length} OK`; badge.className = 'badge ' + (okCount === eps.length ? 'ok' : ''); }
 }
 
-// LIVE SEARCH LAYERS — audit Phase 1 task 1.3: real per-source probe via /api/search
-// Cards render in 'probing' state, then update once /api/search returns its per-source status.
-// Falls back to 'cataloged' (neutral) if probe fails, never to fake 'live'.
+/* LIVE SEARCH LAYERS */
 function loadLiveLayers() {
   const layers = [
     ['Census Geocoder', 'geocode', 'census_geocoder'],
@@ -303,7 +603,6 @@ function loadLiveLayers() {
     cataloged: ['var(--muted)', '○ cataloged']
   };
   const grid = $('api-grid');
-  // Render skeleton with probing state (DOM construction = XSS-safe, audit Phase 2 task 2.9)
   grid.textContent = '';
   layers.forEach(([name, desc, key]) => {
     const card = document.createElement('div'); card.className = 'api-card'; card.dataset.layerKey = key;
@@ -318,8 +617,7 @@ function loadLiveLayers() {
     card.appendChild(nameEl); card.appendChild(descEl); card.appendChild(meta);
     grid.appendChild(card);
   });
-  // Fire a real probe — single /api/search call against a known-geocodable address.
-  // Per-source status from the response updates each card.
+  
   const PROBE_ADDR = '1600 Pennsylvania Ave NW, Washington, DC';
   fetch('/api/search?address=' + encodeURIComponent(PROBE_ADDR), { headers: { Accept: 'application/json' } })
     .then(r => r.ok ? r.json() : Promise.reject(new Error('probe failed: ' + r.status)))
@@ -334,7 +632,6 @@ function loadLiveLayers() {
       });
     })
     .catch(() => {
-      // Probe failed — mark every card as 'cataloged' (honest neutral), never 'live'
       grid.querySelectorAll('.api-card .status').forEach(el => {
         const [color, label] = STATUS.cataloged;
         el.style.color = color; el.textContent = label;
@@ -342,7 +639,7 @@ function loadLiveLayers() {
     });
 }
 
-// REAL ACTIVITY (from search history + data freshness) ------------------------
+/* RECENT ACTIVITY */
 async function loadActivity() {
   const ev = [];
   let hist = []; try { hist = JSON.parse(localStorage.getItem('reprime:history') || '[]'); } catch (e) {}
@@ -352,12 +649,12 @@ async function loadActivity() {
     ev.push({ i: '🗃️', t: 'Source registry', m: `${st.cataloged_sources} free APIs · ${st.category_count} categories`, ts: ago(st.last_updated) });
     ev.push({ i: '⚡', t: 'Live search layers', m: `${st.live_search_layers} sources queried per address`, ts: '' });
   } catch (e) {}
-  if (!hist.length) ev.push({ i: 'ℹ️', t: 'No searches yet', m: 'Run a search on Explore — your history appears here.', ts: '' });
+  if (!hist.length) ev.push({ i: 'ℹ️', t: 'No searches yet', m: 'Run a search on Explore — history appears here.', ts: '' });
   $('activity-feed').innerHTML = ev.map(e =>
     `<div class="activity-item"><div class="activity-icon">${e.i}</div><div style="flex:1"><div style="font-size:12px;font-weight:600">${e.t}</div><div style="font-size:11px;color:var(--muted);margin-top:2px">${e.m}</div>${e.ts ? `<div style="font-size:9px;color:var(--dim);margin-top:2px;font-family:'JetBrains Mono',monospace">${e.ts}</div>` : ''}</div></div>`).join('');
 }
 
-// SOURCE DIRECTORY (real registry fields) ------------------------------------
+/* SOURCE SEARCH DIRECTORY */
 let allSources = [];
 async function loadSources() {
   try {
@@ -388,50 +685,125 @@ function renderSources() {
   $('src-body').innerHTML = filtered.slice(0, 150).map((s, i) =>
     `<tr><td class="src-id">${i + 1}</td><td>${s.name || '—'}</td><td style="color:var(--muted);font-size:11px">${s.provider || '—'}</td><td style="font-size:11px;color:var(--muted)">${s.category || '—'}</td><td style="font-size:10px;color:var(--dim)">${s.type || '—'}</td><td style="font-size:10px">${(s.auth || 'none').substring(0, 20) || 'none'}</td><td><span class="dot ${s.status === 'OK' ? 'dot-g' : 'dot-r'}"></span></td></tr>`).join('');
 }
-function filterByCat(c) { $('cat-filter').value = c; renderSources(); window.scrollTo({ top: document.querySelector('.controls').offsetTop - 100, behavior: 'smooth' }); }
+function filterByCat(c) {
+  $('cat-filter').value = c;
+  renderSources();
+  switchConsoleTab({ currentTarget: document.querySelectorAll('.console-tab-btn')[2] }, 'tab-registry');
+  window.scrollTo({ top: document.querySelector('.controls').offsetTop - 100, behavior: 'smooth' });
+}
 
 ['src-search', 'cat-filter', 'provider-filter', 'auth-filter'].forEach(id => {
   const el = $(id); if (el) el.addEventListener(id === 'src-search' ? 'input' : 'change', renderSources);
 });
 
-loadStats(); loadTicker(); loadMarket(); loadEndpoints(); loadLiveLayers(); loadActivity(); loadSources();
-setInterval(loadTicker, 60000);
-setInterval(loadEndpoints, 60000);
+/* PROPERTY DEAL SIMULATOR MODEL WRITER */
+function updateUnderwriting() {
+  var price = parseFloat($('slide-price').value);
+  var noi = parseFloat($('slide-noi').value);
+  var occ = parseFloat($('slide-occ').value);
+  var ltv = parseFloat($('slide-ltv').value);
+  var interest = parseFloat($('slide-rate').value);
 
+  // Label updates
+  $('val-price').textContent = '$' + price.toFixed(1) + 'M';
+  $('val-noi').textContent = '$' + noi.toFixed(1) + 'M';
+  $('val-occ').textContent = occ + '%';
+  $('val-ltv').textContent = ltv + '%';
+  $('val-rate').textContent = interest.toFixed(2) + '%';
+
+  // Math calculations
+  var capRate = (noi / price) * 100;
+  var loanAmount = price * (ltv / 100);
+  var annualDebtService = loanAmount * (interest / 100);
+  var dscr = annualDebtService > 0 ? (noi / annualDebtService) : 0;
+  var debtYield = (noi / loanAmount) * 100;
+  var equityRequired = price - loanAmount;
+  var cashFlow = noi - annualDebtService;
+  var coc = equityRequired > 0 ? (cashFlow / equityRequired) * 100 : 0;
+
+  // Render underwriting results
+  $('calc-cap').textContent = capRate.toFixed(2) + '%';
+  $('calc-loan').textContent = '$' + loanAmount.toFixed(2) + 'M';
+  $('calc-dscr').textContent = dscr.toFixed(2) + 'x';
+  $('calc-debt-yield').textContent = debtYield.toFixed(2) + '%';
+  $('calc-coc').textContent = coc.toFixed(2) + '%';
+
+  // Style colors based on risk boundaries
+  var dscrEl = $('calc-dscr');
+  if (dscr < 1.0) dscrEl.style.color = 'var(--red)';
+  else if (dscr < 1.35) dscrEl.style.color = 'var(--gold)';
+  else dscrEl.style.color = 'var(--green)';
+
+  var cocEl = $('calc-coc');
+  if (coc < 0) cocEl.style.color = 'var(--red)';
+  else if (coc < 6.0) cocEl.style.color = 'var(--gold)';
+  else cocEl.style.color = 'var(--green)';
+
+  // Hook directly into window 3D building update trigger
+  if (window.update3DBuilding) {
+    window.update3DBuilding(price, occ, dscr);
+  }
+}
+
+// Bind slider change listeners
+['slide-price', 'slide-noi', 'slide-occ', 'slide-ltv', 'slide-rate'].forEach(id => {
+  var el = $(id);
+  if (el) el.addEventListener('input', updateUnderwriting);
+});
+updateUnderwriting();
+
+// Initialize loader triggers
+loadStats(); loadMarket(); loadEndpoints(); loadLiveLayers(); loadActivity(); loadSources();
+setInterval(loadEndpoints, 60000);
 </script>
+
 <script src="/viz.js"></script>
 <script src="/globe.js"></script>
 <script src="/sources.js"></script>
 <script src="/reprime.js"></script>
 <script src="/sb.js"></script>
+
 <script>
-/* Live institutional-data panels (Treasury curve + REIT financials) from Supabase */
+/* Live REIT Financials + Treasury Yield Curve */
 (async function(){
-  // Phase 2.3 — use centralized config; defensive fallback if not loaded.
   const CFG = window.RP_SB || { URL: "https://gugcmsqrscqqqltdtgkz.supabase.co", KEY: "sb_publishable_J5zIiHNf1VqpQ7r14SevFw__MbvlEpm" };
   const SB = CFG.URL, K = CFG.KEY;
   const H = { apikey: K, Authorization: "Bearer " + K };
   const get=async(name)=>{try{const r=await fetch(SB+"/rest/v1/v_latest_source_data?select=payload&status=eq.ok&name=eq."+encodeURIComponent(name)+"&limit=1",{headers:H});const d=await r.json();return (d[0]||{}).payload;}catch(e){return null;}};
   const fmtB=v=>v?("$"+(v/1e9).toFixed(1)+"B"):"—";
-  const card=document.createElement('div'); card.className='glass'; card.style.margin='18px 0';
-  card.innerHTML='<div class="ch"><div class="ct">\uD83D\uDCC9 U.S. Treasury Yield Curve</div><span class="badge live">live · FRED</span></div>'
-    +'<div style="height:240px"><canvas id="yc-canvas"></canvas></div>'
-    +'<div id="reit-wrap" style="margin-top:20px"></div>';
-  (document.querySelector('.container')||document.body).appendChild(card);
+
+  const reitWrap = document.createElement('div'); reitWrap.id = 'reit-card-inject';
+  reitWrap.className = 'g23';
+  reitWrap.style.marginTop = '18px';
+  reitWrap.innerHTML = 
+    '<div class="glass">' +
+      '<div class="ch"><div class="ct">📉 U.S. Treasury Yield Curve</div><span class="badge live">live · FRED</span></div>' +
+      '<div style="height:240px"><canvas id="yc-canvas"></canvas></div>' +
+    '</div>' +
+    '<div class="glass" id="reit-panel-inner">' +
+      '<div class="ct" style="margin-bottom:12px">🏢 REIT Financials · SEC EDGAR</div>' +
+      '<div id="reit-list-wrap"></div>' +
+    '</div>';
+  
+  var mountTarget = document.getElementById('additional-market-layers');
+  if (mountTarget) {
+    mountTarget.appendChild(reitWrap);
+  }
+
   const curve=await get('U.S. Treasury Yield Curve');
   if(curve && curve.length && window.Chart){
-    const css=getComputedStyle(document.documentElement);
+    const cssStyle=getComputedStyle(document.documentElement);
     new Chart(document.getElementById('yc-canvas'),{type:'line',
       data:{labels:curve.map(p=>p.tenor),datasets:[{label:'Yield %',data:curve.map(p=>p.yield_pct),borderColor:'#3b82f6',backgroundColor:'rgba(59,130,246,.12)',fill:true,tension:.35,pointRadius:3}]},
-      options:{plugins:{legend:{display:false}},scales:{y:{ticks:{color:css.getPropertyValue('--muted'),callback:v=>v+'%'}},x:{ticks:{color:css.getPropertyValue('--muted')}}}}});
+      options:{plugins:{legend:{display:false}},scales:{y:{ticks:{color:cssStyle.getPropertyValue('--muted'),callback:v=>v+'%'}},x:{ticks:{color:cssStyle.getPropertyValue('--muted')}}}}});
   }
+
   const reits=await get('REIT Financials (SEC EDGAR)');
   if(reits && reits.length){
-    const top=[...reits].sort((a,b)=>(b.total_assets_usd||0)-(a.total_assets_usd||0));
-    document.getElementById('reit-wrap').innerHTML='<div class="ct" style="margin-bottom:10px">\uD83C\uDFE2 REIT Financials \u00B7 SEC EDGAR</div>'
-      +'<div style="overflow-x:auto"><table style="width:100%;font-size:12px;border-collapse:collapse">'
+    const top=[...reits].sort((a,b)=>(b.total_assets_usd||0)-(a.total_assets_usd||0)).slice(0, 5);
+    document.getElementById('reit-list-wrap').innerHTML='<div style="overflow-x:auto"><table style="width:100%;font-size:12px;border-collapse:collapse">'
       +'<thead><tr><th style="text-align:left;padding:6px 8px;color:var(--muted);border-bottom:1px solid var(--border)">Ticker</th><th style="text-align:left;padding:6px 8px;color:var(--muted);border-bottom:1px solid var(--border)">Company</th><th style="text-align:right;padding:6px 8px;color:var(--muted);border-bottom:1px solid var(--border)">Total Assets</th><th style="text-align:right;padding:6px 8px;color:var(--muted);border-bottom:1px solid var(--border)">Revenues</th></tr></thead><tbody>'
-      +top.map(r=>'<tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);font-weight:700">'+r.ticker+'</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);color:var(--muted)">'+(r.company||'').slice(0,30)+'</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);text-align:right;font-family:monospace">'+fmtB(r.total_assets_usd)+'</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);text-align:right;font-family:monospace">'+fmtB(r.revenues_usd)+'</td></tr>').join('')
+      +top.map(r=>'<tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);font-weight:700">'+r.ticker+'</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);color:var(--muted)">'+(r.company||'').slice(0,24)+'</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);text-align:right;font-family:monospace">'+fmtB(r.total_assets_usd)+'</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);text-align:right;font-family:monospace">'+fmtB(r.revenues_usd)+'</td></tr>').join('')
       +'</tbody></table></div>';
   }
 })();

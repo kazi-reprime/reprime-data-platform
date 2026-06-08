@@ -119,6 +119,9 @@
 <!-- Header (nav), topper (ticker) and footer are injected by /rp-shell.js -->
 
 <div class="term-wrap">
+<!-- Phase 6.5: tab navigation across the dense panel grid (Overview / Pipeline / Capital / Market / Risk) -->
+<div id="rp-terminal-tabs" style="max-width:1280px;margin:0 auto;padding:0 16px"></div>
+
 <!-- TOP KPIs -->
 <div class="term-top" id="kpiRow">
   <div class="kpi"><div class="kpi-label">10Y Treasury <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="kTreas">—</div><div class="kpi-change dn">▼ -2bp</div></div>
@@ -231,6 +234,9 @@
 <div class="term-wrap"><div id="viz-counters"></div></div>
 <div class="term-wrap"><div id="viz-kpis"></div></div>
 <div class="term-wrap"><div id="viz-globe"></div></div>
+<div class="term-wrap"><div id="viz-deal-flow-globe"></div></div>
+<div class="term-wrap"><div id="viz-heatmap-us"></div></div>
+<div class="term-wrap"><div id="rp-deal-feed"></div></div>
 <div class="term-wrap"><div id="viz-heatmap"></div></div>
 <div class="term-wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:16px"><div id="viz-stacked"></div><div id="viz-polar"></div></div>
 <div class="term-wrap"><div id="viz-catbubble"></div></div>
@@ -377,10 +383,16 @@ function loadLive(address) {
 }
 
 </script>
+<script src="/supabase-config.js"></script>
 <script src="/viz.js"></script>
 <script src="/globe.js"></script>
 <script src="/reprime.js"></script>
 <script src="/sb.js"></script>
 <script src="/panels.js"></script>
+<!-- Phase 6 components: deal-flow globe + heatmap + live deal feed + tab navigation -->
+<script src="/deal-flow-globe.js"></script>
+<script src="/property-heatmap.js"></script>
+<script src="/deal-feed.js"></script>
+<script src="/terminal-tabs.js"></script>
 </body>
 </html>
