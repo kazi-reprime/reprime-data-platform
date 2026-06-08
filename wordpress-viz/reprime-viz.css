@@ -1,0 +1,125 @@
+/* ============================================================================
+   reprime-viz.css — Shared styling for the RePrime homepage visualization suite
+   Dark navy/gold institutional theme · glassmorphism · skeleton loaders · grids
+   Loaded site-wide by functions.php; scoped under .rpv to avoid Elementor clashes
+   ============================================================================ */
+
+/* ---- Brand tokens (RePrime official palette) ---------------------------- */
+:root {
+  --rpv-bg:        #050609;   /* deep void background (Kaspersky-style)        */
+  --rpv-bg2:       #0a0d14;
+  --rpv-navy:      #0E3470;   /* brand navy                                    */
+  --rpv-gold:      #BC9C45;   /* brand gold (signature accent)                 */
+  --rpv-blue:      #1D5FB8;
+  --rpv-bright:    #00A1FF;
+  --rpv-teal:      #009080;   /* positive                                      */
+  --rpv-amber:     #FFBC7D;
+  --rpv-green:     #00A980;   /* up / positive                                 */
+  --rpv-red:       #FF7474;   /* down / risk                                   */
+  --rpv-text:      #f0f2f5;
+  --rpv-text2:     #d1d5db;
+  --rpv-muted:     #8a919c;
+  --rpv-dim:       #5a6270;
+  --rpv-border:    rgba(188,156,69,0.14);
+  --rpv-glass:     rgba(14,52,112,0.12);
+  --rpv-glass-brd: rgba(188,156,69,0.16);
+  --rpv-card:      rgba(10,13,20,0.78);
+  --rpv-mono:      'JetBrains Mono','Ubuntu Mono',ui-monospace,monospace;
+  --rpv-sans:      'Poppins',Arial,sans-serif;
+  --rpv-shadow:    0 8px 32px rgba(0,0,0,.45);
+}
+
+/* ---- Section wrapper (full-bleed dark band the viz lives in) ------------ */
+.rpv { font-family: var(--rpv-sans); color: var(--rpv-text); }
+.rpv-section {
+  background: radial-gradient(ellipse 900px 600px at 20% 0%, rgba(14,52,112,.22), transparent 70%),
+              var(--rpv-bg);
+  padding: 72px 20px;
+  position: relative;
+  overflow: hidden;
+}
+.rpv-inner { max-width: 1280px; margin: 0 auto; position: relative; z-index: 2; }
+.rpv-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--rpv-gold); margin-bottom: 10px; }
+.rpv-title { font-size: clamp(26px,4vw,40px); font-weight: 800; line-height: 1.1; margin: 0 0 12px; color: var(--rpv-text); }
+.rpv-sub { font-size: 15px; font-weight: 300; color: var(--rpv-muted); max-width: 680px; line-height: 1.6; margin: 0 0 36px; }
+
+/* ---- Glassmorphism card (the "classomorphic" effect) -------------------- */
+.rpv-glass {
+  position: relative;
+  background: linear-gradient(135deg, var(--rpv-glass), rgba(14,52,112,0.04));
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid var(--rpv-glass-brd);
+  border-radius: 18px;
+  box-shadow: var(--rpv-shadow), inset 0 1px 0 rgba(255,255,255,.06);
+  overflow: hidden;
+  transition: transform .35s cubic-bezier(.4,0,.2,1), border-color .35s;
+}
+.rpv-glass::before { /* gradient hairline edge */
+  content: ''; position: absolute; inset: 0; border-radius: 18px; padding: 1px; pointer-events: none;
+  background: linear-gradient(135deg, rgba(188,156,69,.4), transparent 45%, transparent 55%, rgba(0,161,255,.25));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: .55;
+}
+.rpv-glass:hover { transform: translateY(-3px); border-color: var(--rpv-gold); }
+.rpv-glass-pad { padding: 22px; }
+
+/* ---- Responsive grids --------------------------------------------------- */
+.rpv-grid { display: grid; gap: 16px; }
+.rpv-grid-2 { grid-template-columns: repeat(2, 1fr); }
+.rpv-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.rpv-grid-auto { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+@media (max-width: 900px) { .rpv-grid-2, .rpv-grid-3 { grid-template-columns: 1fr; } }
+
+/* ---- Monospace data readouts (Kaspersky/Observable aesthetic) ----------- */
+.rpv-mono { font-family: var(--rpv-mono); }
+.rpv-stat-v { font-family: var(--rpv-mono); font-size: clamp(22px,3vw,32px); font-weight: 800; color: var(--rpv-gold); line-height: 1; }
+.rpv-stat-l { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--rpv-muted); margin-top: 6px; }
+.rpv-up { color: var(--rpv-green); } .rpv-dn { color: var(--rpv-red); }
+
+/* ---- Pulse dot for live indicators -------------------------------------- */
+.rpv-dot { display:inline-block; width:7px; height:7px; border-radius:50%; background: var(--rpv-green); box-shadow: 0 0 9px var(--rpv-green); animation: rpv-pulse 2s infinite; }
+.rpv-dot-red { background: var(--rpv-red); box-shadow: 0 0 9px var(--rpv-red); }
+@keyframes rpv-pulse { 0%,100% { opacity:.4; transform:scale(.8);} 50% { opacity:1; transform:scale(1.25);} }
+
+/* ---- Skeleton loader (Cloudflare Radar technique) ----------------------- */
+/* shown before a viz initializes; pure CSS shimmer, zero JS, never blocks load */
+.rpv-skel { position: relative; overflow: hidden; background: rgba(255,255,255,.04); border: 1px solid var(--rpv-border); border-radius: 18px; min-height: 320px; }
+.rpv-skel::after { content:''; position:absolute; inset:0; transform: translateX(-100%); background: linear-gradient(90deg, transparent, rgba(255,255,255,.07), transparent); animation: rpv-shimmer 1.5s infinite; }
+@keyframes rpv-shimmer { 100% { transform: translateX(100%); } }
+
+/* ---- Canvas / chart hosts ---------------------------------------------- */
+.rpv-canvas-host { position: relative; width: 100%; }
+.rpv-globe-host  { height: 560px; }
+.rpv-heatmap-host{ height: 520px; }
+.rpv-chart { height: 300px; }
+
+/* ---- Tooltip overlay (shared by globe + heatmap, DOM over canvas) ------- */
+.rpv-tip {
+  position: fixed; z-index: 9999; pointer-events: none; display: none;
+  background: var(--rpv-card); border: 1px solid var(--rpv-glass-brd); border-radius: 10px;
+  padding: 9px 12px; font-family: var(--rpv-mono); font-size: 12px; color: var(--rpv-text);
+  box-shadow: var(--rpv-shadow); backdrop-filter: blur(10px); max-width: 260px;
+}
+.rpv-tip b { color: var(--rpv-gold); }
+
+/* ---- Live ticker upgrade (glowing monospace, red metrics pulse) --------- */
+.rpv-ticker-val { font-family: var(--rpv-mono); font-weight: 700; text-shadow: 0 0 10px rgba(188,156,69,.4); }
+.rpv-ticker-val.rpv-risk { color: var(--rpv-red); animation: rpv-glow 2.2s infinite; }
+@keyframes rpv-glow { 0%,100% { text-shadow: 0 0 6px rgba(255,116,116,.5);} 50% { text-shadow: 0 0 16px rgba(255,116,116,.95);} }
+
+/* ---- Scroll-reveal (added by IntersectionObserver when viz lazy-inits) -- */
+.rpv-rise { opacity: 0; transform: translateY(26px) scale(.99); transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+.rpv-rise.rpv-in { opacity: 1; transform: none; }
+
+/* ---- Buttons / toggles (heatmap mode switch, analyzer inputs) ----------- */
+.rpv-btn { font-family: var(--rpv-sans); font-size: 12px; font-weight: 600; color: var(--rpv-muted); background: rgba(255,255,255,.04); border: 1px solid var(--rpv-border); border-radius: 8px; padding: 7px 13px; cursor: pointer; transition: .2s; }
+.rpv-btn:hover { color: var(--rpv-text); }
+.rpv-btn.rpv-active { background: linear-gradient(135deg, var(--rpv-gold), var(--rpv-amber)); color: #000; border-color: transparent; }
+.rpv-range { width: 100%; accent-color: var(--rpv-gold); }
+.rpv-field-l { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--rpv-muted); display: flex; justify-content: space-between; }
+.rpv-field-v { font-family: var(--rpv-mono); color: var(--rpv-gold); font-weight: 700; }
+
+/* ---- Highcharts dark theme overrides (so charts inherit brand) ---------- */
+.rpv .highcharts-background { fill: transparent; }
+.rpv .highcharts-title, .rpv .highcharts-axis-labels text { fill: var(--rpv-muted) !important; }
+.rpv .highcharts-grid-line { stroke: rgba(255,255,255,.06); }

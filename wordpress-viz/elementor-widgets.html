@@ -1,0 +1,103 @@
+<!-- ============================================================================
+     elementor-widgets.html — paste each block into an Elementor "HTML" widget
+     ----------------------------------------------------------------------------
+     HOW TO USE:
+       • Edit the RePrime homepage in Elementor.
+       • At each position in the section order below, drop a full-width "HTML"
+         widget and paste the matching block.
+       • The viz scripts (loaded by functions.php) auto-detect each mount <div>
+         by id, show a skeleton, then lazy-render when scrolled into view.
+       • Every block is wrapped in `.rpv` so the dark theme can't leak into the
+         rest of your Elementor design, and is full-bleed dark by default.
+
+     SECTION ORDER (new blocks marked ▶):
+       1  Header + Nav            (existing)
+       2  Live Ticker Bar         (existing — optional class upgrade, see bottom)
+       3  Hero                    (existing)
+     ▶ 4  3D USA Deal Map         → BLOCK A  (#reprime-globe)
+     ▶ 5  Market Intelligence     → BLOCK B  (#reprime-charts)
+       6  Investor/Broker/Israel  (existing)
+     ▶ 7  CRE Market Radar        → BLOCK C  (#reprime-radar)
+     ▶ 8  U.S. CRE Heatmap        → BLOCK D  (#reprime-heatmap)
+       9  Credit Tenants scroll   (existing)
+      10  Integrated Platform     (existing)
+     ▶11  Deal Analyzer Tool      → BLOCK E  (#reprime-analyzer)
+      12  How We Operate          (existing)
+      13  Testimonials            (existing)
+      14  Banking Lenders         (existing)
+      15  Footer                  (existing)
+============================================================================ -->
+
+
+<!-- ╔══════════════════════════════════════════════════════════════════════╗
+     ║  BLOCK A · Section 4 · 3D USA DEAL MAP  (Kaspersky / Three.js)         ║
+     ╚══════════════════════════════════════════════════════════════════════╝ -->
+<section class="rpv rpv-section">
+  <div class="rpv-inner">
+    <div class="rpv-eyebrow"><span class="rpv-dot"></span> Live Footprint · Nationwide</div>
+    <h2 class="rpv-title">800+ transactions. 21M+ square feet.<br>Capital deployed across every market.</h2>
+    <p class="rpv-sub">A live, rotating map of RePrime's acquisition footprint — every arc traces capital deployed from our Postville, IA headquarters into a completed market. Hover any node for the deal.</p>
+    <div id="reprime-globe"></div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════════════════════╗
+     ║  BLOCK B · Section 5 · MARKET INTELLIGENCE  (Highcharts · 6 charts)    ║
+     ╚══════════════════════════════════════════════════════════════════════╝ -->
+<section class="rpv rpv-section">
+  <div class="rpv-inner">
+    <div class="rpv-eyebrow">Market Intelligence</div>
+    <h2 class="rpv-title">The data behind every decision.</h2>
+    <p class="rpv-sub">Institutional CRE benchmarks — the $2.2T maturity wall, live Treasury &amp; SOFR, sector vacancy and cap rates, and completed distressed-sale comps. Every claim sourced.</p>
+    <div id="reprime-charts"></div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════════════════════╗
+     ║  BLOCK C · Section 7 · CRE MARKET RADAR  (React · radar cards)         ║
+     ╚══════════════════════════════════════════════════════════════════════╝ -->
+<section class="rpv rpv-section">
+  <div class="rpv-inner">
+    <div class="rpv-eyebrow"><span class="rpv-dot"></span> Market Radar</div>
+    <h2 class="rpv-title">Where the capital is moving.</h2>
+    <p class="rpv-sub">A real-time read on debt maturities, systemic bank exposure, our capital-stack model, and our most active markets.</p>
+    <div id="reprime-radar"></div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════════════════════╗
+     ║  BLOCK D · Section 8 · U.S. CRE HEATMAP  (Canvas treemap · TradingView)║
+     ╚══════════════════════════════════════════════════════════════════════╝ -->
+<section class="rpv rpv-section">
+  <div class="rpv-inner">
+    <div class="rpv-eyebrow">Sector Heatmap</div>
+    <h2 class="rpv-title">Every sector. Every signal.</h2>
+    <p class="rpv-sub">A TradingView-style treemap of the U.S. commercial market — block size is sector exposure, color is vacancy or cap rate. Toggle the metric; the view is shareable via the URL.</p>
+    <div id="reprime-heatmap"></div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════════════════════╗
+     ║  BLOCK E · Section 11 · DEAL ANALYZER  (Observable Plot · reactive)    ║
+     ╚══════════════════════════════════════════════════════════════════════╝ -->
+<section class="rpv rpv-section">
+  <div class="rpv-inner">
+    <div class="rpv-eyebrow">Deal Analyzer</div>
+    <h2 class="rpv-title">See the seller-mezzanine advantage, live.</h2>
+    <p class="rpv-sub">Adjust the inputs and watch cash-on-cash, the capital stack, cash flow, and LTV sensitivity recompute instantly — RePrime's interest-only seller-mezz model that turns a 10.8% return into 34%.</p>
+    <div id="reprime-analyzer"></div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════════════════════╗
+     ║  OPTIONAL · Section 2 · LIVE TICKER UPGRADE                            ║
+     ║  Wrap your existing ticker metric values in these classes to get the  ║
+     ║  glowing monospace look + pulsing red on risk metrics.                ║
+     ║   <span class="rpv-ticker-val">$875B</span>                           ║
+     ║   <span class="rpv-ticker-val rpv-risk">7.55% ▲41bps</span>           ║
+     ╚══════════════════════════════════════════════════════════════════════╝ -->

@@ -27,6 +27,7 @@ api/scrape_all.py
 api/scheduler.py
 api/.env.example
 _extraction/
+wordpress-viz/
 slide-*.jpg
 *.pptx
 *.xlsx

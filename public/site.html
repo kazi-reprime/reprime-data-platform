@@ -7,6 +7,7 @@
 <meta name="description" content="RePrime Group: Institutional CRE intelligence platform. 630 free data sources across 14 categories, 20 live search layers.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/rp-shell.css">
 <style>
 /* ═══════════════════════════════════════════════════════════════
    REPRIME DESIGN SYSTEM v3.0 — 4 Themes, Brand-Correct
@@ -300,34 +301,8 @@ footer a:hover{color:var(--gold)}
 }
 </style>
 </head>
-<body>
-<div class="mesh-bg"></div><div class="noise"></div>
-<canvas id="particles"></canvas>
-<div class="glow" id="glow"></div>
-
-<!-- NAV -->
-<nav class="nav">
-<div class="nav-inner">
-  <a href="/site" class="nav-brand"><span class="logo-mark">RP</span>RePrime Group</a>
-  <div class="nav-links">
-    <a href="/site" class="active">Platform</a>
-    <a href="/">Dashboard</a>
-    <a href="/terminal">Terminal</a>
-    <a href="/explore">Explore</a><a href="/data">Data</a><a href="/wall">Wall</a>
-  </div>
-  <div class="nav-right">
-    <div class="theme-tog" id="themeTog">
-      <button data-theme="dark" class="active" title="Dark">Dark</button>
-      <button data-theme="light" title="Light">Light</button>
-      <button data-theme="midnight" title="Midnight">Night</button>
-      <button data-theme="gold" title="Gold">Gold</button>
-    </div>
-  </div>
-</div>
-</nav>
-
-<!-- TICKER -->
-<div class="ticker"><div class="ticker-track" id="tickerTrack"></div></div>
+<body class="rp-has-ticker">
+<!-- Header (nav), topper (ticker), footer, background + viz hero injected by /rp-shell.js -->
 
 <!-- HERO -->
 <section class="hero">
@@ -508,78 +483,9 @@ footer a:hover{color:var(--gold)}
 </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-<div class="f-inner">
-  <div>
-    <h4 style="display:flex;align-items:center;gap:8px"><span class="logo-mark" style="width:24px;height:24px;font-size:10px;border-radius:6px;background:var(--grad-gold);color:#000;display:inline-flex;align-items:center;justify-content:center;font-weight:800">RP</span> RePrime Group</h4>
-    <p style="max-width:300px;line-height:1.6;margin-top:8px">Data-driven commercial real estate intelligence. Institutional precision meets mid-market opportunity.</p>
-  </div>
-  <div>
-    <h4>Platform</h4>
-    <a href="/site">Company</a><a href="/">Dashboard</a><a href="/terminal">Terminal</a><a href="/explore">Explore</a>
-  </div>
-  <div>
-    <h4>Data Sources</h4>
-    <a href="#">FRED API</a><a href="#">BLS Statistics</a><a href="#">FEMA Risk</a><a href="#">SEC EDGAR</a><a href="#">Census ACS</a>
-  </div>
-  <div>
-    <h4>Contact</h4>
-    <a href="mailto:g@floridastatetrust.com">g@floridastatetrust.com</a>
-    <a href="#">Miami, FL</a>
-    <a href="#">LinkedIn</a>
-  </div>
-</div>
-<div class="f-legal"><span>© 2026 RePrime Group. All rights reserved.</span><span>Institutional Use Only</span></div>
-</footer>
-
 <script>
-/* ═══ THEME SYSTEM ═══ */
-const saved=localStorage.getItem('rp-theme')||'dark';
-document.documentElement.setAttribute('data-theme',saved);
-document.querySelectorAll('.theme-tog button').forEach(b=>{
-  b.classList.toggle('active',b.dataset.theme===saved);
-  b.addEventListener('click',()=>{
-    document.documentElement.setAttribute('data-theme',b.dataset.theme);
-    localStorage.setItem('rp-theme',b.dataset.theme);
-    document.querySelectorAll('.theme-tog button').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');
-  });
-});
-
-/* ═══ GLOW CURSOR ═══ */
-const glow=document.getElementById('glow');
-document.addEventListener('mousemove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'});
-
-/* ═══ PARTICLE CANVAS ═══ */
-(function(){
-  const c=document.getElementById('particles'),ctx=c.getContext('2d');
-  let w,h,pts=[];
-  function resize(){w=c.width=innerWidth;h=c.height=innerHeight;pts=[];for(let i=0;i<60;i++)pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.5+.5})}
-  resize();window.addEventListener('resize',resize);
-  function draw(){
-    ctx.clearRect(0,0,w,h);
-    const style=getComputedStyle(document.documentElement);
-    const gold=style.getPropertyValue('--gold').trim()||'#BC9C45';
-    pts.forEach(p=>{
-      p.x+=p.vx;p.y+=p.vy;
-      if(p.x<0||p.x>w)p.vx*=-1;
-      if(p.y<0||p.y>h)p.vy*=-1;
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=gold;ctx.globalAlpha=.15;ctx.fill();
-    });
-    // connections
-    for(let i=0;i<pts.length;i++){
-      for(let j=i+1;j<pts.length;j++){
-        const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
-        if(d<120){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=gold;ctx.globalAlpha=.04*(1-d/120);ctx.stroke()}
-      }
-    }
-    ctx.globalAlpha=1;
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
+/* Chrome (nav, ticker, footer, theme, background, glow, particles) is provided
+   by /rp-shell.js. Page-specific behavior (reveal, counters, live fetches) below. */
 
 /* ═══ SCROLL REVEAL ═══ */
 const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
@@ -683,6 +589,7 @@ fetch('/api/sources').then(r => r.json()).then(d => {
 }).catch(() => {});
 
 </script>
+<script src="/rp-shell.js"></script>
 <script src="/viz.js"></script>
 <script src="/globe.js"></script>
 <script src="/reprime.js"></script>
