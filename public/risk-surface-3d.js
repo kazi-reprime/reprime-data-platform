@@ -211,6 +211,12 @@
       scene.add(pip);
     });
 
+    // Curved-text brand banner arching above the terrain scene
+    if (window.RP3D && window.RP3D.addOverheadArc) {
+      window.RP3D.addOverheadArc(scene, { radius: 90, height: 14, y: 70, opacity: 0.5,  repeats: 2, color: '#BC9C45' });
+      window.RP3D.addOverheadArc(scene, { radius: 78, height: 10, y: 70, opacity: 0.35, repeats: 3, color: '#d4af37', axisY: Math.PI / 6 });
+    }
+
     var visible = true;
     document.addEventListener('visibilitychange', function () { visible = document.visibilityState === 'visible'; });
 

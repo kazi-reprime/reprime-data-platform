@@ -133,6 +133,14 @@
       arcs.push({ curve: curve, dot: dot, t: Math.random(), sp: 0.002 + Math.random() * 0.005 });
     }
 
+    // Curved-text brand rings orbiting the main globe (attached to the
+    // rotation group so they follow drag + auto-spin). Two rings — equator
+    // + tilted satellite-style ring at a wider radius.
+    if (window.RP3D && window.RP3D.addOrbitRing) {
+      window.RP3D.addOrbitRing(group, { radius: R * 1.18, height: 14, y: 0,           opacity: 0.75, repeats: 5, color: "#BC9C45" });
+      window.RP3D.addOrbitRing(group, { radius: R * 1.40, height: 10, y: 0, tilt: 0.5, opacity: 0.45, repeats: 4, color: "#d4af37" });
+    }
+
     // starfield
     var sN = 400, sp = [];
     for (var s = 0; s < sN; s++) { sp.push((Math.random() - .5) * 800, (Math.random() - .5) * 600, (Math.random() - .5) * 800 - 150); }

@@ -181,6 +181,12 @@
       legend.appendChild(hint);
     }
 
+    // Curved-text brand banner arching above the market skyline
+    if (window.RP3D && window.RP3D.addOverheadArc) {
+      window.RP3D.addOverheadArc(scene, { radius: 220, height: 16, y: 120, opacity: 0.55, repeats: 3, color: '#BC9C45' });
+      window.RP3D.addOverheadArc(scene, { radius: 200, height: 12, y: 120, opacity: 0.35, repeats: 4, color: '#d4af37', axisY: Math.PI / 5 });
+    }
+
     var visible = true;
     document.addEventListener('visibilitychange', function () { visible = document.visibilityState === 'visible'; });
 

@@ -215,6 +215,14 @@
         '<span style="opacity:.6">Top ' + flows.length + ' active corridors · ' + MARKETS.length + ' markets</span>';
     }
 
+    // Curved-text brand ring orbiting the globe (attached to earthGroup so
+    // it follows the existing rotation). Two rings — one equatorial, one
+    // tilted for a satellite-orbit feel.
+    if (window.RP3D && window.RP3D.addOrbitRing) {
+      window.RP3D.addOrbitRing(earthGroup, { radius: GLOBE_R + 18, height: 14, y: 0,             opacity: 0.7,  repeats: 5, color: '#BC9C45' });
+      window.RP3D.addOrbitRing(earthGroup, { radius: GLOBE_R + 34, height: 10, y: 0, tilt: 0.45, opacity: 0.45, repeats: 4, color: '#d4af37' });
+    }
+
     var visible = true;
     document.addEventListener('visibilitychange', function () { visible = document.visibilityState === 'visible'; });
 
