@@ -47,6 +47,7 @@ h1{font-family:'Poppins',Arial,sans-serif;font-size:28px;font-weight:800}
 <!-- Phase 6.3 + 6.4: heatmap and Bloomberg-style deal feed above the wall list -->
 <div style="padding:0 28px"><div id="viz-heatmap-us"></div></div>
 <div style="padding:0 28px"><div id="viz-risk-surface"></div></div>
+<div style="padding:0 28px"><div id="rp-cat-treemap"></div></div>
 <div style="padding:0 28px"><div id="rp-deal-feed"></div></div>
 <div style="padding:0 28px"><div id="viz-deal-flow-globe"></div></div>
 
@@ -60,6 +61,7 @@ h1{font-family:'Poppins',Arial,sans-serif;font-size:28px;font-weight:800}
 <script src="/deal-feed.js"></script>
 <script src="/risk-surface-3d.js"></script>
 <script src="/live-ticker-multichannel.js"></script>
+<script src="/category-treemap.js"></script>
 <script>
 // Phase 2.3 — use centralized config (window.RP_SB); defensive fallback if not loaded.
 const CFG = window.RP_SB || { URL: "https://gugcmsqrscqqqltdtgkz.supabase.co", KEY: "sb_publishable_J5zIiHNf1VqpQ7r14SevFw__MbvlEpm" };
