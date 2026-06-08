@@ -1,23 +1,31 @@
 {
-  "cataloged_sources": 630,
+  "cataloged_sources": 1155,
   "category_count": 14,
   "live_search_layers": 20,
-  "all_free_api": true,
+  "all_free_api": false,
   "by_category": {
-    "economic": 161,
-    "demographic": 159,
-    "housing_re": 133,
-    "hazard_environmental": 44,
-    "infrastructure": 30,
-    "capital_markets": 26,
-    "other": 17,
-    "insurance_climate": 15,
-    "zoning_parcel": 14,
-    "news_sentiment": 12,
-    "israeli": 7,
-    "construction_pipeline": 5,
-    "macro_indicator": 4,
-    "energy": 3
+    "other": 362,
+    "capital_markets": 175,
+    "zoning_parcel": 89,
+    "macro_indicator": 79,
+    "infrastructure": 68,
+    "hazard_environmental": 67,
+    "news_sentiment": 64,
+    "housing_re": 63,
+    "energy": 47,
+    "israeli": 39,
+    "demographic": 39,
+    "economic": 32,
+    "construction_pipeline": 19,
+    "insurance_climate": 12
   },
-  "last_updated": "2026-06-02T23:01:04.154403+00:00"
+  "by_tier": {
+    "free": 1070,
+    "le10": 26,
+    "le50": 39,
+    "le100": 20
+  },
+  "keyless": 842,
+  "easy_connect": 611,
+  "last_updated": "2026-06-08T00:00:00Z"
 }

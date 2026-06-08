@@ -15,7 +15,9 @@ import os
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ALL = os.path.join(ROOT, "public", "data", "sources_all.json")
+# Prefer the rich dev-list catalog (endpoint/auth/tier); fall back to the bare list.
+_CATALOG = os.path.join(ROOT, "public", "data", "sources_catalog.json")
+ALL = _CATALOG if os.path.exists(_CATALOG) else os.path.join(ROOT, "public", "data", "sources_all.json")
 CURATED = os.path.join(ROOT, "public", "data", "sources.json")
 
 
@@ -56,9 +58,10 @@ def main() -> int:
             name[:500],
             s.get("category") or e.get("category"),
             s.get("provider") or e.get("provider") or "",
-            e.get("url") or "",
+            s.get("endpoint") or e.get("url") or "",          # rich catalog endpoint → url
             s.get("type") or e.get("type") or "",
-            e.get("auth") or "",
+            s.get("tier") or "",                               # free / le10 / le50 …
+            s.get("auth") or e.get("auth") or "",
         ))
 
     conn = psycopg2.connect(dsn)
@@ -66,13 +69,14 @@ def main() -> int:
     cur = conn.cursor()
     psycopg2.extras.execute_values(
         cur,
-        """INSERT INTO sources (name, category, provider, url, type, auth)
+        """INSERT INTO sources (name, category, provider, url, type, tier, auth)
            VALUES %s
            ON CONFLICT (name) DO UPDATE SET
              category = COALESCE(EXCLUDED.category, sources.category),
              provider = COALESCE(NULLIF(EXCLUDED.provider,''), sources.provider),
              url      = COALESCE(NULLIF(EXCLUDED.url,''), sources.url),
              type     = COALESCE(NULLIF(EXCLUDED.type,''), sources.type),
+             tier     = COALESCE(NULLIF(EXCLUDED.tier,''), sources.tier),
              auth     = COALESCE(NULLIF(EXCLUDED.auth,''), sources.auth),
              updated_at = now()""",
         rows, page_size=500,
