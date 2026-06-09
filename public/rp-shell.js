@@ -12,7 +12,7 @@
   var LINKS = [
     { href: '/site',     label: 'Platform' },
     { href: '/',         label: 'Dashboard' },
-    { href: '/terminal', label: 'Terminal' },
+    { href: '/terminal', label: '⚡ Terminal', highlight: true },
     { href: '/explore',  label: 'Explore' },
     { href: '/data',     label: 'Data' },
     { href: '/sources',  label: 'Sources' },
@@ -31,8 +31,11 @@
   var active = currentHref();
 
   var navLinksHTML = LINKS.map(function (l) {
-    var on = (l.href === active) ? ' class="active"' : '';
-    return '<a href="' + l.href + '"' + on + '>' + l.label + '</a>';
+    var cls = [];
+    if (l.href === active) cls.push('active');
+    if (l.highlight) cls.push('nav-highlight');
+    var clsStr = cls.length ? ' class="' + cls.join(' ') + '"' : '';
+    return '<a href="' + l.href + '"' + clsStr + '>' + l.label + '</a>';
   }).join('');
 
   var hasTicker = document.body.classList.contains('rp-has-ticker');

@@ -122,6 +122,8 @@ a{text-decoration:none;color:inherit}
 .nav-links a:hover{color:var(--text);background:var(--surface)}
 .nav-links a.active{color:var(--gold);background:rgba(188,156,69,0.1)}
 .nav-links a.active::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:20px;height:2px;background:var(--gold);border-radius:1px}
+.nav-links a.nav-highlight{color:var(--gold);font-weight:700;background:linear-gradient(135deg,rgba(188,156,69,.12),rgba(188,156,69,.04));border:1px solid rgba(188,156,69,.2)}
+.nav-links a.nav-highlight:hover{background:rgba(188,156,69,.18);border-color:rgba(188,156,69,.35)}
 .nav-right{display:flex;align-items:center;gap:8px}
 
 /* ─── THEME TOGGLE ─── */
