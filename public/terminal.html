@@ -612,6 +612,30 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(go);setTimeout
 })();
 </script>
 <script>setInterval(()=>{const d=new Date();document.getElementById('clk').textContent=d.toLocaleTimeString('en-US',{hour12:false})+' CT';},1000);</script>
+<script src="/supabase-config.js"></script>
+<script src="/live-data.js"></script>
+<script>
+/* Wire live-data.js to terminal counters */
+(function(){
+  function init(){
+    var L=window.RP_LIVE; if(!L){setTimeout(init,200);return;}
+    L.onUpdate(function(st){
+      /* Boost the terminal's own scan counter with real Supabase data */
+      var scanEl=document.getElementById('c_scan');
+      if(scanEl){
+        var current=parseInt(scanEl.textContent.replace(/,/g,''))||0;
+        if(st.scannedTotal>current){
+          scanEl.textContent=Number(st.scannedTotal).toLocaleString();
+        }
+      }
+      /* Update source count */
+      var srcEl=document.getElementById('c_src');
+      if(srcEl && st.sources) srcEl.textContent=Number(st.sources).toLocaleString();
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else setTimeout(init,1500);
+})();
+</script>
 <script>
 // ─── THEME SYSTEM ───
 (function(){

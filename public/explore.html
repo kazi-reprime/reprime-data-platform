@@ -122,6 +122,17 @@ h1,h2,h3{font-family:'Poppins',Arial,sans-serif}
 <!-- Header (nav), topper (ticker) and footer are injected by /rp-shell.js -->
 
 <section class="hero">
+  <!-- Brain Status Bar -->
+  <div style="display:flex;align-items:center;justify-content:center;gap:14px;padding:8px 20px;background:var(--glass-bg,rgba(14,52,112,0.08));border:1px solid var(--glass-border,rgba(188,156,69,0.12));border-radius:10px;margin-bottom:18px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted,#8a919c);backdrop-filter:blur(12px)">
+    <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green,#22c55e);box-shadow:0 0 8px var(--green,#22c55e);animation:pulse 2s infinite"></span>
+    <span><strong style="color:var(--text,#f0f2f5)" id="expBrainStates">25</strong> STATES</span>
+    <span style="color:var(--dim,#5a6270)">·</span>
+    <span><strong style="color:var(--text,#f0f2f5)" data-live-scanned>1,285,000</strong> SCANNED</span>
+    <span style="color:var(--dim,#5a6270)">·</span>
+    <span style="color:var(--green,#22c55e)">BRAIN PROCESSING</span>
+    <span style="color:var(--dim,#5a6270)">·</span>
+    <span data-live-clock style="color:var(--gold,#BC9C45)">--:--:-- CT</span>
+  </div>
   <div class="hero-eyebrow"><span class="dot"></span>611 SOURCES · LIVE API FAN-OUT · ONE SEARCH ENDPOINT</div>
   <h1>Enter any property.<br><span class="grad">Get all the data.</span></h1>
   <p>Every search hits <strong>/api/search</strong> — one server-side call that geocodes the address and fans out in parallel to live government &amp; market APIs (Census, FRED, FEMA, NWS, OSM, GDELT, FDIC, CoinGecko, ECB FX). Each source reports success, failure, and latency.</p>
@@ -145,10 +156,19 @@ h1,h2,h3{font-family:'Poppins',Arial,sans-serif}
     </div>
   </div>
   <div class="hero-stats">
-    <div class="hs"><div class="v">611</div><div class="l">Source Catalog</div></div>
-    <div class="hs"><div class="v">14</div><div class="l">Live Layers</div></div>
+    <div class="hs"><div class="v" id="expSources">611</div><div class="l">Source Catalog</div></div>
+    <div class="hs"><div class="v" id="expLayers">14</div><div class="l">Live Layers</div></div>
     <div class="hs"><div class="v">FREE</div><div class="l">No Paid APIs</div></div>
     <div class="hs"><div class="v">~3s</div><div class="l">Browser-Direct</div></div>
+    <div class="hs"><div class="v" data-live-scanned style="font-size:16px">—</div><div class="l">Records Scanned</div></div>
+  </div>
+  <!-- Live Feed Mini-Strip -->
+  <div style="max-width:780px;margin:20px auto 0;background:var(--glass-bg,rgba(14,52,112,0.08));border:1px solid var(--glass-border,rgba(188,156,69,0.12));border-radius:12px;padding:14px;backdrop-filter:blur(12px)">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+      <span style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--gold,#BC9C45);display:flex;align-items:center;gap:6px"><span style="width:5px;height:5px;border-radius:50%;background:var(--green,#22c55e);animation:pulse 2s infinite"></span> Live Activity</span>
+      <span style="font-size:9px;font-family:'JetBrains Mono',monospace;color:var(--dim,#5a6270)" data-live-ago>Connecting…</span>
+    </div>
+    <div id="exploreFeedRail"></div>
   </div>
 </section>
 
@@ -746,5 +766,21 @@ setupAutocomplete();
 <script src="/discover.js"></script>
 <script src="/reprime.js"></script>
 <script src="/sb.js"></script>
+<script src="/live-data.js"></script>
+<script>
+(function(){
+  function init(){
+    var L=window.RP_LIVE; if(!L){setTimeout(init,200);return;}
+    var fr=document.getElementById('exploreFeedRail');
+    if(fr) L.mountFeedStrip(fr,{max:8,compact:true});
+    L.onUpdate(function(st){
+      var bs=document.getElementById('expBrainStates'); if(bs) bs.textContent=st.statesActive||25;
+      var src=document.getElementById('expSources'); if(src) L.animateValue(src,st.sources||611,800);
+      var ly=document.getElementById('expLayers'); if(ly) L.animateValue(ly,st.categories||14,800);
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
 </body>
 </html>

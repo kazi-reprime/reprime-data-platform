@@ -99,6 +99,20 @@ h1{font-family:'Poppins',sans-serif;font-size:36px;font-weight:800;letter-spacin
 <body class="rp-has-ticker">
 
 <div class="container">
+  <!-- Brain Status Bar -->
+  <div style="display:flex;align-items:center;gap:14px;padding:8px 18px;background:var(--glass-bg,rgba(14,52,112,0.08));border:1px solid var(--glass-border,rgba(188,156,69,0.12));border-radius:10px;margin-bottom:10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted,#8a919c);backdrop-filter:blur(12px);flex-wrap:wrap">
+    <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green,#22c55e);box-shadow:0 0 8px var(--green,#22c55e);animation:pulse 2s infinite"></span>
+    <span><strong style="color:var(--text,#f0f2f5)" id="dashBrainStates">25</strong> STATES ACTIVE</span>
+    <span style="color:var(--dim,#5a6270)">·</span>
+    <span><strong style="color:var(--text,#f0f2f5)" data-live-scanned>1,285,000</strong> SCANNED</span>
+    <span style="color:var(--dim,#5a6270)">·</span>
+    <span style="color:var(--green,#22c55e)">BRAIN PROCESSING</span>
+    <span style="color:var(--dim,#5a6270)">·</span>
+    <span data-live-clock style="color:var(--gold,#BC9C45)">--:--:-- CT</span>
+    <span style="color:var(--dim,#5a6270)">·</span>
+    <span data-live-ago style="color:var(--dim,#5a6270)">Connecting…</span>
+  </div>
+
   <div style="display:flex;justify-content:between;align-items:flex-end;margin-bottom:6px;flex-wrap:wrap">
     <div>
       <h1 style="background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">RePrime Command Console</h1>
@@ -396,6 +410,27 @@ h1{font-family:'Poppins',sans-serif;font-size:36px;font-weight:800;letter-spacin
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Live Activity Feed -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px">
+    <div class="glass" style="padding:16px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+        <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--gold,#BC9C45);display:flex;align-items:center;gap:6px"><span style="width:5px;height:5px;border-radius:50%;background:var(--green,#22c55e);animation:pulse 2s infinite"></span> Live Ingestion Feed</span>
+        <span style="font-size:9px;font-family:'JetBrains Mono',monospace;color:var(--dim,#5a6270)" data-live-ago>Connecting…</span>
+      </div>
+      <div id="dashFeedRail"></div>
+    </div>
+    <div class="glass" style="padding:16px">
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--gold,#BC9C45);margin-bottom:10px;display:flex;align-items:center;gap:6px"><span style="width:5px;height:5px;border-radius:50%;background:var(--green,#22c55e);animation:pulse 2s infinite"></span> Platform Pulse</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div style="background:var(--surface,rgba(14,52,112,0.08));padding:12px;border-radius:8px;text-align:center"><div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--text)" id="dashLiveSources">—</div><div style="font-size:9px;color:var(--muted);text-transform:uppercase;margin-top:4px">Sources</div></div>
+        <div style="background:var(--surface,rgba(14,52,112,0.08));padding:12px;border-radius:8px;text-align:center"><div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--text)" id="dashLiveDatasets">—</div><div style="font-size:9px;color:var(--muted);text-transform:uppercase;margin-top:4px">Datasets</div></div>
+        <div style="background:var(--surface,rgba(14,52,112,0.08));padding:12px;border-radius:8px;text-align:center"><div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--text)" id="dashLiveRecords">—</div><div style="font-size:9px;color:var(--muted);text-transform:uppercase;margin-top:4px">Records</div></div>
+        <div style="background:var(--surface,rgba(14,52,112,0.08));padding:12px;border-radius:8px;text-align:center"><div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--green)" id="dashLiveStates">—</div><div style="font-size:9px;color:var(--muted);text-transform:uppercase;margin-top:4px">States Active</div></div>
+      </div>
+      <div style="margin-top:12px" id="dashSparkline"></div>
     </div>
   </div>
 
@@ -844,6 +879,27 @@ setInterval(loadEndpoints, 60000);
       +top.map(r=>'<tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);font-weight:700">'+r.ticker+'</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);color:var(--muted)">'+(r.company||'').slice(0,24)+'</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);text-align:right;font-family:monospace">'+fmtB(r.total_assets_usd)+'</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);text-align:right;font-family:monospace">'+fmtB(r.revenues_usd)+'</td></tr>').join('')
       +'</tbody></table></div>';
   }
+})();
+</script>
+<script src="/live-data.js"></script>
+<script>
+(function(){
+  function init(){
+    var L=window.RP_LIVE; if(!L){setTimeout(init,200);return;}
+    var fr=document.getElementById('dashFeedRail');
+    if(fr) L.mountFeedStrip(fr,{max:15});
+    var sp=document.getElementById('dashSparkline');
+    if(sp) L.mountSparkline(sp,{width:240,height:36});
+    L.onUpdate(function(st){
+      var bs=document.getElementById('dashBrainStates'); if(bs) bs.textContent=st.statesActive||25;
+      var set=function(id,v){var el=document.getElementById(id);if(el){el.textContent=Number(v).toLocaleString();}};
+      set('dashLiveSources',st.sources);
+      set('dashLiveDatasets',st.datasets);
+      set('dashLiveRecords',st.records);
+      set('dashLiveStates',st.statesActive);
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
 </script>
 </body>
