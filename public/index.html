@@ -3,319 +3,624 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RePrime Dashboard — Executive Command Center</title>
+<title>RePrime Group — Data-Driven Real Estate Intelligence</title>
+<meta name="description" content="RePrime Group: Institutional CRE intelligence platform. 630 free data sources across 14 categories, 20 live search layers.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/rp-shell.css">
 <style>
-/* Page-specific styles only. Chrome (tokens, nav, ticker, footer, themes,
-   background) lives in rp-shell.css / rp-shell.js — single source of truth. */
+/* ═══════════════════════════════════════════════════════════════
+   REPRIME DESIGN SYSTEM v3.0 — 4 Themes, Brand-Correct
+   ═══════════════════════════════════════════════════════════════ */
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* THEME: DARK (Primary) */
+:root[data-theme="dark"]{
+  --bg:#050609;--bg2:#0a0d14;--surface:rgba(14,52,112,0.08);--surface2:rgba(14,52,112,0.14);
+  --border:rgba(188,156,69,0.1);--border2:rgba(188,156,69,0.2);
+  --text:#f0f2f5;--text2:#d1d5db;--muted:#8a919c;--dim:#5a6270;
+  --accent:#BC9C45;--accent2:#1D5FB8;--accent3:#00A1FF;
+  --navy:#0E3470;--gold:#BC9C45;--blue:#1D5FB8;--bright:#00A1FF;--teal:#009080;--amber:#FFBC7D;
+  --green:#00A980;--red:#FF7474;
+  --glass:rgba(14,52,112,0.12);--glass-border:rgba(188,156,69,0.12);
+  --glass-hover:rgba(14,52,112,0.2);
+  --mesh-1:#0E3470;--mesh-2:#1D5FB8;--mesh-3:#BC9C45;--mesh-4:#009080;
+  --mesh-opacity:.2;--noise-opacity:.03;
+  --card-bg:rgba(10,13,20,0.8);
+  --nav-bg:rgba(5,6,9,0.85);
+  --shadow:0 8px 32px rgba(0,0,0,.4);
+}
+
+/* THEME: LIGHT (White) */
+:root[data-theme="light"]{
+  --bg:#FAFBFD;--bg2:#FFFFFF;--surface:rgba(14,52,112,0.04);--surface2:rgba(14,52,112,0.07);
+  --border:rgba(14,52,112,0.1);--border2:rgba(14,52,112,0.18);
+  --text:#0E3470;--text2:#1e3a5f;--muted:#5a6f8c;--dim:#8a9bb5;
+  --accent:#BC9C45;--accent2:#1D5FB8;--accent3:#0E3470;
+  --navy:#0E3470;--gold:#BC9C45;--blue:#1D5FB8;--bright:#00A1FF;--teal:#009080;--amber:#FFBC7D;
+  --green:#00A980;--red:#F70000;
+  --glass:rgba(255,255,255,0.7);--glass-border:rgba(14,52,112,0.1);
+  --glass-hover:rgba(255,255,255,0.85);
+  --mesh-1:#1D5FB8;--mesh-2:#00A1FF;--mesh-3:#BC9C45;--mesh-4:#009080;
+  --mesh-opacity:.06;--noise-opacity:.015;
+  --card-bg:rgba(255,255,255,0.85);
+  --nav-bg:rgba(250,251,253,0.9);
+  --shadow:0 8px 32px rgba(14,52,112,.06);
+}
+
+/* THEME: MIDNIGHT (Deep Navy) */
+:root[data-theme="midnight"]{
+  --bg:#060B1A;--bg2:#0B1228;--surface:rgba(29,95,184,0.08);--surface2:rgba(29,95,184,0.14);
+  --border:rgba(0,161,255,0.1);--border2:rgba(0,161,255,0.2);
+  --text:#D0DEFF;--text2:#A8BEE0;--muted:#7B94C0;--dim:#5570A0;
+  --accent:#00A1FF;--accent2:#BC9C45;--accent3:#009080;
+  --navy:#0E3470;--gold:#BC9C45;--blue:#1D5FB8;--bright:#00A1FF;--teal:#009080;--amber:#FFBC7D;
+  --green:#00A980;--red:#FF7474;
+  --glass:rgba(29,95,184,0.08);--glass-border:rgba(0,161,255,0.1);
+  --glass-hover:rgba(29,95,184,0.15);
+  --mesh-1:#0E3470;--mesh-2:#1D5FB8;--mesh-3:#00A1FF;--mesh-4:#BC9C45;
+  --mesh-opacity:.25;--noise-opacity:.03;
+  --card-bg:rgba(11,18,40,0.85);
+  --nav-bg:rgba(6,11,26,0.9);
+  --shadow:0 8px 32px rgba(0,0,0,.5);
+}
+
+/* THEME: GOLD (Warm) */
+:root[data-theme="gold"]{
+  --bg:#0D0A05;--bg2:#151009;--surface:rgba(188,156,69,0.08);--surface2:rgba(188,156,69,0.14);
+  --border:rgba(188,156,69,0.15);--border2:rgba(188,156,69,0.25);
+  --text:#F5EDD8;--text2:#D4C9AA;--muted:#A89B78;--dim:#7A7058;
+  --accent:#BC9C45;--accent2:#FFBC7D;--accent3:#1D5FB8;
+  --navy:#0E3470;--gold:#BC9C45;--blue:#1D5FB8;--bright:#00A1FF;--teal:#009080;--amber:#FFBC7D;
+  --green:#00A980;--red:#FF7474;
+  --glass:rgba(188,156,69,0.06);--glass-border:rgba(188,156,69,0.15);
+  --glass-hover:rgba(188,156,69,0.12);
+  --mesh-1:#BC9C45;--mesh-2:#FFBC7D;--mesh-3:#1D5FB8;--mesh-4:#009080;
+  --mesh-opacity:.15;--noise-opacity:.04;
+  --card-bg:rgba(21,16,9,0.85);
+  --nav-bg:rgba(13,10,5,0.9);
+  --shadow:0 8px 32px rgba(0,0,0,.4);
+}
+
+:root{
+  --grad-brand:linear-gradient(135deg,var(--navy),var(--blue),var(--gold));
+  --grad-gold:linear-gradient(135deg,var(--gold),var(--amber));
+  --grad-blue:linear-gradient(135deg,var(--navy),var(--bright));
+  --t:.35s cubic-bezier(.4,0,.2,1);
+}
+
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t);line-height:1.3}
+a{text-decoration:none;color:inherit}
+::selection{background:var(--gold);color:#000}
+
+/* ANIMATED MESH BG */
+.mesh-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:var(--mesh-opacity);transition:opacity var(--t);
+  background:radial-gradient(ellipse 600px 600px at 20% 30%,var(--mesh-1),transparent 70%),
+             radial-gradient(ellipse 500px 500px at 80% 20%,var(--mesh-2),transparent 70%),
+             radial-gradient(ellipse 400px 400px at 50% 80%,var(--mesh-3),transparent 70%),
+             radial-gradient(ellipse 350px 350px at 10% 70%,var(--mesh-4),transparent 70%);
+  animation:meshDrift 30s ease-in-out infinite alternate}
+@keyframes meshDrift{0%{transform:scale(1) translate(0,0)}50%{transform:scale(1.1) translate(-2%,3%)}100%{transform:scale(1.05) translate(3%,-2%)}}
+
+/* NOISE TEXTURE */
+.noise{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:var(--noise-opacity);
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* CANVAS PARTICLES */
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* ─── NAVIGATION ─── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid var(--border);transition:background var(--t)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;letter-spacing:-.01em}
+.nav-brand .logo-mark{width:32px;height:32px;background:var(--grad-gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#000}
+.nav-links{display:flex;gap:4px}
+.nav-links a{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;color:var(--muted);transition:all .2s;position:relative}
+.nav-links a:hover{color:var(--text);background:var(--surface)}
+.nav-links a.active{color:var(--gold);background:rgba(188,156,69,0.1)}
+.nav-links a.active::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:20px;height:2px;background:var(--gold);border-radius:1px}
+.nav-right{display:flex;align-items:center;gap:8px}
+
+/* THEME TOGGLE */
+.theme-tog{display:flex;background:var(--surface);border-radius:10px;padding:3px;gap:2px}
+.theme-tog button{background:none;border:none;padding:6px 10px;border-radius:8px;cursor:pointer;font-size:12px;font-family:'Poppins',sans-serif;font-weight:500;color:var(--muted);transition:all .2s}
+.theme-tog button:hover{color:var(--text)}
+.theme-tog button.active{background:var(--grad-gold);color:#000;box-shadow:0 2px 8px rgba(188,156,69,.3)}
+
+/* ─── TICKER ─── */
+.ticker{position:fixed;top:56px;left:0;right:0;z-index:99;background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:36px;overflow:hidden;transition:background var(--t)}
+.ticker::before,.ticker::after{content:'';position:absolute;top:0;width:60px;height:100%;z-index:2;pointer-events:none}
+.ticker::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.ticker::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+.ticker-track{display:flex;animation:tickScroll 80s linear infinite;white-space:nowrap;height:100%;align-items:center;will-change:transform}
+@keyframes tickScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ti{display:inline-flex;align-items:center;gap:6px;padding:0 24px;font-size:11px;color:var(--muted);border-right:1px solid var(--border)}
+.ti strong{color:var(--text);font-family:'JetBrains Mono',monospace;font-weight:600;font-size:11px}
+.ti .up{color:var(--green)}.ti .dn{color:var(--red)}
+.ti .pulse{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:.4;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
 
-/* DASHBOARD LAYOUT */
-.dash{padding:24px;position:relative;z-index:1;max-width:1440px;margin:0 auto}
-.dash-header{margin-bottom:24px}
-.dash-header h1{font-size:22px;font-weight:700;color:var(--text)}
-.dash-header p{font-size:13px;color:var(--muted);font-weight:300;margin-top:2px}
-.dash-time{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);margin-top:4px}
+/* ─── HERO ─── */
+.hero{min-height:100vh;display:flex;align-items:center;padding:140px 32px 80px;position:relative;overflow:hidden}
+.hero-inner{max-width:1280px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:99px;background:var(--surface);border:1px solid var(--border);font-size:11px;font-weight:500;color:var(--gold);margin-bottom:24px;letter-spacing:.03em;text-transform:uppercase}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+.hero h1{font-size:clamp(40px,5vw,64px);font-weight:800;line-height:1.05;margin-bottom:20px;color:var(--text)}
+.hero h1 .grad{background:var(--grad-gold);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:16px;font-weight:300;color:var(--muted);line-height:1.6;max-width:500px;margin-bottom:32px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:10px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .25s}
+.btn-gold{background:var(--grad-gold);color:#000;box-shadow:0 4px 16px rgba(188,156,69,.25)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(188,156,69,.35)}
+.btn-glass{background:var(--glass);color:var(--text);border:1px solid var(--glass-border);backdrop-filter:blur(12px)}
+.btn-glass:hover{background:var(--glass-hover);transform:translateY(-2px)}
 
-/* KPI ROW */
-.kpi-row{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:20px}
-.kpi{background:var(--card-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:12px;padding:18px;transition:all .3s;position:relative;overflow:hidden}
-.kpi:hover{border-color:var(--gold);transform:translateY(-2px)}
-.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-gold);opacity:0;transition:opacity .3s}
-.kpi:hover::before{opacity:1}
-.kpi-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
-.kpi-live{display:flex;align-items:center;gap:3px;font-size:8px;color:var(--green)}
-.kpi-live .dot{width:4px;height:4px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:.4;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
-.kpi-val{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700;color:var(--text)}
-.kpi-change{font-family:'JetBrains Mono',monospace;font-size:10px;margin-top:4px}
-.kpi-change.up{color:var(--green)}.kpi-change.dn{color:var(--red)}
-.kpi-spark{display:flex;gap:1px;align-items:flex-end;height:24px;margin-top:8px}
-.kpi-spark span{flex:1;border-radius:1px;min-height:2px}
+/* HERO VISUAL — 3D floating cards */
+.hero-visual{position:relative;height:500px;perspective:1200px}
+.float-card{position:absolute;background:var(--card-bg);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--glass-border);border-radius:16px;padding:24px;box-shadow:var(--shadow);transition:transform .6s cubic-bezier(.4,0,.2,1);overflow:hidden}
+.float-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-gold);border-radius:16px 16px 0 0}
+.float-card:nth-child(1){top:0;left:0;width:280px;animation:float1 8s ease-in-out infinite;z-index:3}
+.float-card:nth-child(2){top:60px;right:0;width:260px;animation:float2 9s ease-in-out infinite;z-index:2}
+.float-card:nth-child(3){bottom:40px;left:40px;width:300px;animation:float3 10s ease-in-out infinite;z-index:1}
+@keyframes float1{0%,100%{transform:translateY(0) rotateY(-2deg) rotateX(1deg)}50%{transform:translateY(-20px) rotateY(2deg) rotateX(-1deg)}}
+@keyframes float2{0%,100%{transform:translateY(0) rotateY(2deg)}50%{transform:translateY(-15px) rotateY(-2deg)}}
+@keyframes float3{0%,100%{transform:translateY(0) rotateX(1deg)}50%{transform:translateY(-18px) rotateX(-2deg)}}
+.fc-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:12px}
+.fc-value{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;color:var(--text)}
+.fc-sub{font-size:12px;color:var(--muted);margin-top:6px}
+.fc-chart{display:flex;gap:2px;margin-top:12px;align-items:flex-end;height:40px}
+.fc-chart span{flex:1;background:var(--grad-gold);border-radius:2px;opacity:.6;animation:barGrow .8s ease-out forwards}
+@keyframes barGrow{from{height:0}to{height:var(--h)}}
 
-/* MAIN GRID */
-.dash-grid{display:grid;grid-template-columns:1fr 1fr 380px;gap:16px}
+/* ─── SECTIONS ─── */
+section{position:relative;z-index:1;padding:100px 32px}
+.container{max-width:1280px;margin:0 auto}
+.section-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:12px}
+.section-title{font-size:clamp(28px,3.5vw,42px);font-weight:700;color:var(--text);margin-bottom:16px;line-height:1.15}
+.section-desc{font-size:15px;font-weight:300;color:var(--muted);max-width:600px;line-height:1.6;margin-bottom:48px}
 
-/* PANELS */
-.panel{background:var(--card-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .3s}
-.panel:hover{border-color:var(--gold)}
-.panel-header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--border)}
-.panel-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--gold)}
-.panel-badge{font-size:9px;font-weight:600;padding:3px 8px;border-radius:4px;background:var(--surface);color:var(--muted)}
-.panel-body{padding:16px 18px}
+/* STAT BAR */
+.stat-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border-radius:16px;overflow:hidden;margin:-40px 32px 0;position:relative;z-index:2;max-width:1280px;margin-left:auto;margin-right:auto}
+.stat-cell{background:var(--card-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:28px 24px;text-align:center;transition:background .3s}
+.stat-cell:hover{background:var(--glass-hover)}
+.stat-num{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;color:var(--text);margin-bottom:4px}
+.stat-num .counter{display:inline}
+.stat-label{font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
 
-/* DEAL PIPELINE */
-.pipeline-stage{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
-.pipeline-stage:last-child{border:none}
-.ps-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.ps-info{flex:1}
-.ps-name{font-size:13px;font-weight:500;color:var(--text)}
-.ps-meta{font-size:10px;color:var(--muted);margin-top:2px}
-.ps-val{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--gold)}
+/* INTELLIGENCE PIPELINE */
+.pipeline{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.pipe-card{background:var(--card-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:16px;padding:32px;transition:all .35s;position:relative;overflow:hidden}
+.pipe-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 12px 40px rgba(188,156,69,.1)}
+.pipe-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,var(--gold) 0%,transparent 70%);opacity:0;transition:opacity .4s}
+.pipe-card:hover::before{opacity:.03}
+.pipe-num{font-family:'JetBrains Mono',monospace;font-size:48px;font-weight:700;color:var(--surface2);position:absolute;top:16px;right:20px}
+.pipe-icon{width:44px;height:44px;border-radius:12px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
+.pipe-title{font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px}
+.pipe-desc{font-size:13px;font-weight:300;color:var(--muted);line-height:1.5}
 
-/* PORTFOLIO TABLE */
-.port-table{width:100%;border-collapse:collapse;font-size:11px}
-.port-table th{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);font-size:9px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-.port-table td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text2)}
-.port-table td:nth-child(n+3){font-family:'JetBrains Mono',monospace;font-weight:500}
-.port-table tr:hover td{background:var(--surface)}
+/* BENTO GRID — DATA SOURCES */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:16px}
+.bento-card{background:var(--card-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:16px;padding:28px;position:relative;overflow:hidden;transition:all .35s;display:flex;flex-direction:column;justify-content:space-between}
+.bento-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:var(--shadow)}
+.bento-card.span2{grid-column:span 2}
+.bento-card.tall{grid-row:span 2}
+.bento-card .bc-icon{font-size:28px;margin-bottom:8px}
+.bento-card .bc-title{font-size:15px;font-weight:600;color:var(--text)}
+.bento-card .bc-count{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700;color:var(--gold)}
+.bento-card .bc-desc{font-size:12px;color:var(--muted);font-weight:300;line-height:1.5}
+.bento-card .bc-bar{height:4px;border-radius:2px;background:var(--surface2);overflow:hidden;margin-top:auto}
+.bento-card .bc-bar span{display:block;height:100%;background:var(--grad-gold);border-radius:2px;width:0;animation:fillBar 1.5s ease-out forwards}
+@keyframes fillBar{to{width:var(--w)}}
 
-/* RATE CHART */
-.rate-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)}
-.rate-row:last-child{border:none}
-.rate-name{font-size:12px;color:var(--text2);font-weight:500}
-.rate-val{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;color:var(--text)}
-.rate-bar{flex:1;margin:0 16px;height:4px;background:var(--surface2);border-radius:2px;overflow:hidden;max-width:120px}
-.rate-bar span{display:block;height:100%;border-radius:2px;background:var(--grad-gold)}
+/* LIVE MARKET */
+.market-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.market-card{background:var(--card-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:14px;padding:22px;transition:all .3s}
+.market-card:hover{border-color:var(--gold);transform:translateY(-3px)}
+.mc-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.mc-label{font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.mc-live{display:flex;align-items:center;gap:4px;font-size:9px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.06em}
+.mc-live .dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+.mc-value{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:700;color:var(--text)}
+.mc-change{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;margin-top:4px}
+.mc-change.up{color:var(--green)}.mc-change.dn{color:var(--red)}
+.mc-spark{display:flex;gap:1px;align-items:flex-end;height:32px;margin-top:12px}
+.mc-spark span{flex:1;background:var(--accent);border-radius:1px;opacity:.5}
 
-/* ACTIVITY FEED */
-.activity-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
-.activity-item:last-child{border:none}
-.act-icon{width:32px;height:32px;border-radius:8px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-.act-content{flex:1}
-.act-text{font-size:12px;color:var(--text2);line-height:1.4}
-.act-text strong{color:var(--text);font-weight:600}
-.act-time{font-size:10px;color:var(--dim);margin-top:2px}
+/* FEATURED DEAL */
+.deal-section{background:var(--card-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:20px;padding:48px;margin-top:48px}
+.deal-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
+.deal-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-radius:12px;overflow:hidden}
+.deal-gallery img{width:100%;height:180px;object-fit:cover;transition:transform .4s;cursor:pointer}
+.deal-gallery img:hover{transform:scale(1.05)}
+.deal-gallery img:first-child{grid-column:span 3;height:280px}
+.deal-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+.dm{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
+.dm-val{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;color:var(--gold)}
+.dm-label{font-size:10px;font-weight:500;color:var(--muted);text-transform:uppercase;margin-top:4px;letter-spacing:.04em}
 
-/* SOURCE HEALTH */
-.src-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
-.src-row:last-child{border:none}
-.src-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.src-dot.ok{background:var(--green)}.src-dot.warn{background:var(--gold)}.src-dot.err{background:var(--red)}
-.src-name{flex:1;font-size:11px;color:var(--text2)}
-.src-status{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted)}
-.src-latency{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim)}
+/* CATEGORIES COVERAGE */
+.cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.cat-item{display:flex;align-items:center;gap:16px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:12px;transition:all .3s}
+.cat-item:hover{border-color:var(--gold);background:var(--surface2)}
+.cat-icon{width:36px;height:36px;border-radius:8px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.cat-info{flex:1;min-width:0}
+.cat-name{font-size:13px;font-weight:600;color:var(--text)}
+.cat-bar-wrap{height:4px;background:var(--surface2);border-radius:2px;margin-top:6px;overflow:hidden}
+.cat-bar-fill{height:100%;background:var(--grad-gold);border-radius:2px;width:0;transition:width 1.2s ease-out}
+.cat-count{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);font-weight:600;flex-shrink:0}
 
-/* QUICK ACTIONS */
-.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.quick-btn{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;cursor:pointer;transition:all .2s;display:block}
-.quick-btn:hover{border-color:var(--gold);background:var(--surface2);transform:translateY(-2px)}
-.quick-btn .qi{font-size:20px;margin-bottom:6px}
-.quick-btn .ql{font-size:11px;font-weight:500;color:var(--text)}
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.team-card{background:var(--card-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:16px;padding:32px;text-align:center;transition:all .35s}
+.team-card:hover{border-color:var(--gold);transform:translateY(-4px)}
+.team-avatar{width:72px;height:72px;border-radius:50%;background:var(--grad-gold);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#000;transition:transform .3s}
+.team-card:hover .team-avatar{transform:scale(1.1) rotate(3deg)}
+.team-name{font-size:15px;font-weight:600;color:var(--text)}
+.team-role{font-size:12px;color:var(--muted);font-weight:300;margin-top:4px}
+
+/* CTA BANNER */
+.cta-banner{background:var(--grad-brand);border-radius:20px;padding:64px 48px;text-align:center;position:relative;overflow:hidden}
+.cta-banner::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.08}
+.cta-banner h2{font-size:36px;font-weight:700;color:#fff;margin-bottom:12px;position:relative}
+.cta-banner p{font-size:16px;color:rgba(255,255,255,.8);font-weight:300;margin-bottom:28px;position:relative}
+.cta-banner .btn{position:relative}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:48px 32px;color:var(--muted);font-size:12px}
+footer .f-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
+footer h4{color:var(--text);font-size:13px;font-weight:600;margin-bottom:12px}
+footer a{color:var(--muted);font-size:12px;display:block;margin-bottom:6px;transition:color .2s}
+footer a:hover{color:var(--gold)}
+.f-legal{max-width:1280px;margin:24px auto 0;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:11px;color:var(--dim)}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* GLOW CURSOR */
+.glow{position:fixed;width:500px;height:500px;border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,var(--gold) 0%,transparent 70%);opacity:.03;transition:opacity .3s;
+  transform:translate(-50%,-50%)}
 
 /* RESPONSIVE */
-@media(max-width:1200px){.dash-grid{grid-template-columns:1fr 1fr}.kpi-row{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:768px){.dash-grid{grid-template-columns:1fr}.kpi-row{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:640px){.kpi-row{grid-template-columns:1fr}.nav-links{display:none}}
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr}.hero-visual{display:none}
+  .stat-bar{grid-template-columns:repeat(3,1fr)}
+  .pipeline,.market-grid{grid-template-columns:repeat(2,1fr)}
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:640px){
+  .stat-bar{grid-template-columns:1fr}
+  .pipeline,.market-grid,.bento,.cat-grid{grid-template-columns:1fr}
+  .bento-card.span2{grid-column:span 1}
+  .deal-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  footer .f-inner{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body class="rp-has-ticker">
-<!-- Header (nav), topper (ticker) and footer are injected by /rp-shell.js -->
+<!-- Header (nav), topper (ticker), footer, background + viz hero injected by /rp-shell.js -->
 
-<div class="dash">
-<div class="dash-header">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px">
-    <div>
-      <h1>Executive Command Center</h1>
-      <p>Portfolio overview · Market pulse · Deal pipeline</p>
-      <div class="dash-time" id="dashTime"></div>
+<!-- HERO -->
+<section class="hero">
+<div class="hero-inner">
+  <div>
+    <div class="hero-badge"><span class="dot"></span> Live Intelligence Platform</div>
+    <h1>Institutional CRE Data.<br><span class="grad">Zero Guesswork.</span></h1>
+    <p>611 curated free sources · 630 cataloged APIs · 20 live search layers querying every address in real time. The intelligence layer institutional investors need — built for the deals others miss.</p>
+    <div class="hero-ctas">
+      <a href="/terminal" class="btn btn-gold">Open Terminal →</a>
+      <a href="/dashboard" class="btn btn-glass">View Dashboard</a>
     </div>
-    <a href="/terminal" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:linear-gradient(135deg,var(--gold),#d4af37);color:#000;font-size:13px;font-weight:700;border-radius:10px;text-decoration:none;letter-spacing:.02em;transition:all .3s;box-shadow:0 4px 16px rgba(188,156,69,.25)" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(188,156,69,.35)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 16px rgba(188,156,69,.25)'">
-      <span style="font-size:16px">⚡</span> Open Terminal
-    </a>
+  </div>
+  <div class="hero-visual">
+    <div class="float-card">
+      <div class="fc-label">10Y Treasury</div>
+      <div class="fc-value" id="heroTreas">4.45%</div>
+      <div class="fc-sub">Updated live via FRED API</div>
+      <div class="fc-chart" id="heroChart1"></div>
+    </div>
+    <div class="float-card">
+      <div class="fc-label">SOFR Rate</div>
+      <div class="fc-value" id="heroSofr">4.31%</div>
+      <div class="fc-sub">Federal Reserve Bank of NY</div>
+      <div class="fc-chart" id="heroChart2"></div>
+    </div>
+    <div class="float-card">
+      <div class="fc-label">Platform Coverage</div>
+      <div class="fc-value">611</div>
+      <div class="fc-sub">Data sources across 14 categories</div>
+      <div class="fc-chart" id="heroChart3"></div>
+    </div>
   </div>
 </div>
+</section>
 
-<!-- KPI ROW -->
-<div class="kpi-row" id="kpiRow">
-  <!-- KPI fallbacks: '—' until /api/live/ticker + /api/stats resolve (audit Phase 1 tasks 1.1, 1.7) -->
-  <div class="kpi"><div class="kpi-label">10Y Treasury <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k1">—</div><div class="kpi-change" style="color:var(--dim)">FRED</div><div class="kpi-spark" id="spark1"></div></div>
-  <div class="kpi"><div class="kpi-label">SOFR <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k2">—</div><div class="kpi-change" style="color:var(--dim)">FRED</div><div class="kpi-spark" id="spark2"></div></div>
-  <div class="kpi"><div class="kpi-label">30Y Mortgage <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k3">—</div><div class="kpi-change" style="color:var(--dim)">FRED</div><div class="kpi-spark" id="spark3"></div></div>
-  <div class="kpi"><div class="kpi-label">Fed Funds <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k4">—</div><div class="kpi-change" style="color:var(--dim)">FRED</div><div class="kpi-spark" id="spark4"></div></div>
-  <div class="kpi"><div class="kpi-label">Bitcoin <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="k5">—</div><div class="kpi-change" style="color:var(--dim)">CoinGecko</div><div class="kpi-spark" id="spark5"></div></div>
-  <div class="kpi"><div class="kpi-label">Data Sources <span class="kpi-live"><span class="dot"></span>LIVE</span></div><div class="kpi-val" id="kSources">—</div><div class="kpi-change" style="color:var(--dim)" id="kCategories">— categories</div><div class="kpi-spark" id="spark6"></div></div>
+<!-- STAT BAR -->
+<div class="stat-bar reveal">
+  <div class="stat-cell"><div class="stat-num"><span class="counter" id="cFree" data-target="611">0</span></div><div class="stat-label">Free Sources</div></div>
+  <div class="stat-cell"><div class="stat-num"><span class="counter" id="cCatalog" data-target="630">0</span></div><div class="stat-label">Cataloged APIs</div></div>
+  <div class="stat-cell"><div class="stat-num"><span class="counter" id="cLayers" data-target="20">0</span></div><div class="stat-label">Live Search Layers</div></div>
+  <div class="stat-cell"><div class="stat-num"><span class="counter" id="cCats" data-target="14">0</span></div><div class="stat-label">Categories</div></div>
 </div>
 
-<!-- MAIN GRID -->
-<div class="dash-grid">
-  <!-- Column 1: Deal Pipeline + Portfolio -->
-  <div style="display:flex;flex-direction:column;gap:16px">
-    <div class="panel">
-      <div class="panel-header"><span class="panel-title">Deal Pipeline</span><span class="panel-badge" id="pipelineBadge">Sample · $284M</span></div>
-      <div class="panel-body" id="pipelineBody">
-        <div class="pipeline-stage"><div class="ps-dot" style="background:var(--green)"></div><div class="ps-info"><div class="ps-name">The Palms at Doral</div><div class="ps-meta">240 units · Multifamily · Doral, FL</div></div><div class="ps-val">$61.2M</div></div>
-        <div class="pipeline-stage"><div class="ps-dot" style="background:var(--gold)"></div><div class="ps-info"><div class="ps-name">Coral Springs Office</div><div class="ps-meta">145K SF · Office · Coral Springs, FL</div></div><div class="ps-val">$38.5M</div></div>
-        <div class="pipeline-stage"><div class="ps-dot" style="background:var(--bright)"></div><div class="ps-info"><div class="ps-name">Tampa Bay Industrial</div><div class="ps-meta">220K SF · Industrial · Tampa, FL</div></div><div class="ps-val">$52.8M</div></div>
-        <div class="pipeline-stage"><div class="ps-dot" style="background:var(--teal)"></div><div class="ps-info"><div class="ps-name">Orlando Mixed-Use</div><div class="ps-meta">180 units + 25K SF retail · Orlando, FL</div></div><div class="ps-val">$89.3M</div></div>
-        <div class="pipeline-stage"><div class="ps-dot" style="background:var(--amber)"></div><div class="ps-info"><div class="ps-name">Ft Lauderdale Retail</div><div class="ps-meta">65K SF · Retail · Ft Lauderdale, FL</div></div><div class="ps-val">$42.7M</div></div>
-      </div>
-    </div>
-    <div class="panel">
-      <div class="panel-header"><span class="panel-title">Portfolio Summary</span><span class="panel-badge">Sample</span></div>
-      <div class="panel-body" style="padding:0">
-        <table class="port-table" id="portfolioBody">
-          <tr><th>Asset</th><th>Type</th><th>NOI</th><th>Cap</th><th>DSCR</th></tr>
-          <tr><td>Palms Doral</td><td>MF</td><td>$3.8M</td><td>6.2%</td><td>1.45x</td></tr>
-          <tr><td>Coral Springs</td><td>Off</td><td>$2.1M</td><td>7.1%</td><td>1.32x</td></tr>
-          <tr><td>Tampa Indust.</td><td>Ind</td><td>$4.2M</td><td>5.8%</td><td>1.62x</td></tr>
-          <tr><td>Orlando Mixed</td><td>Mix</td><td>$6.1M</td><td>5.5%</td><td>1.51x</td></tr>
-          <tr><td>Ft Laud Retail</td><td>Ret</td><td>$2.8M</td><td>6.8%</td><td>1.28x</td></tr>
-        </table>
-      </div>
-    </div>
+<!-- WHY IT MATTERS -->
+<section class="reveal">
+<div class="container">
+  <div class="section-label">Why It Matters</div>
+  <div class="section-title">The data layer institutional<br>investors have been missing</div>
+  <div class="section-desc">Most CRE platforms give you listings. We give you intelligence — regulatory filings, environmental risk, tenant distress signals, capital migration patterns, and real-time market pulse from 13 government and commercial APIs.</div>
+  <div class="pipeline">
+    <div class="pipe-card"><div class="pipe-num">01</div><div class="pipe-icon">📡</div><div class="pipe-title">Ingest</div><div class="pipe-desc">Free sources across FRED, BLS, Census, FEMA, NWS, USGS, FCC, FDIC, EPA, GDELT and more — government &amp; market APIs, queried live per address.</div></div>
+    <div class="pipe-card"><div class="pipe-num">02</div><div class="pipe-icon">⚡</div><div class="pipe-title">Normalize</div><div class="pipe-desc">Every source response normalized, de-duplicated, and standardized — cross-referenced against primary and against-interest sources.</div></div>
+    <div class="pipe-card"><div class="pipe-num">03</div><div class="pipe-icon">🔬</div><div class="pipe-title">Analyze</div><div class="pipe-desc">Cap rates, DSCR, IRR, environmental risk, tenant distress, migration patterns — all computed and surfaced in the terminal.</div></div>
+    <div class="pipe-card"><div class="pipe-num">04</div><div class="pipe-icon">📊</div><div class="pipe-title">Visualize</div><div class="pipe-desc">Bloomberg-grade terminal interface with live tickers, interactive charts, deal comps, and geospatial overlays.</div></div>
+    <div class="pipe-card"><div class="pipe-num">05</div><div class="pipe-icon">🎯</div><div class="pipe-title">Decide</div><div class="pipe-desc">Surface the 3 metrics that matter for each deal. Capital stack, risk-adjusted returns, and exit timing — data, not gut.</div></div>
+    <div class="pipe-card"><div class="pipe-num">06</div><div class="pipe-icon">🔄</div><div class="pipe-title">Monitor</div><div class="pipe-desc">Continuous surveillance on portfolio assets: rate shifts, tenant credit events, regulatory changes, environmental alerts.</div></div>
   </div>
+</div>
+</section>
 
-  <!-- Column 2: Market Rates + Financing -->
-  <div style="display:flex;flex-direction:column;gap:16px">
-    <div class="panel">
-      <!-- Badge changed from "FRED + BLS" to "Sample" (audit Phase 1 task 1.2): page does not actually fetch from FRED/BLS yet -->
-      <div class="panel-header"><span class="panel-title">Rate Environment</span><span class="panel-badge">Sample</span></div>
-      <div class="panel-body" id="ratePanel">
-        <div class="rate-row"><span class="rate-name">10Y Treasury</span><div class="rate-bar"><span style="width:65%"></span></div><span class="rate-val" id="r1">—</span></div>
-        <div class="rate-row"><span class="rate-name">SOFR</span><div class="rate-bar"><span style="width:60%"></span></div><span class="rate-val" id="r2">—</span></div>
-        <div class="rate-row"><span class="rate-name">30Y Mortgage</span><div class="rate-bar"><span style="width:90%"></span></div><span class="rate-val" id="r3">—</span></div>
-        <div class="rate-row"><span class="rate-name">Fed Funds</span><div class="rate-bar"><span style="width:60%"></span></div><span class="rate-val" id="r4">—</span></div>
-        <div class="rate-row"><span class="rate-name">CPI (YoY)</span><div class="rate-bar"><span style="width:32%"></span></div><span class="rate-val" id="rCPI">—</span></div>
-        <div class="rate-row"><span class="rate-name">Unemployment</span><div class="rate-bar"><span style="width:58%"></span></div><span class="rate-val" id="rUnemp">—</span></div>
-      </div>
-    </div>
-    <div class="panel">
-      <!-- Badge clarifies hardcoded sample data (audit Phase 1 task 1.2) -->
-      <div class="panel-header"><span class="panel-title">Financing Landscape</span><span class="panel-badge">Sample · 6 Products</span></div>
-      <div class="panel-body" style="padding:0">
-        <table class="port-table">
-          <tr><th>Product</th><th>Rate</th><th>LTV</th><th>Term</th></tr>
-          <tr><td>Fannie DUS</td><td>5.45%</td><td>75%</td><td>10yr</td></tr>
-          <tr><td>Freddie Optigo</td><td>5.52%</td><td>75%</td><td>10yr</td></tr>
-          <tr><td>CMBS Conduit</td><td>5.80%</td><td>65%</td><td>10yr</td></tr>
-          <tr><td>Life Co Fixed</td><td>5.25%</td><td>60%</td><td>15yr</td></tr>
-          <tr><td>Bridge Float</td><td>S+350</td><td>80%</td><td>3+1+1</td></tr>
-          <tr><td>HUD 223(f)</td><td>4.95%</td><td>83%</td><td>35yr</td></tr>
-        </table>
-      </div>
-    </div>
-    <div class="panel">
-      <div class="panel-header"><span class="panel-title">Market Assets</span><span class="panel-badge">Live</span></div>
-      <div class="panel-body" id="marketAssets"></div>
-    </div>
+<!-- DATA SOURCES BENTO -->
+<section class="reveal">
+<div class="container">
+  <div class="section-label">Data Coverage</div>
+  <div class="section-title">14 categories. 630 free APIs.<br>Every signal that moves a deal.</div>
+  <div class="bento" id="bentoGrid"></div>
+</div>
+</section>
+
+<!-- LIVE MARKET DATA -->
+<section class="reveal">
+<div class="container">
+  <div class="section-label">Live Market Pulse</div>
+  <div class="section-title">Real-time rates & indicators</div>
+  <div class="section-desc">Pulled from FRED, BLS, Finnhub, CoinGecko, and OpenWeather APIs. Updated continuously.</div>
+  <div class="market-grid" id="marketGrid"></div>
+</div>
+</section>
+
+<!-- FEATURED DEAL — audit Phase 1 task 1.4: Sample · Underwriting badge + JSON binding -->
+<section class="reveal">
+<div class="container">
+  <div class="section-label">Featured Analysis</div>
+  <div class="section-title" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+    <span>Deal Intelligence Preview</span>
+    <span class="panel-badge" id="dealBadge" style="font-size:11px;padding:4px 10px;border-radius:12px;background:rgba(212,175,55,.12);color:var(--gold,#d4af37);font-weight:500">Sample · Underwriting</span>
   </div>
-
-  <!-- Column 3: Sidebar — Activity, Sources, Quick Actions -->
-  <div style="display:flex;flex-direction:column;gap:12px">
-    <div class="panel">
-      <div class="panel-header"><span class="panel-title">Quick Actions</span></div>
-      <div class="panel-body">
-        <div class="quick-grid">
-          <a href="/terminal" class="quick-btn"><div class="qi">📊</div><div class="ql">Open Terminal</div></a>
-          <a href="/site" class="quick-btn"><div class="qi">🌐</div><div class="ql">Company Site</div></a>
-          <a href="/explore" class="quick-btn"><div class="qi">🔍</div><div class="ql">Explore Data</div></a>
-          <a href="/terminal" class="quick-btn"><div class="qi">📈</div><div class="ql">Deal Comps</div></a>
+  <div class="deal-section">
+    <div class="deal-grid">
+      <div>
+        <div class="deal-gallery" id="dealGallery">
+          <img src="/images/om_p1_img1.jpeg" alt="Property exterior" loading="lazy">
+          <img src="/images/om_p5_img1.jpeg" alt="Interior" loading="lazy">
+          <img src="/images/om_p7_img1.jpeg" alt="Amenities" loading="lazy">
+          <img src="/images/om_p9_img1.jpeg" alt="Site plan" loading="lazy">
         </div>
       </div>
-    </div>
-    <div class="panel">
-      <div class="panel-header"><span class="panel-title">Activity Feed</span><span class="panel-badge">Live</span></div>
-      <div class="panel-body" id="activityFeed"><div class="activity-item"><div class="act-text" style="color:var(--muted)">Loading…</div></div></div>
-    </div>
-    <div class="panel">
-      <div class="panel-header"><span class="panel-title">Source Health</span><span class="panel-badge" id="srcCount">13 APIs</span></div>
-      <div class="panel-body" id="sourceHealth"><div class="src-row"><span class="src-name" style="color:var(--muted)">Checking endpoints…</span></div></div>
+      <div>
+        <div class="section-label" id="dealSummary">Multifamily — South Florida</div>
+        <h3 id="dealName" style="font-size:24px;font-weight:700;margin:8px 0 16px;color:var(--text)">The Palms at Doral</h3>
+        <p id="dealDescription" style="font-size:13px;color:var(--muted);font-weight:300;line-height:1.6;margin-bottom:24px">240-unit Class B+ multifamily asset in Doral, FL. Value-add opportunity with 92% occupancy, below-market rents, and $4.2M renovation budget identified. FEMA Zone X — minimal flood risk.</p>
+        <div class="deal-metrics" id="dealMetrics">
+          <div class="dm"><div class="dm-val">—</div><div class="dm-label">Cap Rate</div></div>
+          <div class="dm"><div class="dm-val">—</div><div class="dm-label">NOI</div></div>
+          <div class="dm"><div class="dm-val">—</div><div class="dm-label">IRR (5yr)</div></div>
+          <div class="dm"><div class="dm-val">—</div><div class="dm-label">DSCR</div></div>
+          <div class="dm"><div class="dm-val">—</div><div class="dm-label">Valuation</div></div>
+          <div class="dm"><div class="dm-val">—</div><div class="dm-label">Occupancy</div></div>
+        </div>
+        <a href="/terminal" class="btn btn-gold" style="margin-top:24px">Full Analysis →</a>
+      </div>
     </div>
   </div>
 </div>
-<div id="viz-counters"></div>
-<div id="viz-kpis"></div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px"><div id="viz-donut"></div><div id="viz-ranked"></div></div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px"><div id="viz-stacked"></div><div id="viz-polar"></div></div>
-<div id="viz-rates"></div>
-</div>
-
-<script src="/rp-shell.js"></script>
 <script>
-const $ = id => document.getElementById(id);
+// Bind Featured Deal to /data/featured_deal.json (audit Phase 1 task 1.4)
+(function () {
+  fetch('/data/featured_deal.json').then(function (r) { return r.json(); }).then(function (d) {
+    if (!d) return;
+    var setText = function (id, v) { var el = document.getElementById(id); if (el && v != null) el.textContent = v; };
+    setText('dealName', d.name);
+    setText('dealSummary', d.summary);
+    if (Array.isArray(d.metrics)) {
+      var grid = document.getElementById('dealMetrics');
+      if (grid) {
+        // DOM construction (no innerHTML with user-influenced strings — XSS-safe, audit Phase 2 task 2.9)
+        grid.textContent = '';
+        d.metrics.forEach(function (m) {
+          var dm = document.createElement('div'); dm.className = 'dm';
+          var val = document.createElement('div'); val.className = 'dm-val'; val.textContent = m.value || '—';
+          var lab = document.createElement('div'); lab.className = 'dm-label'; lab.textContent = m.label || '';
+          dm.appendChild(val); dm.appendChild(lab); grid.appendChild(dm);
+        });
+      }
+    }
+  }).catch(function () { /* graceful: leave em-dashes */ });
+})();
+</script>
+</section>
 
-/* CLOCK */
-function updateTime() {
-  $('dashTime').textContent = new Date().toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' }) + ' EST';
+<!-- CATEGORIES COVERAGE -->
+<section class="reveal">
+<div class="container">
+  <div class="section-label">Coverage Map</div>
+  <div class="section-title">Every category. Every signal.</div>
+  <div class="section-desc">14 data categories spanning government filings, market indicators, environmental risk, demographic shifts, and capital flows.</div>
+  <div class="cat-grid" id="catGrid"></div>
+</div>
+</section>
+
+<!-- PARTNERS / SOURCES -->
+<section class="reveal" style="overflow:hidden">
+<div class="container">
+  <div class="section-label">Powered By</div>
+  <div class="section-title">Trusted data sources</div>
+</div>
+<div style="margin-top:32px;overflow:hidden;position:relative">
+  <div style="display:flex;animation:marquee 50s linear infinite;white-space:nowrap" id="sourceMarquee"></div>
+</div>
+<style>@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}</style>
+</section>
+
+<!-- WHO WE SERVE / PORTALS (real, reprime.com) -->
+<section class="reveal"><div class="container"><div id="rp-portals"></div></div></section>
+
+<!-- WHAT WE DO (real services) -->
+<section class="reveal"><div class="container"><div id="rp-services"></div></div></section>
+
+<!-- FIVE WAYS TO CLOSE (real) -->
+<section class="reveal"><div class="container"><div id="rp-close"></div></div></section>
+
+<!-- PARTNERS & LENDER NETWORK (real) -->
+<section class="reveal"><div class="container"><div id="rp-partners"></div></div></section>
+
+<!-- TESTIMONIALS (real) -->
+<section class="reveal"><div class="container"><div id="rp-testimonials"></div></div></section>
+
+<!-- TEAM (real RePrime Group leadership) -->
+<section class="reveal"><div class="container"><div id="rp-team"></div></div></section>
+
+<!-- FAQ (real) -->
+<section class="reveal"><div class="container"><div id="rp-faq"></div></div></section>
+
+<!-- CONTACT (real) -->
+<section class="reveal"><div class="container"><div id="rp-contact"></div></div></section>
+
+<!-- LIVE DATA (viz.js) -->
+<section><div class="container">
+  <div id="viz-counters"></div>
+  <div id="viz-kpis"></div>
+  <div id="viz-globe"></div>
+  <div id="viz-heatmap"></div>
+  <div id="viz-catbubble"></div>
+</div></section>
+
+<!-- CTA -->
+<section class="reveal">
+<div class="container">
+  <div class="cta-banner">
+    <h2>Ready to see the full picture?</h2>
+    <p>Access 630 free data sources, 20 live search layers, and Bloomberg-grade deal intelligence.</p>
+    <a href="/terminal" class="btn btn-gold">Launch Terminal →</a>
+  </div>
+</div>
+</section>
+
+<script>
+/* Chrome (nav, ticker, footer, theme, background, glow, particles) is provided
+   by /rp-shell.js. Page-specific behavior (reveal, counters, live fetches) below. */
+
+/* ═══ SCROLL REVEAL ═══ */
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ═══ COUNTER ANIMATION ═══ */
+const counterObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){
+  const el=e.target,target=+el.dataset.target;
+  let current=0;const inc=target/60;
+  const timer=setInterval(()=>{current+=inc;if(current>=target){el.textContent=target.toLocaleString();clearInterval(timer)}else{el.textContent=Math.floor(current).toLocaleString()}},20);
+  counterObs.unobserve(el);
+}})},{threshold:.5});
+document.querySelectorAll('.counter').forEach(el=>counterObs.observe(el));
+
+/* ═══ HERO MINI CHARTS (decorative) ═══ */
+function miniChart(id, count) {
+  const el = document.getElementById(id); if (!el) return;
+  for (let i = 0; i < count; i++) { const s = document.createElement('span'); const h = Math.random() * 30 + 10; s.style.setProperty('--h', h + 'px'); s.style.animationDelay = (i * .05) + 's'; el.appendChild(s); }
 }
-updateTime(); setInterval(updateTime, 1000);
+miniChart('heroChart1', 12); miniChart('heroChart2', 12); miniChart('heroChart3', 12);
 
-/* KPIs + RATE PANEL — live /api/live/ticker */
-fetch('/api/live/ticker').then(r => r.json()).then(d => {
-  const set = (id, v) => { const e = $(id); if (e && v) e.textContent = v; };
-  if (d.treasury_10y) { set('k1', d.treasury_10y.value); set('r1', d.treasury_10y.value); }
-  if (d.sofr) { set('k2', d.sofr.value); set('r2', d.sofr.value); }
-  if (d.mortgage_30y) { set('k3', d.mortgage_30y.value); set('r3', d.mortgage_30y.value); }
-  if (d.fed_funds) { set('k4', d.fed_funds.value); set('r4', d.fed_funds.value); }
-  if (d.unemployment) set('rUnemp', d.unemployment.value);
-}).catch(() => {});
-
-/* Bitcoin KPI + market assets — live /api/live/market */
-fetch('/api/live/market').then(r => r.json()).then(d => {
-  const cr = d.crypto || {}, fr = d.fred || {}, boi = d.boi || {};
-  if (cr.bitcoin && cr.bitcoin.price) {
-    const n = parseFloat(String(cr.bitcoin.price).replace(/[$,]/g, ''));
-    if (n) $('k5').textContent = '$' + Math.round(n / 1000) + 'K';
-  }
-  const el = $('marketAssets'); if (!el) return;
-  const rows = [];
-  if (cr.bitcoin) rows.push(['Bitcoin', cr.bitcoin.price, 'CoinGecko']);
-  if (cr.ethereum) rows.push(['Ethereum', cr.ethereum.price, 'CoinGecko']);
-  if (boi.rate) rows.push(['USD/ILS', Number(boi.rate).toFixed(3), 'Bank of Israel']);
-  if (fr.fed_funds) rows.push(['Fed Funds', fr.fed_funds.value, 'FRED']);
-  el.innerHTML = rows.map(([n, v, s]) =>
-    `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)"><span style="font-size:12px;color:var(--text2)">${n}</span><span style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--text)">${v} <span style="font-size:10px;color:var(--dim)">${s}</span></span></div>`).join('');
-}).catch(() => {});
-
-/* DATA SOURCES KPI — real registry count */
+/* ═══ REAL COUNTERS from /api/stats ═══ */
 fetch('/api/stats').then(r => r.json()).then(d => {
-  if ($('kSources') && d.cataloged_sources) $('kSources').textContent = d.cataloged_sources;
+  const set = (id, v) => { const el = document.getElementById(id); if (el && v != null) el.dataset.target = v; };
+  set('cCatalog', d.cataloged_sources);
+  set('cLayers', d.live_search_layers);
+  set('cCats', d.category_count);
 }).catch(() => {});
 
-/* PIPELINE + PORTFOLIO — labeled sample from /data/portfolio.json */
-fetch('/data/portfolio.json').then(r => r.json()).then(p => {
-  const col = c => 'var(--' + (c || 'gold') + ')';
-  if ($('pipelineBody')) $('pipelineBody').innerHTML = p.deals.map(d =>
-    `<div class="pipeline-stage"><div class="ps-dot" style="background:${col(d.color)}"></div><div class="ps-info"><div class="ps-name">${d.name}</div><div class="ps-meta">${d.meta}</div></div><div class="ps-val">${d.value}</div></div>`).join('');
-  if ($('portfolioBody')) $('portfolioBody').innerHTML =
-    '<tr><th>Asset</th><th>Type</th><th>NOI</th><th>Cap</th><th>DSCR</th></tr>' +
-    p.deals.map(d => `<tr><td>${d.name.replace('The ', '')}</td><td>${d.type}</td><td>${d.noi}</td><td>${d.cap}</td><td>${d.dscr}</td></tr>`).join('');
-  if ($('pipelineBadge')) { $('pipelineBadge').textContent = 'Sample · ' + p.total; $('pipelineBadge').title = p._label; }
+/* ═══ LIVE TICKER (real /api/live/ticker dict) ═══ */
+fetch('/api/live/ticker').then(r => r.json()).then(d => {
+  const track = document.getElementById('tickerTrack'); if (!track) return;
+  const labels = { treasury_10y: '10Y Treasury', mortgage_30y: '30Y Mortgage', fed_funds: 'Fed Funds', unemployment: 'Unemployment', sofr: 'SOFR', bitcoin: 'Bitcoin', ethereum: 'Ethereum' };
+  const items = Object.entries(d).filter(([k, v]) => v && v.value).map(([k, v]) => ({ l: labels[k] || k, val: v.value, s: v.source || '' }));
+  let html = ''; for (let r = 0; r < 2; r++) { items.forEach(i => { html += `<div class="ti"><span class="pulse"></span>${i.l} <strong>${i.val}</strong> <span class="src">${i.s}</span></div>`; }); }
+  track.innerHTML = html;
+  const ht = document.getElementById('heroTreas'); if (ht && d.treasury_10y) ht.textContent = d.treasury_10y.value;
+  const hs = document.getElementById('heroSofr'); if (hs) hs.textContent = (d.sofr && d.sofr.value) || (d.fed_funds && d.fed_funds.value) || '—';
 }).catch(() => {});
 
-/* ACTIVITY — real: search history + registry freshness */
-(async () => {
-  const ago = ts => { const s = (Date.now() - new Date(ts).getTime()) / 1000; if (isNaN(s)) return ''; if (s < 3600) return Math.round(s / 60) + ' min ago'; if (s < 86400) return Math.round(s / 3600) + ' hr ago'; return Math.round(s / 86400) + ' d ago'; };
-  const ev = [];
-  let hist = []; try { hist = JSON.parse(localStorage.getItem('reprime:history') || '[]'); } catch (e) {}
-  hist.slice(0, 5).forEach(a => ev.push(['🔍', '<strong>Search</strong> — ' + a, '']));
-  try {
-    const st = await (await fetch('/api/stats')).json();
-    ev.push(['🗃️', `<strong>Registry</strong> — ${st.cataloged_sources} free APIs, ${st.category_count} categories`, ago(st.last_updated)]);
-    ev.push(['⚡', `<strong>Engine</strong> — ${st.live_search_layers} live layers per address`, '']);
-  } catch (e) {}
-  if (!hist.length) ev.push(['ℹ️', 'No searches yet — run one on <strong>Explore</strong>', '']);
-  const el = $('activityFeed');
-  if (el) el.innerHTML = ev.map(([i, t, ts]) =>
-    `<div class="activity-item"><div class="act-icon">${i}</div><div class="act-content"><div class="act-text">${t}</div>${ts ? `<div class="act-time">${ts}</div>` : ''}</div></div>`).join('');
-})();
+/* ═══ LIVE MARKET GRID (real /api/live/market) ═══ */
+fetch('/api/live/market').then(r => r.json()).then(d => {
+  const g = document.getElementById('marketGrid'); if (!g) return;
+  const fr = d.fred || {}, cr = d.crypto || {}, boi = d.boi || {};
+  const cards = [];
+  const add = (l, v, s) => { if (v != null && v !== undefined) cards.push({ l, v, s }); };
+  add('10Y Treasury', fr.treasury_10y && fr.treasury_10y.value, 'FRED · DGS10');
+  add('30Y Mortgage', fr.mortgage_30y && fr.mortgage_30y.value, 'FRED · MORTGAGE30US');
+  add('Fed Funds', fr.fed_funds && fr.fed_funds.value, 'FRED · FEDFUNDS');
+  add('Bitcoin', cr.bitcoin && cr.bitcoin.price, 'CoinGecko');
+  add('Ethereum', cr.ethereum && cr.ethereum.price, 'CoinGecko');
+  if (boi.rate) add('USD/ILS', Number(boi.rate).toFixed(3), 'Bank of Israel');
+  g.innerHTML = cards.map(c =>
+    `<div class="market-card"><div class="mc-header"><span class="mc-label">${c.l}</span><span class="mc-live"><span class="dot"></span>LIVE</span></div><div class="mc-value">${c.v}</div><div class="mc-change up">${c.s}</div></div>`).join('');
+}).catch(() => {});
 
-/* SOURCE HEALTH — real: ping endpoints, measure latency */
-(async () => {
-  const el = $('sourceHealth'); if (!el) return;
-  const eps = [['FRED rates', '/api/live/ticker'], ['Source registry', '/api/sources'], ['Platform stats', '/api/stats'],
-    ['Market cache', '/api/live/market'], ['Health', '/api/health'], ['Live search', '/api/search?address=1600+Pennsylvania+Ave+NW,+Washington,+DC']];
-  el.innerHTML = eps.map(([n], i) => `<div class="src-row" id="sh${i}"><span class="src-dot"></span><span class="src-name">${n}</span><span class="src-status" style="color:var(--muted)">checking…</span><span class="src-latency"></span></div>`).join('');
-  let ok = 0;
-  await Promise.all(eps.map(async ([n, u], i) => {
-    const t0 = performance.now();
-    let cls = 'src-dot', stat = '● n/a', col = 'var(--red)', lat = '';
-    try {
-      const r = await fetch(u, { cache: 'no-store' });
-      const ms = Math.round(performance.now() - t0); lat = ms < 1000 ? ms + 'ms' : (ms / 1000).toFixed(1) + 's';
-      if (r.ok) { ok++; cls = 'src-dot ' + (ms < 600 ? 'ok' : 'warn'); col = ms < 600 ? 'var(--green)' : 'var(--gold)'; stat = ms < 600 ? '● OK' : '● Slow'; }
-      else { cls = 'src-dot'; stat = '● ' + r.status; }
-    } catch (e) { stat = '● down'; }
-    const row = $('sh' + i); if (row) { row.querySelector('.src-dot').className = cls; const s = row.querySelector('.src-status'); s.textContent = stat; s.style.color = col; row.querySelector('.src-latency').textContent = lat; }
-  }));
-  if ($('srcCount')) $('srcCount').textContent = `${ok}/${eps.length} OK`;
-})();
+/* ═══ BENTO + CATEGORY GRID + MARQUEE (real /api/stats + /api/sources) ═══ */
+const CAT_META = {
+  economic: ['📈', 'Economic Indicators'], demographic: ['👥', 'Demographics & Migration'],
+  housing_re: ['🏢', 'Housing & Real Estate'], hazard_environmental: ['🌊', 'Hazard & Environmental'],
+  infrastructure: ['🛰️', 'Infrastructure'], capital_markets: ['💰', 'Capital Markets'],
+  other: ['🗂️', 'Other'], insurance_climate: ['🌀', 'Insurance & Climate'],
+  zoning_parcel: ['⚖️', 'Zoning & Parcel'], news_sentiment: ['📰', 'News & Sentiment'],
+  israeli: ['🌍', 'Israeli Capital'], construction_pipeline: ['🏗️', 'Construction Pipeline'],
+  macro_indicator: ['📊', 'Macro Indicators'], energy: ['⚡', 'Energy'],
+};
+fetch('/api/stats').then(r => r.json()).then(d => {
+  const entries = Object.entries(d.by_category || {}).sort((a, b) => b[1] - a[1]);
+  const max = Math.max(...entries.map(e => e[1]), 1);
+
+  // bento — top 8 categories
+  const bentoEl = document.getElementById('bentoGrid');
+  if (bentoEl) {
+    bentoEl.innerHTML = entries.slice(0, 8).map(([cat, n], i) => {
+      const [icon, name] = CAT_META[cat] || ['🗂️', cat];
+      const span = (i === 0 || i === 4) ? 'span2' : '';
+      return `<div class="bento-card ${span}"><div><div class="bc-icon">${icon}</div><div class="bc-title">${name}</div><div class="bc-desc">${n} free API sources cataloged</div></div><div><div class="bc-count">${n}</div><div class="bc-bar"><span style="--w:${Math.round(n / max * 100)}%"></span></div></div></div>`;
+    }).join('');
+  }
+
+  // category grid — all 14
+  const catEl = document.getElementById('catGrid');
+  if (catEl) {
+    catEl.innerHTML = entries.map(([cat, n]) => {
+      const [icon, name] = CAT_META[cat] || ['🗂️', cat];
+      const pct = Math.round(n / max * 100);
+      return `<div class="cat-item"><div class="cat-icon">${icon}</div><div class="cat-info"><div class="cat-name">${name}</div><div class="cat-bar-wrap"><div class="cat-bar-fill" data-width="${pct}%"></div></div></div><div class="cat-count">${n}</div></div>`;
+    }).join('');
+    const barObs = new IntersectionObserver((es) => { es.forEach(e => { if (e.isIntersecting) { e.target.querySelectorAll('.cat-bar-fill').forEach(b => b.style.width = b.dataset.width); barObs.unobserve(e.target); } }); }, { threshold: .2 });
+    barObs.observe(catEl);
+  }
+}).catch(() => {});
+
+/* source marquee — real providers from the registry */
+fetch('/api/sources').then(r => r.json()).then(d => {
+  const mq = document.getElementById('sourceMarquee'); if (!mq) return;
+  const provs = [...new Set((d.sources || []).map(s => s.provider).filter(p => p && p.length > 1 && p.length < 40))];
+  const names = provs.length >= 12 ? provs.slice(0, 30) : ['FRED', 'BLS', 'Census Bureau', 'FEMA', 'USGS', 'NWS', 'FCC', 'FDIC', 'EPA', 'HUD', 'EIA', 'CDC', 'USDA', 'Federal Register', 'CoinGecko', 'ECB', 'Bank of Israel', 'GDELT'];
+  let html = ''; for (let r = 0; r < 3; r++) { names.forEach(s => { html += `<span style="display:inline-block;padding:8px 28px;margin:0 8px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:12px;font-weight:500;color:var(--muted);white-space:nowrap">${s}</span>`; }); }
+  mq.innerHTML = html;
+}).catch(() => {});
 
 </script>
+<script src="/rp-shell.js"></script>
+<script src="/rp-3d-curved-text.js"></script>
 <script src="/viz.js"></script>
+<script src="/globe.js"></script>
+<script src="/reprime.js"></script>
 <script src="/sb.js"></script>
 <script src="/panels.js"></script>
 </body>

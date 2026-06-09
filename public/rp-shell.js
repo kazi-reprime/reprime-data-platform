@@ -8,23 +8,22 @@
 (function () {
   'use strict';
 
-  /* ─── Canonical nav links (mirror of site.html) ─── */
+  /* ─── Canonical nav links — 4-tab consolidated architecture ─── */
   var LINKS = [
-    { href: '/site',     label: 'Platform' },
-    { href: '/',         label: 'Dashboard' },
-    { href: '/terminal', label: '⚡ Terminal', highlight: true },
-    { href: '/explore',  label: 'Explore' },
-    { href: '/data',     label: 'Data' },
-    { href: '/sources',  label: 'Sources' },
-    { href: '/wall',     label: 'Wall' }
+    { href: '/',         label: 'HOME' },
+    { href: '/terminal', label: '⚡ TERMINAL', highlight: true },
+    { href: '/explore',  label: 'EXPLORE' },
+    { href: '/dashboard', label: 'DASHBOARD' }
   ];
 
   /* Normalize current path → canonical href for active-state matching */
   function currentHref() {
     var p = location.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
     if (p === '' ) p = '/';
-    if (p === '/dashboard') p = '/';          // dashboard.html highlights "Dashboard"
-    if (p === '/data-coverage') p = '/data';  // safety if served as file
+    /* Map legacy pages to consolidated tabs */
+    if (p === '/site' || p === '/about' || p === '/team' || p === '/partners' || p === '/faq' || p === '/help') p = '/';
+    if (p === '/sources' || p === '/data-coverage' || p === '/data') p = '/explore';
+    if (p === '/wall') p = '/dashboard';
     return p;
   }
 
@@ -66,8 +65,8 @@
         '<h4 style="display:flex;align-items:center;gap:8px"><span class="logo-mark" style="width:24px;height:24px;font-size:10px;border-radius:6px;background:var(--grad-gold);color:#000;display:inline-flex;align-items:center;justify-content:center;font-weight:800">RP</span> RePrime Group</h4>' +
         '<p style="max-width:300px;line-height:1.6;margin-top:8px">Institutional Capital. Immediate Execution. Commercial real estate across all asset classes — 800+ transactions, 21M+ sq ft nationwide.</p>' +
       '</div>' +
-      '<div><h4>Company</h4>' +
-        '<a href="/about">About</a><a href="/team">Team</a><a href="/partners">Partners</a><a href="/faq">FAQ</a><a href="/help">Help</a>' +
+      '<div><h4>Platform</h4>' +
+        '<a href="/">Home</a><a href="/terminal">Terminal</a><a href="/explore">Explore</a><a href="/dashboard">Dashboard</a>' +
       '</div>' +
       '<div><h4>Portals</h4>' +
         '<a href="https://info.reprimeterminal.com/" target="_blank" rel="noopener">For Investors</a>' +
