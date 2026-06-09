@@ -150,6 +150,92 @@ html,body{height:100%;background:#04070d;color:#e9eef6;font-family:'JetBrains Mo
 #sitenav a.hero:hover{box-shadow:0 0 24px rgba(188,156,69,.6);transform:translateY(-1px)}
 #sitenav .sep{width:1px;height:18px;background:rgba(255,255,255,.08);margin:0 2px}
 
+
+
+/* ═══ THEME SYSTEM ═══ */
+/* Dark is the default (already set in :root above) */
+
+[data-theme="light"] {
+  --gold:#9A7D2E;--gold2:#B8942F;--navy:#0E3470;--cyan:#1D5FB8;--teal:#007A6A;--violet:#6B5CA5;
+  --steel:#3D5478;--green:#00896A;--amber:#D49520;--ink:#FAFBFD;--panel:rgba(14,52,112,.06);
+  --line:rgba(14,52,112,.12);--line2:rgba(14,52,112,.06);--dim:#5a6f8c;
+}
+[data-theme="light"] body,
+[data-theme="light"] html { background:#FAFBFD !important; color:#0E3470 !important; }
+[data-theme="light"] #deck { background:radial-gradient(120% 130% at 50% 40%,#f0f4fa 0%,#e8edf5 50%,#FAFBFD 100%) !important; }
+[data-theme="light"] #topbar { background:rgba(250,251,253,.92) !important; border-bottom-color:rgba(14,52,112,.1) !important; }
+[data-theme="light"] .brand .wm, [data-theme="light"] .brand .bh { color:#0E3470 !important; }
+[data-theme="light"] .brand .wm small { color:#9A7D2E !important; }
+[data-theme="light"] #crawl .row { color:#3D5478 !important; }
+[data-theme="light"] #crawl .row b { color:#9A7D2E !important; }
+[data-theme="light"] .deal { background:rgba(14,52,112,.04) !important; border-color:rgba(14,52,112,.12) !important; color:#0E3470 !important; }
+[data-theme="light"] .deal:hover { border-color:#9A7D2E !important; }
+[data-theme="light"] .deal h3 { color:#0E3470 !important; }
+[data-theme="light"] .deal .sub { color:#5a6f8c !important; }
+[data-theme="light"] .deal .meta span { color:#3D5478 !important; }
+[data-theme="light"] #left h2, [data-theme="light"] #right h2, [data-theme="light"] .srcH h2 { color:#0E3470 !important; }
+[data-theme="light"] #bottom { background:rgba(250,251,253,.92) !important; border-top-color:rgba(14,52,112,.1) !important; }
+[data-theme="light"] .kpi .v { color:#0E3470 !important; }
+[data-theme="light"] .kpi .l { color:#5a6f8c !important; }
+[data-theme="light"] #sitenav { background:rgba(250,251,253,.95) !important; border-bottom-color:rgba(14,52,112,.1) !important; }
+[data-theme="light"] #sitenav a { color:#5a6f8c !important; }
+[data-theme="light"] #sitenav a:hover { color:#0E3470 !important; }
+[data-theme="light"] #sitenav a.active { color:#0E3470 !important; }
+[data-theme="light"] .feed-line { color:#3D5478 !important; }
+[data-theme="light"] .srcG .cell { background:rgba(14,52,112,.08) !important; }
+[data-theme="light"] .grain:after { opacity:.01 !important; }
+[data-theme="light"] .vig:before { background:radial-gradient(130% 120% at 50% 42%, transparent 52%, rgba(250,251,253,.3) 100%) !important; }
+[data-theme="light"] .sysLive { color:#0E3470 !important; }
+
+[data-theme="midnight"] {
+  --gold:#5FA8FF;--gold2:#7DBEFF;--navy:#0A1A3A;--cyan:#5FA8FF;--teal:#46d4c4;--violet:#9b8cff;
+  --steel:#8fa4c0;--green:#6fe0a0;--amber:#FFBC7D;--ink:#060B1A;--panel:rgba(29,95,184,.12);
+  --line:rgba(0,161,255,.15);--line2:rgba(0,161,255,.06);--dim:#5570A0;
+}
+[data-theme="midnight"] body,
+[data-theme="midnight"] html { background:#060B1A !important; }
+[data-theme="midnight"] #deck { background:radial-gradient(120% 130% at 50% 40%,#0B1228 0%,#08102A 50%,#060B1A 100%) !important; }
+[data-theme="midnight"] #topbar { background:rgba(6,11,26,.85) !important; }
+[data-theme="midnight"] .mono { border-color:#5FA8FF !important; color:#5FA8FF !important; box-shadow:0 0 18px rgba(95,168,255,.25),inset 0 0 10px rgba(95,168,255,.12) !important; }
+[data-theme="midnight"] .brand .bh { color:#5FA8FF !important; }
+[data-theme="midnight"] .brand .wm small { color:#5FA8FF !important; }
+[data-theme="midnight"] .deal:hover { border-color:#5FA8FF !important; }
+[data-theme="midnight"] #bottom { background:rgba(6,11,26,.85) !important; }
+[data-theme="midnight"] #sitenav a.active { color:#5FA8FF !important; }
+[data-theme="midnight"] .hero { background:linear-gradient(135deg,#5FA8FF,#3D88E0) !important; }
+[data-theme="midnight"] .srcG .cell { background:rgba(29,95,184,.2) !important; }
+
+[data-theme="gold"] {
+  --gold:#FFBC7D;--gold2:#FFD4A5;--navy:#1A1208;--cyan:#BC9C45;--teal:#8A7A30;--violet:#9b8cff;
+  --steel:#A89B78;--green:#C4A946;--amber:#FFBC7D;--ink:#0D0A05;--panel:rgba(188,156,69,.1);
+  --line:rgba(188,156,69,.2);--line2:rgba(188,156,69,.08);--dim:#7A7058;
+}
+[data-theme="gold"] body,
+[data-theme="gold"] html { background:#0D0A05 !important; color:#F5EDD8 !important; }
+[data-theme="gold"] #deck { background:radial-gradient(120% 130% at 50% 40%,#151009 0%,#100D06 50%,#0D0A05 100%) !important; }
+[data-theme="gold"] #topbar { background:rgba(13,10,5,.85) !important; border-bottom-color:rgba(188,156,69,.2) !important; }
+[data-theme="gold"] .mono { border-color:#FFBC7D !important; color:#FFBC7D !important; box-shadow:0 0 18px rgba(255,188,125,.3),inset 0 0 10px rgba(255,188,125,.15) !important; }
+[data-theme="gold"] .brand .bh { color:#FFBC7D !important; }
+[data-theme="gold"] .brand .wm small { color:#FFBC7D !important; }
+[data-theme="gold"] .deal { border-color:rgba(188,156,69,.18) !important; }
+[data-theme="gold"] .deal:hover { border-color:#FFBC7D !important; }
+[data-theme="gold"] .deal h3 { color:#F5EDD8 !important; }
+[data-theme="gold"] .deal .sub { color:#D4C9AA !important; }
+[data-theme="gold"] #bottom { background:rgba(13,10,5,.85) !important; border-top-color:rgba(188,156,69,.2) !important; }
+[data-theme="gold"] .kpi .v { color:#F5EDD8 !important; }
+[data-theme="gold"] .srcG .cell { background:rgba(188,156,69,.15) !important; }
+[data-theme="gold"] .hero { background:linear-gradient(135deg,#FFBC7D,#BC9C45) !important; color:#0D0A05 !important; }
+
+/* Theme toggle in nav */
+.theme-switch { display:flex; gap:3px; margin-left:auto; padding:2px; background:rgba(255,255,255,.04); border-radius:6px; }
+.theme-switch button { background:none; border:1px solid transparent; padding:4px 10px; border-radius:5px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:500; letter-spacing:.5px; color:var(--dim); transition:all .2s; text-transform:uppercase; }
+.theme-switch button:hover { color:var(--gold); border-color:rgba(188,156,69,.2); }
+.theme-switch button.active { color:var(--gold); background:rgba(188,156,69,.12); border-color:rgba(188,156,69,.3); }
+[data-theme="light"] .theme-switch { background:rgba(14,52,112,.04) !important; }
+[data-theme="light"] .theme-switch button { color:#5a6f8c !important; }
+[data-theme="light"] .theme-switch button:hover { color:#9A7D2E !important; }
+[data-theme="light"] .theme-switch button.active { color:#9A7D2E !important; background:rgba(14,52,112,.06) !important; border-color:rgba(14,52,112,.15) !important; }
+
 </style></head>
 <body class="grain vig">
 <div class="scrollwrap">
@@ -165,8 +251,7 @@ html,body{height:100%;background:#04070d;color:#e9eef6;font-family:'JetBrains Mo
   <a href="/explore">EXPLORE</a><div class="sep"></div>
   <a href="/sources">SOURCES</a><div class="sep"></div>
   <a href="/data">DATA</a><div class="sep"></div>
-  <a href="/wall">WALL</a>
-</nav>
+  <a href="/wall">WALL</a><div class="theme-switch" id="themeSwitch"><button data-t="dark">Dark</button><button data-t="light">Light</button><button data-t="midnight">Night</button><button data-t="gold">Gold</button></div></nav>
 
   <div id="topbar">
     <div class="brand"><div class="mono">R</div><div><div class="bh">בס״ד</div><div class="wm">REPRIME<small>TERMINAL</small></div></div></div>
@@ -530,4 +615,23 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(go);setTimeout
 })();
 </script>
 <script>setInterval(()=>{const d=new Date();document.getElementById('clk').textContent=d.toLocaleTimeString('en-US',{hour12:false})+' CT';},1000);</script>
+<script>
+// ─── THEME SYSTEM ───
+(function(){
+  var saved = localStorage.getItem('rp-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  var sw = document.getElementById('themeSwitch');
+  if(!sw) return;
+  var btns = sw.querySelectorAll('button');
+  btns.forEach(function(b){
+    b.classList.toggle('active', b.dataset.t === saved);
+    b.addEventListener('click', function(){
+      var t = b.dataset.t;
+      document.documentElement.setAttribute('data-theme', t);
+      localStorage.setItem('rp-theme', t);
+      btns.forEach(function(x){ x.classList.toggle('active', x.dataset.t === t); });
+    });
+  });
+})();
+</script>
 </body></html>
