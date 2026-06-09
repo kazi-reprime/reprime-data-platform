@@ -40,11 +40,18 @@
       ]
     }
   ],
+  "redirects": [
+    { "source": "/site", "destination": "/", "statusCode": 301 },
+    { "source": "/about", "destination": "/", "statusCode": 301 },
+    { "source": "/team", "destination": "/", "statusCode": 301 },
+    { "source": "/partners", "destination": "/", "statusCode": 301 },
+    { "source": "/faq", "destination": "/", "statusCode": 301 },
+    { "source": "/help", "destination": "/", "statusCode": 301 },
+    { "source": "/data", "destination": "/explore", "statusCode": 301 },
+    { "source": "/sources", "destination": "/explore", "statusCode": 301 },
+    { "source": "/wall", "destination": "/dashboard", "statusCode": 301 }
+  ],
   "rewrites": [
-    {
-      "source": "/site",
-      "destination": "/site.html"
-    },
     {
       "source": "/explore",
       "destination": "/explore.html"
@@ -56,38 +63,6 @@
     {
       "source": "/dashboard",
       "destination": "/dashboard.html"
-    },
-    {
-      "source": "/data",
-      "destination": "/data-coverage.html"
-    },
-    {
-      "source": "/wall",
-      "destination": "/wall.html"
-    },
-    {
-      "source": "/sources",
-      "destination": "/sources.html"
-    },
-    {
-      "source": "/about",
-      "destination": "/about.html"
-    },
-    {
-      "source": "/team",
-      "destination": "/team.html"
-    },
-    {
-      "source": "/partners",
-      "destination": "/partners.html"
-    },
-    {
-      "source": "/faq",
-      "destination": "/faq.html"
-    },
-    {
-      "source": "/help",
-      "destination": "/help.html"
     },
     {
       "source": "/api/live/:metric",
