@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-06-08T17:37:37.055485Z",
+    "cached_at": "2026-06-09T16:20:23.187247Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -162,6 +162,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "DoD Assistance to Non-Government, Entertainment-Oriented Media Productions",
+        "date": "2026-06-09",
+        "type": "Rule"
+      },
+      {
         "title": "Reforming the High-Cost Program for an All-IP Future, Connect America Fund: A National Broadband Plan for Our Future High-Cost Universal Support",
         "date": "2026-06-05",
         "type": "Proposed Rule"
@@ -180,11 +185,6 @@
         "title": "Rescission of Climate-Related Disclosure Rules",
         "date": "2026-06-03",
         "type": "Proposed Rule"
-      },
-      {
-        "title": "Scotts Valley Band of Pomo Indians of California; Liquor Control Ordinance",
-        "date": "2026-06-01",
-        "type": "Notice"
       }
     ],
     "source": "Federal Register"
