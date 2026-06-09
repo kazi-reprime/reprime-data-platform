@@ -206,6 +206,66 @@ canvas{display:block}
 #tlog .fl{font-size:11px;padding:2px 0}
 @media(max-width:1180px){#main{grid-template-columns:300px 1fr 320px}#pipe{grid-template-columns:1fr}#scoreboard{grid-template-columns:repeat(3,1fr)}#uniStage{grid-template-columns:1fr}.upanel{height:auto;min-height:220px}#pipeStats{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:880px){#left,#right{display:none}#main{grid-template-columns:1fr}#byState{grid-template-columns:1fr}#scoreboard{grid-template-columns:repeat(2,1fr)}#uniStage{grid-template-columns:1fr}#pipeStats{grid-template-columns:1fr}}
+
+/* ===== THEME OVERRIDES ===== */
+:root[data-theme="dark"]{--bg:#04070d;--ink:#e9eef6;--mut:#8294ad;--dim:#566179;--line:rgba(188,156,69,.18);--l2:rgba(255,255,255,.06);--gold:#BC9C45;--gold2:#E8C66A}
+:root[data-theme="light"]{--bg:#F5F3EE;--ink:#1a2332;--mut:#5a6f8c;--dim:#8a9bb5;--line:rgba(14,52,112,.12);--l2:rgba(14,52,112,.06);--gold:#9A7B2C;--gold2:#7A6220;--steel:#4a6080;--green:#1a8a50;--cyan:#1a7ab0;--teal:#00806e;--violet:#6a5adf;--amber:#c08030}
+:root[data-theme="light"] body{background:var(--bg)!important;color:var(--ink)}
+:root[data-theme="light"] #deck{background:linear-gradient(180deg,#F5F3EE 0%,#EBE8E0 55%,#E0DCD2 100%)!important}
+:root[data-theme="light"] #top{background:rgba(245,243,238,.92)!important;border-bottom-color:rgba(14,52,112,.1)!important}
+:root[data-theme="light"] #crawl{background:rgba(245,243,238,.8)!important;border-bottom-color:rgba(14,52,112,.08)!important}
+:root[data-theme="light"] #crawl .row{color:#4a5568!important}
+:root[data-theme="light"] .wm b{color:#9A7B2C!important}
+:root[data-theme="light"] .wm small{color:#9A7B2C!important}
+:root[data-theme="light"] .lv{color:#1a8a50!important}
+:root[data-theme="light"] .dot{background:#1a8a50!important;box-shadow:0 0 8px #1a8a50!important}
+:root[data-theme="light"] .clk{color:#5a6f8c!important}
+:root[data-theme="light"] .rmono{border-color:#9A7B2C!important;color:#9A7B2C!important;box-shadow:0 0 12px rgba(154,123,44,.2),inset 0 0 6px rgba(154,123,44,.1)!important}
+:root[data-theme="light"] .chh{border-bottom-color:rgba(14,52,112,.08)!important}
+:root[data-theme="light"] .chh .t{color:#1a2332!important}
+:root[data-theme="light"] .chh .s{color:#9A7B2C!important}
+:root[data-theme="light"] .chh .s .d{background:#9A7B2C!important;box-shadow:0 0 5px #9A7B2C!important}
+:root[data-theme="light"] #left{border-right-color:rgba(14,52,112,.08)!important;background:linear-gradient(90deg,rgba(235,232,224,.4),transparent)!important}
+:root[data-theme="light"] #right{border-left-color:rgba(14,52,112,.08)!important;background:linear-gradient(270deg,rgba(235,232,224,.4),transparent)!important}
+:root[data-theme="light"] #sitenav{background:rgba(245,243,238,.95)!important;border-bottom-color:rgba(14,52,112,.08)!important}
+:root[data-theme="light"] #sitenav a{color:#5a6f8c!important}
+:root[data-theme="light"] #sitenav a[href="/terminal.html"]{color:#9A7B2C!important;background:rgba(154,123,44,.1)!important}
+:root[data-theme="light"] #universe{background:linear-gradient(180deg,#EBE8E0 0%,#E0DCD2 50%,#D8D4CA 100%)!important}
+:root[data-theme="light"] #pipeline{background:linear-gradient(180deg,#E8E5DC 0%,#F0EDE6 100%)!important}
+:root[data-theme="light"] #today{background:linear-gradient(180deg,#F0EDE6 0%,#F5F3EE 100%)!important}
+:root[data-theme="light"] .grain:after{opacity:.02!important}
+:root[data-theme="light"] .card,.deal,.pcard{background:rgba(255,255,255,.7)!important;border-color:rgba(14,52,112,.08)!important}
+:root[data-theme="light"] .cstat{color:#5a6f8c!important}
+:root[data-theme="light"] .cstat b{color:#9A7B2C!important}
+:root[data-theme="light"] #themeNav button{background:rgba(14,52,112,.06)!important;border-color:rgba(14,52,112,.1)!important;color:#5a6f8c!important}
+:root[data-theme="light"] .bh{color:#9A7B2C!important}
+:root[data-theme="light"] #gridwrap .n{color:#5a6f8c!important}
+
+:root[data-theme="midnight"]{--bg:#060B1A;--ink:#D0DEFF;--mut:#7B94C0;--dim:#5570A0;--line:rgba(29,95,184,.18);--l2:rgba(29,95,184,.08);--gold:#BC9C45;--gold2:#E8C66A;--steel:#7B94C0}
+:root[data-theme="midnight"] body{background:#060B1A!important}
+:root[data-theme="midnight"] #deck{background:radial-gradient(130% 130% at 50% 38%,#0B1228 0%,#080E20 55%,#060B1A 100%)!important}
+:root[data-theme="midnight"] #top{background:rgba(6,11,26,.85)!important}
+:root[data-theme="midnight"] #crawl{background:rgba(8,14,32,.7)!important}
+:root[data-theme="midnight"] #universe{background:linear-gradient(180deg,#080E20 0%,#060B1A 50%,#050919 100%)!important}
+:root[data-theme="midnight"] #pipeline{background:linear-gradient(180deg,#0B1228 0%,#080E20 100%)!important}
+:root[data-theme="midnight"] #today{background:linear-gradient(180deg,#080E20 0%,#060B1A 100%)!important}
+
+:root[data-theme="gold"]{--bg:#0D0A05;--ink:#F5EDD8;--mut:#A89B78;--dim:#7A7058;--line:rgba(188,156,69,.25);--l2:rgba(188,156,69,.08);--gold:#D4A840;--gold2:#F0D060;--steel:#A89B78;--green:#8BC48A;--cyan:#90CCE0}
+:root[data-theme="gold"] body{background:#0D0A05!important}
+:root[data-theme="gold"] #deck{background:radial-gradient(130% 130% at 50% 38%,#1A1308 0%,#110D04 55%,#0D0A05 100%)!important}
+:root[data-theme="gold"] #top{background:rgba(13,10,5,.85)!important;border-bottom-color:rgba(188,156,69,.25)!important}
+:root[data-theme="gold"] #crawl{background:rgba(17,13,4,.7)!important;border-bottom-color:rgba(188,156,69,.15)!important}
+:root[data-theme="gold"] .rmono{border-color:#D4A840!important;color:#D4A840!important;box-shadow:0 0 18px rgba(212,168,64,.3),inset 0 0 10px rgba(212,168,64,.15)!important}
+:root[data-theme="gold"] .wm b{color:#F0D060!important}
+:root[data-theme="gold"] .wm small{color:#F0D060!important}
+:root[data-theme="gold"] #sitenav{background:rgba(13,10,5,.9)!important;border-bottom-color:rgba(188,156,69,.2)!important}
+:root[data-theme="gold"] #universe{background:linear-gradient(180deg,#110D04 0%,#0D0A05 50%,#0B0804 100%)!important}
+:root[data-theme="gold"] #pipeline{background:linear-gradient(180deg,#1A1308 0%,#110D04 100%)!important}
+:root[data-theme="gold"] #today{background:linear-gradient(180deg,#110D04 0%,#0D0A05 100%)!important}
+:root[data-theme="gold"] .chh .s{color:#F0D060!important}
+:root[data-theme="gold"] .chh .s .d{background:#F0D060!important;box-shadow:0 0 8px #F0D060!important}
+:root[data-theme="gold"] .lv{color:#8BC48A!important}
+:root[data-theme="gold"] .dot{background:#8BC48A!important;box-shadow:0 0 8px #8BC48A!important}
 </style></head>
 <body class="grain">
 
