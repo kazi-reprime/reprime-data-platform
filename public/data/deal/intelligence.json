@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-06-11T17:59:10.676262Z",
+    "cached_at": "2026-06-12T16:34:49.622730Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -162,6 +162,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Prediction Markets; Public Interest Determinations",
+        "date": "2026-06-12",
+        "type": "Proposed Rule"
+      },
+      {
         "title": "DoD Assistance to Non-Government, Entertainment-Oriented Media Productions",
         "date": "2026-06-09",
         "type": "Rule"
@@ -180,11 +185,6 @@
         "title": "Proposed Exemption Involving the International Brotherhood of Electrical Workers Local Union No. 99 Joint Apprenticeship Training Committee Fund (the Fund) Located in Cranston, Rhode Island",
         "date": "2026-06-03",
         "type": "Notice"
-      },
-      {
-        "title": "Rescission of Climate-Related Disclosure Rules",
-        "date": "2026-06-03",
-        "type": "Proposed Rule"
       }
     ],
     "source": "Federal Register"
@@ -386,7 +386,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 5,
+    "count": 4,
     "source": "USGS"
   },
   "bls_cpi": {
