@@ -26,10 +26,12 @@ jobs:
           python-version: "3.12"
 
       - name: Install test deps
-        run: pip install pytest
+        run: pip install pytest pytest-timeout
 
       - name: Run unit tests (no network)
         run: pytest tests/ -m unit -v
 
       - name: Run integration tests (live APIs, non-blocking)
-        run: pytest tests/ -m integration -v || echo "::warning::Integration tests failed — live API issue or transient network error"
+        timeout-minutes: 3
+        continue-on-error: true
+        run: pytest tests/ -m integration -v --timeout=60 || echo "::warning::Integration tests failed — live API issue or transient network error"

@@ -24,16 +24,6 @@ jobs:
           GITLEAKS_ENABLE_COMMENTS: true
           GITLEAKS_ENABLE_SUMMARY: true
 
-  tests:
-    name: pytest
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Install pytest
-        run: pip install pytest
-      - name: Run tests
-        run: python -m pytest tests/ -v
+# pytest moved to test.yml — it runs unit tests as a blocking step and
+# integration tests (live APIs) as a timeboxed, non-blocking step. The
+# previous unmarked pytest job here hung on live-API integration tests.
