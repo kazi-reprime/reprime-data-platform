@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-06-22T18:58:56.653084Z",
+    "cached_at": "2026-06-23T16:12:37.596484Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -162,6 +162,16 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Federal Acquisition Regulation: Revolutionary Federal Acquisition Regulation Overhaul Parts 3 and 49",
+        "date": "2026-06-23",
+        "type": "Proposed Rule"
+      },
+      {
+        "title": "Federal Acquisition Regulation: Revolutionary Federal Acquisition Regulation Overhaul Parts 6, 7, 10, 18, 26, 37, and 41",
+        "date": "2026-06-23",
+        "type": "Proposed Rule"
+      },
+      {
         "title": "Prediction Markets; Public Interest Determinations",
         "date": "2026-06-12",
         "type": "Proposed Rule"
@@ -175,16 +185,6 @@
         "title": "Reforming the High-Cost Program for an All-IP Future, Connect America Fund: A National Broadband Plan for Our Future High-Cost Universal Support",
         "date": "2026-06-05",
         "type": "Proposed Rule"
-      },
-      {
-        "title": "Notice of Determination and Request for Comments Concerning Action Pursuant to Section 301: Brazil's Acts, Policies, and Practices Related to Digital Trade and Electronic Payment Services; Unfair, Preferential Tariffs; Anti-Corruption Enforcement; Intellectual Property Protection; Ethanol Market Access; and Illegal Deforestation",
-        "date": "2026-06-04",
-        "type": "Notice"
-      },
-      {
-        "title": "Proposed Exemption Involving the International Brotherhood of Electrical Workers Local Union No. 99 Joint Apprenticeship Training Committee Fund (the Fund) Located in Cranston, Rhode Island",
-        "date": "2026-06-03",
-        "type": "Notice"
       }
     ],
     "source": "Federal Register"
@@ -386,7 +386,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 4,
+    "count": 2,
     "source": "USGS"
   },
   "bls_cpi": {
