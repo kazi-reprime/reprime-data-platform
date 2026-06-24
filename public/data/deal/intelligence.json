@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-06-23T16:12:37.596484Z",
+    "cached_at": "2026-06-24T14:00:08.239232Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -162,6 +162,16 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Oil and Gas Leasing",
+        "date": "2026-06-24",
+        "type": "Proposed Rule"
+      },
+      {
+        "title": "Notice of Intent To Relocate and Consolidate the Kansas City, Missouri Field Office Into the Kansas City, Kansas Regional Office",
+        "date": "2026-06-24",
+        "type": "Notice"
+      },
+      {
         "title": "Federal Acquisition Regulation: Revolutionary Federal Acquisition Regulation Overhaul Parts 3 and 49",
         "date": "2026-06-23",
         "type": "Proposed Rule"
@@ -174,16 +184,6 @@
       {
         "title": "Prediction Markets; Public Interest Determinations",
         "date": "2026-06-12",
-        "type": "Proposed Rule"
-      },
-      {
-        "title": "DoD Assistance to Non-Government, Entertainment-Oriented Media Productions",
-        "date": "2026-06-09",
-        "type": "Rule"
-      },
-      {
-        "title": "Reforming the High-Cost Program for an All-IP Future, Connect America Fund: A National Broadband Plan for Our Future High-Cost Universal Support",
-        "date": "2026-06-05",
         "type": "Proposed Rule"
       }
     ],
