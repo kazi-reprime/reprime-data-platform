@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-06-24T14:00:08.239232Z",
+    "cached_at": "2026-06-25T13:38:41.408093Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -162,6 +162,16 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Agricultural Foreign Investment Disclosure Act of 1978",
+        "date": "2026-06-25",
+        "type": "Proposed Rule"
+      },
+      {
+        "title": "Definition of Huione Group, a Financial Institution Operating Outside the United States of Primary Money Laundering Concern",
+        "date": "2026-06-25",
+        "type": "Proposed Rule"
+      },
+      {
         "title": "Oil and Gas Leasing",
         "date": "2026-06-24",
         "type": "Proposed Rule"
@@ -174,16 +184,6 @@
       {
         "title": "Federal Acquisition Regulation: Revolutionary Federal Acquisition Regulation Overhaul Parts 3 and 49",
         "date": "2026-06-23",
-        "type": "Proposed Rule"
-      },
-      {
-        "title": "Federal Acquisition Regulation: Revolutionary Federal Acquisition Regulation Overhaul Parts 6, 7, 10, 18, 26, 37, and 41",
-        "date": "2026-06-23",
-        "type": "Proposed Rule"
-      },
-      {
-        "title": "Prediction Markets; Public Interest Determinations",
-        "date": "2026-06-12",
         "type": "Proposed Rule"
       }
     ],
@@ -386,7 +386,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 2,
+    "count": 5,
     "source": "USGS"
   },
   "bls_cpi": {
