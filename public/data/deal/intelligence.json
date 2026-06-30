@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-06-29T17:14:21.195589Z",
+    "cached_at": "2026-06-30T12:32:52.011062Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -162,6 +162,16 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Funding Opportunities: Bank Enterprise Award Program (BEA) Program: FY 2026 Funding Round",
+        "date": "2026-06-30",
+        "type": "Notice"
+      },
+      {
+        "title": "Funding Opportunities: Bond Guarantee Program, FY 2026; Notice of Guarantee Availability",
+        "date": "2026-06-30",
+        "type": "Notice"
+      },
+      {
         "title": "Airworthiness Directives; Airbus Helicopters",
         "date": "2026-06-29",
         "type": "Rule"
@@ -175,16 +185,6 @@
         "title": "Definition of Huione Group, a Financial Institution Operating Outside the United States of Primary Money Laundering Concern",
         "date": "2026-06-25",
         "type": "Proposed Rule"
-      },
-      {
-        "title": "Oil and Gas Leasing",
-        "date": "2026-06-24",
-        "type": "Proposed Rule"
-      },
-      {
-        "title": "Notice of Intent To Relocate and Consolidate the Kansas City, Missouri Field Office Into the Kansas City, Kansas Regional Office",
-        "date": "2026-06-24",
-        "type": "Notice"
       }
     ],
     "source": "Federal Register"
