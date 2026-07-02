@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-07-01T13:57:49.107634Z",
+    "cached_at": "2026-07-02T12:33:17.280530Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -162,6 +162,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "EB-5 Reform and Integrity Act of 2022; Ensuring the Integrity of the EB-5 Program; Automatic Revocation of Petitions for Immigrant Classification",
+        "date": "2026-07-02",
+        "type": "Proposed Rule"
+      },
+      {
         "title": "Procedures for Implementing the National Environmental Policy Act",
         "date": "2026-07-01",
         "type": "Rule"
@@ -180,11 +185,6 @@
         "title": "Airworthiness Directives; Airbus Helicopters",
         "date": "2026-06-29",
         "type": "Rule"
-      },
-      {
-        "title": "Agricultural Foreign Investment Disclosure Act of 1978",
-        "date": "2026-06-25",
-        "type": "Proposed Rule"
       }
     ],
     "source": "Federal Register"
@@ -386,13 +386,8 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 7,
+    "count": 4,
     "source": "USGS"
   },
-  "bls_cpi": {
-    "value": "333.979",
-    "period": "May",
-    "year": "2026",
-    "source": "BLS"
-  }
+  "bls_cpi": {}
 }
