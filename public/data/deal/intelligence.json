@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-07-03T09:15:27.214770Z",
+    "cached_at": "2026-07-04T08:34:21.692755Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -162,6 +162,21 @@
   "fed_register": {
     "documents": [
       {
+        "title": "United States et al. v. Live Nation Entertainment, Inc.; Proposed Final Judgment and Competitive Impact Statement",
+        "date": "2026-07-06",
+        "type": "Notice"
+      },
+      {
+        "title": "Calendar Year 2027 Home Health Prospective Payment System (HH PPS) Rate Update; Requirements for the HH Quality Reporting Program and the Expanded HH Value-Based Purchasing Model; Medicare Provider Enrollment, Durable Medical Equipment (DME), and DME, Prosthetics, Orthotics, and Supplies (DMEPOS) Policies",
+        "date": "2026-07-06",
+        "type": "Proposed Rule"
+      },
+      {
+        "title": "Registering NFA Firearms That Fall Out of Government Contract",
+        "date": "2026-07-06",
+        "type": "Proposed Rule"
+      },
+      {
         "title": "EB-5 Reform and Integrity Act of 2022; Ensuring the Integrity of the EB-5 Program; Automatic Revocation of Petitions for Immigrant Classification",
         "date": "2026-07-02",
         "type": "Proposed Rule"
@@ -169,21 +184,6 @@
       {
         "title": "Procedures for Implementing the National Environmental Policy Act",
         "date": "2026-07-01",
-        "type": "Rule"
-      },
-      {
-        "title": "Funding Opportunities: Bank Enterprise Award Program (BEA) Program: FY 2026 Funding Round",
-        "date": "2026-06-30",
-        "type": "Notice"
-      },
-      {
-        "title": "Funding Opportunities: Bond Guarantee Program, FY 2026; Notice of Guarantee Availability",
-        "date": "2026-06-30",
-        "type": "Notice"
-      },
-      {
-        "title": "Airworthiness Directives; Airbus Helicopters",
-        "date": "2026-06-29",
         "type": "Rule"
       }
     ],
@@ -386,7 +386,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 4,
+    "count": 2,
     "source": "USGS"
   },
   "bls_cpi": {
