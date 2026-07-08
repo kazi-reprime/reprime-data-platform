@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-07-07T09:37:48.975609Z",
+    "cached_at": "2026-07-08T08:24:59.574556Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -162,6 +162,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Gulf of America Outer Continental Shelf Oil and Gas One Big Beautiful Bill Act Lease Sale 3",
+        "date": "2026-07-08",
+        "type": "Notice"
+      },
+      {
         "title": "Energy Conservation Program: Procedures, Interpretations, and Policies for Consideration of New or Revised Energy Conservation Standards and Test Procedures for Consumer Products and Certain Commercial/Industrial Equipment",
         "date": "2026-07-07",
         "type": "Proposed Rule"
@@ -179,11 +184,6 @@
       {
         "title": "Registering NFA Firearms That Fall Out of Government Contract",
         "date": "2026-07-06",
-        "type": "Proposed Rule"
-      },
-      {
-        "title": "EB-5 Reform and Integrity Act of 2022; Ensuring the Integrity of the EB-5 Program; Automatic Revocation of Petitions for Immigrant Classification",
-        "date": "2026-07-02",
         "type": "Proposed Rule"
       }
     ],
@@ -386,7 +386,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 2,
+    "count": 1,
     "source": "USGS"
   },
   "bls_cpi": {
