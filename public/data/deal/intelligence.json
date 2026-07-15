@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-07-14T08:00:26.252358Z",
+    "cached_at": "2026-07-15T08:05:57.100362Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -162,6 +162,16 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Rescinding the Definition of \u201cHarm\u201d Under the Endangered Species Act",
+        "date": "2026-07-14",
+        "type": "Rule"
+      },
+      {
+        "title": "Airworthiness Directives; Bombardier, Inc., Airplanes",
+        "date": "2026-07-14",
+        "type": "Rule"
+      },
+      {
         "title": "Gulf of America Outer Continental Shelf Oil and Gas One Big Beautiful Bill Act Lease Sale 3",
         "date": "2026-07-08",
         "type": "Notice"
@@ -175,16 +185,6 @@
         "title": "United States et al. v. Live Nation Entertainment, Inc.; Proposed Final Judgment and Competitive Impact Statement",
         "date": "2026-07-06",
         "type": "Notice"
-      },
-      {
-        "title": "Calendar Year 2027 Home Health Prospective Payment System (HH PPS) Rate Update; Requirements for the HH Quality Reporting Program and the Expanded HH Value-Based Purchasing Model; Medicare Provider Enrollment, Durable Medical Equipment (DME), and DME, Prosthetics, Orthotics, and Supplies (DMEPOS) Policies",
-        "date": "2026-07-06",
-        "type": "Proposed Rule"
-      },
-      {
-        "title": "Registering NFA Firearms That Fall Out of Government Contract",
-        "date": "2026-07-06",
-        "type": "Proposed Rule"
       }
     ],
     "source": "Federal Register"
@@ -386,12 +386,12 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 5,
+    "count": 6,
     "source": "USGS"
   },
   "bls_cpi": {
-    "value": "333.979",
-    "period": "May",
+    "value": "332.568",
+    "period": "June",
     "year": "2026",
     "source": "BLS"
   }
