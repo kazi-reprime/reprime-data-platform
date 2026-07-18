@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-07-17T08:06:55.206451Z",
+    "cached_at": "2026-07-18T07:46:11.853349Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -162,6 +162,16 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Margin Requirements for Uncleared Swaps for Swap Dealers and Major Swap Participants",
+        "date": "2026-07-17",
+        "type": "Rule"
+      },
+      {
+        "title": "Airworthiness Directives; Bell Textron Canada Limited Helicopters",
+        "date": "2026-07-17",
+        "type": "Rule"
+      },
+      {
         "title": "United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement",
         "date": "2026-07-16",
         "type": "Notice"
@@ -175,16 +185,6 @@
         "title": "Airworthiness Directives; Bombardier, Inc., Airplanes",
         "date": "2026-07-14",
         "type": "Rule"
-      },
-      {
-        "title": "Gulf of America Outer Continental Shelf Oil and Gas One Big Beautiful Bill Act Lease Sale 3",
-        "date": "2026-07-08",
-        "type": "Notice"
-      },
-      {
-        "title": "Energy Conservation Program: Procedures, Interpretations, and Policies for Consideration of New or Revised Energy Conservation Standards and Test Procedures for Consumer Products and Certain Commercial/Industrial Equipment",
-        "date": "2026-07-07",
-        "type": "Proposed Rule"
       }
     ],
     "source": "Federal Register"
@@ -386,7 +386,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 6,
+    "count": 7,
     "source": "USGS"
   },
   "bls_cpi": {
