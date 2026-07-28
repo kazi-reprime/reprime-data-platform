@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-07-27T09:47:48.089180Z",
+    "cached_at": "2026-07-28T08:30:42.905029Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -162,6 +162,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Perchloroethylene (PCE) and Carbon Tetrachloride (CTC); Regulation under the Toxic Substances Control Act (TSCA); Compliance Date Extensions",
+        "date": "2026-07-28",
+        "type": "Rule"
+      },
+      {
         "title": "Margin Requirements for Uncleared Swaps for Swap Dealers and Major Swap Participants",
         "date": "2026-07-17",
         "type": "Rule"
@@ -178,11 +183,6 @@
       },
       {
         "title": "Rescinding the Definition of \u201cHarm\u201d Under the Endangered Species Act",
-        "date": "2026-07-14",
-        "type": "Rule"
-      },
-      {
-        "title": "Airworthiness Directives; Bombardier, Inc., Airplanes",
         "date": "2026-07-14",
         "type": "Rule"
       }
@@ -386,7 +386,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 1,
+    "count": 4,
     "source": "USGS"
   },
   "bls_cpi": {
