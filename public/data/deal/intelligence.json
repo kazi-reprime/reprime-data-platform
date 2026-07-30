@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-07-29T08:37:08.499061Z",
+    "cached_at": "2026-07-30T08:22:43.197873Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -162,6 +162,16 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Submission for OMB Review; Comment Request",
+        "date": "2026-07-30",
+        "type": "Notice"
+      },
+      {
+        "title": "Airworthiness Directives; Safran Helicopter Engines, S.A. (Type Certificate Previously Held by Turbomeca, S.A.) Engines",
+        "date": "2026-07-30",
+        "type": "Rule"
+      },
+      {
         "title": "Perchloroethylene (PCE) and Carbon Tetrachloride (CTC); Regulation under the Toxic Substances Control Act (TSCA); Compliance Date Extensions",
         "date": "2026-07-28",
         "type": "Rule"
@@ -174,16 +184,6 @@
       {
         "title": "Airworthiness Directives; Bell Textron Canada Limited Helicopters",
         "date": "2026-07-17",
-        "type": "Rule"
-      },
-      {
-        "title": "United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement",
-        "date": "2026-07-16",
-        "type": "Notice"
-      },
-      {
-        "title": "Rescinding the Definition of \u201cHarm\u201d Under the Endangered Species Act",
-        "date": "2026-07-14",
         "type": "Rule"
       }
     ],
