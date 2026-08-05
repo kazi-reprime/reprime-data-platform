@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-08-04T08:33:05.327041Z",
+    "cached_at": "2026-08-05T08:32:43.608317Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -162,6 +162,16 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Medicare Program; Hospital Inpatient Prospective Payment Systems for Acute Care Hospitals (IPPS) and the Long-Term Care Hospital Prospective Payment System and Policy Changes and Fiscal Year (FY) 2027 Rates; Requirements for Quality Programs; Other Policy Changes; and Adoption of Updated Versions of Certain Health Information Technology Standards",
+        "date": "2026-08-04",
+        "type": "Rule"
+      },
+      {
+        "title": "Loans to Executive Officers, Directors, and Principal Shareholders of Member Banks; Bank Holding Companies",
+        "date": "2026-08-04",
+        "type": "Proposed Rule"
+      },
+      {
         "title": "Agency Information Collection Activities; Comment Request on U.S. Tax-Exempt Organization Returns and Related Forms.",
         "date": "2026-08-03",
         "type": "Notice"
@@ -174,16 +184,6 @@
       {
         "title": "Airworthiness Directives; Safran Helicopter Engines, S.A. (Type Certificate Previously Held by Turbomeca, S.A.) Engines",
         "date": "2026-07-30",
-        "type": "Rule"
-      },
-      {
-        "title": "Perchloroethylene (PCE) and Carbon Tetrachloride (CTC); Regulation under the Toxic Substances Control Act (TSCA); Compliance Date Extensions",
-        "date": "2026-07-28",
-        "type": "Rule"
-      },
-      {
-        "title": "Margin Requirements for Uncleared Swaps for Swap Dealers and Major Swap Participants",
-        "date": "2026-07-17",
         "type": "Rule"
       }
     ],
@@ -386,7 +386,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 0,
+    "count": 2,
     "source": "USGS"
   },
   "bls_cpi": {
