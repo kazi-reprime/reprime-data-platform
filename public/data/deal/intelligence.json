@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-08-08T06:48:18.650150Z",
+    "cached_at": "2026-08-09T06:52:49.152132Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -162,6 +162,16 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Agency Information Collection Activities; Comment Request on U.S. Business Income Tax Returns and Related Forms, Schedules, Attachments, and Published Guidance",
+        "date": "2026-08-10",
+        "type": "Notice"
+      },
+      {
+        "title": "Agency Information Collection Activities; Comment Request on U.S. Trust and Estate Income Tax Returns and Related Forms, Schedules, Attachments, and Published Guidance",
+        "date": "2026-08-10",
+        "type": "Notice"
+      },
+      {
         "title": "Ohio Regulatory Program",
         "date": "2026-08-07",
         "type": "Rule"
@@ -175,16 +185,6 @@
         "title": "Medicare Program; Hospital Inpatient Prospective Payment Systems for Acute Care Hospitals (IPPS) and the Long-Term Care Hospital Prospective Payment System and Policy Changes and Fiscal Year (FY) 2027 Rates; Requirements for Quality Programs; Other Policy Changes; and Adoption of Updated Versions of Certain Health Information Technology Standards",
         "date": "2026-08-04",
         "type": "Rule"
-      },
-      {
-        "title": "Loans to Executive Officers, Directors, and Principal Shareholders of Member Banks; Bank Holding Companies",
-        "date": "2026-08-04",
-        "type": "Proposed Rule"
-      },
-      {
-        "title": "Agency Information Collection Activities; Comment Request on U.S. Tax-Exempt Organization Returns and Related Forms.",
-        "date": "2026-08-03",
-        "type": "Notice"
       }
     ],
     "source": "Federal Register"
@@ -389,10 +389,5 @@
     "count": 3,
     "source": "USGS"
   },
-  "bls_cpi": {
-    "value": "332.568",
-    "period": "June",
-    "year": "2026",
-    "source": "BLS"
-  }
+  "bls_cpi": {}
 }
