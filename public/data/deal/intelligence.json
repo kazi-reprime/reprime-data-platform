@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-08-19T06:39:36.081263Z",
+    "cached_at": "2026-08-20T06:40:51.882154Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -162,6 +162,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Small Business Size Standards",
+        "date": "2026-08-20",
+        "type": "Proposed Rule"
+      },
+      {
         "title": "Proposed Establishment of the Llano Uplift and Hickory Sands District Viticultural Areas",
         "date": "2026-08-14",
         "type": "Proposed Rule"
@@ -180,11 +185,6 @@
         "title": "Beneficial Ownership Information Reporting Requirement Revision",
         "date": "2026-08-14",
         "type": "Rule"
-      },
-      {
-        "title": "Community Reinvestment Act Regulations",
-        "date": "2026-08-12",
-        "type": "Proposed Rule"
       }
     ],
     "source": "Federal Register"
