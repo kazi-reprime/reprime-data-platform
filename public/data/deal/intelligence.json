@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-08-20T06:40:51.882154Z",
+    "cached_at": "2026-08-21T06:41:32.397638Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -28,13 +28,14 @@
         "placeCode": "99075",
         "designatedArea": "Levy (County)",
         "declarationRequestNumber": "26063",
+        "declarationRequestDate": "2026-04-22T00:00:00.000Z",
         "lastIAFilingDate": null,
         "incidentId": "2026042301",
         "region": 4,
         "designatedIncidentTypes": "R",
-        "lastRefresh": "2026-04-24T19:21:19.758Z",
-        "hash": "2a2e332d7a19cd1c233267a225a2db915e58a000",
-        "id": "55004a1e-12d3-4e59-a196-bba0138ca2de"
+        "lastRefresh": "2026-08-20T20:50:08.994Z",
+        "hash": "01478c5700a29be397150ab40e4073772ccc6d24",
+        "id": "8fb5ef1f-a71c-4207-bb0f-d46c70b155f9"
       },
       {
         "femaDeclarationString": "FM-5631-FL",
@@ -58,13 +59,14 @@
         "placeCode": "99107",
         "designatedArea": "Putnam (County)",
         "declarationRequestNumber": "26060",
+        "declarationRequestDate": "2026-04-22T00:00:00.000Z",
         "lastIAFilingDate": null,
         "incidentId": "2026042203",
         "region": 4,
         "designatedIncidentTypes": "R",
-        "lastRefresh": "2026-04-23T12:21:12.423Z",
-        "hash": "7c85618f930fb5089bf4ef1186b8c57aeff52a79",
-        "id": "19fd19f4-6ac3-4699-b244-2cf972b9c68d"
+        "lastRefresh": "2026-08-20T20:50:08.994Z",
+        "hash": "74ce0f7fea55a6d39a46bdf76c70b036071a377c",
+        "id": "82cb6ab0-88e4-45f9-be41-baf4a5673b7f"
       },
       {
         "femaDeclarationString": "FM-5631-FL",
@@ -88,43 +90,14 @@
         "placeCode": "99019",
         "designatedArea": "Clay (County)",
         "declarationRequestNumber": "26060",
+        "declarationRequestDate": "2026-04-22T00:00:00.000Z",
         "lastIAFilingDate": null,
         "incidentId": "2026042203",
         "region": 4,
         "designatedIncidentTypes": "R",
-        "lastRefresh": "2026-04-23T12:21:12.423Z",
-        "hash": "91a8d6a14b6b6aa09e3a28349cfce7cd10c8abaa",
-        "id": "f2f8e920-7470-4f02-a1ed-2d25a8ed2b7e"
-      },
-      {
-        "femaDeclarationString": "DR-4844-FL",
-        "disasterNumber": 4844,
-        "state": "FL",
-        "declarationType": "DR",
-        "declarationDate": "2024-11-05T00:00:00.000Z",
-        "fyDeclared": 2025,
-        "incidentType": "Hurricane",
-        "declarationTitle": "HURRICANE MILTON",
-        "ihProgramDeclared": true,
-        "iaProgramDeclared": false,
-        "paProgramDeclared": true,
-        "hmProgramDeclared": true,
-        "incidentBeginDate": "2024-10-05T00:00:00.000Z",
-        "incidentEndDate": "2024-11-02T00:00:00.000Z",
-        "disasterCloseoutDate": null,
-        "tribalRequest": true,
-        "fipsStateCode": "12",
-        "fipsCountyCode": "000",
-        "placeCode": "32125",
-        "designatedArea": "Hollywood Indian Reservation",
-        "declarationRequestNumber": "24191",
-        "lastIAFilingDate": "2025-02-07T00:00:00.000Z",
-        "incidentId": "2024100501",
-        "region": 4,
-        "designatedIncidentTypes": "H",
-        "lastRefresh": "2024-12-09T15:30:17.899Z",
-        "hash": "bae54b2b59eb0067dda5e2ca289243ebccc4ebdc",
-        "id": "e3b8320b-0aa6-48fc-a244-4bbbd7d8bdfd"
+        "lastRefresh": "2026-08-20T20:50:08.994Z",
+        "hash": "d12828aa927e37cb560812fa411e9e5ff5379227",
+        "id": "e8ce95e0-6bfe-41fb-8681-f096aae48aac"
       },
       {
         "femaDeclarationString": "DR-4844-FL",
@@ -148,13 +121,45 @@
         "placeCode": "8550",
         "designatedArea": "Brighton Indian Reservation",
         "declarationRequestNumber": "24191",
+        "declarationRequestDate": "2024-10-25T00:00:00.000Z",
         "lastIAFilingDate": "2025-02-07T00:00:00.000Z",
         "incidentId": "2024100501",
         "region": 4,
         "designatedIncidentTypes": "H",
-        "lastRefresh": "2024-12-09T15:30:17.899Z",
-        "hash": "4a0a3e55285cdc7b556f41473d211e6486a2ef88",
-        "id": "164f99e4-a048-400b-9ad8-ad273c5478d6"
+        "lastRefresh": "2026-08-20T20:50:08.994Z",
+        "hash": "bd8949655962e43b7d6e40c81b98d40d50221e43",
+        "id": "db04b32c-9251-48dd-83fa-612fdd4c88a1"
+      },
+      {
+        "femaDeclarationString": "DR-4844-FL",
+        "disasterNumber": 4844,
+        "state": "FL",
+        "declarationType": "DR",
+        "declarationDate": "2024-11-05T00:00:00.000Z",
+        "fyDeclared": 2025,
+        "incidentType": "Hurricane",
+        "declarationTitle": "HURRICANE MILTON",
+        "ihProgramDeclared": true,
+        "iaProgramDeclared": false,
+        "paProgramDeclared": true,
+        "hmProgramDeclared": true,
+        "incidentBeginDate": "2024-10-05T00:00:00.000Z",
+        "incidentEndDate": "2024-11-02T00:00:00.000Z",
+        "disasterCloseoutDate": null,
+        "tribalRequest": true,
+        "fipsStateCode": "12",
+        "fipsCountyCode": "000",
+        "placeCode": "65033",
+        "designatedArea": "Seminole Tribe of Florida",
+        "declarationRequestNumber": "24191",
+        "declarationRequestDate": "2024-10-25T00:00:00.000Z",
+        "lastIAFilingDate": "2025-02-07T00:00:00.000Z",
+        "incidentId": "2024100501",
+        "region": 4,
+        "designatedIncidentTypes": "H",
+        "lastRefresh": "2026-08-20T20:50:08.994Z",
+        "hash": "f924737acf8d14bd740dd7fa57ffd5be6d200e19",
+        "id": "7bcc4be5-722d-44a2-85a0-d14b04f3dbaf"
       }
     ],
     "source": "FEMA"
@@ -386,7 +391,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 5,
+    "count": 4,
     "source": "USGS"
   },
   "bls_cpi": {
