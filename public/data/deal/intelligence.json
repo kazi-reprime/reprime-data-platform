@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-08-21T06:41:32.397638Z",
+    "cached_at": "2026-08-22T06:35:37.367047Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Regulation Crypto Assets",
+        "date": "2026-08-21",
+        "type": "Proposed Rule"
+      },
+      {
         "title": "Small Business Size Standards",
         "date": "2026-08-20",
         "type": "Proposed Rule"
@@ -185,11 +190,6 @@
         "title": "Introduction to the Unified Agenda of Federal Regulatory and Deregulatory Actions-2026",
         "date": "2026-08-14",
         "type": "Notice"
-      },
-      {
-        "title": "Beneficial Ownership Information Reporting Requirement Revision",
-        "date": "2026-08-14",
-        "type": "Rule"
       }
     ],
     "source": "Federal Register"
@@ -391,7 +391,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 4,
+    "count": 2,
     "source": "USGS"
   },
   "bls_cpi": {
