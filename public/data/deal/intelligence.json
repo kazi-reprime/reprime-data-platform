@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-08-24T06:53:23.206171Z",
+    "cached_at": "2026-08-25T06:42:06.371014Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Agency Information Collection Activities; Comment Request on U.S. Individual Income Tax Returns and Related Forms, Schedules, Attachments, and Published Guidance",
+        "date": "2026-08-25",
+        "type": "Notice"
+      },
+      {
         "title": "Regulation Crypto Assets",
         "date": "2026-08-21",
         "type": "Proposed Rule"
@@ -183,11 +188,6 @@
       },
       {
         "title": "Department Regulatory and Deregulatory Agenda; Summary",
-        "date": "2026-08-14",
-        "type": "Notice"
-      },
-      {
-        "title": "Introduction to the Unified Agenda of Federal Regulatory and Deregulatory Actions-2026",
         "date": "2026-08-14",
         "type": "Notice"
       }
