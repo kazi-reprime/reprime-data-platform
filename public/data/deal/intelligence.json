@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-08-27T17:19:39.509564Z",
+    "cached_at": "2026-08-28T18:11:59.148661Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Vessel and Shipyard Financing, Regulatory Revision",
+        "date": "2026-08-28",
+        "type": "Rule"
+      },
+      {
         "title": "Agency Information Collection Activities; Comment Request on U.S. Individual Income Tax Returns and Related Forms, Schedules, Attachments, and Published Guidance",
         "date": "2026-08-25",
         "type": "Notice"
@@ -185,11 +190,6 @@
         "title": "Proposed Establishment of the Llano Uplift and Hickory Sands District Viticultural Areas",
         "date": "2026-08-14",
         "type": "Proposed Rule"
-      },
-      {
-        "title": "Department Regulatory and Deregulatory Agenda; Summary",
-        "date": "2026-08-14",
-        "type": "Notice"
       }
     ],
     "source": "Federal Register"
@@ -391,7 +391,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 4,
+    "count": 3,
     "source": "USGS"
   },
   "bls_cpi": {
