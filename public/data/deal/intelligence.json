@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-08-31T12:41:30.987157Z",
+    "cached_at": "2026-09-01T11:05:56.264601Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Violations of Laws or Regulations",
+        "date": "2026-09-01",
+        "type": "Proposed Rule"
+      },
+      {
         "title": "Vessel and Shipyard Financing, Regulatory Revision",
         "date": "2026-08-28",
         "type": "Rule"
@@ -184,11 +189,6 @@
       {
         "title": "Small Business Size Standards",
         "date": "2026-08-20",
-        "type": "Proposed Rule"
-      },
-      {
-        "title": "Proposed Establishment of the Llano Uplift and Hickory Sands District Viticultural Areas",
-        "date": "2026-08-14",
         "type": "Proposed Rule"
       }
     ],
@@ -391,7 +391,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 2,
+    "count": 1,
     "source": "USGS"
   },
   "bls_cpi": {
