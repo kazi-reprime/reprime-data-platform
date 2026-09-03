@@ -1,20 +1,20 @@
 {
-  "generated": "2026-09-02T10:38:08.945034Z",
+  "generated": "2026-09-03T10:40:31.741115Z",
   "ttl_seconds": 3600,
   "files": [
     {
       "file": "live/ticker.json",
-      "cached_at": "2026-09-02T10:38:08.945034Z",
+      "cached_at": "2026-09-03T10:40:31.741115Z",
       "fresh": true
     },
     {
       "file": "live/market.json",
-      "cached_at": "2026-09-02T10:38:08.945034Z",
+      "cached_at": "2026-09-03T10:40:31.741115Z",
       "fresh": true
     },
     {
       "file": "deal/intelligence.json",
-      "cached_at": "2026-09-02T10:38:08.945034Z",
+      "cached_at": "2026-09-03T10:40:31.741115Z",
       "fresh": true
     }
   ]
