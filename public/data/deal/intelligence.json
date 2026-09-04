@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-09-03T10:40:31.741115Z",
+    "cached_at": "2026-09-04T10:35:38.338287Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Driving Efficiency in Farm Loan Delivery",
+        "date": "2026-09-04",
+        "type": "Rule"
+      },
+      {
         "title": "Violations of Laws or Regulations",
         "date": "2026-09-01",
         "type": "Proposed Rule"
@@ -184,11 +189,6 @@
       {
         "title": "Regulation Crypto Assets",
         "date": "2026-08-21",
-        "type": "Proposed Rule"
-      },
-      {
-        "title": "Small Business Size Standards",
-        "date": "2026-08-20",
         "type": "Proposed Rule"
       }
     ],
@@ -391,7 +391,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 0,
+    "count": 2,
     "source": "USGS"
   },
   "bls_cpi": {
