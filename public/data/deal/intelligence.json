@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-09-14T11:47:37.614650Z",
+    "cached_at": "2026-09-15T11:04:18.190006Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Airworthiness Directives; MD Helicopters, LLC Helicopters",
+        "date": "2026-09-15",
+        "type": "Rule"
+      },
+      {
         "title": "Driving Efficiency in Farm Loan Delivery",
         "date": "2026-09-04",
         "type": "Rule"
@@ -185,11 +190,6 @@
         "title": "Agency Information Collection Activities; Comment Request on U.S. Individual Income Tax Returns and Related Forms, Schedules, Attachments, and Published Guidance",
         "date": "2026-08-25",
         "type": "Notice"
-      },
-      {
-        "title": "Regulation Crypto Assets",
-        "date": "2026-08-21",
-        "type": "Proposed Rule"
       }
     ],
     "source": "Federal Register"
