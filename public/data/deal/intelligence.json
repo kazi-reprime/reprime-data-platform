@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-09-17T10:57:43.896699Z",
+    "cached_at": "2026-09-18T10:34:29.114253Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement",
+        "date": "2026-09-18",
+        "type": "Notice"
+      },
+      {
         "title": "Airworthiness Directives; MD Helicopters, LLC Helicopters",
         "date": "2026-09-15",
         "type": "Rule"
@@ -185,11 +190,6 @@
         "title": "Vessel and Shipyard Financing, Regulatory Revision",
         "date": "2026-08-28",
         "type": "Rule"
-      },
-      {
-        "title": "Agency Information Collection Activities; Comment Request on U.S. Individual Income Tax Returns and Related Forms, Schedules, Attachments, and Published Guidance",
-        "date": "2026-08-25",
-        "type": "Notice"
       }
     ],
     "source": "Federal Register"
@@ -391,7 +391,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 1,
+    "count": 2,
     "source": "USGS"
   },
   "bls_cpi": {
