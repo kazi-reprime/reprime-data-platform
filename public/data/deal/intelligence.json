@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-09-18T10:34:29.114253Z",
+    "cached_at": "2026-09-19T10:18:37.955737Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -391,13 +391,8 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 2,
+    "count": 1,
     "source": "USGS"
   },
-  "bls_cpi": {
-    "value": "334.131",
-    "period": "August",
-    "year": "2026",
-    "source": "BLS"
-  }
+  "bls_cpi": {}
 }
