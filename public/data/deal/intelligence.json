@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-09-24T11:07:00.873469Z",
+    "cached_at": "2026-09-25T11:08:36.161139Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "National Environmental Policy Act Implementing Procedures",
+        "date": "2026-09-25",
+        "type": "Rule"
+      },
+      {
         "title": "United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement",
         "date": "2026-09-18",
         "type": "Notice"
@@ -185,11 +190,6 @@
         "title": "Violations of Laws or Regulations",
         "date": "2026-09-01",
         "type": "Proposed Rule"
-      },
-      {
-        "title": "Vessel and Shipyard Financing, Regulatory Revision",
-        "date": "2026-08-28",
-        "type": "Rule"
       }
     ],
     "source": "Federal Register"
@@ -391,7 +391,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 2,
+    "count": 1,
     "source": "USGS"
   },
   "bls_cpi": {
