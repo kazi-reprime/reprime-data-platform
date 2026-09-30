@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-09-29T12:07:58.883483Z",
+    "cached_at": "2026-09-30T11:55:35.199659Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Cuba Sanctions Regulations",
+        "date": "2026-09-30",
+        "type": "Rule"
+      },
+      {
         "title": "National Environmental Policy Act Implementing Procedures",
         "date": "2026-09-25",
         "type": "Rule"
@@ -185,11 +190,6 @@
         "title": "Driving Efficiency in Farm Loan Delivery",
         "date": "2026-09-04",
         "type": "Rule"
-      },
-      {
-        "title": "Violations of Laws or Regulations",
-        "date": "2026-09-01",
-        "type": "Proposed Rule"
       }
     ],
     "source": "Federal Register"
@@ -391,7 +391,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 1,
+    "count": 2,
     "source": "USGS"
   },
   "bls_cpi": {
