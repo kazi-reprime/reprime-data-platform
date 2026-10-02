@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-10-01T12:26:32.649419Z",
+    "cached_at": "2026-10-02T11:53:10.912558Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,16 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Enhanced Transparency and Public Accountability of the Supervisory Stress Test Models and Scenarios; Modifications to the Capital Planning and Stress Capital Buffer Requirement Rule, Enhanced Prudential Standards Rule, and Regulation LL",
+        "date": "2026-10-02",
+        "type": "Rule"
+      },
+      {
+        "title": "Request for Comment on Model Changes for the Board's 2027 Supervisory Stress Test",
+        "date": "2026-10-02",
+        "type": "Notice"
+      },
+      {
         "title": "Cuba Sanctions Regulations",
         "date": "2026-09-30",
         "type": "Rule"
@@ -180,16 +190,6 @@
         "title": "United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement",
         "date": "2026-09-18",
         "type": "Notice"
-      },
-      {
-        "title": "Airworthiness Directives; MD Helicopters, LLC Helicopters",
-        "date": "2026-09-15",
-        "type": "Rule"
-      },
-      {
-        "title": "Driving Efficiency in Farm Loan Delivery",
-        "date": "2026-09-04",
-        "type": "Rule"
       }
     ],
     "source": "Federal Register"
