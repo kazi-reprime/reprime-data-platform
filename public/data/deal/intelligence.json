@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-10-05T13:36:18.255160Z",
+    "cached_at": "2026-10-06T12:45:07.852956Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,21 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Investment Adviser Performance-Based Compensation Modernization",
+        "date": "2026-10-06",
+        "type": "Proposed Rule"
+      },
+      {
+        "title": "Adviser and Regulated Fund Custody Rules; Crypto Custody Rules",
+        "date": "2026-10-06",
+        "type": "Proposed Rule"
+      },
+      {
+        "title": "Submission for OMB Review; Comment Request",
+        "date": "2026-10-06",
+        "type": "Notice"
+      },
+      {
         "title": "Enhanced Transparency and Public Accountability of the Supervisory Stress Test Models and Scenarios; Modifications to the Capital Planning and Stress Capital Buffer Requirement Rule, Enhanced Prudential Standards Rule, and Regulation LL",
         "date": "2026-10-02",
         "type": "Rule"
@@ -174,21 +189,6 @@
       {
         "title": "Request for Comment on Model Changes for the Board's 2027 Supervisory Stress Test",
         "date": "2026-10-02",
-        "type": "Notice"
-      },
-      {
-        "title": "Cuba Sanctions Regulations",
-        "date": "2026-09-30",
-        "type": "Rule"
-      },
-      {
-        "title": "National Environmental Policy Act Implementing Procedures",
-        "date": "2026-09-25",
-        "type": "Rule"
-      },
-      {
-        "title": "United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement",
-        "date": "2026-09-18",
         "type": "Notice"
       }
     ],
