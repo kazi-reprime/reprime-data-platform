@@ -2,10 +2,10 @@
   "fred": {},
   "crypto": {
     "bitcoin": {
-      "price": "$83,056"
+      "price": "$82,816"
     },
     "ethereum": {
-      "price": "$2,499"
+      "price": "$2,496"
     }
   },
   "fx": {},
@@ -15,7 +15,7 @@
     "source": "Bank of Israel"
   },
   "_meta": {
-    "cached_at": "2026-10-09T12:34:23.573210Z",
+    "cached_at": "2026-10-10T11:55:07.487138Z",
     "ttl_seconds": 3600
   }
 }
