@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-10-14T11:11:07.946416Z",
+    "cached_at": "2026-10-15T10:51:43.291750Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Investment Company Cross Trading",
+        "date": "2026-10-15",
+        "type": "Proposed Rule"
+      },
+      {
         "title": "Investment Adviser Performance-Based Compensation Modernization",
         "date": "2026-10-06",
         "type": "Proposed Rule"
@@ -185,11 +190,6 @@
         "title": "Enhanced Transparency and Public Accountability of the Supervisory Stress Test Models and Scenarios; Modifications to the Capital Planning and Stress Capital Buffer Requirement Rule, Enhanced Prudential Standards Rule, and Regulation LL",
         "date": "2026-10-02",
         "type": "Rule"
-      },
-      {
-        "title": "Request for Comment on Model Changes for the Board's 2027 Supervisory Stress Test",
-        "date": "2026-10-02",
-        "type": "Notice"
       }
     ],
     "source": "Federal Register"
@@ -391,12 +391,12 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 8,
+    "count": 7,
     "source": "USGS"
   },
   "bls_cpi": {
-    "value": "334.131",
-    "period": "August",
+    "value": "336.298",
+    "period": "September",
     "year": "2026",
     "source": "BLS"
   }
