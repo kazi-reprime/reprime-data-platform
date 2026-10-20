@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-10-19T12:07:49.531546Z",
+    "cached_at": "2026-10-20T10:56:04.633516Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Medicare Program; Implementation of Sections 6219, 6220, and 6224 of the Consolidated Appropriations Act, 2026",
+        "date": "2026-10-20",
+        "type": "Proposed Rule"
+      },
+      {
         "title": "Investment Company Cross Trading",
         "date": "2026-10-15",
         "type": "Proposed Rule"
@@ -185,11 +190,6 @@
         "title": "Submission for OMB Review; Comment Request",
         "date": "2026-10-06",
         "type": "Notice"
-      },
-      {
-        "title": "Enhanced Transparency and Public Accountability of the Supervisory Stress Test Models and Scenarios; Modifications to the Capital Planning and Stress Capital Buffer Requirement Rule, Enhanced Prudential Standards Rule, and Regulation LL",
-        "date": "2026-10-02",
-        "type": "Rule"
       }
     ],
     "source": "Federal Register"
@@ -391,7 +391,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 5,
+    "count": 4,
     "source": "USGS"
   },
   "bls_cpi": {
