@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-10-20T10:56:04.633516Z",
+    "cached_at": "2026-10-21T11:09:51.674891Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -20,7 +20,7 @@
         "paProgramDeclared": true,
         "hmProgramDeclared": false,
         "incidentBeginDate": "2026-10-06T00:00:00.000Z",
-        "incidentEndDate": null,
+        "incidentEndDate": "2026-10-12T00:00:00.000Z",
         "disasterCloseoutDate": null,
         "tribalRequest": false,
         "fipsStateCode": "12",
@@ -33,9 +33,9 @@
         "incidentId": "2026100601",
         "region": 4,
         "designatedIncidentTypes": "H",
-        "lastRefresh": "2026-10-10T11:06:28.933Z",
-        "hash": "8b19229b13dd7409951737659548ec45089003cc",
-        "id": "93a2ea1e-9aa6-4ceb-9d83-702d1d2e0449"
+        "lastRefresh": "2026-10-20T11:05:48.191Z",
+        "hash": "2d704eacb0d7b7b44014907f61baadea9fb2a2ee",
+        "id": "397cdb2a-2e64-47fa-a68a-815490440a1a"
       },
       {
         "femaDeclarationString": "EM-3655-FL",
@@ -51,22 +51,22 @@
         "paProgramDeclared": true,
         "hmProgramDeclared": false,
         "incidentBeginDate": "2026-10-06T00:00:00.000Z",
-        "incidentEndDate": null,
+        "incidentEndDate": "2026-10-12T00:00:00.000Z",
         "disasterCloseoutDate": null,
         "tribalRequest": false,
         "fipsStateCode": "12",
-        "fipsCountyCode": "121",
-        "placeCode": "99121",
-        "designatedArea": "Suwannee (County)",
+        "fipsCountyCode": "033",
+        "placeCode": "99033",
+        "designatedArea": "Escambia (County)",
         "declarationRequestNumber": "26167",
         "declarationRequestDate": "2026-10-08T00:00:00.000Z",
         "lastIAFilingDate": null,
         "incidentId": "2026100601",
         "region": 4,
         "designatedIncidentTypes": "H",
-        "lastRefresh": "2026-10-10T11:06:28.933Z",
-        "hash": "7ff41e89892604443e18d8544314814e7f4e0307",
-        "id": "30f5e7fc-544d-4670-87fd-2559d977f443"
+        "lastRefresh": "2026-10-20T11:05:48.191Z",
+        "hash": "4ba4968524db8af407b08c86b34c5120ca67cc56",
+        "id": "848e0f99-037d-4ccd-b154-1185e275083f"
       },
       {
         "femaDeclarationString": "EM-3655-FL",
@@ -82,22 +82,22 @@
         "paProgramDeclared": true,
         "hmProgramDeclared": false,
         "incidentBeginDate": "2026-10-06T00:00:00.000Z",
-        "incidentEndDate": null,
+        "incidentEndDate": "2026-10-12T00:00:00.000Z",
         "disasterCloseoutDate": null,
         "tribalRequest": false,
         "fipsStateCode": "12",
-        "fipsCountyCode": "045",
-        "placeCode": "99045",
-        "designatedArea": "Gulf (County)",
+        "fipsCountyCode": "003",
+        "placeCode": "99003",
+        "designatedArea": "Baker (County)",
         "declarationRequestNumber": "26167",
         "declarationRequestDate": "2026-10-08T00:00:00.000Z",
         "lastIAFilingDate": null,
         "incidentId": "2026100601",
         "region": 4,
         "designatedIncidentTypes": "H",
-        "lastRefresh": "2026-10-10T11:06:28.933Z",
-        "hash": "abfa6b1ff321d953e310fede6b20ab09d78e0a83",
-        "id": "b0c51e12-1448-4cd9-a0e6-4647aba9225d"
+        "lastRefresh": "2026-10-20T11:05:48.191Z",
+        "hash": "76ac7c6e0a6f39fa4418789176b17be7c260a3e9",
+        "id": "2fb42c4d-de03-4e5a-97c0-2d6658b89891"
       },
       {
         "femaDeclarationString": "EM-3655-FL",
@@ -113,22 +113,22 @@
         "paProgramDeclared": true,
         "hmProgramDeclared": false,
         "incidentBeginDate": "2026-10-06T00:00:00.000Z",
-        "incidentEndDate": null,
+        "incidentEndDate": "2026-10-12T00:00:00.000Z",
         "disasterCloseoutDate": null,
         "tribalRequest": false,
         "fipsStateCode": "12",
-        "fipsCountyCode": "131",
-        "placeCode": "99131",
-        "designatedArea": "Walton (County)",
+        "fipsCountyCode": "073",
+        "placeCode": "99073",
+        "designatedArea": "Leon (County)",
         "declarationRequestNumber": "26167",
         "declarationRequestDate": "2026-10-08T00:00:00.000Z",
         "lastIAFilingDate": null,
         "incidentId": "2026100601",
         "region": 4,
         "designatedIncidentTypes": "H",
-        "lastRefresh": "2026-10-10T11:06:28.933Z",
-        "hash": "7a2a769177d225efef020de82643bc839d85074d",
-        "id": "efc347cb-6ed4-43e0-b665-4a8cdf17d244"
+        "lastRefresh": "2026-10-20T11:05:48.191Z",
+        "hash": "0a5a24e1bd8f5db95c94c9407b27aafac85926b6",
+        "id": "153f490e-5a3d-454f-8b33-2cfd87836333"
       },
       {
         "femaDeclarationString": "EM-3655-FL",
@@ -144,22 +144,22 @@
         "paProgramDeclared": true,
         "hmProgramDeclared": false,
         "incidentBeginDate": "2026-10-06T00:00:00.000Z",
-        "incidentEndDate": null,
+        "incidentEndDate": "2026-10-12T00:00:00.000Z",
         "disasterCloseoutDate": null,
         "tribalRequest": false,
         "fipsStateCode": "12",
-        "fipsCountyCode": "123",
-        "placeCode": "99123",
-        "designatedArea": "Taylor (County)",
+        "fipsCountyCode": "037",
+        "placeCode": "99037",
+        "designatedArea": "Franklin (County)",
         "declarationRequestNumber": "26167",
         "declarationRequestDate": "2026-10-08T00:00:00.000Z",
         "lastIAFilingDate": null,
         "incidentId": "2026100601",
         "region": 4,
         "designatedIncidentTypes": "H",
-        "lastRefresh": "2026-10-10T11:06:28.933Z",
-        "hash": "f57f7c60cfc07fc8dd3b9eaf760bdb100227eb68",
-        "id": "252bc0d3-8aca-407d-afc9-ce8a1512c772"
+        "lastRefresh": "2026-10-20T11:05:48.191Z",
+        "hash": "f81eac7cfac2350b7863ad4fa2fe5b335f7dbbb3",
+        "id": "483b0096-0981-4199-8798-fd00a6aef722"
       }
     ],
     "source": "FEMA"
@@ -391,7 +391,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 4,
+    "count": 3,
     "source": "USGS"
   },
   "bls_cpi": {
