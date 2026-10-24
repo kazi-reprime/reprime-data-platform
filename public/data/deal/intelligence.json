@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-10-23T11:00:33.794668Z",
+    "cached_at": "2026-10-24T10:17:10.422400Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,21 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Enhancing the Ability of Consumers To Control the Robocalls",
+        "date": "2026-10-26",
+        "type": "Rule"
+      },
+      {
+        "title": "Modernizing the Ability of Consumers To Control Robocalls",
+        "date": "2026-10-26",
+        "type": "Proposed Rule"
+      },
+      {
+        "title": "Outbound Investment Security Program Regulations",
+        "date": "2026-10-26",
+        "type": "Proposed Rule"
+      },
+      {
         "title": "Implementing the Guiding and Establishing National Innovation for U.S. Stablecoins Act for the Issuance of Stablecoins by Entities Subject to the Jurisdiction of the Office of the Comptroller of the Currency",
         "date": "2026-10-23",
         "type": "Rule"
@@ -174,21 +189,6 @@
       {
         "title": "21st Century ROAD to Housing Act Prohibition on Large Institutional Investor Purchases of Single-Family Homes",
         "date": "2026-10-23",
-        "type": "Proposed Rule"
-      },
-      {
-        "title": "Medicare Program; Implementation of Sections 6219, 6220, and 6224 of the Consolidated Appropriations Act, 2026",
-        "date": "2026-10-20",
-        "type": "Proposed Rule"
-      },
-      {
-        "title": "Investment Company Cross Trading",
-        "date": "2026-10-15",
-        "type": "Proposed Rule"
-      },
-      {
-        "title": "Investment Adviser Performance-Based Compensation Modernization",
-        "date": "2026-10-06",
         "type": "Proposed Rule"
       }
     ],
@@ -391,7 +391,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 3,
+    "count": 4,
     "source": "USGS"
   },
   "bls_cpi": {
