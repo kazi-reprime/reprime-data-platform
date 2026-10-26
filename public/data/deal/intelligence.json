@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-10-25T10:43:17.608149Z",
+    "cached_at": "2026-10-26T12:15:33.381997Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -394,5 +394,10 @@
     "count": 7,
     "source": "USGS"
   },
-  "bls_cpi": {}
+  "bls_cpi": {
+    "value": "336.298",
+    "period": "September",
+    "year": "2026",
+    "source": "BLS"
+  }
 }
