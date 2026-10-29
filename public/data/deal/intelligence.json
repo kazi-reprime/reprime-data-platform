@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-10-28T12:07:22.349419Z",
+    "cached_at": "2026-10-29T12:17:15.508251Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,21 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Notice Regarding the Uyghur Forced Labor Prevention Act Entity List",
+        "date": "2026-10-29",
+        "type": "Notice"
+      },
+      {
+        "title": "Channel Pacific Railroad-Operation Exemption-In West Sacramento, Yolo County, Cal.",
+        "date": "2026-10-29",
+        "type": "Notice"
+      },
+      {
+        "title": "Single Family Housing Guaranteed Loan Program-Income Producing Accessory Dwelling Unit (ADU) Provisions",
+        "date": "2026-10-29",
+        "type": "Rule"
+      },
+      {
         "title": "Enhancing the Ability of Consumers To Control the Robocalls",
         "date": "2026-10-26",
         "type": "Rule"
@@ -174,21 +189,6 @@
       {
         "title": "Modernizing the Ability of Consumers To Control Robocalls",
         "date": "2026-10-26",
-        "type": "Proposed Rule"
-      },
-      {
-        "title": "Outbound Investment Security Program Regulations",
-        "date": "2026-10-26",
-        "type": "Proposed Rule"
-      },
-      {
-        "title": "Implementing the Guiding and Establishing National Innovation for U.S. Stablecoins Act for the Issuance of Stablecoins by Entities Subject to the Jurisdiction of the Office of the Comptroller of the Currency",
-        "date": "2026-10-23",
-        "type": "Rule"
-      },
-      {
-        "title": "21st Century ROAD to Housing Act Prohibition on Large Institutional Investor Purchases of Single-Family Homes",
-        "date": "2026-10-23",
         "type": "Proposed Rule"
       }
     ],
@@ -391,7 +391,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 4,
+    "count": 5,
     "source": "USGS"
   },
   "bls_cpi": {
