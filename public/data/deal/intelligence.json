@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-11-02T14:45:37.221154Z",
+    "cached_at": "2026-11-03T13:38:07.513508Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -24,18 +24,18 @@
         "disasterCloseoutDate": null,
         "tribalRequest": false,
         "fipsStateCode": "12",
-        "fipsCountyCode": "113",
-        "placeCode": "99113",
-        "designatedArea": "Santa Rosa (County)",
+        "fipsCountyCode": "005",
+        "placeCode": "99005",
+        "designatedArea": "Bay (County)",
         "declarationRequestNumber": "26171",
         "declarationRequestDate": "2026-10-15T00:00:00.000Z",
-        "lastIAFilingDate": "2026-12-28T00:00:00.000Z",
+        "lastIAFilingDate": "2026-12-26T00:00:00.000Z",
         "incidentId": "2026100601",
         "region": 4,
         "designatedIncidentTypes": "H",
-        "lastRefresh": "2026-10-30T11:06:29.617Z",
-        "hash": "045d76dd0cb8c510de3bec8604df9b467592105b",
-        "id": "3fed6604-6cbc-49b7-a866-b2d1ba185d82"
+        "lastRefresh": "2026-11-02T18:07:54.940Z",
+        "hash": "3bae3abfb189fc2e3a875d34a3964068c8ab07b6",
+        "id": "e61b2389-5dd7-47bf-95d6-2dba1dd25d3d"
       },
       {
         "femaDeclarationString": "DR-4955-FL",
@@ -46,7 +46,7 @@
         "fyDeclared": 2027,
         "incidentType": "Hurricane",
         "declarationTitle": "HURRICANE ISAIAS",
-        "ihProgramDeclared": false,
+        "ihProgramDeclared": true,
         "iaProgramDeclared": false,
         "paProgramDeclared": true,
         "hmProgramDeclared": false,
@@ -55,18 +55,18 @@
         "disasterCloseoutDate": null,
         "tribalRequest": false,
         "fipsStateCode": "12",
-        "fipsCountyCode": "013",
-        "placeCode": "99013",
-        "designatedArea": "Calhoun (County)",
+        "fipsCountyCode": "045",
+        "placeCode": "99045",
+        "designatedArea": "Gulf (County)",
         "declarationRequestNumber": "26171",
         "declarationRequestDate": "2026-10-15T00:00:00.000Z",
-        "lastIAFilingDate": "2026-12-28T00:00:00.000Z",
+        "lastIAFilingDate": "2026-12-26T00:00:00.000Z",
         "incidentId": "2026100601",
         "region": 4,
         "designatedIncidentTypes": "H",
-        "lastRefresh": "2026-10-30T11:06:29.617Z",
-        "hash": "45f0a220a907dc91ff165bff2c09dab96d50bd46",
-        "id": "11281e4a-84ca-4a9d-9ff0-30c074a8f389"
+        "lastRefresh": "2026-11-02T18:07:54.940Z",
+        "hash": "7e32d752f651695e95a0f2f0a42bef844dc35b90",
+        "id": "b9a944aa-6085-420c-b5f9-5a3ea1882571"
       },
       {
         "femaDeclarationString": "DR-4955-FL",
@@ -91,13 +91,13 @@
         "designatedArea": "Washington (County)",
         "declarationRequestNumber": "26171",
         "declarationRequestDate": "2026-10-15T00:00:00.000Z",
-        "lastIAFilingDate": "2026-12-28T00:00:00.000Z",
+        "lastIAFilingDate": "2026-12-26T00:00:00.000Z",
         "incidentId": "2026100601",
         "region": 4,
         "designatedIncidentTypes": "H",
-        "lastRefresh": "2026-10-30T11:06:29.617Z",
-        "hash": "e7e950bb81eada62c07b969d5a7b3bc0137d1519",
-        "id": "e7e795ef-69ef-427d-a0ca-8522f9f2b4aa"
+        "lastRefresh": "2026-11-02T18:07:54.940Z",
+        "hash": "5f5f29a472736175545682a884edb0f19f66ab31",
+        "id": "b705fb7d-c9e4-445a-9f98-cbde70efebe2"
       },
       {
         "femaDeclarationString": "DR-4955-FL",
@@ -117,18 +117,18 @@
         "disasterCloseoutDate": null,
         "tribalRequest": false,
         "fipsStateCode": "12",
-        "fipsCountyCode": "063",
-        "placeCode": "99063",
-        "designatedArea": "Jackson (County)",
+        "fipsCountyCode": "065",
+        "placeCode": "99065",
+        "designatedArea": "Jefferson (County)",
         "declarationRequestNumber": "26171",
         "declarationRequestDate": "2026-10-15T00:00:00.000Z",
-        "lastIAFilingDate": "2026-12-28T00:00:00.000Z",
+        "lastIAFilingDate": "2026-12-26T00:00:00.000Z",
         "incidentId": "2026100601",
         "region": 4,
         "designatedIncidentTypes": "H",
-        "lastRefresh": "2026-10-30T11:06:29.617Z",
-        "hash": "757a9ec369d492a72bd6d6c4d9d476a97b6bc07f",
-        "id": "19c61fd9-a1d7-452e-ae97-951f02f482b1"
+        "lastRefresh": "2026-11-02T18:07:54.940Z",
+        "hash": "8edeed91f8c2a6874e56d9aa211d873cf007a953",
+        "id": "06288856-75ff-41fc-9cb9-242742ad2b11"
       },
       {
         "femaDeclarationString": "DR-4955-FL",
@@ -148,18 +148,18 @@
         "disasterCloseoutDate": null,
         "tribalRequest": false,
         "fipsStateCode": "12",
-        "fipsCountyCode": "039",
-        "placeCode": "99039",
-        "designatedArea": "Gadsden (County)",
+        "fipsCountyCode": "037",
+        "placeCode": "99037",
+        "designatedArea": "Franklin (County)",
         "declarationRequestNumber": "26171",
         "declarationRequestDate": "2026-10-15T00:00:00.000Z",
-        "lastIAFilingDate": "2026-12-28T00:00:00.000Z",
+        "lastIAFilingDate": "2026-12-26T00:00:00.000Z",
         "incidentId": "2026100601",
         "region": 4,
         "designatedIncidentTypes": "H",
-        "lastRefresh": "2026-10-30T11:06:29.617Z",
-        "hash": "a7699412a92f8a851869d48b9d5a9f956e29d88f",
-        "id": "2483150c-8b68-4691-8dc7-f0198449f6b9"
+        "lastRefresh": "2026-11-02T18:07:54.940Z",
+        "hash": "a8c89a6f5d85eeeac18c4e48cba2c410a1bb23d8",
+        "id": "c62cd2ae-ef7e-4838-9fe3-8d3026c7a801"
       }
     ],
     "source": "FEMA"
