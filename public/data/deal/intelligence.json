@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-11-03T13:38:07.513508Z",
+    "cached_at": "2026-11-04T13:46:25.585586Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Large-Bank Deposit Insurance Determination Modernization",
+        "date": "2026-11-04",
+        "type": "Proposed Rule"
+      },
+      {
         "title": "Notice Regarding the Uyghur Forced Labor Prevention Act Entity List",
         "date": "2026-10-29",
         "type": "Notice"
@@ -185,11 +190,6 @@
         "title": "Enhancing the Ability of Consumers To Control the Robocalls",
         "date": "2026-10-26",
         "type": "Rule"
-      },
-      {
-        "title": "Modernizing the Ability of Consumers To Control Robocalls",
-        "date": "2026-10-26",
-        "type": "Proposed Rule"
       }
     ],
     "source": "Federal Register"
