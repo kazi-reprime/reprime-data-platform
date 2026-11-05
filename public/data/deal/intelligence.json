@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-11-04T13:46:25.585586Z",
+    "cached_at": "2026-11-05T13:58:26.659897Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Scotts Valley Band of Pomo Indians of California Liquor Control Ordinance; Correction",
+        "date": "2026-11-05",
+        "type": "Notice"
+      },
+      {
         "title": "Large-Bank Deposit Insurance Determination Modernization",
         "date": "2026-11-04",
         "type": "Proposed Rule"
@@ -184,11 +189,6 @@
       {
         "title": "Single Family Housing Guaranteed Loan Program-Income Producing Accessory Dwelling Unit (ADU) Provisions",
         "date": "2026-10-29",
-        "type": "Rule"
-      },
-      {
-        "title": "Enhancing the Ability of Consumers To Control the Robocalls",
-        "date": "2026-10-26",
         "type": "Rule"
       }
     ],
@@ -391,7 +391,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 1,
+    "count": 0,
     "source": "USGS"
   },
   "bls_cpi": {
