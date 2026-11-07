@@ -1,27 +1,11 @@
 {
-  "fred": {
-    "treasury_10y": {
-      "value": "4.90%",
-      "date": "2026-11-04",
-      "source": "FRED"
-    },
-    "mortgage_30y": {
-      "value": "7.18%",
-      "date": "2026-11-05",
-      "source": "FRED"
-    },
-    "fed_funds": {
-      "value": "3.88%",
-      "date": "2026-10-01",
-      "source": "FRED"
-    }
-  },
+  "fred": {},
   "crypto": {
     "bitcoin": {
-      "price": "$75,678"
+      "price": "$75,938"
     },
     "ethereum": {
-      "price": "$2,231"
+      "price": "$2,242"
     }
   },
   "fx": {},
@@ -31,7 +15,7 @@
     "source": "Bank of Israel"
   },
   "_meta": {
-    "cached_at": "2026-11-06T13:43:49.394048Z",
+    "cached_at": "2026-11-07T12:27:04.083172Z",
     "ttl_seconds": 3600
   }
 }
