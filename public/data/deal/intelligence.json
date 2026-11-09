@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-11-08T12:45:47.049502Z",
+    "cached_at": "2026-11-09T15:10:29.017325Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Calendar Year 2027 Home Health Prospective Payment System (HH PPS) Rate Update; Requirements for the HH Quality Reporting Program and the Expanded HH Value-Based Purchasing Model; Medicare Provider Enrollment, Durable Medical Equipment (DME), and DME, Prosthetics, Orthotics, and Supplies (DMEPOS) Policies",
+        "date": "2026-11-09",
+        "type": "Rule"
+      },
+      {
         "title": "Scotts Valley Band of Pomo Indians of California Liquor Control Ordinance; Correction",
         "date": "2026-11-05",
         "type": "Notice"
@@ -185,11 +190,6 @@
         "title": "Channel Pacific Railroad-Operation Exemption-In West Sacramento, Yolo County, Cal.",
         "date": "2026-10-29",
         "type": "Notice"
-      },
-      {
-        "title": "Single Family Housing Guaranteed Loan Program-Income Producing Accessory Dwelling Unit (ADU) Provisions",
-        "date": "2026-10-29",
-        "type": "Rule"
       }
     ],
     "source": "Federal Register"
@@ -391,7 +391,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 0,
+    "count": 1,
     "source": "USGS"
   },
   "bls_cpi": {
