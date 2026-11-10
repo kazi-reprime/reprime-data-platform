@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-11-09T15:10:29.017325Z",
+    "cached_at": "2026-11-10T14:20:09.387563Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Notice of OFAC Sanctions Action",
+        "date": "2026-11-10",
+        "type": "Notice"
+      },
+      {
         "title": "Calendar Year 2027 Home Health Prospective Payment System (HH PPS) Rate Update; Requirements for the HH Quality Reporting Program and the Expanded HH Value-Based Purchasing Model; Medicare Provider Enrollment, Durable Medical Equipment (DME), and DME, Prosthetics, Orthotics, and Supplies (DMEPOS) Policies",
         "date": "2026-11-09",
         "type": "Rule"
@@ -183,11 +188,6 @@
       },
       {
         "title": "Notice Regarding the Uyghur Forced Labor Prevention Act Entity List",
-        "date": "2026-10-29",
-        "type": "Notice"
-      },
-      {
-        "title": "Channel Pacific Railroad-Operation Exemption-In West Sacramento, Yolo County, Cal.",
         "date": "2026-10-29",
         "type": "Notice"
       }
@@ -395,8 +395,8 @@
     "source": "USGS"
   },
   "bls_cpi": {
-    "value": "336.298",
-    "period": "September",
+    "value": "337.476",
+    "period": "October",
     "year": "2026",
     "source": "BLS"
   }
