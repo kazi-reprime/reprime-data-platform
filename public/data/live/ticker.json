@@ -1,14 +1,14 @@
 {
   "bitcoin": {
-    "value": "$67,014",
+    "value": "$65,629",
     "source": "CoinGecko"
   },
   "ethereum": {
-    "value": "$1,899",
+    "value": "$1,835",
     "source": "CoinGecko"
   },
   "_meta": {
-    "cached_at": "2026-11-14T12:57:59.335280Z",
+    "cached_at": "2026-11-15T13:26:39.296834Z",
     "ttl_seconds": 3600
   }
 }
