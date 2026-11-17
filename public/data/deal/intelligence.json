@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-11-16T14:47:14.282305Z",
+    "cached_at": "2026-11-17T15:29:51.781469Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,16 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Chartering and Field of Membership for Federal Credit Unions; Associational Common Bonds and Client-Customer Relationships",
+        "date": "2026-11-17",
+        "type": "Rule"
+      },
+      {
+        "title": "Modernizing the Commission's National Environmental Policy Act Rules",
+        "date": "2026-11-17",
+        "type": "Rule"
+      },
+      {
         "title": "Notice of OFAC Sanctions Action",
         "date": "2026-11-10",
         "type": "Notice"
@@ -179,16 +189,6 @@
       {
         "title": "Scotts Valley Band of Pomo Indians of California Liquor Control Ordinance; Correction",
         "date": "2026-11-05",
-        "type": "Notice"
-      },
-      {
-        "title": "Large-Bank Deposit Insurance Determination Modernization",
-        "date": "2026-11-04",
-        "type": "Proposed Rule"
-      },
-      {
-        "title": "Notice Regarding the Uyghur Forced Labor Prevention Act Entity List",
-        "date": "2026-10-29",
         "type": "Notice"
       }
     ],
@@ -391,7 +391,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 0,
+    "count": 1,
     "source": "USGS"
   },
   "bls_cpi": {
