@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-11-17T15:29:51.781469Z",
+    "cached_at": "2026-11-18T15:06:05.693055Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Copyright Office Fees",
+        "date": "2026-11-18",
+        "type": "Rule"
+      },
+      {
         "title": "Chartering and Field of Membership for Federal Credit Unions; Associational Common Bonds and Client-Customer Relationships",
         "date": "2026-11-17",
         "type": "Rule"
@@ -185,11 +190,6 @@
         "title": "Calendar Year 2027 Home Health Prospective Payment System (HH PPS) Rate Update; Requirements for the HH Quality Reporting Program and the Expanded HH Value-Based Purchasing Model; Medicare Provider Enrollment, Durable Medical Equipment (DME), and DME, Prosthetics, Orthotics, and Supplies (DMEPOS) Policies",
         "date": "2026-11-09",
         "type": "Rule"
-      },
-      {
-        "title": "Scotts Valley Band of Pomo Indians of California Liquor Control Ordinance; Correction",
-        "date": "2026-11-05",
-        "type": "Notice"
       }
     ],
     "source": "Federal Register"
@@ -391,7 +391,7 @@
     "source": "FDIC"
   },
   "earthquakes": {
-    "count": 1,
+    "count": 2,
     "source": "USGS"
   },
   "bls_cpi": {
