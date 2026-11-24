@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "cached_at": "2026-11-23T17:23:42.275694Z",
+    "cached_at": "2026-11-24T16:57:47.923336Z",
     "ttl_seconds": 3600
   },
   "fema_disasters": {
@@ -167,6 +167,11 @@
   "fed_register": {
     "documents": [
       {
+        "title": "Streamlining and Improving Efficiencies in the RCRA Hazardous Waste Permitting Program; Notice of Virtual Public Meetings and Request for Information",
+        "date": "2026-11-24",
+        "type": "Notice"
+      },
+      {
         "title": "Copyright Office Fees",
         "date": "2026-11-18",
         "type": "Rule"
@@ -185,11 +190,6 @@
         "title": "Notice of OFAC Sanctions Action",
         "date": "2026-11-10",
         "type": "Notice"
-      },
-      {
-        "title": "Calendar Year 2027 Home Health Prospective Payment System (HH PPS) Rate Update; Requirements for the HH Quality Reporting Program and the Expanded HH Value-Based Purchasing Model; Medicare Provider Enrollment, Durable Medical Equipment (DME), and DME, Prosthetics, Orthotics, and Supplies (DMEPOS) Policies",
-        "date": "2026-11-09",
-        "type": "Rule"
       }
     ],
     "source": "Federal Register"
